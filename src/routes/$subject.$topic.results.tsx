@@ -230,3 +230,13 @@ function ResultsPage() {
     </div>
   );
 }
+
+function Stat({ label, value, tone }: { label: string; value: number; tone: "mint" | "coral" | "muted" }) {
+  const color = tone === "mint" ? "var(--mint)" : tone === "coral" ? "var(--coral)" : "var(--muted-foreground)";
+  return (
+    <div className="hairline rounded-xl p-3">
+      <p className="font-num text-2xl" style={{ color }}>{value}</p>
+      <p className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground mt-1">{label}</p>
+    </div>
+  );
+}
