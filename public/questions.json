@@ -2858,5 +2858,1370 @@
     ],
     "correct": 2,
     "explanation": "Anaerobic bacteria are used in biogas digesters to decompose organic waste, producing methane gas, which is an example of biotechnology in waste management."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "human-economic-activities",
+    "question": "Which of the following serves as the best definition for the concept of 'Economic Needs' in the context of human activities?",
+    "options": [
+      "Secondary desires that a person develops through social influence.",
+      "Fundamental requirements that must be satisfied for a human to survive.",
+      "The various ways in which individuals choose to satisfy their basic requirements.",
+      "Services provided by the government free of charge to all citizens."
+    ],
+    "correct": 1,
+    "explanation": "Economic needs are the basic physiological requirements such as food, clothing, and shelter that are essential for human survival and are common to everyone."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "human-economic-activities",
+    "question": "A student decides to buy a specialized fountain pen to write their exams instead of using a standard ballpoint pen. This scenario is a classic example of:",
+    "options": [
+      "A primary need being satisfied by a natural resource.",
+      "A shift from a non-economic activity to an economic activity.",
+      "A specific 'Want' used to satisfy a general 'Need'.",
+      "The elimination of scarcity through consumer choice."
+    ],
+    "correct": 2,
+    "explanation": "While writing is the need, the specific choice of a fountain pen represents a 'Want,' which is the diverse and complex way individuals satisfy a common need."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "human-economic-activities",
+    "question": "Identify the statement that correctly distinguishes between 'Goods' and 'Services' within human economic activities.",
+    "options": [
+      "Goods are always essential while services are always luxuries.",
+      "Goods have a physical existence (tangible), whereas services are intangible.",
+      "Goods can only be produced by individuals, while services are produced by machines.",
+      "The value of goods decreases over time, but the value of services always increases."
+    ],
+    "correct": 1,
+    "explanation": "In economics, goods are physical items you can touch, such as a loaf of bread, while services are actions performed by others, such as a haircut or medical check-up."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "human-economic-activities",
+    "question": "A family grows vegetables in their home garden solely for their own daily consumption. How is this activity classified in a business context?",
+    "options": [
+      "A commercial economic activity.",
+      "A non-economic activity.",
+      "A secondary production process.",
+      "A wholesale trade activity."
+    ],
+    "correct": 1,
+    "explanation": "Activities performed out of love, affection, or for personal consumption without a motive of monetary exchange or profit are classified as non-economic activities."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "human-economic-activities",
+    "question": "Which of the following sequences correctly represents the progression of a product from the primary sector to the tertiary sector?",
+    "options": [
+      "Mining iron ore -> Manufacturing a car -> Transporting the car to a showroom.",
+      "Baking bread -> Growing wheat -> Selling bread in a grocery store.",
+      "Providing a legal service -> Harvesting timber -> Making furniture.",
+      "Operating a hotel -> Fishing in the sea -> Canning the fish."
+    ],
+    "correct": 0,
+    "explanation": "The primary sector involves extraction (mining), the secondary sector involves manufacturing (making the car), and the tertiary sector involves services (transportation/distribution)."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "business-environment",
+    "question": "Which of the following is a specific characteristic that distinguishes a 'Business' from other social organizations?",
+    "options": [
+      "Having a group of people working together",
+      "Functioning within a legal framework",
+      "Aiming to satisfy human needs and wants while expecting a profit",
+      "Using resources efficiently to achieve a common goal"
+    ],
+    "correct": 2,
+    "explanation": "While all organizations have goals and people, a business specifically focuses on providing goods and services to satisfy needs and wants with the primary motive of earning a profit."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "business-environment",
+    "question": "The government of Sri Lanka decides to increase the value-added tax (VAT) percentage. Which component of the business environment does this decision primarily represent?",
+    "options": [
+      "Economic Environment",
+      "Political Environment",
+      "Legal Environment",
+      "Social Environment"
+    ],
+    "correct": 0,
+    "explanation": "Taxation policies and changes in tax rates are key factors that influence the economic conditions of a country, thus falling under the Economic Environment."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "business-environment",
+    "question": "In a clothing retail business, which of the following pairs solely consists of internal environmental factors?",
+    "options": [
+      "Customers and Competitors",
+      "Employees and Owners",
+      "Suppliers and Employees",
+      "Technological changes and Management"
+    ],
+    "correct": 1,
+    "explanation": "Internal environment factors are those within the organization's control, such as owners, managers, and employees. Customers and suppliers are external stakeholders."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "business-environment",
+    "question": "Identify the correct statement regarding 'Needs' and 'Wants' in a business context.",
+    "options": [
+      "Needs are complex and diverse while wants are basic and common.",
+      "A business can survive by only satisfying the wants of a community.",
+      "Needs are essential for survival, whereas wants are the various ways to satisfy those needs.",
+      "Human wants are limited but human needs are unlimited."
+    ],
+    "correct": 2,
+    "explanation": "Needs are the basic requirements for human survival (e.g., food), while wants are the specific products or services chosen to satisfy those needs (e.g., fried rice)."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "business-environment",
+    "question": "A businessman decides to move his manufacturing plant to a rural area because the labor costs are lower. Under which analysis factor would this 'low labor cost' be categorized?",
+    "options": [
+      "Strength",
+      "Weakness",
+      "Opportunity",
+      "Threat"
+    ],
+    "correct": 2,
+    "explanation": "External factors that a business can exploit to its advantage, such as low-cost labor in a specific region, are considered Opportunities in a SWOT analysis."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "forms-of-business",
+    "question": "Which of the following is a specific characteristic of a Sole Proprietorship compared to other business forms?",
+    "options": [
+      "The business has a separate legal personality from the owner.",
+      "Liability is limited only to the investment made by the owner.",
+      "The owner has unlimited liability for the debts of the business.",
+      "Decision-making must be done through a board of directors."
+    ],
+    "correct": 2,
+    "explanation": "In a sole proprietorship, the business and the owner are not legally distinct; therefore, the owner is personally responsible for all business debts."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "forms-of-business",
+    "question": "Nimal and Kamal started a partnership business without a written agreement. According to the Partnership Ordinance, how should they share profits and losses?",
+    "options": [
+      "In proportion to the capital they contributed.",
+      "Equally among all partners.",
+      "Based on the number of hours worked by each partner.",
+      "Profit is shared equally, but losses are shared based on capital."
+    ],
+    "correct": 1,
+    "explanation": "In the absence of a formal partnership deed or agreement, the Partnership Ordinance dictates that profits and losses must be shared equally among partners."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "forms-of-business",
+    "question": "Which document is considered the primary internal set of rules and regulations for the management of a Private Limited Company?",
+    "options": [
+      "Article of Association",
+      "Memorandum of Association",
+      "Certificate of Incorporation",
+      "Prospectus"
+    ],
+    "correct": 0,
+    "explanation": "The Articles of Association define the internal management, powers of directors, and procedures for meetings within a company."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "forms-of-business",
+    "question": "What is the minimum and maximum number of members required to form a Private Limited Company as per the Companies Act No. 07 of 2007 in Sri Lanka?",
+    "options": [
+      "Minimum 1, Maximum 50",
+      "Minimum 2, Maximum 20",
+      "Minimum 1, Maximum Unlimited",
+      "Minimum 7, Maximum 50"
+    ],
+    "correct": 0,
+    "explanation": "Under the current Companies Act, a private company can be started by a single person and can have a maximum of 50 shareholders (excluding employees)."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "forms-of-business",
+    "question": "A business organization is established with the primary objective of providing services to its members rather than maximizing profit. This is most likely a:",
+    "options": [
+      "Public Limited Company",
+      "Co-operative Society",
+      "State-owned Enterprise",
+      "Partnership"
+    ],
+    "correct": 1,
+    "explanation": "Co-operative societies are formed by individuals with common interests to provide mutual benefits and services to their members."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "production",
+    "question": "Which of the following is a key characteristic of the tertiary sector of production?",
+    "options": [
+      "Extraction of raw materials from natural resources",
+      "Conversion of semi-finished goods into finished products",
+      "Providing intangible services to facilitate production and consumption",
+      "The primary stage of the manufacturing process"
+    ],
+    "correct": 2,
+    "explanation": "The tertiary sector is also known as the service sector, which focuses on providing intangible benefits such as banking, insurance, and transport to the primary and secondary sectors."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "production",
+    "question": "A home-based garment business produces 500 shirts using 5 workers over a period of 10 days. If the business hires 5 more workers and production increases to 1,200 shirts in the same timeframe, what is the change in labor productivity per worker?",
+    "options": [
+      "Increases by 20 units",
+      "Decreases by 10 units",
+      "Increases by 120 units",
+      "Increases by 50 units"
+    ],
+    "correct": 0,
+    "explanation": "Initial productivity is 500/5 = 100 units per worker. New productivity is 1200/10 = 120 units per worker. The increase is 20 units per worker."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "production",
+    "question": "An entrepreneur decides to start a small-scale spice grinding project. Which factor of production and its corresponding reward are correctly matched below?",
+    "options": [
+      "Spice grinding machine - Interest",
+      "Land for the factory - Wages",
+      "Working capital - Rent",
+      "Entrepreneur's effort - Salary"
+    ],
+    "correct": 0,
+    "explanation": "Capital includes man-made resources like machinery used in production, and the reward for capital is interest."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "production",
+    "question": "Which of the following examples best illustrates the concept of 'Direct Production'?",
+    "options": [
+      "A farmer selling his paddy harvest to a local rice mill",
+      "A carpenter making a dining table for his own household use",
+      "A teacher conducting private tuition classes for a fee",
+      "A garment factory exporting shirts to the European market"
+    ],
+    "correct": 1,
+    "explanation": "Direct production involves creating goods or services for personal consumption rather than for sale in the market."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "production",
+    "question": "In the context of the 'Chain of Production', what is the specific role of the wholesaler?",
+    "options": [
+      "Transforming raw materials into usable consumer goods",
+      "Selling goods in small quantities directly to the final consumer",
+      "Purchasing goods in bulk from producers and selling to retailers",
+      "Extracting minerals and resources from the earth"
+    ],
+    "correct": 2,
+    "explanation": "The wholesaler acts as a link in the chain of distribution by buying in large quantities from manufacturers and breaking the bulk for retailers."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "marketing",
+    "question": "Which of the following describes the 'Marketing Concept' as used in modern business management?",
+    "options": [
+      "Maximizing profit by increasing the production of goods regardless of customer needs.",
+      "Achieving organizational goals by identifying and satisfying the needs and wants of the target market.",
+      "Ensuring that the products are available everywhere at the lowest possible price.",
+      "Using aggressive promotional and selling techniques to persuade customers to buy products."
+    ],
+    "correct": 1,
+    "explanation": "The marketing concept focuses on determining the needs of customers and delivering desired satisfactions more effectively than competitors."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "marketing",
+    "question": "Samagi Bakers decides to reduce the price of their bread during the final hour of business each day to minimize waste. Which element of the marketing mix is primarily being adjusted here?",
+    "options": [
+      "Product",
+      "Place",
+      "Price",
+      "Promotion"
+    ],
+    "correct": 2,
+    "explanation": "The adjustment involves the monetary value charged for the bread, which falls under the 'Price' element of the 4Ps of marketing."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "marketing",
+    "question": "A refrigerator manufacturer provides a 5-year free service warranty and home delivery for its customers. These additional features are categorized under which component of the marketing mix?",
+    "options": [
+      "Product",
+      "Place",
+      "Promotion",
+      "Price"
+    ],
+    "correct": 0,
+    "explanation": "The 'Product' element includes not just the physical item, but also related services such as warranties, packaging, and after-sales service."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "marketing",
+    "question": "A cleaning liquid brand uses 'Buy One Get One Free' stickers on their bottles at supermarkets. What is the specific sub-element of the marketing mix being utilized here?",
+    "options": [
+      "Publicity",
+      "Personal Selling",
+      "Sales Promotion",
+      "Direct Marketing"
+    ],
+    "correct": 2,
+    "explanation": "Short-term incentives used to encourage the purchase or sale of a product, such as coupons or 'buy one get one free' offers, are known as sales promotions."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "marketing",
+    "question": "Which of the following is an example of 'Place' (Distribution) in the marketing mix of a school uniform manufacturing company?",
+    "options": [
+      "Ensuring the fabric used is of high quality and durable.",
+      "Determining the retail price based on the production cost.",
+      "Using social media advertisements to reach parents.",
+      "Selling uniforms through a network of island-wide retail stationary shops."
+    ],
+    "correct": 3,
+    "explanation": "Place refers to the channels and methods used to make the product available to the target customers at the right location."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "money-banking",
+    "question": "Which of the following describes a situation where the function of money acts as a 'Standard of Deferred Payment'?",
+    "options": [
+      "A merchant labeling the price of a shirt as Rs. 2,500.",
+      "A student saving Rs. 1,000 in a till for future use.",
+      "A farmer purchasing a tractor on a monthly installment basis.",
+      "A consumer exchanging a ten-rupee coin for a loaf of bread."
+    ],
+    "correct": 2,
+    "explanation": "Standard of deferred payment allows for the settlement of debts and future obligations in terms of money, such as paying for goods through installments."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "money-banking",
+    "question": "Identify the correct statement regarding the characteristics of a 'Current Account' in a commercial bank.",
+    "options": [
+      "Interest is paid annually on the daily balance.",
+      "Deposits can only be made by the account holder in person.",
+      "Money can be withdrawn at any time using cheques.",
+      "It is primarily designed as a long-term saving instrument."
+    ],
+    "correct": 2,
+    "explanation": "A primary feature of a Current Account is the ability to withdraw funds on demand using cheques, and it usually does not provide interest to the depositor."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "money-banking",
+    "question": "A businessman issues a cheque for Rs. 50,000 to a supplier but dates it for 14 days after the day of issuance. What is this type of cheque known as?",
+    "options": [
+      "Stale Cheque",
+      "Post-dated Cheque",
+      "Ante-dated Cheque",
+      "Open Cheque"
+    ],
+    "correct": 1,
+    "explanation": "A post-dated cheque is a cheque that bears a future date, meaning it cannot be encashed or processed by the bank until that specific date arrives."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "money-banking",
+    "question": "Which of the following is considered a primary objective of the Central Bank of Sri Lanka?",
+    "options": [
+      "Opening savings accounts for the general public.",
+      "Accepting deposits from large scale private businesses.",
+      "Maintaining domestic price stability and financial system stability.",
+      "Providing short-term loans directly to individual farmers."
+    ],
+    "correct": 2,
+    "explanation": "The Central Bank focuses on macro-economic stability, specifically ensuring price and financial system stability, rather than providing retail banking services to individuals."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "money-banking",
+    "question": "A customer receives a cheque with two parallel lines drawn across the top left corner. What is the main purpose of this crossing?",
+    "options": [
+      "To cancel the cheque so it cannot be used.",
+      "To ensure that the money is only paid through a bank account.",
+      "To allow the holder to get cash immediately over the bank counter.",
+      "To indicate that the cheque is only valid for 24 hours."
+    ],
+    "correct": 1,
+    "explanation": "Crossing a cheque is a safety measure that prevents the cheque from being cashed over the counter; the funds must be deposited into a bank account instead."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "insurance",
+    "question": "Which of the following describes the principle of 'Indemnity' in a general insurance contract?",
+    "options": [
+      "The insured must have a legal relationship with the object being insured.",
+      "The insured should be placed in the same financial position held immediately before the loss occurred.",
+      "The insured must disclose all material facts related to the insurance policy honestly.",
+      "The insurer has the right to claim any scrap value after paying full compensation."
+    ],
+    "correct": 1,
+    "explanation": "Indemnity ensures the insured does not make a profit from a loss; they are simply restored to their prior financial state."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "insurance",
+    "question": "A stock worth Rs. 500,000 was insured for only Rs. 400,000 under a policy with 'Average Clause'. If a fire causes a loss of Rs. 100,000, what is the compensation amount the owner is entitled to?",
+    "options": [
+      "Rs. 100,000",
+      "Rs. 400,000",
+      "Rs. 80,000",
+      "Rs. 500,000"
+    ],
+    "correct": 2,
+    "explanation": "Using the Average Clause formula: (Sum Insured / Market Value) * Actual Loss. Calculation: (400,000 / 500,000) * 100,000 = 80,000."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "insurance",
+    "question": "Which of the following risks can be categorized as a 'Non-Insurable Risk'?",
+    "options": [
+      "Loss of goods due to a fire in the warehouse.",
+      "Losses incurred due to a sudden change in consumer fashion trends.",
+      "Damage to a delivery van caused by a road accident.",
+      "Physical injuries caused to employees during working hours."
+    ],
+    "correct": 1,
+    "explanation": "Speculative risks like changes in market trends or competition cannot be insured because they involve a possibility of profit and lack statistical predictability."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "insurance",
+    "question": "An individual takes an insurance policy for his neighbor's house without the neighbor's consent. This contract is void because it lacks which principle?",
+    "options": [
+      "Utmost Good Faith",
+      "Proximate Cause",
+      "Contribution",
+      "Insurable Interest"
+    ],
+    "correct": 3,
+    "explanation": "Insurable Interest requires the policyholder to suffer a financial loss if the insured property is damaged; one cannot normally insure another person's property."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "insurance",
+    "question": "What is the primary document issued by an insurance company as formal evidence of the contract after the first premium is paid and the proposal is accepted?",
+    "options": [
+      "Insurance Proposal Form",
+      "Insurance Policy",
+      "Cover Note",
+      "Claim Form"
+    ],
+    "correct": 1,
+    "explanation": "The Insurance Policy is the legal document containing the terms and conditions that serves as the final evidence of the contract between both parties."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "transport-communication",
+    "question": "Which of the following describes a 'Common Carrier' in the context of transport services?",
+    "options": [
+      "A person who transports his own goods in his own vehicle for business purposes.",
+      "An organization that provides transport facilities only to a specific group of members.",
+      "A person or organization that provides transport services to any member of the public for a fee.",
+      "A government body that regulates the fares and schedules of private transport providers."
+    ],
+    "correct": 2,
+    "explanation": "A common carrier is a person or business that offers transportation services to the general public under a standard set of rates without discrimination."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "transport-communication",
+    "question": "A business in Jaffna needs to transport 10,000 kilograms of perishable vegetables to the Manning Market in Colombo within the shortest possible time. What is the most suitable mode of transport?",
+    "options": [
+      "Rail transport using a freight wagon.",
+      "Sea transport using a coastal vessel.",
+      "Air transport using a domestic cargo flight.",
+      "Road transport using a refrigerated truck."
+    ],
+    "correct": 3,
+    "explanation": "For perishable items like vegetables, road transport with refrigeration offers the best balance of speed and door-to-door delivery to prevent spoilage, which rail or sea might not provide as efficiently."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "transport-communication",
+    "question": "Modern businesses use 'Electronic Data Interchange' (EDI) as a method of communication. What is the primary advantage of EDI over traditional communication?",
+    "options": [
+      "It allows for face-to-face interaction between the buyer and the seller.",
+      "It enables the automatic exchange of structured business documents between computer systems.",
+      "It is the cheapest method for sending handwritten urgent messages.",
+      "It ensures that messages are delivered physically to the recipient's doorstep."
+    ],
+    "correct": 1,
+    "explanation": "EDI is specifically designed for the computer-to-computer exchange of business documents like invoices and purchase orders in a standard electronic format, increasing efficiency and reducing errors."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "transport-communication",
+    "question": "Which of the following is considered a 'Hidden' cost associated with the transport of goods?",
+    "options": [
+      "The fuel cost and the driver's salary.",
+      "The cost of loading and unloading the goods.",
+      "Insurance premiums paid for the goods in transit.",
+      "Loss of revenue due to delays in delivery or damage to goods."
+    ],
+    "correct": 3,
+    "explanation": "While fuel and insurance are direct/explicit costs, the loss of customer goodwill and revenue due to delivery delays are indirect or 'hidden' costs that impact the business."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "transport-communication",
+    "question": "In the postal services of Sri Lanka, the facility that allows a sender to receive a signed confirmation from the recipient upon delivery is known as:",
+    "options": [
+      "Registered Post",
+      "Business Mail",
+      "Courier Service",
+      "Speed Post"
+    ],
+    "correct": 0,
+    "explanation": "Registered Post is a service provided by the Department of Posts where the sender receives a receipt, and the delivery is tracked and confirmed with a signature from the recipient."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "trade",
+    "question": "Which of the following is a primary characteristic that distinguishes international trade from internal trade?",
+    "options": [
+      "The mandatory use of the same currency for all transactions.",
+      "The absence of any transport costs during the delivery of goods.",
+      "The existence of different legal systems and trade barriers between countries.",
+      "The requirement that only government-owned organizations can participate."
+    ],
+    "correct": 2,
+    "explanation": "Internal trade happens within a single legal framework, while international trade involves crossing borders, which introduces different laws, tariffs, and trade regulations."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "trade",
+    "question": "A Sri Lankan businessman purchases high-quality tea from a local plantation in Nuwara Eliya and sells it to a retail shop owner in Colombo. This specific business activity can be categorized as:",
+    "options": [
+      "Entrepot trade",
+      "Wholesale trade",
+      "Import trade",
+      "Direct export trade"
+    ],
+    "correct": 1,
+    "explanation": "Wholesale trade involves purchasing goods in large quantities from producers and selling them in smaller quantities to retailers within the same country."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "trade",
+    "question": "A merchant in Sri Lanka imports raw fabric from India, processes it into finished garments in a local factory, and then exports the final products to a buyer in the United Kingdom. What is this process primarily known as?",
+    "options": [
+      "Bilateral trade",
+      "Entrepot trade",
+      "Retail trade",
+      "Export trade"
+    ],
+    "correct": 1,
+    "explanation": "Entrepot trade involves importing goods from one country and exporting them to another country, often after some value addition or processing."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "trade",
+    "question": "Which of the following documents is used by an exporter to provide a formal quote to a potential foreign buyer, detailing the price, quality, and quantity of goods?",
+    "options": [
+      "Bill of Lading",
+      "Pro-forma Invoice",
+      "Indent",
+      "Consular Invoice"
+    ],
+    "correct": 1,
+    "explanation": "A Pro-forma invoice acts as a preliminary bill of sale sent to buyers in advance of a shipment of goods, serving as a quotation for international trade."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "trade",
+    "question": "Assume a Sri Lankan electronics importer purchases 100 laptops from a Japanese supplier at a cost of 50,000 JPY per unit. If the exchange rate is 1 LKR = 0.50 JPY, what is the total cost in Sri Lankan Rupees (LKR) to be paid to the supplier (excluding taxes)?",
+    "options": [
+      "2,500,000 LKR",
+      "5,000,000 LKR",
+      "10,000,000 LKR",
+      "25,000,000 LKR"
+    ],
+    "correct": 2,
+    "explanation": "Total JPY = 100 * 50,000 = 5,000,000. To convert to LKR at 0.50 JPY per Rupee, divide 5,000,000 by 0.50, which equals 10,000,000 LKR."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "entrepreneurship",
+    "question": "Which of the following is the most fundamental characteristic that distinguishes an entrepreneur from a stereotypical employee?",
+    "options": [
+      "Obtaining a fixed monthly salary for work done.",
+      "Following established sets of rules and procedures given by a manager.",
+      "The willingness to take calculated risks to pursue an innovation.",
+      "Completing tasks within a strictly defined timeframe."
+    ],
+    "correct": 2,
+    "explanation": "Entrepreneurs are defined by their ability to innovate and accept risks in the pursuit of profit, whereas employees typically operate within defined roles for a fixed wage."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "entrepreneurship",
+    "question": "A young individual starts a small venture producing eco-friendly bags using local jute. This demonstrates the economic benefit of entrepreneurship by:",
+    "options": [
+      "Increasing the dependence on imported raw materials.",
+      "Utilizing local resources and generating employment opportunities.",
+      "Reducing the total tax revenue collected by the government.",
+      "Eliminating competition in the local handicraft market."
+    ],
+    "correct": 1,
+    "explanation": "Entrepreneurship helps the national economy by utilizing local raw materials and creating jobs, which improves the standard of living."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "entrepreneurship",
+    "question": "In the context of Small and Medium Enterprises (SMEs) in Sri Lanka, which factor is primarily used by the government and financial institutions to categorize a business as 'Small'?",
+    "options": [
+      "The gender of the business owner.",
+      "The number of employees and the annual turnover.",
+      "The age of the business since its registration.",
+      "The location of the business headquarters."
+    ],
+    "correct": 1,
+    "explanation": "SMEs are typically classified based on quantitative criteria such as the number of employees and the annual turnover or investment value."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "entrepreneurship",
+    "question": "An entrepreneur decides to open a small bakery. If the daily fixed cost is Rs. 2,000 and the contribution per loaf of bread (Selling price - Variable cost) is Rs. 40, how many loaves must be sold daily to reach the break-even point?",
+    "options": [
+      "80 loaves",
+      "50 loaves",
+      "2,040 loaves",
+      "1,960 loaves"
+    ],
+    "correct": 1,
+    "explanation": "The break-even point in units is calculated by dividing Fixed Costs by the Contribution per unit (2,000 / 40 = 50)."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "entrepreneurship",
+    "question": "Which of the following is a common challenge faced specifically by small scale businesses when compared to large scale businesses?",
+    "options": [
+      "Difficulty in accessing large amounts of capital from commercial banks.",
+      "Having too many management layers and departments.",
+      "An inability to make quick decisions regarding customer needs.",
+      "Excessive utilization of advanced mass-production technology."
+    ],
+    "correct": 0,
+    "explanation": "Small businesses often lack the collateral or credit history required to easily access large-scale formal financing, which is a significant barrier to growth."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "human-resources",
+    "question": "Which of the following describes the process of identifying the qualities, skills, and qualifications required for a specific job position?",
+    "options": [
+      "Job evaluation",
+      "Job specification",
+      "Job description",
+      "Job enrichment"
+    ],
+    "correct": 1,
+    "explanation": "Job specification focuses on the person's attributes needed for the role, whereas job description focuses on the duties and responsibilities of the role itself."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "human-resources",
+    "question": "A business organization decided to fill a vacancy for a Senior Manager by promoting an existing Assistant Manager. This method of recruitment is known as:",
+    "options": [
+      "External recruitment",
+      "Direct recruitment",
+      "Internal recruitment",
+      "Headhunting"
+    ],
+    "correct": 2,
+    "explanation": "Internal recruitment involves filling vacancies with existing employees through methods like promotions or transfers within the organization."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "human-resources",
+    "question": "The main objective of providing 'Induction Training' to a newly recruited employee is to:",
+    "options": [
+      "Evaluate the employee's performance for a salary increment",
+      "Familiarize the employee with the work environment and organizational culture",
+      "Provide advanced technical skills required for future promotions",
+      "Reduce the cost of labor turnover by identifying weak employees"
+    ],
+    "correct": 1,
+    "explanation": "Induction training is the orientation process used to introduce new employees to their workplace, colleagues, and company policies."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "human-resources",
+    "question": "A production worker is paid Rs. 500 for every unit he completes. If he completes 120 units in a month, his total earnings represent which method of labor remuneration?",
+    "options": [
+      "Time rate system",
+      "Piece rate system",
+      "Bonus system",
+      "Fixed salary system"
+    ],
+    "correct": 1,
+    "explanation": "The piece rate system calculates wages based on the number of units or volume of work completed by the employee rather than the time spent."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "human-resources",
+    "question": "Which of the following is considered a 'Non-Financial' incentive used to motivate employees in a business?",
+    "options": [
+      "Annual year-end bonus",
+      "Production-based commissions",
+      "Granting greater responsibility and autonomy",
+      "Cost of living allowance"
+    ],
+    "correct": 2,
+    "explanation": "Non-financial incentives provide psychological or professional satisfaction, such as job enrichment or recognition, rather than direct monetary payments."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "consumer-protection",
+    "question": "Which of the following describes the fundamental purpose of the Consumer Affairs Authority (CAA) Act No. 9 of 2003 in Sri Lanka?",
+    "options": [
+      "To provide financial loans to businesses for expansion.",
+      "To protect consumers from unfair trade practices and ensure price stability.",
+      "To manage the export and import licenses of luxury goods.",
+      "To collect income taxes directly from retail shop owners."
+    ],
+    "correct": 1,
+    "explanation": "The CAA Act was established specifically to safeguard consumer rights, promote competition, and regulate the pricing and quality of essential goods and services."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "consumer-protection",
+    "question": "A consumer purchases a packet of milk powder and discovers it has expired. According to the Consumer Affairs Authority Act, what is the primary responsibility the trader has violated?",
+    "options": [
+      "The responsibility to provide free delivery.",
+      "The responsibility to offer a discount on bulk purchases.",
+      "The responsibility to ensure the quality and safety of the product.",
+      "The responsibility to advertise the product in national newspapers."
+    ],
+    "correct": 2,
+    "explanation": "Traders are legally obligated to ensure that goods sold are fit for consumption and not expired; selling expired goods is a clear violation of consumer safety standards."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "consumer-protection",
+    "question": "If a shoe shop displays a pair of shoes for Rs. 2,500 but attempts to charge a customer Rs. 2,800 at the counter, this is a violation of which consumer right?",
+    "options": [
+      "The right to choose.",
+      "The right to be heard.",
+      "The right to a healthy environment.",
+      "The right to be informed (Protection against misleading prices)."
+    ],
+    "correct": 3,
+    "explanation": "Charging a price higher than the marked price is considered a misleading trade practice, violating the consumer's right to accurate information."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "consumer-protection",
+    "question": "Kamal wants to file a formal complaint regarding a defective electronic item he purchased. Which of the following is an essential document he must possess to provide evidence of the transaction?",
+    "options": [
+      "His National Identity Card (NIC).",
+      "The receipt or invoice issued by the trader.",
+      "The manufacturer's annual financial report.",
+      "A recommendation letter from the local Grama Niladhari."
+    ],
+    "correct": 1,
+    "explanation": "The purchase receipt or invoice serves as the primary legal proof of the transaction, detailing the date, price, and place of purchase required for an investigation."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "consumer-protection",
+    "question": "Which of the following can be considered a 'responsibility' of a consumer when making a purchase?",
+    "options": [
+      "Demanding a discount on every item purchased.",
+      "Sharing the product with neighbors to test its quality.",
+      "Checking the 'best before' date and the Maximum Retail Price (MRP) before buying.",
+      "Using the product in a way not mentioned in the instruction manual."
+    ],
+    "correct": 2,
+    "explanation": "Consumer protection is a two-way process; consumers have a responsibility to be alert and informed by checking labels, prices, and expiry dates before finalizing a purchase."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "intro-accounting",
+    "question": "Which of the following describes the 'Dual Aspect' concept in accounting?",
+    "options": [
+      "For every debit entry, there must be a corresponding credit entry of an equal amount.",
+      "The business is considered a separate legal entity from its owner.",
+      "Financial statements should be prepared for a specific period of time.",
+      "The value of assets must be recorded at their purchase price."
+    ],
+    "correct": 0,
+    "explanation": "The dual aspect concept is the foundation of double-entry bookkeeping, stating that every transaction affects at least two accounts such that total debits equal total credits."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "intro-accounting",
+    "question": "An entrepreneur starts a furniture shop. He brings his personal delivery van valued at Rs. 2,000,000 into the business. How does this transaction affect the accounting equation (Assets = Equity + Liabilities)?",
+    "options": [
+      "Assets increase and Liabilities increase.",
+      "Assets decrease and Equity increases.",
+      "Assets increase and Equity increases.",
+      "Liabilities decrease and Equity increases."
+    ],
+    "correct": 2,
+    "explanation": "When the owner introduces a personal asset into the business, it increases the total assets of the business and simultaneously increases the owner's claim (Equity/Capital) in the business."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "intro-accounting",
+    "question": "A business owner records the purchase of a stapler as an expense rather than an asset, despite it lasting more than one year, because the cost is very low. Which accounting convention justifies this practice?",
+    "options": [
+      "Prudence",
+      "Materiality",
+      "Consistency",
+      "Going Concern"
+    ],
+    "correct": 1,
+    "explanation": "The materiality convention allows small items of low value to be treated as expenses instead of assets if their impact on the financial statements is insignificant to the decision-makers."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "intro-accounting",
+    "question": "Who among the following is considered an 'Internal User' of a company's accounting information?",
+    "options": [
+      "A commercial bank considering a loan application.",
+      "The Department of Inland Revenue.",
+      "The Marketing Manager of the company.",
+      "A potential investor looking to buy shares."
+    ],
+    "correct": 2,
+    "explanation": "Internal users are individuals inside the organization who plan and run the business, such as managers and board members, while banks, tax authorities, and investors are external users."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "intro-accounting",
+    "question": "At the end of the month, a grocery store has Total Assets of Rs. 850,000 and Total Liabilities of Rs. 300,000. During the month, the owner withdrew Rs. 50,000 for personal use. What is the value of the Equity (Capital) at the end of the month?",
+    "options": [
+      "Rs. 1,150,000",
+      "Rs. 500,000",
+      "Rs. 550,000",
+      "Rs. 600,000"
+    ],
+    "correct": 2,
+    "explanation": "Using the accounting equation Assets = Equity + Liabilities, we find Equity = Assets - Liabilities. Therefore, Equity = Rs. 850,000 - Rs. 300,000 = Rs. 550,000. (The drawings are already reflected in the final asset/liability values given)."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "accounting-equation",
+    "question": "Which of the following occurrences represents a transaction that increases both the Assets and Equity of a business?",
+    "options": [
+      "Obtaining a bank loan for business activities.",
+      "Purchasing office equipment on credit terms.",
+      "Introduction of additional cash as capital by the owner.",
+      "Settling a creditor's balance using a business cheque."
+    ],
+    "correct": 2,
+    "explanation": "When an owner introduces capital, the asset 'Cash' increases and the 'Equity' (Capital) also increases, keeping the accounting equation balanced."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "accounting-equation",
+    "question": "The total assets of a business at the start of the year were Rs. 500,000 and total liabilities were Rs. 200,000. If the owner introduced Rs. 50,000 and the business earned a profit of Rs. 30,000 during the year, what is the closing Equity?",
+    "options": [
+      "Rs. 300,000",
+      "Rs. 380,000",
+      "Rs. 350,000",
+      "Rs. 580,000"
+    ],
+    "correct": 1,
+    "explanation": "Opening Equity = 500,000 - 200,000 = 300,000. Closing Equity = Opening Equity + Additional Capital + Profit = 300,000 + 50,000 + 30,000 = 380,000."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "accounting-equation",
+    "question": "A business purchased goods worth Rs. 15,000 on credit. What is the correct impact of this transaction on the accounting equation (Assets = Equity + Liabilities)?",
+    "options": [
+      "Assets increase by 15,000 and Equity increases by 15,000.",
+      "Assets increase by 15,000 and Liabilities decrease by 15,000.",
+      "Assets decrease by 15,000 and Liabilities increase by 15,000.",
+      "Assets increase by 15,000 and Liabilities increase by 15,000."
+    ],
+    "correct": 3,
+    "explanation": "Purchasing goods on credit increases the asset 'Stock' and increases the liability 'Creditors/Trade Payables' simultaneously."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "accounting-equation",
+    "question": "Identify the transaction that results in an increase in one asset and a decrease in another asset, while the total value of assets remains unchanged.",
+    "options": [
+      "Selling old furniture for cash at its book value.",
+      "Paying the monthly electricity bill by cash.",
+      "Withdrawing goods by the owner for personal use.",
+      "Repaying a bank loan installment."
+    ],
+    "correct": 0,
+    "explanation": "Selling furniture for cash increases the asset 'Cash' and decreases the asset 'Furniture'. Since it's at book value, the total asset total remains constant."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "accounting-equation",
+    "question": "If the total assets of a business are Rs. 850,000 and the equity is Rs. 500,000, which statement is true regarding the liabilities?",
+    "options": [
+      "Liabilities are 1.7 times the value of equity.",
+      "Total liabilities amount to Rs. 350,000.",
+      "The business has no external debts.",
+      "Liabilities are greater than the total assets."
+    ],
+    "correct": 1,
+    "explanation": "According to the accounting equation (Assets = Equity + Liabilities), Liabilities = Assets - Equity. Therefore, 850,000 - 500,000 = 350,000."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "double-entry",
+    "question": "Which of the following describes the fundamental rule of double-entry bookkeeping when a business pays its electricity bill by cash?",
+    "options": [
+      "Debit Electricity Account and Credit Cash Account",
+      "Debit Cash Account and Credit Electricity Account",
+      "Debit Electricity Account and Credit Capital Account",
+      "Debit Creditors Account and Credit Cash Account"
+    ],
+    "correct": 0,
+    "explanation": "According to the double-entry system, an increase in an expense (Electricity) is debited, and a decrease in an asset (Cash) is credited."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "double-entry",
+    "question": "If a trader returns goods previously purchased on credit to a supplier, which accounts will be affected in the ledger?",
+    "options": [
+      "Debit Sales Returns Account and Credit Debtors Account",
+      "Debit Creditors Account and Credit Purchase Returns Account",
+      "Debit Purchase Returns Account and Credit Creditors Account",
+      "Debit Creditors Account and Credit Sales Returns Account"
+    ],
+    "correct": 1,
+    "explanation": "Returning goods to a supplier reduces the liability owed to the creditor (Debit) and increases purchase returns (Credit)."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "double-entry",
+    "question": "Sumimal started a business by bringing in 50,000 LKR in cash and a motor vehicle valued at 150,000 LKR. What is the correct entry to record this in the ledger?",
+    "options": [
+      "Debit Cash and Motor Vehicle; Credit Drawings",
+      "Credit Cash and Motor Vehicle; Debit Capital",
+      "Debit Cash and Motor Vehicle; Credit Capital",
+      "Debit Capital; Credit Cash and Motor Vehicle"
+    ],
+    "correct": 2,
+    "explanation": "When an owner introduces assets into the business, the respective asset accounts are debited and the Capital account is credited to reflect the increase in equity."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "double-entry",
+    "question": "A businessman withdrew 5,000 LKR from the business bank account for his daughter's school fees. Which of the following is the correct double entry?",
+    "options": [
+      "Debit Education Expense Account and Credit Bank Account",
+      "Debit Bank Account and Credit Drawings Account",
+      "Debit Drawings Account and Credit Cash Account",
+      "Debit Drawings Account and Credit Bank Account"
+    ],
+    "correct": 3,
+    "explanation": "Personal expenses of the owner paid from business funds are treated as Drawings. Since the money came from the bank, the Bank account must be credited."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "double-entry",
+    "question": "The 'General Ledger' is primarily used to maintain which of the following?",
+    "options": [
+      "Only accounts related to cash and bank transactions",
+      "A chronological listing of all daily business transactions",
+      "The individual accounts of all assets, liabilities, equity, income, and expenses",
+      "Only the personal accounts of debtors and creditors"
+    ],
+    "correct": 2,
+    "explanation": "The ledger is the principal book of accounts where all categorized accounts (Real, Personal, and Nominal) are maintained to summarize the financial position."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "trial-balance",
+    "question": "Which of the following describes the primary objective of preparing a Trial Balance?",
+    "options": [
+      "To calculate the net profit or loss of the business for a specific period.",
+      "To check the arithmetic accuracy of the double entry recordings in the ledger.",
+      "To identify the financial position and worth of the business on a specific date.",
+      "To ensure that no transactions were completely omitted from the prime entry books."
+    ],
+    "correct": 1,
+    "explanation": "A Trial Balance is primarily prepared to verify that the total debits equal total credits, confirming the arithmetic accuracy of the double entry system."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "trial-balance",
+    "question": "If a business has a total debit column of Rs. 450,000 and the credit column shows Rs. 442,000, which of the following errors could be the reason for this difference?",
+    "options": [
+      "A credit sale of Rs. 8,000 was completely omitted from the books.",
+      "Cash received from a debtor Rs. 4,000 was debited to both Cash and Debtor accounts.",
+      "A purchase of furniture for Rs. 8,000 was recorded in the Purchases account.",
+      "An electricity bill payment of Rs. 4,000 was only recorded in the Cash book."
+    ],
+    "correct": 3,
+    "explanation": "If a payment of Rs. 4,000 is only recorded in the credit side of the Cash book but not the debit side of an expense account, the credit total will be Rs. 8,000 higher than it should be relative to the debits, or in this case, the debits would remain higher by the missing entry amount."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "trial-balance",
+    "question": "Which set of accounts would typically appear in the debit column of a Trial Balance?",
+    "options": [
+      "Building, Purchases, Bank Overdraft, Discount Allowed",
+      "Sales, Capital, Creditors, Accrued Expenses",
+      "Machinery, Drawings, Insurance, Debtors",
+      "Rent Received, Provision for Depreciation, Loan, Cash"
+    ],
+    "correct": 2,
+    "explanation": "Assets (Machinery, Debtors), Expenses (Insurance), and Drawings always have debit balances according to the double entry rules."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "trial-balance",
+    "question": "Consider the following balances: Purchases Rs. 50,000, Sales Rs. 80,000, Creditors Rs. 15,000, Fixed Assets Rs. 100,000, and Capital Rs. 55,000. What is the total of the Trial Balance?",
+    "options": [
+      "Rs. 150,000",
+      "Rs. 230,000",
+      "Rs. 130,000",
+      "Rs. 180,000"
+    ],
+    "correct": 0,
+    "explanation": "Debit total: Purchases (50,000) + Fixed Assets (100,000) = 150,000. Credit total: Sales (80,000) + Creditors (15,000) + Capital (55,000) = 150,000."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "trial-balance",
+    "question": "Which of the following errors will NOT be revealed by a Trial Balance?",
+    "options": [
+      "Entering a debit entry of Rs. 500 as Rs. 5,000 in the ledger.",
+      "Recording only the credit side of a transaction.",
+      "Posting a cash sale of Rs. 2,000 to the Sales account as Rs. 200 and to the Cash account as Rs. 200.",
+      "Making an addition error when calculating the total of the credit column of the Trial Balance."
+    ],
+    "correct": 2,
+    "explanation": "This is an error of commission (or recording an incorrect amount on both sides); since the debit and credit are both Rs. 200, the Trial Balance will still balance despite the error."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "cash-book",
+    "question": "Which of the following is correctly identified as a primary reason for differences between the balance of the Cash Book and the balance shown in the Bank Statement at a given date?",
+    "options": [
+      "Buying office equipment on credit",
+      "Writing off a bad debt from a debtor's account",
+      "Cheques issued by the business but not yet presented for payment",
+      "Cash sales recorded in the cash book correctly"
+    ],
+    "correct": 2,
+    "explanation": "Unpresented cheques are those issued to creditors that have not been processed by the bank yet, causing a temporary discrepancy between the two balances."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "cash-book",
+    "question": "The cash book (bank column) of Amal Traders showed a debit balance of Rs. 15,000. Upon comparing it with the bank statement, it was found that the bank had charged Rs. 500 as service charges which was not recorded in the cash book. What is the adjusted cash book balance?",
+    "options": [
+      "Rs. 15,500 (Debit balance)",
+      "Rs. 14,500 (Debit balance)",
+      "Rs. 15,500 (Credit balance)",
+      "Rs. 14,500 (Credit balance)"
+    ],
+    "correct": 1,
+    "explanation": "Bank charges are an expense that reduces the bank balance; therefore, Rs. 500 must be credited to the cash book, reducing the debit balance from Rs. 15,000 to Rs. 14,500."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "cash-book",
+    "question": "An item that appears on the credit side of the Bank Statement but has not yet been entered in the Cash Book is:",
+    "options": [
+      "Bank charges and interest on overdraft",
+      "Direct deposits made by customers into the bank account",
+      "Dishonoured cheques previously deposited",
+      "Standing orders paid by the bank"
+    ],
+    "correct": 1,
+    "explanation": "A credit entry in a bank statement represents an increase in the customer's funds, which occur when a customer pays directly into the business's bank account."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "cash-book",
+    "question": "The main objective of preparing a Bank Reconciliation Statement is to:",
+    "options": [
+      "Identify the profit or loss made by the business for the period",
+      "Calculate the total value of assets owned by the business",
+      "Find the causes for any difference between the Cash Book balance and Bank Statement balance",
+      "Verify the accuracy of the petty cash book payments"
+    ],
+    "correct": 2,
+    "explanation": "A Bank Reconciliation Statement is prepared specifically to explain and reconcile the differences between the business's internal bank record and the bank's record."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "cash-book",
+    "question": "At the end of the month, a business had 'Unrealized Cheques' (cheques deposited but not credited) amounting to Rs. 8,000. If the adjusted cash book shows a debit balance of Rs. 20,000, what is the balance as per the Bank Statement?",
+    "options": [
+      "Rs. 28,000",
+      "Rs. 20,000",
+      "Rs. 12,000",
+      "Rs. 8,000"
+    ],
+    "correct": 2,
+    "explanation": "To find the bank statement balance starting from the cash book balance, you subtract unrealized cheques because the bank hasn't added them yet (20,000 - 8,000 = 12,000)."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "control-accounts",
+    "question": "Which of the following describes the main purpose of maintaining a Sales Ledger Control Account in a business organization?",
+    "options": [
+      "To calculate the total cash sales made during a specific period.",
+      "To verify the arithmetic accuracy of the individual balances in the debtors' ledger.",
+      "To record the personal transactions of the owner of the business.",
+      "To track the total amount of money owed to credit suppliers."
+    ],
+    "correct": 1,
+    "explanation": "A control account acts as a summary account to check the accuracy of the subsidiary ledger by comparing its balance with the total of individual debtor balances."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "control-accounts",
+    "question": "The total of the Purchases Journal is 45,000. Out of this, 5,000 worth of goods were returned to suppliers. What is the correct entry to record the returns in the Purchases Ledger Control Account?",
+    "options": [
+      "Debit Purchases Ledger Control Account by 5,000",
+      "Credit Purchases Ledger Control Account by 5,000",
+      "Debit Sales Ledger Control Account by 5,000",
+      "Credit Purchases Journal by 5,000"
+    ],
+    "correct": 0,
+    "explanation": "Returns outwards reduce the total liability owed to creditors, therefore the Purchases Ledger Control Account must be debited."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "control-accounts",
+    "question": "A businessman found that a debt of 1,200 previously written off as bad was recovered in cash. How does this transaction affect the Sales Ledger Control Account?",
+    "options": [
+      "It is credited to the Sales Ledger Control Account.",
+      "It is debited to the Sales Ledger Control Account.",
+      "It is recorded in the General Journal but not in the Sales Ledger Control Account.",
+      "It is added to the Sales Journal total."
+    ],
+    "correct": 2,
+    "explanation": "Bad debts recovered are not recorded in the Sales Ledger Control Account because the debtor's account was already closed; it is treated as a separate income."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "control-accounts",
+    "question": "The opening balance of the Sales Ledger Control Account was 12,000 (Debit). During the month, credit sales were 50,000, cash received from debtors was 40,000, and discounts allowed were 2,000. What is the closing balance of the account?",
+    "options": [
+      "20,000",
+      "22,000",
+      "18,000",
+      "24,000"
+    ],
+    "correct": 0,
+    "explanation": "Closing Balance = Opening Balance + Credit Sales - Cash Received - Discounts Allowed (12,000 + 50,000 - 40,000 - 2,000 = 20,000)."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "control-accounts",
+    "question": "Which item would result in a 'Contra Entry' between the Sales Ledger Control Account and the Purchases Ledger Control Account?",
+    "options": [
+      "When a customer returns goods that were damaged.",
+      "When a supplier provides a trade discount for bulk purchases.",
+      "When a person is both a customer and a supplier to the business.",
+      "When a cheque received from a debtor is dishonoured by the bank."
+    ],
+    "correct": 2,
+    "explanation": "A contra entry occurs when an amount is offset because a single entity is both a debtor and a creditor, reducing the balance in both control accounts."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "adjustments",
+    "question": "An amount of Rs. 5,000 paid for the purchase of office stationery has been debited to the Office Equipment account. Which type of error is this?",
+    "options": [
+      "Error of Omission",
+      "Error of Commission",
+      "Error of Principle",
+      "Compensating Error"
+    ],
+    "correct": 2,
+    "explanation": "This is an error of principle because a revenue expenditure (stationery) has been incorrectly recorded as a capital expenditure (office equipment), violating accounting principles."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "adjustments",
+    "question": "A business paid its annual insurance premium of Rs. 12,000 on 01.10.2023. If the financial year ends on 31.03.2024, what is the amount of 'Prepaid Insurance' to be shown in the Statement of Financial Position?",
+    "options": [
+      "Rs. 3,000",
+      "Rs. 6,000",
+      "Rs. 9,000",
+      "Rs. 12,000"
+    ],
+    "correct": 1,
+    "explanation": "The annual premium covers 12 months. Since the year ends on 31.03.2024, only 6 months have elapsed. Therefore, 6/12 of Rs. 12,000 (Rs. 6,000) is prepaid for the next financial year."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "adjustments",
+    "question": "The total of the Sales Journal was overcast by Rs. 1,500. Which of the following describes the effect of this error on the Trial Balance?",
+    "options": [
+      "The Trial Balance will still balance.",
+      "The Debit side total will be Rs. 1,500 more than the Credit side.",
+      "The Credit side total will be Rs. 1,500 more than the Debit side.",
+      "The Credit side total will be Rs. 3,000 more than the Debit side."
+    ],
+    "correct": 2,
+    "explanation": "Overcasting the Sales Journal results in an inflated credit entry in the Sales Account. Since the corresponding debit entries in individual debtors' accounts are correct, the Credit side of the Trial Balance will exceed the Debit side by Rs. 1,500."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "adjustments",
+    "question": "What is the correct journal entry to record an accrued electricity bill of Rs. 2,500 at the end of the accounting period?",
+    "options": [
+      "Debit Electricity Expense Rs. 2,500; Credit Cash Rs. 2,500",
+      "Debit Accrued Electricity Rs. 2,500; Credit Electricity Expense Rs. 2,500",
+      "Debit Cash Rs. 2,500; Credit Accrued Electricity Rs. 2,500",
+      "Debit Electricity Expense Rs. 2,500; Credit Accrued Electricity Rs. 2,500"
+    ],
+    "correct": 3,
+    "explanation": "To record an accrued expense, the relevant expense account must be debited to increase the total expense for the period, and the accrued expense (a liability) must be credited."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "adjustments",
+    "question": "A credit sale of Rs. 8,500 to Mr. Perera was correctly entered in the Sales Journal but posted to Mr. Silva's account as Rs. 8,500. Which of the following statements is true regarding this error?",
+    "options": [
+      "It is an error of commission and will not affect the Trial Balance agreement.",
+      "It is an error of principle and will affect the Trial Balance agreement.",
+      "It is a compensating error and will not affect the Trial Balance agreement.",
+      "It is an error of original entry and will affect the Trial Balance agreement."
+    ],
+    "correct": 0,
+    "explanation": "This is an error of commission because the entry was made to the wrong person's account within the same class (Debtors). Since a debit and credit of equal value still exist, the Trial Balance will still balance."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "financial-statements",
+    "question": "Which of the following is the primary objective of preparing a Statement of Profit or Loss?",
+    "options": [
+      "To ascertain the financial position of the business as at a specific date.",
+      "To calculate the performance and profitability of the business for a specific period.",
+      "To record the cash inflows and outflows of the business during a period.",
+      "To list the assets, liabilities, and equity of the business proprietor."
+    ],
+    "correct": 1,
+    "explanation": "The Statement of Profit or Loss is prepared to measure the financial performance by comparing income against expenses to derive the net profit or loss for a given period."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "financial-statements",
+    "question": "In the preparation of Final Accounts, how should 'Drawings' be treated in the Statement of Financial Position?",
+    "options": [
+      "Added to the Net Profit under the Income section.",
+      "Deducted from the Total Assets as a current liability.",
+      "Deducted from the Capital (Equity) balance.",
+      "Added to the Non-Current Liabilities section."
+    ],
+    "correct": 2,
+    "explanation": "Drawings represent the resources taken by the owner for personal use, which reduces the owner's equity or capital in the business."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "financial-statements",
+    "question": "A business has the following balances: Gross Profit Rs. 50,000, Electricity Expenses Rs. 5,000, Salaries Rs. 15,000, and Discount Received Rs. 2,000. What is the Net Profit for the period?",
+    "options": [
+      "Rs. 30,000",
+      "Rs. 32,000",
+      "Rs. 28,000",
+      "Rs. 72,000"
+    ],
+    "correct": 1,
+    "explanation": "Net Profit = (Gross Profit + Other Income) - Expenses. Calculation: (50,000 + 2,000) - (5,000 + 15,000) = 52,000 - 20,000 = Rs. 32,000."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "financial-statements",
+    "question": "Under which category should 'Accrued Electricity Charges' be classified in the Statement of Financial Position?",
+    "options": [
+      "Current Assets",
+      "Non-Current Assets",
+      "Current Liabilities",
+      "Non-Current Liabilities"
+    ],
+    "correct": 2,
+    "explanation": "Accrued charges are expenses incurred but not yet paid, representing a short-term obligation to be settled within one year, thus classified as a Current Liability."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "financial-statements",
+    "question": "If Sales is Rs. 100,000, Opening Stock is Rs. 10,000, Purchases is Rs. 60,000, and Closing Stock is Rs. 15,000, what is the Gross Profit?",
+    "options": [
+      "Rs. 45,000",
+      "Rs. 35,000",
+      "Rs. 55,000",
+      "Rs. 40,000"
+    ],
+    "correct": 0,
+    "explanation": "Cost of Sales = Opening Stock + Purchases - Closing Stock (10,000 + 60,000 - 15,000 = 55,000). Gross Profit = Sales - Cost of Sales (100,000 - 55,000 = 45,000)."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "non-profit-accounting",
+    "question": "Which of the following describes the main objective of a non-profit organization?",
+    "options": [
+      "To maximize the wealth of the owners or shareholders.",
+      "To provide services for the benefit of its members or the public.",
+      "To generate a net profit and distribute it among the committee.",
+      "To minimize the tax liability of the organization's donors."
+    ],
+    "correct": 1,
+    "explanation": "Unlike business entities, non-profit organizations are established to provide welfare or services to society or their members, rather than to earn profits for owners."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "non-profit-accounting",
+    "question": "A sports club receives a lump sum payment from a new member that allows them to use the club facilities for the rest of their life. How should this 'Life Membership Fee' be treated in the accounts?",
+    "options": [
+      "As a recurrent income in the Income and Expenditure Account.",
+      "As a liability in the Statement of Financial Position.",
+      "As a non-recurrent income to be capitalized in the Accumulated Fund.",
+      "As an asset in the Statement of Financial Position."
+    ],
+    "correct": 2,
+    "explanation": "Life membership fees are non-recurrent receipts and are generally capitalized by adding them directly to the Accumulated Fund."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "non-profit-accounting",
+    "question": "The accounting equivalent of 'Net Profit' in a business organization, when applied to a non-profit organization's Income and Expenditure Account, is known as:",
+    "options": [
+      "Cash Balance",
+      "Accumulated Fund",
+      "Surplus",
+      "Capital"
+    ],
+    "correct": 2,
+    "explanation": "If the total income exceeds the total expenditure in a non-profit organization, the difference is referred to as a 'Surplus' instead of a profit."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "non-profit-accounting",
+    "question": "For the year ended 31.12.2023, a library club paid Rs. 15,000 for newspapers. At the beginning of the year, Rs. 2,000 was outstanding for newspapers. At the end of the year, Rs. 3,500 was still outstanding. What is the amount to be debited to the Income and Expenditure Account?",
+    "options": [
+      "Rs. 13,500",
+      "Rs. 16,500",
+      "Rs. 18,500",
+      "Rs. 11,500"
+    ],
+    "correct": 1,
+    "explanation": "Calculation: Cash paid (15,000) - Opening Outstanding (2,000) + Closing Outstanding (3,500) = Rs. 16,500."
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "non-profit-accounting",
+    "question": "Which of the following items would appear in both the Receipts and Payments Account and the Income and Expenditure Account of a youth club?",
+    "options": [
+      "Depreciation on sports equipment",
+      "Subscription fees received in advance",
+      "Outstanding electricity bills",
+      "Annual subscription income for the current year"
+    ],
+    "correct": 3,
+    "explanation": "Subscription income appears in the Receipts and Payments account when cash is received and in the Income and Expenditure account as the earned portion for the period. Depreciation and outstanding items do not appear in Receipts and Payments as they are non-cash transactions."
   }
 ]
