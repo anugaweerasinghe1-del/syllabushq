@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /*/results
+Sitemap: https://ol-practice.lovable.app/sitemap.xml

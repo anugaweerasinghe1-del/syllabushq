@@ -1,0 +1,11 @@
+# O/L Practice
+
+> Free practice quizzes for Sri Lankan G.C.E. Ordinary Level students. English medium. No login.
+
+## Subjects
+- [Mathematics](/mathematics): Topic-based MCQ practice covering the O/L Mathematics syllabus.
+- [Science](/science): Topic-based MCQ practice covering the O/L Science syllabus.
+- [Business & Accounting Studies](/business-accounting): Topic-based MCQ practice covering the O/L BAS syllabus.
+
+## Pages
+- [Home](/): Subject grid and study streak tracker.
