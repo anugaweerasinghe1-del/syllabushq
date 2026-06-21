@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /*/practice
 Disallow: /*/results
-Sitemap: https://ol-practice.lovable.app/sitemap.xml
+Sitemap: https://syllabushq.lovable.app/sitemap.xml

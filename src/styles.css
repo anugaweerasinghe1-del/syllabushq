@@ -5,8 +5,9 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * O/L Practice design system.
- * Brand: Ink, Marigold, Paper, Charcoal, Sage, Clay.
+ * SyllabusHQ — premium dark design system.
+ * Surfaces are matte graphite; type is editorial (Instrument Serif + Inter).
+ * Single warm amber accent. Mint = correct, coral = incorrect.
  * Fonts loaded via <link> in src/routes/__root.tsx.
  */
 
@@ -42,40 +43,57 @@
   --color-charcoal: var(--charcoal);
   --color-sage: var(--sage);
   --color-clay: var(--clay);
+  --color-amber: var(--amber);
+  --color-mint: var(--mint);
+  --color-coral: var(--coral);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-hairline: var(--hairline);
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Instrument Serif", "Times New Roman", ui-serif, serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 :root {
-  --radius: 0.625rem;
+  --radius: 0.875rem;
 
-  --ink: #1a2b4c;
-  --marigold: #e8a23d;
-  --paper: #faf8f3;
-  --charcoal: #2b2b2b;
-  --sage: #6b8f71;
-  --clay: #c45b4e;
+  /* Brand palette — dark graphite + warm amber. */
+  --bg: #08090c;
+  --surface: #0e1014;
+  --surface-2: #14171d;
+  --hairline: #1f242d;
+  --amber: #f5a524;
+  --amber-soft: #ffd591;
+  --mint: #3ddc97;
+  --coral: #ff6b5c;
 
-  --background: #faf8f3;
-  --foreground: #2b2b2b;
-  --card: #ffffff;
-  --card-foreground: #2b2b2b;
-  --popover: #ffffff;
-  --popover-foreground: #2b2b2b;
-  --primary: #1a2b4c;
-  --primary-foreground: #faf8f3;
-  --secondary: #efeae0;
-  --secondary-foreground: #1a2b4c;
-  --muted: #efeae0;
-  --muted-foreground: #6b6b6b;
-  --accent: #e8a23d;
-  --accent-foreground: #1a2b4c;
-  --destructive: #c45b4e;
-  --destructive-foreground: #ffffff;
-  --border: #e7e1d3;
-  --input: #e7e1d3;
-  --ring: #e8a23d;
+  /* Legacy aliases so existing class names keep working. */
+  --ink: #f5f6f7;
+  --paper: #08090c;
+  --charcoal: #cfd3da;
+  --marigold: #f5a524;
+  --sage: #3ddc97;
+  --clay: #ff6b5c;
+
+  --background: #08090c;
+  --foreground: #f5f6f7;
+  --card: #0e1014;
+  --card-foreground: #f5f6f7;
+  --popover: #14171d;
+  --popover-foreground: #f5f6f7;
+  --primary: #f5a524;
+  --primary-foreground: #08090c;
+  --secondary: #14171d;
+  --secondary-foreground: #f5f6f7;
+  --muted: #14171d;
+  --muted-foreground: #8a8f99;
+  --accent: #f5a524;
+  --accent-foreground: #08090c;
+  --destructive: #ff6b5c;
+  --destructive-foreground: #08090c;
+  --border: #1f242d;
+  --input: #1f242d;
+  --ring: #f5a524;
 }
 
 @layer base {
@@ -91,12 +109,17 @@
   body {
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(1200px 600px at 20% -10%, rgba(245,165,36,0.07), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(61,220,151,0.05), transparent 55%);
+    background-attachment: fixed;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
     color: var(--ink);
+    font-weight: 400;
   }
 
   .font-num {
@@ -104,3 +127,38 @@
     font-variant-numeric: tabular-nums;
   }
 }
+
+@utility glass-panel {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.005));
+  border: 1px solid var(--hairline);
+  backdrop-filter: blur(8px);
+}
+
+@utility hairline {
+  border: 1px solid var(--hairline);
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.rise { animation: rise 0.5s cubic-bezier(.2,.7,.2,1) both; }
+.rise-2 { animation: rise 0.6s cubic-bezier(.2,.7,.2,1) 0.08s both; }
+.rise-3 { animation: rise 0.7s cubic-bezier(.2,.7,.2,1) 0.16s both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .rise, .rise-2, .rise-3 { animation: none; }
+}
+
+/* Selection */
+::selection { background: rgba(245,165,36,0.35); color: #fff; }

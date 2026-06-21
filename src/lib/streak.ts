@@ -1,6 +1,10 @@
-const KEY = "ol-streak-v1";
+const KEY = "ol-streak-v2";
+const LEGACY_KEY = "ol-streak-v1";
 
-type StreakData = { days: string[] }; // ISO yyyy-mm-dd
+type StreakData = {
+  days: string[]; // ISO yyyy-mm-dd of all study days
+  lastActivityAt: number; // ms epoch of the most recent study event
+};
 
 function todayKey(d = new Date()): string {
   const y = d.getFullYear();
@@ -10,14 +14,26 @@ function todayKey(d = new Date()): string {
 }
 
 function read(): StreakData {
-  if (typeof window === "undefined") return { days: [] };
+  if (typeof window === "undefined") return { days: [], lastActivityAt: 0 };
   try {
     const raw = window.localStorage.getItem(KEY);
-    if (!raw) return { days: [] };
-    const data = JSON.parse(raw) as StreakData;
-    return { days: Array.isArray(data.days) ? data.days : [] };
+    if (raw) {
+      const data = JSON.parse(raw) as Partial<StreakData>;
+      return {
+        days: Array.isArray(data.days) ? data.days.filter((d) => typeof d === "string") : [],
+        lastActivityAt: typeof data.lastActivityAt === "number" ? data.lastActivityAt : 0,
+      };
+    }
+    // One-time migration from v1.
+    const legacy = window.localStorage.getItem(LEGACY_KEY);
+    if (legacy) {
+      const data = JSON.parse(legacy) as { days?: string[] };
+      const days = Array.isArray(data.days) ? data.days : [];
+      return { days, lastActivityAt: 0 };
+    }
+    return { days: [], lastActivityAt: 0 };
   } catch {
-    return { days: [] };
+    return { days: [], lastActivityAt: 0 };
   }
 }
 
@@ -29,14 +45,20 @@ function write(data: StreakData) {
 export function markStudiedToday() {
   const data = read();
   const t = todayKey();
-  if (!data.days.includes(t)) {
-    data.days = [...data.days, t].sort();
-    write(data);
+  const now = Date.now();
+  const days = data.days.includes(t) ? data.days : [...data.days, t].sort();
+  write({ days, lastActivityAt: now });
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new Event("ol-streak-updated"));
   }
 }
 
 export function getStudyDays(): Set<string> {
   return new Set(read().days);
+}
+
+export function getLastActivityAt(): number {
+  return read().lastActivityAt;
 }
 
 function dateAdd(d: Date, days: number): Date {
@@ -45,12 +67,17 @@ function dateAdd(d: Date, days: number): Date {
   return x;
 }
 
-export function computeStreaks(days: Set<string>): {
-  current: number;
-  longest: number;
-  total: number;
-} {
-  if (days.size === 0) return { current: 0, longest: 0, total: 0 };
+/**
+ * Compute streak stats. The current streak auto-resets to 0 when more than
+ * 24 hours have passed since the last recorded study activity AND today is
+ * not already studied.
+ */
+export function computeStreaks(
+  days: Set<string>,
+  lastActivityAt = 0,
+  now = Date.now(),
+): { current: number; longest: number; total: number; resetsInMs: number } {
+  if (days.size === 0) return { current: 0, longest: 0, total: 0, resetsInMs: 0 };
   const sorted = [...days].sort();
   // longest
   let longest = 1;
@@ -73,13 +100,25 @@ export function computeStreaks(days: Set<string>): {
   let cursor: Date;
   if (days.has(t)) cursor = today;
   else if (days.has(y)) cursor = dateAdd(today, -1);
-  else return { current: 0, longest, total: days.size };
+  else return { current: 0, longest, total: days.size, resetsInMs: 0 };
+
+  // 24-hour rolling guard: if nothing recorded in the last 24h AND today
+  // isn't studied yet, the active streak has lapsed.
+  if (!days.has(t) && lastActivityAt > 0 && now - lastActivityAt > 24 * 60 * 60 * 1000) {
+    return { current: 0, longest, total: days.size, resetsInMs: 0 };
+  }
+
   let current = 0;
   while (days.has(todayKey(cursor))) {
     current++;
     cursor = dateAdd(cursor, -1);
   }
-  return { current, longest, total: days.size };
+
+  // Time until the rolling 24h window collapses the streak.
+  const resetsInMs = lastActivityAt > 0
+    ? Math.max(0, lastActivityAt + 24 * 60 * 60 * 1000 - now)
+    : 0;
+  return { current, longest, total: days.size, resetsInMs };
 }
 
 /**

@@ -77,18 +77,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Generates original practice questions from syllabus PDFs for exam preparation." },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Generates original practice questions from syllabus PDFs for exam preparation." },
+      { title: "SyllabusHQ — Free Sri Lankan O/L practice (Maths, Science, Business)" },
+      { name: "description", content: "Master the syllabus. Own the exam. Original Sri Lankan G.C.E. O/L practice — MCQs, structured papers, and short-answer drills in English medium." },
+      { name: "theme-color", content: "#08090c" },
+      { property: "og:site_name", content: "SyllabusHQ" },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "Lovable App" },
-      { name: "twitter:description", content: "Generates original practice questions from syllabus PDFs for exam preparation." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/93cccb33-94ab-4623-a305-1bff2c3a11ee/id-preview-91be9739--38d9562d-493e-4439-a2d1-36ccf8def083.lovable.app-1782012528002.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/93cccb33-94ab-4623-a305-1bff2c3a11ee/id-preview-91be9739--38d9562d-493e-4439-a2d1-36ccf8def083.lovable.app-1782012528002.png" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       {
@@ -99,7 +93,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@500;700&display=swap",
       },
     ],
   }),

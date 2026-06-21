@@ -9,6 +9,9 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SuggestRouteImport } from './routes/suggest'
+import { Route as StructuredRouteImport } from './routes/structured'
+import { Route as ReviewsRouteImport } from './routes/reviews'
 import { Route as SubjectRouteImport } from './routes/$subject'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SubjectIndexRouteImport } from './routes/$subject.index'
@@ -17,6 +20,21 @@ import { Route as SubjectTopicIndexRouteImport } from './routes/$subject.$topic.
 import { Route as SubjectTopicResultsRouteImport } from './routes/$subject.$topic.results'
 import { Route as SubjectTopicPracticeRouteImport } from './routes/$subject.$topic.practice'
 
+const SuggestRoute = SuggestRouteImport.update({
+  id: '/suggest',
+  path: '/suggest',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StructuredRoute = StructuredRouteImport.update({
+  id: '/structured',
+  path: '/structured',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReviewsRoute = ReviewsRouteImport.update({
+  id: '/reviews',
+  path: '/reviews',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SubjectRoute = SubjectRouteImport.update({
   id: '/$subject',
   path: '/$subject',
@@ -56,6 +74,9 @@ const SubjectTopicPracticeRoute = SubjectTopicPracticeRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$subject': typeof SubjectRouteWithChildren
+  '/reviews': typeof ReviewsRoute
+  '/structured': typeof StructuredRoute
+  '/suggest': typeof SuggestRoute
   '/$subject/$topic': typeof SubjectTopicRouteWithChildren
   '/$subject/': typeof SubjectIndexRoute
   '/$subject/$topic/practice': typeof SubjectTopicPracticeRoute
@@ -64,6 +85,9 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/reviews': typeof ReviewsRoute
+  '/structured': typeof StructuredRoute
+  '/suggest': typeof SuggestRoute
   '/$subject': typeof SubjectIndexRoute
   '/$subject/$topic/practice': typeof SubjectTopicPracticeRoute
   '/$subject/$topic/results': typeof SubjectTopicResultsRoute
@@ -73,6 +97,9 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/$subject': typeof SubjectRouteWithChildren
+  '/reviews': typeof ReviewsRoute
+  '/structured': typeof StructuredRoute
+  '/suggest': typeof SuggestRoute
   '/$subject/$topic': typeof SubjectTopicRouteWithChildren
   '/$subject/': typeof SubjectIndexRoute
   '/$subject/$topic/practice': typeof SubjectTopicPracticeRoute
@@ -84,6 +111,9 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/$subject'
+    | '/reviews'
+    | '/structured'
+    | '/suggest'
     | '/$subject/$topic'
     | '/$subject/'
     | '/$subject/$topic/practice'
@@ -92,6 +122,9 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/reviews'
+    | '/structured'
+    | '/suggest'
     | '/$subject'
     | '/$subject/$topic/practice'
     | '/$subject/$topic/results'
@@ -100,6 +133,9 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/$subject'
+    | '/reviews'
+    | '/structured'
+    | '/suggest'
     | '/$subject/$topic'
     | '/$subject/'
     | '/$subject/$topic/practice'
@@ -110,10 +146,34 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SubjectRoute: typeof SubjectRouteWithChildren
+  ReviewsRoute: typeof ReviewsRoute
+  StructuredRoute: typeof StructuredRoute
+  SuggestRoute: typeof SuggestRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/suggest': {
+      id: '/suggest'
+      path: '/suggest'
+      fullPath: '/suggest'
+      preLoaderRoute: typeof SuggestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/structured': {
+      id: '/structured'
+      path: '/structured'
+      fullPath: '/structured'
+      preLoaderRoute: typeof StructuredRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reviews': {
+      id: '/reviews'
+      path: '/reviews'
+      fullPath: '/reviews'
+      preLoaderRoute: typeof ReviewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/$subject': {
       id: '/$subject'
       path: '/$subject'
@@ -198,6 +258,9 @@ const SubjectRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SubjectRoute: SubjectRouteWithChildren,
+  ReviewsRoute: ReviewsRoute,
+  StructuredRoute: StructuredRoute,
+  SuggestRoute: SuggestRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
