@@ -5,7 +5,14 @@
 // instead of re-rolling Math.random().
 import type { Question } from "@/lib/content";
 
-const QUIZ_LEN = 10;
+const DEFAULT_LEN = 10;
+
+export type QuizConfig = {
+  count: number;       // number of questions
+  timeLimitSec: number; // 0 = untimed
+  difficulty: "all" | "easy" | "medium" | "hard";
+  mode: "mcq" | "exam"; // "exam" = full simulation
+};
 
 export type Session = {
   attemptId: string;
@@ -15,6 +22,7 @@ export type Session = {
   answers: (number | null)[]; // chosen option per index (null = unanswered)
   current: number;       // current question index within `order`
   startedAt: number;
+  config: QuizConfig;
 };
 
 function key(subject: string, topic: string) {
@@ -34,13 +42,13 @@ export function loadOrCreate(
   subject: string,
   topic: string,
   pool: Question[],
+  config?: QuizConfig,
 ): Session {
   if (typeof window !== "undefined") {
     const raw = window.sessionStorage.getItem(key(subject, topic));
     if (raw) {
       try {
         const s = JSON.parse(raw) as Session;
-        // Validate against current pool size; if pool grew/shrank, regenerate.
         if (
           s &&
           s.subject === subject &&
@@ -49,20 +57,25 @@ export function loadOrCreate(
           s.order.length > 0 &&
           s.order.every((i) => typeof i === "number" && i >= 0 && i < pool.length)
         ) {
+          if (!s.config) {
+            s.config = config ?? defaultConfig();
+          }
           return s;
         }
       } catch { /* fall through */ }
     }
   }
-  return startNew(subject, topic, pool);
+  return startNew(subject, topic, pool, config);
 }
 
 export function startNew(
   subject: string,
   topic: string,
   pool: Question[],
+  config?: QuizConfig,
 ): Session {
-  const order = freshOrder(pool, QUIZ_LEN);
+  const cfg = config ?? defaultConfig();
+  const order = freshOrder(pool, cfg.count);
   const s: Session = {
     attemptId: crypto.randomUUID?.() ?? String(Date.now()),
     subject,
@@ -71,9 +84,14 @@ export function startNew(
     answers: order.map(() => null),
     current: 0,
     startedAt: Date.now(),
+    config: cfg,
   };
   save(s);
   return s;
+}
+
+export function defaultConfig(): QuizConfig {
+  return { count: DEFAULT_LEN, timeLimitSec: 0, difficulty: "all", mode: "mcq" };
 }
 
 export function save(s: Session) {

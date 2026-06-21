@@ -5,7 +5,6 @@ import {
   subjectsQuery,
   questionsQuery,
   getQuestionsFor,
-  pickRandom,
   type Question,
   type Subject,
   type Topic,
@@ -13,8 +12,7 @@ import {
 import { markStudiedToday } from "@/lib/streak";
 import { recordScore } from "@/lib/scores";
 import { SiteHeader } from "@/components/SiteHeader";
-
-const QUIZ_LEN = 10;
+import { loadOrCreate, save, clear, startNew, defaultConfig, type Session } from "@/lib/quiz-session";
 
 export const Route = createFileRoute("/$subject/$topic/practice")({
   loader: async ({ context, params }) => {
@@ -52,31 +50,53 @@ function PracticePage() {
     [questions, subject.slug, topic.slug],
   );
 
-  const [set, setSet] = useState<Question[]>(() => pickRandom(pool, QUIZ_LEN));
-  const [i, setI] = useState(0);
-  const [picked, setPicked] = useState<number | null>(null);
-  const [score, setScore] = useState(0);
-  const [answers, setAnswers] = useState<number[]>([]);
-
-  // Re-seed when topic changes
+  // Hydrate the session deterministically (no Math.random in render).
+  const [session, setSession] = useState<Session | null>(null);
   useEffect(() => {
-    setSet(pickRandom(pool, QUIZ_LEN));
-    setI(0);
-    setPicked(null);
-    setScore(0);
-    setAnswers([]);
-  }, [pool]);
+    if (pool.length === 0) return;
+    setSession(loadOrCreate(subject.slug, topic.slug, pool));
+  }, [pool, subject.slug, topic.slug]);
 
-  // Keyboard support
+  // Live ticking clock for the timer
+  const [now, setNow] = useState(() => Date.now());
+  useEffect(() => {
+    if (!session?.config?.timeLimitSec) return;
+    const t = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(t);
+  }, [session?.config?.timeLimitSec]);
+
+  const isExam = session?.config?.mode === "exam";
+  const set: Question[] = useMemo(
+    () => (session ? session.order.map((idx) => pool[idx]).filter(Boolean) : []),
+    [session, pool],
+  );
+
+  // Time remaining
+  const timeLimit = session?.config?.timeLimitSec ?? 0;
+  const elapsed = session ? Math.floor((now - session.startedAt) / 1000) : 0;
+  const remaining = timeLimit ? Math.max(0, timeLimit - elapsed) : 0;
+
+  // Auto-submit when time runs out
+  useEffect(() => {
+    if (!session || !timeLimit) return;
+    if (remaining <= 0) finish();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [remaining === 0]);
+
+  // Keyboard
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
-      if (set.length === 0) return;
-      const q = set[i];
-      if (!q) return;
-      if (picked === null && /^[1-4]$/.test(e.key)) {
+      if (!session || set.length === 0) return;
+      const i = session.current;
+      const picked = session.answers[i];
+      if (/^[1-4]$/.test(e.key)) {
         choose(Number(e.key) - 1);
-      } else if (picked !== null && (e.key === "Enter" || e.key === " ")) {
+      } else if ((e.key === "Enter" || e.key === " ") && (isExam || picked !== null)) {
         e.preventDefault();
+        next();
+      } else if (e.key === "ArrowLeft") {
+        prev();
+      } else if (e.key === "ArrowRight") {
         next();
       }
     }
@@ -86,46 +106,62 @@ function PracticePage() {
 
   if (pool.length === 0) {
     return (
-      <div className="min-h-screen bg-paper">
+      <div className="min-h-screen">
         <SiteHeader />
         <main className="mx-auto max-w-2xl px-4 py-16 text-center">
-          <h1 className="text-2xl font-semibold text-ink">
-            No questions yet for this topic
-          </h1>
-          <Link
-            to="/$subject"
-            params={{ subject: subject.slug }}
-            className="mt-4 inline-block text-marigold hover:underline"
-          >
-            ← Back to {subject.name}
-          </Link>
+          <h1 className="text-2xl">No questions yet for this topic</h1>
+          <Link to="/$subject" params={{ subject: subject.slug }} className="mt-4 inline-block text-amber hover:underline">← Back to {subject.name}</Link>
         </main>
       </div>
     );
   }
 
+  if (!session) {
+    return (
+      <div className="min-h-screen">
+        <SiteHeader />
+        <main className="mx-auto max-w-2xl px-4 py-16 text-center text-muted-foreground">Loading exam…</main>
+      </div>
+    );
+  }
+
+  const i = session.current;
   const q = set[i];
-  const progress = ((i + (picked !== null ? 1 : 0)) / set.length) * 100;
+  const picked = session.answers[i];
+  const answered = session.answers.filter((a) => a !== null).length;
+  const completion = Math.round((answered / set.length) * 100);
+
+  function update(patch: Partial<Session>) {
+    if (!session) return;
+    const next = { ...session, ...patch };
+    setSession(next); save(next);
+  }
 
   function choose(idx: number) {
-    if (picked !== null) return;
-    setPicked(idx);
-    setAnswers((a) => [...a, idx]);
-    if (idx === q.correct) setScore((s) => s + 1);
+    if (!session) return;
+    // In MCQ mode: lock once answered. In exam mode: allow changing.
+    if (!isExam && session.answers[i] !== null) return;
+    const answers = [...session.answers];
+    answers[i] = idx;
+    update({ answers });
   }
 
   function next() {
-    if (picked === null) return;
-    if (i + 1 >= set.length) {
-      finish();
-      return;
-    }
-    setI((x) => x + 1);
-    setPicked(null);
+    if (!session) return;
+    if (i + 1 >= set.length) { finish(); return; }
+    update({ current: i + 1 });
   }
 
+  function prev() {
+    if (!session || i === 0) return;
+    update({ current: i - 1 });
+  }
+
+  function jumpTo(n: number) { update({ current: n }); }
+
   function finish() {
-    const final = score; // already incremented
+    if (!session) return;
+    const final = session.answers.reduce<number>((acc, a, idx) => acc + (a === set[idx]?.correct ? 1 : 0), 0);
     markStudiedToday();
     recordScore(subject.slug, topic.slug, final, set.length);
     sessionStorage.setItem(
@@ -135,128 +171,146 @@ function PracticePage() {
         topic: topic.slug,
         score: final,
         total: set.length,
+        mode: session.config?.mode ?? "mcq",
+        durationSec: Math.floor((Date.now() - session.startedAt) / 1000),
         items: set.map((it, idx) => ({
           question: it.question,
           options: it.options,
           correct: it.correct,
           explanation: it.explanation,
-          chosen: answers[idx] ?? -1,
+          chosen: session.answers[idx] ?? -1,
         })),
       }),
     );
+    clear(subject.slug, topic.slug);
     navigate({
       to: "/$subject/$topic/results",
       params: { subject: subject.slug, topic: topic.slug },
     });
   }
 
+  const mm = String(Math.floor(remaining / 60)).padStart(2, "0");
+  const ss = String(remaining % 60).padStart(2, "0");
+  const lowTime = timeLimit && remaining > 0 && remaining < 60;
+
   return (
-    <div className="min-h-screen bg-paper">
+    <div className="min-h-screen">
       <SiteHeader />
-      <main className="mx-auto max-w-2xl px-4 py-6 sm:px-6 sm:py-10">
-        <div className="mb-6 flex items-center justify-between text-sm text-muted-foreground">
-          <Link
-            to="/$subject/$topic"
-            params={{ subject: subject.slug, topic: topic.slug }}
-            className="hover:text-ink"
-          >
-            ← Exit
-          </Link>
-          <span className="font-num">
-            {i + 1} / {set.length}
-          </span>
-        </div>
-
-        <div className="mb-6 h-1.5 w-full overflow-hidden rounded-full bg-muted">
-          <div
-            className="h-full rounded-full bg-marigold transition-all"
-            style={{ width: `${progress}%` }}
-          />
-        </div>
-
-        <article className="rounded-2xl border border-border bg-card p-5 shadow-sm sm:p-7">
-          <p className="text-xs font-medium uppercase tracking-wider text-marigold">
-            {subject.name} · {topic.name}
-          </p>
-          <h1 className="mt-2 text-lg font-semibold leading-snug text-ink sm:text-xl">
-            {q.question}
-          </h1>
-
-          <ul className="mt-5 space-y-2">
-            {q.options.map((opt, idx) => {
-              const isCorrect = picked !== null && idx === q.correct;
-              const isWrongPick =
-                picked !== null && idx === picked && idx !== q.correct;
-              let cls =
-                "flex w-full items-start gap-3 rounded-lg border p-3 text-left text-sm transition";
-              if (picked === null) {
-                cls += " border-border bg-paper hover:border-ink";
-              } else if (isCorrect) {
-                cls += " border-[color:var(--sage)] bg-[color:var(--sage)]/10";
-              } else if (isWrongPick) {
-                cls += " border-[color:var(--clay)] bg-[color:var(--clay)]/10";
-              } else {
-                cls += " border-border bg-paper opacity-60";
-              }
-              return (
-                <li key={idx}>
-                  <button
-                    type="button"
-                    onClick={() => choose(idx)}
-                    disabled={picked !== null}
-                    className={cls}
-                  >
-                    <span className="font-num text-xs text-muted-foreground">
-                      {idx + 1}
-                    </span>
-                    <span className="text-charcoal">{opt}</span>
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
-
-          {picked !== null && (
-            <div
-              className="mt-5 rounded-lg p-4 text-sm"
-              style={{
-                background:
-                  picked === q.correct
-                    ? "color-mix(in srgb, var(--sage) 12%, transparent)"
-                    : "color-mix(in srgb, var(--clay) 12%, transparent)",
-              }}
-            >
-              <p
-                className="font-semibold"
-                style={{
-                  color: picked === q.correct ? "var(--sage)" : "var(--clay)",
-                }}
-              >
-                {picked === q.correct ? "Correct" : "Not quite"}
-              </p>
-              <p className="mt-1 text-charcoal">{q.explanation}</p>
-            </div>
-          )}
-
-          <div className="mt-5 flex items-center justify-between">
-            <span className="text-xs text-muted-foreground">
-              Score: <span className="font-num text-ink">{score}</span>
-            </span>
-            <button
-              type="button"
-              onClick={next}
-              disabled={picked === null}
-              className="inline-flex items-center justify-center rounded-lg bg-ink px-5 py-2.5 text-sm font-semibold text-paper transition disabled:cursor-not-allowed disabled:opacity-40"
-            >
-              {i + 1 >= set.length ? "See results" : "Next"}
-            </button>
+      <main className="mx-auto max-w-5xl px-4 py-6 sm:px-6 sm:py-10">
+        {/* Exam top bar */}
+        <div className="mb-5 flex flex-wrap items-center justify-between gap-3 text-sm">
+          <div className="flex items-center gap-3">
+            <Link to="/$subject/$topic" params={{ subject: subject.slug, topic: topic.slug }} className="text-muted-foreground hover:text-foreground" title="Exit exam">← Exit</Link>
+            <span className="text-muted-foreground">{subject.name} · {topic.name}</span>
           </div>
-        </article>
+          <div className="flex items-center gap-4">
+            {timeLimit > 0 && (
+              <div className={`font-num rounded-md border px-2.5 py-1 ${lowTime ? "border-coral text-coral animate-pulse" : "border-hairline text-foreground"}`}>
+                {mm}:{ss}
+              </div>
+            )}
+            <span className="font-num text-muted-foreground">{answered}/{set.length} answered · {completion}%</span>
+            <button onClick={() => { if (confirm("Submit exam now?")) finish(); }} className="rounded-md bg-amber text-background px-3 py-1.5 text-xs font-semibold">Submit</button>
+          </div>
+        </div>
 
-        <p className="mt-3 text-center text-xs text-muted-foreground">
-          Tip: press 1–4 to answer, Enter for next.
-        </p>
+        {/* Progress bar */}
+        <div className="mb-6 h-1 w-full overflow-hidden rounded-full" style={{ background: "var(--hairline)" }}>
+          <div className="h-full rounded-full transition-all" style={{ width: `${completion}%`, background: "var(--amber)" }} />
+        </div>
+
+        <div className="grid gap-6 lg:grid-cols-[1fr_220px]">
+          <article className="glass-panel rounded-2xl p-6 sm:p-8 rise">
+            <div className="flex items-center justify-between">
+              <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-amber">Question {i + 1} of {set.length}</p>
+              <span className="text-[11px] text-muted-foreground">1 mark</span>
+            </div>
+            <h1 className="mt-3 text-xl font-medium leading-snug text-foreground sm:text-2xl">{q.question}</h1>
+
+            <ul className="mt-6 space-y-2.5">
+              {q.options.map((opt, idx) => {
+                const chosen = picked === idx;
+                const reveal = !isExam && picked !== null;
+                const isCorrect = reveal && idx === q.correct;
+                const isWrongPick = reveal && chosen && idx !== q.correct;
+                let cls = "flex w-full items-start gap-3 rounded-xl border p-3.5 text-left text-sm transition";
+                if (reveal) {
+                  if (isCorrect) cls += " border-mint bg-mint/10";
+                  else if (isWrongPick) cls += " border-coral bg-coral/10";
+                  else cls += " border-hairline opacity-60";
+                } else {
+                  cls += chosen ? " border-amber bg-amber/[0.08]" : " border-hairline hover:border-foreground/40";
+                }
+                return (
+                  <li key={idx}>
+                    <button type="button" onClick={() => choose(idx)} className={cls}>
+                      <span className={`font-num text-xs ${chosen ? "text-amber" : "text-muted-foreground"} pt-0.5`}>{String.fromCharCode(65 + idx)}</span>
+                      <span className="text-charcoal">{opt}</span>
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+
+            {!isExam && picked !== null && (
+              <div className="mt-5 rounded-xl p-4 text-sm hairline" style={{ background: picked === q.correct ? "color-mix(in srgb, var(--mint) 8%, transparent)" : "color-mix(in srgb, var(--coral) 8%, transparent)" }}>
+                <p className="font-semibold" style={{ color: picked === q.correct ? "var(--mint)" : "var(--coral)" }}>
+                  {picked === q.correct ? "Correct" : "Not quite"}
+                </p>
+                <p className="mt-1 text-charcoal">{q.explanation}</p>
+              </div>
+            )}
+
+            <div className="mt-6 flex items-center justify-between gap-2">
+              <button onClick={prev} disabled={i === 0} className="rounded-lg border border-hairline px-4 py-2 text-sm font-medium disabled:opacity-40 hover:bg-surface-2">← Prev</button>
+              <div className="text-xs text-muted-foreground hidden sm:block">Keys: 1–4 answer · ←/→ navigate · Enter next</div>
+              <button onClick={next} disabled={!isExam && picked === null} className="rounded-lg bg-foreground text-background px-5 py-2 text-sm font-semibold disabled:opacity-40">
+                {i + 1 >= set.length ? "Finish" : "Next →"}
+              </button>
+            </div>
+          </article>
+
+          {/* Question navigation panel */}
+          <aside className="glass-panel rounded-2xl p-4 h-fit lg:sticky lg:top-20">
+            <p className="mb-3 text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Navigator</p>
+            <div className="grid grid-cols-5 gap-1.5 lg:grid-cols-4">
+              {set.map((_, n) => {
+                const a = session.answers[n];
+                const isCur = n === i;
+                let cls = "h-8 w-full rounded-md border text-xs font-num transition ";
+                if (isCur) cls += "border-amber bg-amber text-background";
+                else if (a !== null) cls += "border-mint/50 bg-mint/15 text-foreground";
+                else cls += "border-hairline text-muted-foreground hover:border-foreground/40";
+                return <button key={n} onClick={() => jumpTo(n)} className={cls}>{n + 1}</button>;
+              })}
+            </div>
+            <div className="mt-4 space-y-1.5 text-[11px] text-muted-foreground">
+              <Legend swatch="bg-amber" label="Current" />
+              <Legend swatch="bg-mint/40" label="Answered" />
+              <Legend swatch="bg-transparent border border-hairline" label="Unanswered" />
+            </div>
+            <button
+              onClick={() => {
+                if (!confirm("Reset this attempt with a new shuffle?")) return;
+                const s = startNew(subject.slug, topic.slug, pool, session.config ?? defaultConfig());
+                setSession(s);
+              }}
+              className="mt-4 w-full rounded-md border border-hairline px-3 py-1.5 text-[11px] text-muted-foreground hover:text-foreground"
+            >
+              Reshuffle attempt
+            </button>
+          </aside>
+        </div>
       </main>
+    </div>
+  );
+}
+
+function Legend({ swatch, label }: { swatch: string; label: string }) {
+  return (
+    <div className="flex items-center gap-2">
+      <span className={`inline-block h-3 w-3 rounded-sm ${swatch}`} />
+      <span>{label}</span>
     </div>
   );
 }
