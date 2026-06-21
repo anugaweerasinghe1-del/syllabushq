@@ -1,97 +1,70 @@
-## Notes before we start
+## Priority plan
 
-- **AI key**: I'll use Lovable's built-in AI Gateway (`google/gemini-3-flash-preview`) for Phase 0 — no need for the Gemini key you pasted. For safety, please rotate that key on Google AI Studio since it's now in chat history.
-- **Syllabi mapping**: You uploaded 6 PDFs. I'll treat them as:
-  - Mathematics → `mathsgr.9.pdf` + `mathspaper1.pdf` + `Practicing_Paper_Grade11_Eng math.pdf` (syllabus scope + format reference)
-  - Science → `sci.gr.11.pdf` + `science teachers guide gr.10.pdf`
-  - Business & Accounting Studies → `bsgr.11.pdf`
-- **Stack**: TanStack Start, Tailwind v4, no backend, no auth, localStorage-only. Tailwind default breakpoints.
-- **Data contract** (locked so swaps are code-free):
-  - `public/questions.json` — array of `{ subject, topic, question, options[4], correct, explanation }`
-  - `public/subjects.json` — `[{ slug, name, topics: [{ slug, name }] }]`
-  - Loaders read these as static fetches; topics and subjects render dynamically from whatever's in the files.
+### Phase 0 — Enable Lovable Cloud + secure admin password
+- Enable Lovable Cloud for shared reviews, feature suggestions, spam protection, and AI short-answer grading.
+- Add a server-only `REVIEW_DELETE_PASSWORD` secret for deleting reviews.
+- Explain Cloud-powered pieces after it is enabled.
 
----
+### Phase 1 — Fix the glitch first
+- Stop quiz questions from reshuffling on navigation/hydration by making each practice session deterministic and persisted for the active attempt.
+- Replace the current `Math.random()` re-seed-on-render behavior with stable attempt IDs and stored question IDs/order.
+- Fix streak UI flashing to zero by hydrating localStorage safely instead of rendering reset values first.
+- Add a 24-hour streak rollover rule: if the last completed study activity is older than 24 hours without a new completion, current streak returns to zero while history remains accurate.
+- Add storage validation/migration guards so corrupted localStorage cannot reset the UI or crash the app.
 
-## Phase 0 — Content generation (one-time build script)
+### Phase 2 — Upgrade content model beyond MCQs
+- Extend static question data to support:
+  - MCQs
+  - typed short-answer questions with model answers and marking points
+  - Business & Accounting case-study questions only where past-paper style supports them, written as original scenarios
+  - structured paper sections with sub-questions and model answers
+- Use one-time build generation only; no visitor-facing generation for static practice banks.
+- Keep all generated content syllabus-aligned and O/L-style.
 
-Goal: produce `public/questions.json` with ≥100 original MCQs per subject, covering the full syllabus, matched to Sri Lankan O/L difficulty and phrasing.
+### Phase 3 — AI-graded short answers
+- Add a runtime AI grading flow only for the user-selected short-answer grading feature.
+- Use server functions so prompts/API access stay server-side.
+- Validate typed answers, limit length, and return concise feedback, score bands, and improvement tips.
+- Keep a self-grade/model-answer mode available when users do not want AI grading.
 
-1. Write a Node script at `scripts/generate-questions.ts` (not shipped to client).
-2. Parse each syllabus PDF to extract the topic list per subject (pdf-parse).
-3. For each subject, iterate topics and call Lovable AI Gateway (`google/gemini-3-flash-preview`) in batches of ~10 questions per topic with a strict JSON-schema prompt:
-   - Original questions only (no reproduction/close paraphrase of past papers).
-   - 4 options, exactly one correct, short explanation.
-   - Distribute across all topics until ≥100 per subject.
-4. Validate every item (shape, option count, correct index in 0–3, no duplicates by question text).
-5. Write merged array to `public/questions.json`.
-6. Also write `public/subjects.json` derived from the extracted topic lists.
-7. Run once, commit outputs, then stop. No runtime AI calls in the deployed app.
+### Phase 4 — Premium dark redesign
+- Rework the brand into a dark, premium Apple/Nike-like study product:
+  - dark graphite/black surfaces
+  - sharp editorial typography
+  - controlled amber/electric accent highlights
+  - glassy but restrained panels
+  - refined hover states and motion
+- Replace the slogan with a stronger premium line, e.g. “Master the syllabus. Own the exam.”
+- Redesign home, subject, topic, quiz, results, streak, structured papers, reviews, and suggestions into a more polished layout comparable to leading study sites.
+- Add neat, purposeful animations with reduced-motion support.
 
-Stop after Phase 0 and show counts per subject/topic for your approval before Phase 1.
+### Phase 5 — Better study streak
+- Build a more professional streak widget with:
+  - current streak
+  - longest streak
+  - last studied time
+  - weekly activity strip
+  - progress ring or compact calendar heatmap
+  - stable loading state so it never flashes reset values
+- Count completed MCQ quizzes, structured-paper attempts, and short-answer practice as study activity.
 
----
+### Phase 6 — Reviews + feature suggestions
+- Add a public Reviews tab/page with shared reviews stored in Cloud.
+- Enforce one review per browser/device using a local visitor token plus server-side duplicate checks.
+- Add feature suggestion submission so users can suggest improvements.
+- Add password-protected delete for reviews using the server-only admin password.
+- Add database grants/RLS policies correctly for public reads and controlled inserts/deletes.
 
-## Phase 1 — Scaffold + Home
+### Phase 7 — Programmatic SEO + GEO
+- Replace leftover generic metadata with branded metadata.
+- Generate programmatic pages/metadata for subject, topic, MCQ practice, structured papers, and short-answer practice.
+- Add FAQ blocks, Breadcrumb JSON-LD, WebSite/Organization JSON-LD, and subject/topic-specific descriptions.
+- Update sitemap generation to include the new structured and review pages.
+- Add Sri Lankan O/L keyword coverage naturally: English medium, G.C.E. O/L, Mathematics, Science, Business & Accounting Studies, model answers, structured questions, past-paper-style practice.
+- Add answer-engine/GEO-friendly summaries and FAQ content without keyword stuffing.
 
-- Initialize design tokens in `src/styles.css` (Ink, Marigold, Paper, Charcoal, Sage, Clay).
-- Load fonts via `<link>` in `__root.tsx`: Space Grotesk (headings), Inter (body), JetBrains Mono (numerals).
-- Routes: `/` (home), `__root` head/meta defaults.
-- Home page:
-  - Hero with tagline and short value prop.
-  - **Streak heatmap** (GitHub-style, last ~20 weeks) reading `localStorage` activity log; Marigold intensity scale.
-  - Current streak + longest streak in JetBrains Mono.
-  - Subject grid (3 cards) generated from `subjects.json`.
-- Data layer: a tiny `lib/content.ts` that fetches and caches `subjects.json` / `questions.json` (TanStack Query).
-- Streak utility: `lib/streak.ts` (record day, compute current/longest, build heatmap matrix).
-
----
-
-## Phase 2 — Subject + Topic browsing
-
-- Route `/$subject` — lists topics from `subjects.json`, shows per-topic question count from `questions.json`.
-- Route `/$subject/$topic` — topic landing with "Start practice" CTA, short topic blurb, recent score (from localStorage).
-- 404 + error boundaries wired per TanStack route rules.
-
----
-
-## Phase 3 — Quiz engine
-
-- Route `/$subject/$topic/practice`.
-- Pick 10 random questions for the topic (deterministic per session, reshuffle on retry).
-- One question at a time: 4 options, immediate feedback (Sage/Clay), explanation panel, "Next" button.
-- Progress bar + question counter.
-- Keyboard support (1–4, Enter).
-- Persist in-progress state to localStorage so refresh resumes.
-
----
-
-## Phase 4 — Results + streak update
-
-- Route `/$subject/$topic/results` (state passed via router/localStorage).
-- Score, %, time, per-question review list (your answer vs correct + explanation).
-- Marks today as active in streak log; updates current/longest.
-- CTAs: "Retry topic", "Pick another topic", "Back to subject".
-
----
-
-## Phase 5 — Mobile responsiveness pass
-
-- Audit Home, Subject, Topic, Quiz, Results on `sm`/`md`/`lg`/`xl` defaults only.
-- Tap targets ≥44px, sticky question footer on mobile, heatmap horizontal scroll on `< sm`.
-
----
-
-## Phase 6 — SEO pass
-
-- Per-route `head()` with unique title + meta description for `/`, each `/$subject`, each `/$subject/$topic` (derived from data).
-- JSON-LD: `EducationalOrganization` on home, `Quiz` / `LearningResource` on topic pages.
-- FAQ block on each subject page (common O/L questions) with `FAQPage` JSON-LD.
-- `public/robots.txt`, `public/llms.txt`, and a generated `public/sitemap.xml` script that walks `subjects.json`.
-- Single H1 per page, semantic landmarks, alt text on any imagery, canonical tags.
-
----
-
-## Deliverables checkpoint after each phase
-
-I'll stop at the end of each phase so you can review before I continue. Approve this plan and I'll begin with Phase 0.
+## Technical notes
+- I found the main glitch source in `src/routes/$subject.$topic.practice.tsx`: the quiz set is initialized with `pickRandom(pool, QUIZ_LEN)` and then re-seeded in an effect when `pool` identity changes. This can make questions switch during route navigation/hydration.
+- I found the streak flash source in `src/components/StreakHeatmap.tsx`: it starts with an empty set, renders zero values, then reads localStorage in `useEffect`.
+- Lovable Cloud is required for shared reviews, suggestions, one-review enforcement beyond local-only storage, and safe server-side delete password checks.
+- I will not use Paper/cloud connector tooling; the provided Paper context does not apply to this web app implementation.
