@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SubjectRouteImport } from './routes/$subject'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SubjectTopicRouteImport } from './routes/$subject.$topic'
+import { Route as SubjectTopicPracticeRouteImport } from './routes/$subject.$topic.practice'
 
 const SubjectRoute = SubjectRouteImport.update({
   id: '/$subject',
@@ -28,29 +29,46 @@ const SubjectTopicRoute = SubjectTopicRouteImport.update({
   path: '/$topic',
   getParentRoute: () => SubjectRoute,
 } as any)
+const SubjectTopicPracticeRoute = SubjectTopicPracticeRouteImport.update({
+  id: '/practice',
+  path: '/practice',
+  getParentRoute: () => SubjectTopicRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$subject': typeof SubjectRouteWithChildren
-  '/$subject/$topic': typeof SubjectTopicRoute
+  '/$subject/$topic': typeof SubjectTopicRouteWithChildren
+  '/$subject/$topic/practice': typeof SubjectTopicPracticeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$subject': typeof SubjectRouteWithChildren
-  '/$subject/$topic': typeof SubjectTopicRoute
+  '/$subject/$topic': typeof SubjectTopicRouteWithChildren
+  '/$subject/$topic/practice': typeof SubjectTopicPracticeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/$subject': typeof SubjectRouteWithChildren
-  '/$subject/$topic': typeof SubjectTopicRoute
+  '/$subject/$topic': typeof SubjectTopicRouteWithChildren
+  '/$subject/$topic/practice': typeof SubjectTopicPracticeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/$subject' | '/$subject/$topic'
+  fullPaths:
+    | '/'
+    | '/$subject'
+    | '/$subject/$topic'
+    | '/$subject/$topic/practice'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/$subject' | '/$subject/$topic'
-  id: '__root__' | '/' | '/$subject' | '/$subject/$topic'
+  to: '/' | '/$subject' | '/$subject/$topic' | '/$subject/$topic/practice'
+  id:
+    | '__root__'
+    | '/'
+    | '/$subject'
+    | '/$subject/$topic'
+    | '/$subject/$topic/practice'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -81,15 +99,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SubjectTopicRouteImport
       parentRoute: typeof SubjectRoute
     }
+    '/$subject/$topic/practice': {
+      id: '/$subject/$topic/practice'
+      path: '/practice'
+      fullPath: '/$subject/$topic/practice'
+      preLoaderRoute: typeof SubjectTopicPracticeRouteImport
+      parentRoute: typeof SubjectTopicRoute
+    }
   }
 }
 
+interface SubjectTopicRouteChildren {
+  SubjectTopicPracticeRoute: typeof SubjectTopicPracticeRoute
+}
+
+const SubjectTopicRouteChildren: SubjectTopicRouteChildren = {
+  SubjectTopicPracticeRoute: SubjectTopicPracticeRoute,
+}
+
+const SubjectTopicRouteWithChildren = SubjectTopicRoute._addFileChildren(
+  SubjectTopicRouteChildren,
+)
+
 interface SubjectRouteChildren {
-  SubjectTopicRoute: typeof SubjectTopicRoute
+  SubjectTopicRoute: typeof SubjectTopicRouteWithChildren
 }
 
 const SubjectRouteChildren: SubjectRouteChildren = {
-  SubjectTopicRoute: SubjectTopicRoute,
+  SubjectTopicRoute: SubjectTopicRouteWithChildren,
 }
 
 const SubjectRouteWithChildren =
