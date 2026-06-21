@@ -7,6 +7,8 @@ import {
   getQuestionsFor,
   pickRandom,
   type Question,
+  type Subject,
+  type Topic,
 } from "@/lib/content";
 import { markStudiedToday } from "@/lib/streak";
 import { recordScore } from "@/lib/scores";
@@ -17,12 +19,12 @@ const QUIZ_LEN = 10;
 export const Route = createFileRoute("/$subject/$topic/practice")({
   loader: async ({ context, params }) => {
     const subjects = await context.queryClient.ensureQueryData(subjectsQuery);
-    const subject = subjects.find((s) => s.slug === params.subject);
+    const subject = subjects.find((s: Subject) => s.slug === params.subject);
     if (!subject) throw notFound();
-    const topic = subject.topics.find((t) => t.slug === params.topic);
+    const topic = subject.topics.find((t: Topic) => t.slug === params.topic);
     if (!topic) throw notFound();
     await context.queryClient.ensureQueryData(questionsQuery);
-    return { subject, topic };
+    return { subject, topic } as { subject: Subject; topic: Topic };
   },
   head: ({ loaderData }) => ({
     meta: loaderData
