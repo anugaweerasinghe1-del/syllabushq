@@ -1298,5 +1298,1565 @@
     ],
     "correct": 2,
     "explanation": "Total marks for 4 subjects = 62 * 4 = 248. Total for 5 subjects = 65 * 5 = 325. Fifth subject mark = 325 - 248 = 77."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "matrices",
+    "question": "What is the order of a matrix that has 5 elements in total?",
+    "options": [
+      "2 x 3",
+      "5 x 1",
+      "2 x 2",
+      "3 x 2"
+    ],
+    "correct": 1,
+    "explanation": "The order of a matrix m x n determines the total number of elements by the product of m and n. Since 5 is a prime number, its only possible orders are 5 x 1 or 1 x 5."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "matrices",
+    "question": "If matrix A = (2, -3) and matrix B = (5, 4), which of the following represents the matrix A + B?",
+    "options": [
+      "(7, 1)",
+      "(-3, -7)",
+      "(7, -7)",
+      "(10, -12)"
+    ],
+    "correct": 0,
+    "explanation": "Matrix addition is performed by adding corresponding elements: (2 + 5) and (-3 + 4), which results in the matrix (7, 1)."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "matrices",
+    "question": "Given the matrix P = ((3, 1), (0, 2)), what is the result of the scalar multiplication 3P?",
+    "options": [
+      "((6, 4), (3, 5))",
+      "((9, 1), (0, 2))",
+      "((9, 3), (0, 6))",
+      "((0, 0), (0, 0))"
+    ],
+    "correct": 2,
+    "explanation": "To perform scalar multiplication, every element inside the matrix must be multiplied by the scalar 3. Thus, 3*3=9, 3*1=3, 3*0=0, and 3*2=6."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "matrices",
+    "question": "If ((x, 5), (1, y)) = ((4, 5), (1, -2)), what are the values of x and y respectively?",
+    "options": [
+      "x = 5, y = 1",
+      "x = 4, y = -2",
+      "x = -2, y = 4",
+      "x = 4, y = 2"
+    ],
+    "correct": 1,
+    "explanation": "Two matrices are equal if their corresponding elements are identical. Comparing the elements gives x = 4 and y = -2."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "matrices",
+    "question": "Matrix M has an order of 2 x 3 and Matrix N has an order of 3 x 1. What is the order of the product matrix MN?",
+    "options": [
+      "3 x 3",
+      "2 x 3",
+      "1 x 2",
+      "2 x 1"
+    ],
+    "correct": 3,
+    "explanation": "When multiplying a matrix of order m x n by a matrix of order n x p, the resulting matrix has the order m x p. Here, 2 x 3 and 3 x 1 results in a 2 x 1 matrix."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "vectors",
+    "question": "In the triangle ABC, the point M is the midpoint of the side BC. If the vector AB is denoted by 'a' and the vector AC is denoted by 'b', which of the following expressions represents the vector AM?",
+    "options": [
+      "a + b",
+      "1/2(a + b)",
+      "b - a",
+      "1/2(b - a)"
+    ],
+    "correct": 1,
+    "explanation": "Using the midpoint formula for vectors, the position vector of the midpoint M is the average of the vectors to the endpoints relative to A, which is (AB + AC)/2 or 1/2(a + b)."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "vectors",
+    "question": "If vector p = 3i - 4j and vector q = i + 2j, what is the magnitude of the resulting vector when 2p + q is calculated?",
+    "options": [
+      "sqrt(74)",
+      "sqrt(85)",
+      "sqrt(45)",
+      "sqrt(10)"
+    ],
+    "correct": 1,
+    "explanation": "2p + q = 2(3i - 4j) + (i + 2j) = (6i - 8j) + (i + 2j) = 7i - 6j. The magnitude is sqrt(7^2 + (-6)^2) = sqrt(49 + 36) = sqrt(85)."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "vectors",
+    "question": "Given that vector AB = 4i + 3j and vector BC = 2i - j, find the column vector notation for the vector AC.",
+    "options": [
+      "(6, 2)",
+      "(2, 4)",
+      "(6, -2)",
+      "(2, -4)"
+    ],
+    "correct": 0,
+    "explanation": "By the triangle law of vector addition, AC = AB + BC. Adding the components: (4+2)i + (3-1)j = 6i + 2j, which is written as the column vector (6, 2)."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "vectors",
+    "question": "The vector u is given as (k, 12). If the magnitude of vector u is 13 units, find the possible positive value of k.",
+    "options": [
+      "1",
+      "5",
+      "25",
+      "169"
+    ],
+    "correct": 1,
+    "explanation": "The magnitude is sqrt(k^2 + 12^2) = 13. Squaring both sides gives k^2 + 144 = 169. Thus k^2 = 25, so the positive value of k is 5."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "vectors",
+    "question": "In a parallelogram PQRS, if vector PQ = u and vector PS = v, which of the following vectors represents the diagonal SQ?",
+    "options": [
+      "u + v",
+      "v - u",
+      "u - v",
+      "-u - v"
+    ],
+    "correct": 2,
+    "explanation": "To move from S to Q, you can go from S to P and then P to Q. Vector SP is -v (the opposite of PS) and vector PQ is u. Therefore, SQ = SP + PQ = -v + u or u - v."
+  },
+  {
+    "subject": "science",
+    "topic": "matter-classification",
+    "question": "Which of the following substances consists of only one type of atom and cannot be broken down into simpler substances by chemical means?",
+    "options": [
+      "Distilled water",
+      "Sodium chloride",
+      "Graphite",
+      "Carbon dioxide"
+    ],
+    "correct": 2,
+    "explanation": "Graphite is an allotrope of carbon, which is an element consisting of only one type of atom. The other options are compounds consisting of different types of atoms chemically combined."
+  },
+  {
+    "subject": "science",
+    "topic": "matter-classification",
+    "question": "A student is given a mixture containing common salt, sand, and iodine. Which sequence of methods is most appropriate to separate all three components individually?",
+    "options": [
+      "Sublimation, Dissolving in water, Filtration, Evaporation",
+      "Filtration, Sublimation, Evaporation, Decantation",
+      "Distillation, Sublimation, Crystallization, Filtration",
+      "Evaporation, Dissolving in water, Sublimation, Filtration"
+    ],
+    "correct": 0,
+    "explanation": "Iodine sublimes upon heating, sand is insoluble and can be filtered after adding water, and salt can be recovered from the filtrate by evaporation."
+  },
+  {
+    "subject": "science",
+    "topic": "matter-classification",
+    "question": "Which statement correctly describes a characteristic difference between a compound and a mixture?",
+    "options": [
+      "Components of a compound can be separated by physical methods.",
+      "A mixture has a fixed melting point and boiling point.",
+      "The properties of a compound are entirely different from its constituent elements.",
+      "Formation of a mixture always involves a chemical reaction and energy change."
+    ],
+    "correct": 2,
+    "explanation": "When a compound forms, the constituent elements lose their individual properties to form a new substance, whereas in a mixture, components retain their original properties."
+  },
+  {
+    "subject": "science",
+    "topic": "matter-classification",
+    "question": "Which of the following categorizations of matter is correct based on the nature of particles?",
+    "options": [
+      "Brass - Pure substance",
+      "Air - Homogeneous mixture",
+      "Muddy water - Colloid",
+      "Glucose - Element"
+    ],
+    "correct": 1,
+    "explanation": "Air is a homogeneous mixture of gases where the composition is uniform. Brass is an alloy (mixture), muddy water is a suspension, and glucose is a compound."
+  },
+  {
+    "subject": "science",
+    "topic": "matter-classification",
+    "question": "Consider the following substances: (A) Oxygen gas, (B) Magnesium oxide, (C) Sugar solution. Identify the correct order of their classification respectively.",
+    "options": [
+      "Element, Compound, Mixture",
+      "Element, Mixture, Compound",
+      "Compound, Element, Mixture",
+      "Mixture, Compound, Element"
+    ],
+    "correct": 0,
+    "explanation": "Oxygen gas is an element (O2), magnesium oxide is a compound (MgO), and a sugar solution is a mixture of sugar and water."
+  },
+  {
+    "subject": "science",
+    "topic": "atomic-structure",
+    "question": "An atom of an element is represented as 31P15. Which of the following statements is correct regarding this atom?",
+    "options": [
+      "The nucleus contains 15 neutrons.",
+      "The atom contains 31 electrons.",
+      "The number of neutrons in the nucleus is 16.",
+      "The mass number of the element is 15."
+    ],
+    "correct": 2,
+    "explanation": "The mass number (A) is 31 and the atomic number (Z) is 15. The number of neutrons is calculated as A - Z (31 - 15 = 16)."
+  },
+  {
+    "subject": "science",
+    "topic": "atomic-structure",
+    "question": "Which of the following elements shows chemical properties most similar to those of Magnesium (atomic number 12)?",
+    "options": [
+      "Sodium (atomic number 11)",
+      "Calcium (atomic number 20)",
+      "Aluminum (atomic number 13)",
+      "Potassium (atomic number 19)"
+    ],
+    "correct": 1,
+    "explanation": "Magnesium and Calcium both belong to Group II of the periodic table and have two valence electrons, leading to similar chemical properties."
+  },
+  {
+    "subject": "science",
+    "topic": "atomic-structure",
+    "question": "The electronic configuration of an ion X2+ is 2, 8. What is the atomic number of the neutral element X?",
+    "options": [
+      "8",
+      "10",
+      "12",
+      "14"
+    ],
+    "correct": 2,
+    "explanation": "The X2+ ion has lost 2 electrons to achieve a configuration of 2, 8 (10 electrons). Therefore, the neutral atom must have had 12 electrons, making its atomic number 12."
+  },
+  {
+    "subject": "science",
+    "topic": "atomic-structure",
+    "question": "What is the correct order of increasing electronegativity for the following elements in the second period of the periodic table?",
+    "options": [
+      "Li < Be < B < C",
+      "C < B < Be < Li",
+      "Li < C < Be < B",
+      "B < Be < Li < C"
+    ],
+    "correct": 0,
+    "explanation": "Electronegativity generally increases across a period from left to right as the nuclear charge increases and the atomic radius decreases."
+  },
+  {
+    "subject": "science",
+    "topic": "atomic-structure",
+    "question": "Which of the following best describes the change in first ionization energy when moving down Group I (Alkali Metals) of the periodic table?",
+    "options": [
+      "It increases because the nuclear charge increases.",
+      "It remains constant because the number of valence electrons is the same.",
+      "It decreases because the atomic radius increases and the outer electron is less attracted to the nucleus.",
+      "It increases because the shielding effect of inner electrons decreases."
+    ],
+    "correct": 2,
+    "explanation": "As you move down a group, the number of shells increases, increasing the distance between the nucleus and the valence electron, which reduces the energy required to remove it."
+  },
+  {
+    "subject": "science",
+    "topic": "chemical-bonding",
+    "question": "Which of the following elements achieves a stable electronic configuration by losing two electrons from its outermost shell during the formation of an ionic bond?",
+    "options": [
+      "Sodium (Atomic Number 11)",
+      "Magnesium (Atomic Number 12)",
+      "Aluminum (Atomic Number 13)",
+      "Calcium (Atomic Number 20)"
+    ],
+    "correct": 1,
+    "explanation": "Magnesium has an electronic configuration of 2, 8, 2 and loses its 2 valence electrons to achieve the stable octet of Neon. While Calcium also loses 2 electrons, Magnesium is the more common example in this context of standard O/L metallic bonding theory for Period 3."
+  },
+  {
+    "subject": "science",
+    "topic": "chemical-bonding",
+    "question": "In a molecule of Nitrogen (N2), how many electron pairs are shared between the two nitrogen atoms to satisfy the octet rule?",
+    "options": [
+      "1 pair",
+      "2 pairs",
+      "3 pairs",
+      "4 pairs"
+    ],
+    "correct": 2,
+    "explanation": "Nitrogen has 5 valence electrons and requires 3 more to complete its octet; therefore, two nitrogen atoms share three pairs of electrons to form a triple covalent bond."
+  },
+  {
+    "subject": "science",
+    "topic": "chemical-bonding",
+    "question": "Which of the following compounds is formed solely through the sharing of electrons between atoms of different elements?",
+    "options": [
+      "Sodium chloride (NaCl)",
+      "Magnesium oxide (MgO)",
+      "Methane (CH4)",
+      "Calcium chloride (CaCl2)"
+    ],
+    "correct": 2,
+    "explanation": "Methane consists of Carbon and Hydrogen which are non-metals that form covalent bonds by sharing electrons, whereas the other options are ionic compounds formed by electron transfer."
+  },
+  {
+    "subject": "science",
+    "topic": "chemical-bonding",
+    "question": "Which property is generally characteristic of a substance that contains giant covalent structures like Diamond or Silica?",
+    "options": [
+      "Low melting point and boiling point",
+      "Solubility in water",
+      "Very high hardness and high melting point",
+      "Conduction of electricity in the solid state"
+    ],
+    "correct": 2,
+    "explanation": "Giant covalent structures consist of a vast network of atoms held by strong covalent bonds in all directions, leading to extreme hardness and very high melting points."
+  },
+  {
+    "subject": "science",
+    "topic": "chemical-bonding",
+    "question": "Considering the formation of the Potassium chloride (KCl) crystal lattice, which statement correctly describes the electrostatic forces involved?",
+    "options": [
+      "The force of attraction between two negatively charged chloride ions.",
+      "The force of attraction between a potassium cation (K+) and a chloride anion (Cl-).",
+      "The force of repulsion between a potassium cation and a chloride anion.",
+      "The sharing of a single electron between Potassium and Chlorine atoms."
+    ],
+    "correct": 1,
+    "explanation": "An ionic bond is defined as the electrostatic force of attraction between oppositely charged ions (cations and anions) formed by the transfer of electrons."
+  },
+  {
+    "subject": "science",
+    "topic": "acids-bases-salts",
+    "question": "Which of the following observations is most accurate when a few drops of phenolphthalein indicator are added to a solution of Calcium hydroxide (Ca(OH)2)?",
+    "options": [
+      "The solution remains colorless.",
+      "The solution turns pale pink or deep pink.",
+      "The solution turns blue.",
+      "The solution turns orange."
+    ],
+    "correct": 1,
+    "explanation": "Calcium hydroxide is a base, and phenolphthalein turns from colorless to pink in the presence of basic/alkaline solutions."
+  },
+  {
+    "subject": "science",
+    "topic": "acids-bases-salts",
+    "question": "A student reacts dilute hydrochloric acid with an unknown white solid. A gas is evolved that turns lime water milky. What is the most likely chemical formula of the white solid?",
+    "options": [
+      "NaCl",
+      "MgO",
+      "CaCO3",
+      "Zn"
+    ],
+    "correct": 2,
+    "explanation": "The gas that turns lime water milky is Carbon dioxide (CO2), which is produced when a carbonate, such as Calcium carbonate, reacts with an acid."
+  },
+  {
+    "subject": "science",
+    "topic": "acids-bases-salts",
+    "question": "Which of the following sets contains only acidic salts?",
+    "options": [
+      "NaCl, KNO3",
+      "CH3COONa, Na2CO3",
+      "NaHSO4, NH4Cl",
+      "MgCl2, CaSO4"
+    ],
+    "correct": 2,
+    "explanation": "NaHSO4 is an acid salt containing a replaceable hydrogen atom, and NH4Cl is a salt formed from a strong acid and a weak base, resulting in an acidic nature."
+  },
+  {
+    "subject": "science",
+    "topic": "acids-bases-salts",
+    "question": "If the pH value of a soil sample is found to be 4.5, which substance would be most suitable to add to the soil to neutralize the acidity for better crop growth?",
+    "options": [
+      "Ammonium sulfate",
+      "Citric acid",
+      "Sodium chloride",
+      "Slaked lime"
+    ],
+    "correct": 3,
+    "explanation": "Soil with a pH of 4.5 is acidic. Slaked lime (calcium hydroxide) is a base used in agriculture to neutralize acidity and raise the soil pH."
+  },
+  {
+    "subject": "science",
+    "topic": "acids-bases-salts",
+    "question": "Identify the correct statement regarding the reaction between an acid and a base (Neutralization).",
+    "options": [
+      "The reaction is always endothermic.",
+      "Standard products are always a salt and water.",
+      "The pH of the resulting solution must always be exactly 14.",
+      "Only strong acids can participate in neutralization."
+    ],
+    "correct": 1,
+    "explanation": "Neutralization is a chemical reaction where an acid and a base react to produce a salt and water, typically releasing heat (exothermic)."
+  },
+  {
+    "subject": "science",
+    "topic": "chemical-reactions",
+    "question": "Which of the following observations provides the most conclusive evidence that a chemical change has occurred when a piece of magnesium ribbon is heated in air?",
+    "options": [
+      "The magnesium ribbon becomes red hot.",
+      "A bright white light is emitted during the process.",
+      "The solid magnesium turns into a white powdery substance.",
+      "The ribbon decreases in length due to melting."
+    ],
+    "correct": 2,
+    "explanation": "The formation of a new substance (magnesium oxide powder) with different chemical properties than the metal reactant is the defining characteristic of a chemical reaction."
+  },
+  {
+    "subject": "science",
+    "topic": "chemical-reactions",
+    "question": "In the balanced chemical equation for the reaction between aluminium (Al) and sulfuric acid (H2SO4) to produce aluminium sulfate (Al2(SO4)3) and hydrogen gas (H2), what is the stoichiometric coefficient of H2?",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "correct": 2,
+    "explanation": "The balanced equation is 2Al + 3H2SO4 -> Al2(SO4)3 + 3H2. Therefore, the coefficient for hydrogen gas is 3."
+  },
+  {
+    "subject": "science",
+    "topic": "chemical-reactions",
+    "question": "Which type of chemical reaction is represented by the following equation? BaCl2(aq) + Na2SO4(aq) -> BaSO4(s) + 2NaCl(aq)",
+    "options": [
+      "Thermal decomposition reaction",
+      "Single displacement reaction",
+      "Combination reaction",
+      "Precipitation reaction"
+    ],
+    "correct": 3,
+    "explanation": "This is a double displacement reaction where an insoluble solid (barium sulfate) is formed from two aqueous solutions, classifying it as a precipitation reaction."
+  },
+  {
+    "subject": "science",
+    "topic": "chemical-reactions",
+    "question": "Which statement correctly describes an exothermic reaction?",
+    "options": [
+      "The temperature of the surroundings decreases during the reaction.",
+      "The total energy of the products is greater than the total energy of the reactants.",
+      "Energy is absorbed from the environment to break chemical bonds.",
+      "Heat energy is released to the surroundings as new bonds are formed."
+    ],
+    "correct": 3,
+    "explanation": "Exothermic reactions release heat energy because the energy released during bond formation in products is greater than the energy required to break bonds in reactants."
+  },
+  {
+    "subject": "science",
+    "topic": "chemical-reactions",
+    "question": "A student adds a few drops of phenolphthalein to a solution of dilute sodium hydroxide. Then, dilute hydrochloric acid is added dropwise until the color disappears. What is the final product formed in the solution besides water?",
+    "options": [
+      "Sodium chloride",
+      "Sodium chlorate",
+      "Hydrogen gas",
+      "Chlorine gas"
+    ],
+    "correct": 0,
+    "explanation": "This is a neutralization reaction between an acid (HCl) and a base (NaOH), which results in the formation of a salt (NaCl) and water."
+  },
+  {
+    "subject": "science",
+    "topic": "metals-non-metals",
+    "question": "Which of the following observations is most accurate when a small piece of Sodium (Na) metal is placed in a trough of water containing a few drops of phenolphthalein?",
+    "options": [
+      "The metal sinks to the bottom and the solution remains colorless.",
+      "The metal floats and moves rapidly on the surface while the solution turns pink.",
+      "The metal reacts silently without moving and the solution turns blue.",
+      "The metal burns with a brilliant white flame and no color change occurs in the solution."
+    ],
+    "correct": 1,
+    "explanation": "Sodium is less dense than water and reacts vigorously to produce Sodium Hydroxide (an alkali) and Hydrogen gas. The alkali causes phenolphthalein to turn pink."
+  },
+  {
+    "subject": "science",
+    "topic": "metals-non-metals",
+    "question": "Aluminum (Al) is widely used to manufacture cooking utensils. Which pair of properties best justifies this specific application?",
+    "options": [
+      "High electrical conductivity and low density.",
+      "High melting point and sonorous nature.",
+      "High thermal conductivity and the formation of a protective oxide layer.",
+      "Malleability and high magnetism."
+    ],
+    "correct": 2,
+    "explanation": "High thermal conductivity allows efficient heat transfer for cooking, while the passive Al2O3 layer prevents the metal from reacting with food and corroding."
+  },
+  {
+    "subject": "science",
+    "topic": "metals-non-metals",
+    "question": "Which statement correctly describes a fundamental difference between the physical properties of typical metals and non-metals?",
+    "options": [
+      "Metals are generally electronegative whereas non-metals are electropositive.",
+      "Metals form acidic oxides while non-metals form basic oxides.",
+      "Metals have high tensile strength whereas solid non-metals are generally brittle.",
+      "All metals are solids at room temperature while all non-metals are gases."
+    ],
+    "correct": 2,
+    "explanation": "Metals can withstand high stress (tensile strength), while solid non-metals like sulfur or phosphorus shatter easily when struck (brittle)."
+  },
+  {
+    "subject": "science",
+    "topic": "metals-non-metals",
+    "question": "In the process of extracting Iron (Fe) using the Blast Furnace, what is the primary function of Limestone (CaCO3)?",
+    "options": [
+      "To act as the main reducing agent for Hematite.",
+      "To provide the fuel necessary for maintaining high temperatures.",
+      "To react with acidic impurities like Silica (SiO2) to form slag.",
+      "To lower the melting point of the Iron ore."
+    ],
+    "correct": 2,
+    "explanation": "Limestone decomposes to Calcium Oxide, which reacts with the sandy impurity (Silica) to form molten Calcium Silicate (slag), which is then removed."
+  },
+  {
+    "subject": "science",
+    "topic": "metals-non-metals",
+    "question": "An unknown element 'X' is a poor conductor of electricity, has a low melting point, and reacts with Oxygen to form a gas that turns moist blue litmus paper red. Element 'X' is most likely:",
+    "options": [
+      "Magnesium",
+      "Sulfur",
+      "Copper",
+      "Iron"
+    ],
+    "correct": 1,
+    "explanation": "Sulfur is a non-metal (poor conductor) that forms Sulfur Dioxide (SO2) when burned. SO2 is an acidic oxide that turns blue litmus red."
+  },
+  {
+    "subject": "science",
+    "topic": "organic-chemistry",
+    "question": "Which of the following elements is invariably present in all organic compounds?",
+    "options": [
+      "Oxygen",
+      "Nitrogen",
+      "Carbon",
+      "Sulfur"
+    ],
+    "correct": 2,
+    "explanation": "Organic chemistry is defined as the chemistry of carbon compounds, where carbon atoms form the backbone of the molecule."
+  },
+  {
+    "subject": "science",
+    "topic": "organic-chemistry",
+    "question": "What is the general formula for the homologous series of alkanes?",
+    "options": [
+      "CnH2n",
+      "CnH2n+2",
+      "CnH2n-2",
+      "CnH2n+1OH"
+    ],
+    "correct": 1,
+    "explanation": "Alkanes are saturated hydrocarbons where each carbon atom is bonded to the maximum number of hydrogen atoms, following the formula CnH2n+2."
+  },
+  {
+    "subject": "science",
+    "topic": "organic-chemistry",
+    "question": "A student identifies an organic liquid that turns blue litmus paper red and reacts with sodium carbonate to release bubbles of carbon dioxide. Which functional group is likely present in this compound?",
+    "options": [
+      "-OH (Hydroxyl group)",
+      "-CHO (Aldehyde group)",
+      "-COOH (Carboxyl group)",
+      "-CO- (Carbonyl group)"
+    ],
+    "correct": 2,
+    "explanation": "The Carboxyl group (-COOH) is acidic, allowing it to turn blue litmus red and react with carbonates to release CO2 gas."
+  },
+  {
+    "subject": "science",
+    "topic": "organic-chemistry",
+    "question": "Which of the following is an example of an unsaturated hydrocarbon?",
+    "options": [
+      "Methane",
+      "Ethane",
+      "Propane",
+      "Ethene"
+    ],
+    "correct": 3,
+    "explanation": "Unsaturated hydrocarbons contain at least one double or triple bond between carbon atoms; Ethene contains a double bond (C=C)."
+  },
+  {
+    "subject": "science",
+    "topic": "organic-chemistry",
+    "question": "In the process of fractional distillation of crude oil, which property is primarily used to separate the various components?",
+    "options": [
+      "Difference in density",
+      "Difference in boiling points",
+      "Difference in chemical reactivity",
+      "Difference in solubility in water"
+    ],
+    "correct": 1,
+    "explanation": "Fractional distillation separates mixtures into 'fractions' based on the specific temperatures at which they condense, which relates to their boiling points."
+  },
+  {
+    "subject": "science",
+    "topic": "motion-forces",
+    "question": "A stone is dropped from the top of a tower and reaches the ground in 4 seconds. If the acceleration due to gravity is 10 m s^-2, what is the height of the tower?",
+    "options": [
+      "40 m",
+      "80 m",
+      "160 m",
+      "20 m"
+    ],
+    "correct": 1,
+    "explanation": "Using the equation s = ut + 1/2 at^2, where u=0, a=10, and t=4. s = 0 + 1/2(10)(4^2) = 5 * 16 = 80 m."
+  },
+  {
+    "subject": "science",
+    "topic": "motion-forces",
+    "question": "Which of the following statements is correct regarding the displacement of an object that moves along a circular path of radius 'r' and completes exactly one full revolution?",
+    "options": [
+      "The displacement is equal to the circumference 2 * pi * r.",
+      "The displacement is equal to the diameter 2r.",
+      "The displacement is zero.",
+      "The displacement depends on the speed of the object."
+    ],
+    "correct": 2,
+    "explanation": "Displacement is the shortest distance between the starting and ending points; since the starting and ending points are the same for a full revolution, the displacement is zero."
+  },
+  {
+    "subject": "science",
+    "topic": "motion-forces",
+    "question": "A net force of 15 N is applied to a block of mass 3 kg which was initially at rest on a frictionless horizontal surface. What is the velocity of the block after 2 seconds?",
+    "options": [
+      "5 m s^-1",
+      "30 m s^-1",
+      "7.5 m s^-1",
+      "10 m s^-1"
+    ],
+    "correct": 3,
+    "explanation": "First find acceleration using F=ma: 15=3a, so a=5 m s^-2. Then use v = u + at: v = 0 + (5)(2) = 10 m s^-1."
+  },
+  {
+    "subject": "science",
+    "topic": "motion-forces",
+    "question": "Which of the following pair of forces represents an action-reaction pair according to Newton's Third Law when a book is placed on a table?",
+    "options": [
+      "The weight of the book and the upward normal reaction from the table on the book.",
+      "The gravitational pull of the Earth on the book and the gravitational pull of the book on the Earth.",
+      "The weight of the book and the downward force the book exerts on the table.",
+      "The normal reaction from the table on the book and the friction force."
+    ],
+    "correct": 1,
+    "explanation": "Action-reaction pairs must act on two different bodies and be of the same nature; the gravitational force between the Earth and the book satisfies this."
+  },
+  {
+    "subject": "science",
+    "topic": "motion-forces",
+    "question": "A car travelling at 20 m s^-1 is brought to rest by applying brakes over a distance of 40 m. What is the uniform deceleration of the car?",
+    "options": [
+      "0.5 m s^-2",
+      "10 m s^-2",
+      "5 m s^-2",
+      "2 m s^-2"
+    ],
+    "correct": 2,
+    "explanation": "Using v^2 = u^2 + 2as: 0 = 20^2 + 2(a)(40). 0 = 400 + 80a. 80a = -400, so a = -5 m s^-2. The magnitude of deceleration is 5 m s^-2."
+  },
+  {
+    "subject": "science",
+    "topic": "work-energy-power",
+    "question": "A student lifts a school bag weighing 40 N vertically upwards through a height of 1.5 m. How much work is done by the student against the force of gravity?",
+    "options": [
+      "26.6 J",
+      "40.0 J",
+      "60.0 J",
+      "600.0 J"
+    ],
+    "correct": 2,
+    "explanation": "Work done is calculated using the formula Work = Force x Displacement (W = Fs). Here, 40 N * 1.5 m results in 60 J."
+  },
+  {
+    "subject": "science",
+    "topic": "work-energy-power",
+    "question": "Which of the following changes would result in the kinetic energy of a moving object being increased by exactly four times?",
+    "options": [
+      "Doubling the mass while keeping the velocity constant",
+      "Doubling the velocity while keeping the mass constant",
+      "Increasing the mass four times and doubling the velocity",
+      "Reducing the mass by half and doubling the velocity"
+    ],
+    "correct": 1,
+    "explanation": "Kinetic energy is proportional to the square of the velocity (E = 1/2 mv^2). Therefore, doubling the velocity (2^2) results in four times the kinetic energy."
+  },
+  {
+    "subject": "science",
+    "topic": "work-energy-power",
+    "question": "An electric motor takes 10 seconds to lift a load of 500 N to a vertical height of 4 meters. What is the power output of the motor?",
+    "options": [
+      "200 W",
+      "2000 W",
+      "5000 W",
+      "12.5 W"
+    ],
+    "correct": 0,
+    "explanation": "Power is the rate of doing work (P = W/t). Work done is 500 N * 4 m = 2000 J. Power is 2000 J / 10 s = 200 W."
+  },
+  {
+    "subject": "science",
+    "topic": "work-energy-power",
+    "question": "During the process of a coconut falling from a tree towards the ground (ignoring air resistance), which statement correctly describes its energy transformation?",
+    "options": [
+      "Kinetic energy is converted into gravitational potential energy.",
+      "Total mechanical energy increases as it approaches the ground.",
+      "Gravitational potential energy is converted into kinetic energy.",
+      "Both potential energy and kinetic energy remain constant."
+    ],
+    "correct": 2,
+    "explanation": "As the object falls, its height decreases (losing potential energy) and its speed increases (gaining kinetic energy), satisfying the law of conservation of energy."
+  },
+  {
+    "subject": "science",
+    "topic": "work-energy-power",
+    "question": "A fruit of mass 0.5 kg is hanging on a branch 10 m above the ground. If the gravitational acceleration is 10 m/s^2, what is the gravitational potential energy of the fruit relative to the ground?",
+    "options": [
+      "5 J",
+      "50 J",
+      "100 J",
+      "500 J"
+    ],
+    "correct": 1,
+    "explanation": "Gravitational potential energy is calculated using Ep = mgh. Here, 0.5 kg * 10 m/s^2 * 10 m = 50 J."
+  },
+  {
+    "subject": "science",
+    "topic": "heat",
+    "question": "Which of the following statements best describes the thermal equilibrium between two objects in contact?",
+    "options": [
+      "The objects must have the same quantity of heat energy.",
+      "Net heat flow between the objects is zero because their temperatures are equal.",
+      "The object with the larger mass transfers heat to the object with the smaller mass.",
+      "The objects must have the same specific heat capacity."
+    ],
+    "correct": 1,
+    "explanation": "Thermal equilibrium is reached when two objects in contact are at the same temperature, resulting in no net exchange of thermal energy between them."
+  },
+  {
+    "subject": "science",
+    "topic": "heat",
+    "question": "A metal rod of mass 2 kg requires 1800 J of energy to increase its temperature by 2 degrees Celsius. What is the specific heat capacity of the metal in J/(kg.C)?",
+    "options": [
+      "900 J/(kg.C)",
+      "3600 J/(kg.C)",
+      "450 J/(kg.C)",
+      "1800 J/(kg.C)"
+    ],
+    "correct": 2,
+    "explanation": "Using the formula Q = mcT, we have 1800 = 2 * c * 2. Solving for c gives 1800 / 4 = 450 J/(kg.C)."
+  },
+  {
+    "subject": "science",
+    "topic": "heat",
+    "question": "Why is clinical thermometer construction unique compared to a standard laboratory thermometer?",
+    "options": [
+      "It uses water instead of mercury to be safer for humans.",
+      "It has a wider bore to allow for easier reading of the scale.",
+      "It contains a constriction in the capillary tube to prevent mercury from falling back immediately.",
+      "It has a much longer scale reaching up to 100 degrees Celsius."
+    ],
+    "correct": 2,
+    "explanation": "The constriction (kink) in a clinical thermometer ensures the mercury level stays at the maximum temperature reached even after removal from the patient, allowing for an accurate reading."
+  },
+  {
+    "subject": "science",
+    "topic": "heat",
+    "question": "Which of the following phenomena is primarily a result of the high specific heat capacity of water?",
+    "options": [
+      "The formation of dew on grass during the night.",
+      "The rapid rise in temperature of a metal spoon in hot tea.",
+      "The moderate coastal climate compared to inland areas.",
+      "The expansion of ice which causes it to float on water."
+    ],
+    "correct": 2,
+    "explanation": "Water requires a large amount of energy to change its temperature, which means large bodies of water act as heat sinks, regulating the temperature of nearby coastal regions."
+  },
+  {
+    "subject": "science",
+    "topic": "heat",
+    "question": "When a solid substance is at its melting point and heat is continuously supplied, what happens to the temperature and the state of the substance?",
+    "options": [
+      "Temperature increases as the solid turns into liquid.",
+      "Temperature remains constant as the solid turns into liquid.",
+      "Temperature remains constant as the liquid turns into gas.",
+      "Temperature decreases because melting is an endothermic process."
+    ],
+    "correct": 1,
+    "explanation": "During a phase change like melting, the supplied heat (latent heat of fusion) is used to break intermolecular bonds rather than increasing kinetic energy, so the temperature stays constant."
+  },
+  {
+    "subject": "science",
+    "topic": "light",
+    "question": "What happens to the focal length of a convex lens when it is immersed in a liquid with a higher refractive index than air but lower than that of the lens material?",
+    "options": [
+      "The focal length increases.",
+      "The focal length decreases.",
+      "The focal length remains unchanged.",
+      "The lens becomes a diverging lens."
+    ],
+    "correct": 0,
+    "explanation": "When the surrounding medium's refractive index increases, the difference in refractive index between the lens and the medium decreases, leading to less bending of light and thus a longer focal length."
+  },
+  {
+    "subject": "science",
+    "topic": "light",
+    "question": "An object is placed 15 cm away from a concave mirror with a radius of curvature of 20 cm. What are the characteristics of the image formed?",
+    "options": [
+      "Real, inverted, and diminished",
+      "Virtual, erect, and magnified",
+      "Real, inverted, and magnified",
+      "Virtual, erect, and diminished"
+    ],
+    "correct": 2,
+    "explanation": "The focal length is 10 cm (half of 20 cm). Since the object (15 cm) is between the focal point and the center of curvature, the image is real, inverted, and magnified."
+  },
+  {
+    "subject": "science",
+    "topic": "light",
+    "question": "Which of the following phenomena is primarily responsible for the formation of a rainbow in the sky after a rain shower?",
+    "options": [
+      "Only total internal reflection",
+      "Only refraction and interference",
+      "Refraction, dispersion, and internal reflection",
+      "Diffraction and scattering of light"
+    ],
+    "correct": 2,
+    "explanation": "Rainbows are formed when sunlight enters water droplets, undergoes refraction and dispersion into colors, then internal reflection, and finally refraction again as it exits."
+  },
+  {
+    "subject": "science",
+    "topic": "light",
+    "question": "A person suffers from a vision defect where the image of a nearby object is formed behind the retina. Which type of lens should be used to correct this condition?",
+    "options": [
+      "Bi-focal lens",
+      "Cylindrical lens",
+      "Concave lens",
+      "Convex lens"
+    ],
+    "correct": 3,
+    "explanation": "Forming an image behind the retina indicates Long-sightedness (Hypermetropia). A convex lens is used to converge light rays earlier so the image falls exactly on the retina."
+  },
+  {
+    "subject": "science",
+    "topic": "light",
+    "question": "A ray of light traveling in air enters a transparent glass slab at an angle of incidence of 45 degrees. If the refractive index of the glass is 1.5, what is the value of the sine of the angle of refraction?",
+    "options": [
+      "sin(r) = 1.5 / sin(45)",
+      "sin(r) = sin(45) / 1.5",
+      "sin(r) = 1.5 * sin(45)",
+      "sin(r) = sin(90) / 1.5"
+    ],
+    "correct": 1,
+    "explanation": "According to Snell's Law (n1 sin i = n2 sin r), for air (n=1), the formula becomes 1 * sin(45) = 1.5 * sin(r), therefore sin(r) = sin(45) / 1.5."
+  },
+  {
+    "subject": "science",
+    "topic": "sound",
+    "question": "A sound wave travels from a tuning fork through the air and enters a wooden table. Which of the following statements correctly describes the change in the physical properties of the sound wave when it enters the wood?",
+    "options": [
+      "The velocity increases and the wavelength increases.",
+      "The velocity decreases and the frequency remains constant.",
+      "The velocity increases and the frequency increases.",
+      "The velocity decreases and the wavelength decreases."
+    ],
+    "correct": 0,
+    "explanation": "Sound travels faster in solids than in gases. Since frequency is determined by the source and remains constant across media, the increase in velocity results in an increase in wavelength according to the formula v = fλ."
+  },
+  {
+    "subject": "science",
+    "topic": "sound",
+    "question": "An ultrasound scanner used in hospitals typically operates at a frequency of 5 MHz. What is the approximate period of this wave in seconds?",
+    "options": [
+      "2.0 x 10^-6 s",
+      "5.0 x 10^-7 s",
+      "2.0 x 10^-7 s",
+      "5.0 x 10^6 s"
+    ],
+    "correct": 2,
+    "explanation": "The period (T) is the reciprocal of frequency (f). T = 1 / (5 x 10^6 Hz) = 0.2 x 10^-6 s, which equals 2.0 x 10^-7 s."
+  },
+  {
+    "subject": "science",
+    "topic": "sound",
+    "question": "A student standing 170 meters away from a tall vertical cliff claps their hands and hears the echo. If the speed of sound in air is 340 m/s, what is the time interval between the clap and the echo?",
+    "options": [
+      "0.5 seconds",
+      "1.0 second",
+      "1.5 seconds",
+      "2.0 seconds"
+    ],
+    "correct": 1,
+    "explanation": "For an echo, the sound must travel the distance to the cliff and back (2d). Total distance = 170m + 170m = 340m. Time = distance / speed = 340m / 340m/s = 1 second."
+  },
+  {
+    "subject": "science",
+    "topic": "sound",
+    "question": "Which of the following describes a characteristic of a longitudinal wave?",
+    "options": [
+      "The particles of the medium vibrate perpendicular to the direction of wave propagation.",
+      "It consists of a series of crests and troughs.",
+      "The particles of the medium vibrate parallel to the direction of energy transfer.",
+      "It can travel through a vacuum like light waves."
+    ],
+    "correct": 2,
+    "explanation": "In longitudinal waves, such as sound waves, the displacement of the medium is in the same direction as (parallel to) the direction of the wave's motion."
+  },
+  {
+    "subject": "science",
+    "topic": "sound",
+    "question": "Which change to a sound wave would result in an increase in the pitch of the sound heard by a human ear?",
+    "options": [
+      "Increasing the amplitude of the wave.",
+      "Increasing the frequency of the wave.",
+      "Decreasing the speed of the wave.",
+      "Increasing the wavelength of the wave."
+    ],
+    "correct": 1,
+    "explanation": "Pitch is the subjective perception of the frequency of a sound wave. A higher frequency corresponds to a higher pitch."
+  },
+  {
+    "subject": "science",
+    "topic": "electricity",
+    "question": "A student wants to increase the strength of the magnetic field inside a current-carrying solenoid. Which of the following methods will achieve this?",
+    "options": [
+      "Decreasing the electric current flowing through the solenoid",
+      "Using a core made of a non-magnetic material like wood",
+      "Increasing the number of turns in the solenoid coil",
+      "Increasing the distance between the turns of the coil while keeping the length constant"
+    ],
+    "correct": 2,
+    "explanation": "The magnetic field strength of a solenoid is directly proportional to the number of turns per unit length and the magnitude of the current passing through it."
+  },
+  {
+    "subject": "science",
+    "topic": "electricity",
+    "question": "An electric iron rated at 1000 W is used for 3 hours daily. What is the total electrical energy consumed by the iron in 30 days, measured in 'units' (kWh)?",
+    "options": [
+      "3 units",
+      "30 units",
+      "90 units",
+      "900 units"
+    ],
+    "correct": 2,
+    "explanation": "Energy in units (kWh) = Power (kW) * Time (h). Here, 1 kW * 3 hours * 30 days = 90 kWh."
+  },
+  {
+    "subject": "science",
+    "topic": "electricity",
+    "question": "Which of the following statements correctly describes the change in resistance of a standard metallic conductor when its temperature increases?",
+    "options": [
+      "The resistance decreases because electrons move faster.",
+      "The resistance increases because the vibration of atoms hinders the flow of electrons.",
+      "The resistance remains constant as long as the voltage is steady.",
+      "The resistance first increases and then decreases significantly."
+    ],
+    "correct": 1,
+    "explanation": "In metallic conductors, as temperature rises, atoms vibrate more vigorously, increasing the frequency of collisions with flowing electrons, which results in higher resistance."
+  },
+  {
+    "subject": "science",
+    "topic": "electricity",
+    "question": "In a domestic electrical circuit, the fuse is always connected to which wire, and for what primary reason?",
+    "options": [
+      "Neutral wire; to prevent the circuit from completing.",
+      "Live wire; to disconnect the supply if the current exceeds a safe limit.",
+      "Earth wire; to ensure excess current flows to the ground.",
+      "Live wire; to increase the voltage during a power surge."
+    ],
+    "correct": 1,
+    "explanation": "The fuse is a safety device connected to the live wire to break the circuit and stop the flow of electricity if a fault or overload occurs."
+  },
+  {
+    "subject": "science",
+    "topic": "electricity",
+    "question": "Consider three resistors of 6 ohms, 12 ohms, and 4 ohms connected in parallel. What is the equivalent resistance of this combination?",
+    "options": [
+      "22 ohms",
+      "6 ohms",
+      "4 ohms",
+      "2 ohms"
+    ],
+    "correct": 3,
+    "explanation": "Using the parallel formula 1/Re = 1/6 + 1/12 + 1/4, we get 1/Re = (2+1+3)/12 = 6/12. Therefore, Re = 12/6 = 2 ohms."
+  },
+  {
+    "subject": "science",
+    "topic": "electronics",
+    "question": "Which of the following describes the electrical behavior of a pure silicon crystal at absolute zero temperature (0 K)?",
+    "options": [
+      "It acts as a superconductor.",
+      "It acts as a perfect insulator.",
+      "It acts as a metal with low resistance.",
+      "It acts as an N-type semiconductor."
+    ],
+    "correct": 1,
+    "explanation": "At absolute zero, all valence electrons in a semiconductor like silicon are tightly bound in covalent bonds, leaving no free charge carriers to conduct electricity."
+  },
+  {
+    "subject": "science",
+    "topic": "electronics",
+    "question": "In a bridge rectifier circuit, what is the minimum number of diodes required to achieve full-wave rectification?",
+    "options": [
+      "1",
+      "2",
+      "4",
+      "6"
+    ],
+    "correct": 2,
+    "explanation": "A bridge rectifier specifically utilizes four diodes arranged in a bridge configuration to convert both halves of an AC cycle into DC."
+  },
+  {
+    "subject": "science",
+    "topic": "electronics",
+    "question": "A student wants to increase the collector current (Ic) of an NPN transistor functioning in a common emitter circuit. Which of the following actions should be taken?",
+    "options": [
+      "Decrease the base current (Ib).",
+      "Increase the base current (Ib).",
+      "Reverse bias the emitter-base junction.",
+      "Connect a very high resistance to the base."
+    ],
+    "correct": 1,
+    "explanation": "In a transistor, the collector current is controlled by the base current; according to the relation Ic = Beta * Ib, increasing the base current results in an increase in collector current."
+  },
+  {
+    "subject": "science",
+    "topic": "electronics",
+    "question": "What is the primary purpose of 'doping' a semiconductor material during the manufacturing of electronic components?",
+    "options": [
+      "To increase the melting point of the crystal.",
+      "To make the material a perfect insulator.",
+      "To change the color of the semiconductor for identification.",
+      "To increase the electrical conductivity by adding charge carriers."
+    ],
+    "correct": 3,
+    "explanation": "Doping involves adding trivalent or pentavalent impurities to an intrinsic semiconductor to increase the concentration of free electrons or holes, thereby enhancing conductivity."
+  },
+  {
+    "subject": "science",
+    "topic": "electronics",
+    "question": "Which electronic component is represented by a symbol consisting of two parallel lines where one line is straight and the other is curved (or both straight), used to store electric charge?",
+    "options": [
+      "Inductor",
+      "Capacitor",
+      "Resistor",
+      "Diode辨"
+    ],
+    "correct": 1,
+    "explanation": "The capacitor is a passive component designed to store energy in an electric field, represented in circuit diagrams by two parallel lines."
+  },
+  {
+    "subject": "science",
+    "topic": "cells-tissues",
+    "question": "Which of the following cellular organelles is responsible for the detoxification of toxic substances and the synthesis of lipids within a typical animal cell?",
+    "options": [
+      "Rough Endoplasmic Reticulum",
+      "Smooth Endoplasmic Reticulum",
+      "Golgi Complex",
+      "Lysosomes"
+    ],
+    "correct": 1,
+    "explanation": "The Smooth Endoplasmic Reticulum (SER) is primarily involved in lipid synthesis and the detoxification of drugs and poisons, whereas the Rough Endoplasmic Reticulum is associated with protein synthesis."
+  },
+  {
+    "subject": "science",
+    "topic": "cells-tissues",
+    "question": "When observing a plant cell through a light microscope, a student noticed a large central structure that maintains the turgidity of the cell. Which statement is correct regarding this structure?",
+    "options": [
+      "It is surrounded by a double membrane called the tonoplast.",
+      "It contains cell sap which is composed mainly of water, sugars, and ions.",
+      "It is the primary site of aerobic respiration in the cell.",
+      "It is absent in mature plant cells but present in meristematic cells."
+    ],
+    "correct": 1,
+    "explanation": "The large central vacuole contains cell sap (water and solutes) which creates turgor pressure. It is surrounded by a single membrane called the tonoplast, not a double membrane."
+  },
+  {
+    "subject": "science",
+    "topic": "cells-tissues",
+    "question": "Which of the following plant tissues consists of living cells with unevenly thickened primary cell walls, providing mechanical support to growing stems and petioles?",
+    "options": [
+      "Parenchyma",
+      "Sclerenchyma",
+      "Collenchyma",
+      "Xylem vessels"
+    ],
+    "correct": 2,
+    "explanation": "Collenchyma is a simple permanent tissue made of living cells with cellulose thickening at the corners of the cell walls, providing flexibility and support to growing organs."
+  },
+  {
+    "subject": "science",
+    "topic": "cells-tissues",
+    "question": "Consider the following statements regarding human blood tissue:\n(A) Red blood cells lack a nucleus at maturity to increase surface area for oxygen transport.\n(B) White blood cells are produced only in the lymph nodes.\n(C) Blood plasma is the liquid matrix that transports nutrients and hormones.\n\nWhich of the above statements are correct?",
+    "options": [
+      "A and B only",
+      "B and C only",
+      "A and C only",
+      "All A, B, and C"
+    ],
+    "correct": 2,
+    "explanation": "Statement A is correct as it describes a structural adaptation of RBCs. Statement C is correct as it defines the role of plasma. Statement B is incorrect because most white blood cells are produced in the bone marrow."
+  },
+  {
+    "subject": "science",
+    "topic": "cells-tissues",
+    "question": "A group of cells that are similar in structure and perform a common function is defined as a tissue. Which tissue type in the human body is specialized for the conduction of electrochemical impulses?",
+    "options": [
+      "Ciliated columnar epithelial tissue",
+      "Cardiac muscle tissue",
+      "Nervous tissue",
+      "Fibrous connective tissue"
+    ],
+    "correct": 2,
+    "explanation": "Nervous tissue, composed of neurons, is specifically adapted for the generation and transmission of electrochemical signals (nerve impulses) throughout the body."
+  },
+  {
+    "subject": "science",
+    "topic": "human-systems",
+    "question": "Which of the following describes the correct sequence of organs through which a carbon dioxide molecule travels during exhalation?",
+    "options": [
+      "Alveoli, bronchioles, bronchi, trachea, larynx, pharynx, nasal cavity",
+      "Alveoli, bronchi, bronchioles, trachea, pharynx, larynx, nasal cavity",
+      "Nasal cavity, pharynx, larynx, trachea, bronchi, bronchioles, alveoli",
+      "Alveoli, trachea, bronchi, bronchioles, larynx, pharynx, nasal cavity"
+    ],
+    "correct": 0,
+    "explanation": "Gas exchange occurs in the alveoli. During exhalation, air moves from the smaller bronchioles into the larger bronchi, through the trachea, larynx, pharynx, and finally out through the nasal cavity."
+  },
+  {
+    "subject": "science",
+    "topic": "human-systems",
+    "question": "In the human circulatory system, which blood vessel carries oxygenated blood at the highest pressure?",
+    "options": [
+      "Pulmonary artery",
+      "Pulmonary vein",
+      "Aorta",
+      "Superior vena cava"
+    ],
+    "correct": 2,
+    "explanation": "The aorta receives oxygenated blood directly from the left ventricle, which contracts with high force to pump blood throughout the entire systemic circulation."
+  },
+  {
+    "subject": "science",
+    "topic": "human-systems",
+    "question": "A student eats a meal rich in starch. In which parts of the human digestive system does the chemical digestion of this starch primarily take place?",
+    "options": [
+      "Stomach and small intestine",
+      "Mouth and stomach",
+      "Mouth and small intestine",
+      "Small intestine and large intestine"
+    ],
+    "correct": 2,
+    "explanation": "Starch digestion begins in the mouth with salivary amylase and continues in the small intestine with pancreatic amylase; the stomach's acidic environment is not suitable for amylase activity."
+  },
+  {
+    "subject": "science",
+    "topic": "human-systems",
+    "question": "Ultrafiltration is a key process in the formation of urine. What provides the necessary pressure for this process to occur within the Malpighian corpuscle?",
+    "options": [
+      "The diameter of the efferent arteriole being smaller than the afferent arteriole",
+      "The active transport of glucose and amino acids into the Bowman's capsule",
+      "The rhythmic contraction of the muscular walls of the ureters",
+      "The high concentration of plasma proteins in the glomerulus"
+    ],
+    "correct": 0,
+    "explanation": "The bottleneck effect created because the efferent arteriole is narrower than the afferent arteriole generates the high hydrostatic pressure required for ultrafiltration."
+  },
+  {
+    "subject": "science",
+    "topic": "human-systems",
+    "question": "Which of the following correctly matches a hormone with its specific function in the human body?",
+    "options": [
+      "Insulin - Stimulates the breakdown of glycogen into glucose",
+      "Thyroxine - Regulates the basal metabolic rate",
+      "Adrenaline - Lowers the heart rate during sleep",
+      "Glucagon - Decreases the blood glucose level"
+    ],
+    "correct": 1,
+    "explanation": "Thyroxine, produced by the thyroid gland, is responsible for regulating the heart rate and the speed at which the body burns calories (metabolism)."
+  },
+  {
+    "subject": "science",
+    "topic": "nutrition-digestion",
+    "question": "Which of the following describes the correct end-products of the digestion of carbohydrates, proteins, and lipids respectively?",
+    "options": [
+      "Glucose, Amino acids, Fatty acids and Glycerol",
+      "Starch, Peptides, Cholesterol",
+      "Fructose, Polypeptides, Triglycerides",
+      "Glucose, Vitamins, Fatty acids"
+    ],
+    "correct": 0,
+    "explanation": "Carbohydrates are broken down into monosaccharides like glucose, proteins into amino acids, and lipids into fatty acids and glycerol by digestive enzymes."
+  },
+  {
+    "subject": "science",
+    "topic": "nutrition-digestion",
+    "question": "In an experiment to test for the presence of a specific nutrient, a student added Benedict's solution to a food sample and heated it. A brick-red precipitate was observed. What is the most likely conclusion?",
+    "options": [
+      "The sample contains a high concentration of lipids.",
+      "The sample contains a high concentration of reducing sugars.",
+      "The sample contains starch.",
+      "The sample contains proteins."
+    ],
+    "correct": 1,
+    "explanation": "Benedict's solution is used to test for reducing sugars; a change from blue to a brick-red precipitate indicates a high concentration of reducing sugar."
+  },
+  {
+    "subject": "science",
+    "topic": "nutrition-digestion",
+    "question": "A person suffers from bleeding gums and slow healing of wounds. This condition is most likely caused by a deficiency in which vitamin?",
+    "options": [
+      "Vitamin A",
+      "Vitamin D",
+      "Vitamin C",
+      "Vitamin K"
+    ],
+    "correct": 2,
+    "explanation": "Vitamin C deficiency causes Scurvy, which is characterized by weak connective tissues, leading to bleeding gums and poor wound healing."
+  },
+  {
+    "subject": "science",
+    "topic": "nutrition-digestion",
+    "question": "Which of the following statements correctly identifies the function of bile in the human digestive system?",
+    "options": [
+      "It chemically digests proteins into amino acids.",
+      "It provides an acidic medium for pepsin to function.",
+      "It emulsifies large fat globules into small droplets to increase surface area.",
+      "It absorbs water and minerals in the large intestine."
+    ],
+    "correct": 2,
+    "explanation": "Bile, produced by the liver, performs emulsification, which is a physical process that breaks fat into smaller droplets to aid lipase action."
+  },
+  {
+    "subject": "science",
+    "topic": "nutrition-digestion",
+    "question": "During the process of human nutrition, in which part of the alimentary canal does the maximum absorption of digested food take place?",
+    "options": [
+      "Stomach",
+      "Duodenum",
+      "Ileum",
+      "Large intestine"
+    ],
+    "correct": 2,
+    "explanation": "The ileum of the small intestine is highly adapted with villi and microvilli to provide a large surface area for the maximum absorption of nutrients."
+  },
+  {
+    "subject": "science",
+    "topic": "respiration-circulation",
+    "question": "Which of the following describes the correct sequence of organs through which an inhaled oxygen molecule travels during human respiration?",
+    "options": [
+      "Nasal cavity, Pharynx, Larynx, Trachea, Bronchus, Alveolus",
+      "Nasal cavity, Larynx, Pharynx, Bronchiole, Trachea, Alveolus",
+      "Pharynx, Nasal cavity, Trachea, Bronchus, Larynx, Alveolus",
+      "Nasal cavity, Pharynx, Trachea, Larynx, Bronchus, Alveolus"
+    ],
+    "correct": 0,
+    "explanation": "Air enters through the nasal cavity, passes through the pharynx and larynx, then travels down the trachea into the bronchi, eventually reaching the alveoli for gas exchange."
+  },
+  {
+    "subject": "science",
+    "topic": "respiration-circulation",
+    "question": "During the process of inspiration (inhalation) in humans, which of the following physical changes occurs in the thoracic cavity?",
+    "options": [
+      "The diaphragm relaxes and becomes dome-shaped.",
+      "The external intercostal muscles contract, moving the rib cage upwards and outwards.",
+      "The internal volume of the thoracic cavity decreases.",
+      "The air pressure inside the lungs becomes higher than atmospheric pressure."
+    ],
+    "correct": 1,
+    "explanation": "Inspiration is an active process where the external intercostal muscles contract to lift the ribs, increasing thoracic volume and lowering internal pressure to draw air in."
+  },
+  {
+    "subject": "science",
+    "topic": "respiration-circulation",
+    "question": "Which component of the human blood is specifically responsible for the transport of oxygen and what is the protein involved?",
+    "options": [
+      "White blood cells; Fibrinogen",
+      "Blood plasma; Albumin",
+      "Red blood cells; Hemoglobin",
+      "Blood platelets; Prothrombin"
+    ],
+    "correct": 2,
+    "explanation": "Red blood cells (erythrocytes) contain the iron-rich protein hemoglobin, which has a high affinity for oxygen and facilitates its transport to tissues."
+  },
+  {
+    "subject": "science",
+    "topic": "respiration-circulation",
+    "question": "In the human circulatory system, which blood vessel carries oxygenated blood from the lungs to the left atrium of the heart?",
+    "options": [
+      "Pulmonary artery",
+      "Pulmonary vein",
+      "Aorta",
+      "Superior vena cava"
+    ],
+    "correct": 1,
+    "explanation": "The pulmonary vein is unique because, unlike most veins, it carries oxygenated blood from the lungs back to the heart's left atrium."
+  },
+  {
+    "subject": "science",
+    "topic": "respiration-circulation",
+    "question": "Which of the following statements correctly differentiates aerobic respiration from anaerobic respiration in human muscle cells?",
+    "options": [
+      "Aerobic respiration produces lactic acid, while anaerobic respiration produces carbon dioxide.",
+      "Aerobic respiration occurs only in the cytoplasm, while anaerobic occurs in mitochondria.",
+      "Aerobic respiration releases a higher amount of energy (ATP) per glucose molecule than anaerobic respiration.",
+      "Anaerobic respiration requires oxygen to break down glucose completely."
+    ],
+    "correct": 2,
+    "explanation": "Aerobic respiration fully oxidizes glucose into CO2 and water, yielding approximately 36-38 ATP, whereas anaerobic respiration in muscles yields only 2 ATP and produces lactic acid."
+  },
+  {
+    "subject": "science",
+    "topic": "reproduction",
+    "question": "In humans, the primary hormone responsible for stimulating the development of the Graafian follicle in the ovary is:",
+    "options": [
+      "Progesterone",
+      "Luteinizing Hormone (LH)",
+      "Follicle Stimulating Hormone (FSH)",
+      "Oestrogen"
+    ],
+    "correct": 2,
+    "explanation": "FSH is secreted by the anterior pituitary gland and specifically triggers the growth and maturation of follicles in the ovary during the first half of the menstrual cycle."
+  },
+  {
+    "subject": "science",
+    "topic": "reproduction",
+    "question": "A flowering plant species has a diploid chromosome number of 24 (2n = 24). What is the number of chromosomes present in a pollen grain nucleus and an endosperm nucleus of this plant respectively?",
+    "options": [
+      "12 and 24",
+      "12 and 36",
+      "24 and 36",
+      "12 and 12"
+    ],
+    "correct": 1,
+    "explanation": "The pollen grain nucleus is haploid (n=12), and the endosperm is formed by triple fusion resulting in a triploid (3n=36) structure."
+  },
+  {
+    "subject": "science",
+    "topic": "reproduction",
+    "question": "In a certain species of pea plant, purple flowers (P) are dominant over white flowers (p). If a heterozygous purple-flowered plant is crossed with a white-flowered plant, what is the expected phenotypic ratio of the offspring?",
+    "options": [
+      "All purple",
+      "3 purple : 1 white",
+      "1 purple : 1 white",
+      "1 purple : 3 white"
+    ],
+    "correct": 2,
+    "explanation": "This is a test cross between Pp and pp. The resulting genotypes are 50% Pp (purple) and 50% pp (white), giving a 1:1 ratio."
+  },
+  {
+    "subject": "science",
+    "topic": "reproduction",
+    "question": "Which of the following methods of vegetative propagation is correctly matched with its specific example?",
+    "options": [
+      "Runners - Sweet potato",
+      "Bulbs - Ginger",
+      "Stem Tubers - Potato",
+      "Corms - Onion"
+    ],
+    "correct": 2,
+    "explanation": "Potato is a modified underground stem known as a tuber. Sweet potato uses tuberous roots, ginger uses rhizomes, and onion uses bulbs."
+  },
+  {
+    "subject": "science",
+    "topic": "reproduction",
+    "question": "Which of the following statements regarding DNA is correct?",
+    "options": [
+      "Adenine always pairs with Cytosine via hydrogen bonds.",
+      "The basic structural unit of DNA is the nucleotide.",
+      "DNA is only found within the cytoplasm of eukaryotic cells.",
+      "Sugar and nitrogenous bases form the backbone of the DNA strand."
+    ],
+    "correct": 1,
+    "explanation": "DNA is composed of nucleotides, each consisting of a phosphate group, a deoxyribose sugar, and a nitrogenous base. Sugar and phosphate form the backbone, not bases."
+  },
+  {
+    "subject": "science",
+    "topic": "plants",
+    "question": "Which of the following tissues is primarily responsible for the increase in the thickness or girth of a woody dicotyledonous stem?",
+    "options": [
+      "Apical meristem",
+      "Lateral meristem",
+      "Intercalary meristem",
+      "Parenchyma tissue"
+    ],
+    "correct": 1,
+    "explanation": "Lateral meristems, such as the vascular cambium and cork cambium, are responsible for secondary growth, which increases the diameter of the plant."
+  },
+  {
+    "subject": "science",
+    "topic": "plants",
+    "question": "During an experiment to determine the rate of transpiration using a photometer, a student noticed that the bubble moved 10 mm in 5 minutes. What is the rate of transpiration in mm per minute?",
+    "options": [
+      "50 mm/min",
+      "0.5 mm/min",
+      "2.0 mm/min",
+      "15 mm/min"
+    ],
+    "correct": 2,
+    "explanation": "The rate is calculated by dividing the distance moved by the time taken (10 mm / 5 min = 2.0 mm/min)."
+  },
+  {
+    "subject": "science",
+    "topic": "plants",
+    "question": "Which statement correctly describes a structural adaptation of xerophytic plants to reduce water loss?",
+    "options": [
+      "Large leaf surface area to increase sunlight absorption",
+      "Presence of a thin, transparent cuticle on the upper epidermis",
+      "Sunken stomata located mainly on the lower epidermis",
+      "Increased number of stomata to facilitate gas exchange"
+    ],
+    "correct": 2,
+    "explanation": "Sunken stomata create a pocket of moist air that reduces the diffusion gradient, thereby minimizing water loss through transpiration in dry environments."
+  },
+  {
+    "subject": "science",
+    "topic": "plants",
+    "question": "Which of the following is the main force responsible for the upward movement of water in tall trees like Eucalyptus?",
+    "options": [
+      "Root pressure",
+      "Transpiration pull",
+      "Capillary action",
+      "Active transport"
+    ],
+    "correct": 1,
+    "explanation": "Transpiration pull, created by the evaporation of water from leaves, generates a suction force strong enough to lift water columns to great heights."
+  },
+  {
+    "subject": "science",
+    "topic": "plants",
+    "question": "What is the primary function of the phloem tissue in a flowering plant?",
+    "options": [
+      "Transport of water and dissolved minerals from roots to leaves",
+      "Providing mechanical strength and support to the plant body",
+      "Transport of sucrose and amino acids from sources to sinks",
+      "Storage of starch and waste products in the stem"
+    ],
+    "correct": 2,
+    "explanation": "Phloem is a complex permanent tissue responsible for the translocation of organic solutes, such as sucrose, from photosynthetic parts (sources) to storage or growth organs (sinks)."
+  },
+  {
+    "subject": "science",
+    "topic": "ecosystems",
+    "question": "Which of the following is a characteristic feature of a pioneer community in a process of primary ecological succession occurring on a bare rock?",
+    "options": [
+      "High species diversity and complex food webs",
+      "Ability to survive in environments with very low nutrient levels",
+      "Consists mainly of large woody trees with deep root systems",
+      "High rate of decomposition leading to thick humus layers"
+    ],
+    "correct": 1,
+    "explanation": "Pioneer communities like lichens and mosses are the first to colonize bare areas; they must be hardy enough to survive in extreme conditions with nutrient-poor substrates."
+  },
+  {
+    "subject": "science",
+    "topic": "ecosystems",
+    "question": "In a specific grassland ecosystem, the total energy fixed by producers through photosynthesis is 10,000 kJ. According to the 10% law of energy transfer, what is the approximate amount of energy available to the secondary consumers?",
+    "options": [
+      "1,000 kJ",
+      "500 kJ",
+      "100 kJ",
+      "10 kJ"
+    ],
+    "correct": 2,
+    "explanation": "Primary consumers receive 10% of 10,000 kJ (1,000 kJ), and secondary consumers receive 10% of that 1,000 kJ, which equals 100 kJ."
+  },
+  {
+    "subject": "science",
+    "topic": "ecosystems",
+    "question": "The relationship between the Remora fish and the Shark, where the Remora attaches itself to the shark for transport and food scraps without harming or significantly helping the shark, is an example of:",
+    "options": [
+      "Mutualism",
+      "Parasitism",
+      "Commensalism",
+      "Interspecific competition"
+    ],
+    "correct": 2,
+    "explanation": "Commensalism is a symbiotic relationship where one organism benefits while the other is neither helped nor harmed."
+  },
+  {
+    "subject": "science",
+    "topic": "ecosystems",
+    "question": "Which of the following human activities is the primary cause of 'Eutrophication' in freshwater inland water bodies of Sri Lanka?",
+    "options": [
+      "Release of sulfur dioxide from coal power plants",
+      "Excessive use of chemical fertilizers containing nitrates and phosphates",
+      "Accumulation of non-biodegradable plastics in the benthos",
+      "Introduction of invasive alien species like the Tilapia fish"
+    ],
+    "correct": 1,
+    "explanation": "Eutrophication is caused by the runoff of excess nutrients (nitrates and phosphates), which leads to rapid algal blooms and the subsequent depletion of oxygen in the water."
+  },
+  {
+    "subject": "science",
+    "topic": "ecosystems",
+    "question": "An organism is specialized to live in the intertidal zone of a coastal ecosystem, possessing salt-secreting glands and pneumatophores (respiratory roots). This organism most likely belongs to which ecosystem?",
+    "options": [
+      "Tropical Rain Forest",
+      "Savanna Grassland",
+      "Mangrove Ecosystem",
+      "Montane Forest"
+    ],
+    "correct": 2,
+    "explanation": "Mangrove plants have specific adaptations like pneumatophores to obtain oxygen in waterlogged anaerobic soil and salt glands to manage high salinity."
+  },
+  {
+    "subject": "science",
+    "topic": "microorganisms",
+    "question": "Which of the following describes a unique characteristic of Viruses that distinguishes them from other microorganisms like Bacteria and Fungi?",
+    "options": [
+      "They reproduce by binary fission.",
+      "They contain a well-defined nucleus with a nuclear membrane.",
+      "They exhibit living characteristics only inside a living host cell.",
+      "They can be seen clearly using a standard light microscope."
+    ],
+    "correct": 2,
+    "explanation": "Viruses are considered borderline between living and non-living because they require a host cell's machinery to replicate and do not show independent metabolism."
+  },
+  {
+    "subject": "science",
+    "topic": "microorganisms",
+    "question": "A student observes a microorganism through a microscope and notes it has a chitinous cell wall and reproduces by budding. To which group does this organism belong?",
+    "options": [
+      "Bacteria",
+      "Protozoa",
+      "Fungi",
+      "Viruses"
+    ],
+    "correct": 2,
+    "explanation": "Fungi, such as Yeast, possess cell walls made of chitin and commonly reproduce through the process of budding."
+  },
+  {
+    "subject": "science",
+    "topic": "microorganisms",
+    "question": "Which of the following pairs correctly matches a disease with its causative agent and the category of microorganism?",
+    "options": [
+      "Tuberculosis - Mycobacterium tuberculosis - Bacteria",
+      "Malaria - Plasmodium vivax - Virus",
+      "Dengue - Aedes aegypti - Protozoa",
+      "Common Cold - Influenza - Fungi"
+    ],
+    "correct": 0,
+    "explanation": "Tuberculosis is caused by the bacterium Mycobacterium tuberculosis. Malaria is caused by a protozoan, and Dengue is caused by a virus."
+  },
+  {
+    "subject": "science",
+    "topic": "microorganisms",
+    "question": "Vaccination is a common method used to control the spread of infectious diseases. What is the primary biological principle behind vaccination?",
+    "options": [
+      "To kill the microorganisms already present in the bloodstream.",
+      "To stimulate the body to produce antibodies and develop immunity.",
+      "To act as an antibiotic and prevent bacterial growth.",
+      "To provide the body with ready-made white blood cells from another person."
+    ],
+    "correct": 1,
+    "explanation": "Vaccines introduce weakened or dead pathogens into the body to trigger the immune system to produce antibodies, providing long-term protection."
+  },
+  {
+    "subject": "science",
+    "topic": "microorganisms",
+    "question": "Which of the following is a beneficial application of microorganisms in the field of environment and waste management?",
+    "options": [
+      "The production of vaccines against Rabies.",
+      "The use of yeast in the bakery industry.",
+      "The breakdown of complex organic matter in a biogas digester.",
+      "The synthesis of antibiotics like Penicillin."
+    ],
+    "correct": 2,
+    "explanation": "Anaerobic bacteria are used in biogas digesters to decompose organic waste, producing methane gas, which is an example of biotechnology in waste management."
   }
 ]
