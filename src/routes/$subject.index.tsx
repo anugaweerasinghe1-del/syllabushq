@@ -9,7 +9,7 @@ import {
 } from "@/lib/content";
 import { SiteHeader } from "@/components/SiteHeader";
 
-export const Route = createFileRoute("/$subject")({
+export const Route = createFileRoute("/$subject/")({
   loader: async ({ context, params }) => {
     const subjects = await context.queryClient.ensureQueryData(subjectsQuery);
     const subject = subjects.find((s: Subject) => s.slug === params.subject);

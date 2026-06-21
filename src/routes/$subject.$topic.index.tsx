@@ -11,7 +11,7 @@ import {
 import { lastScoreFor } from "@/lib/scores";
 import { SiteHeader } from "@/components/SiteHeader";
 
-export const Route = createFileRoute("/$subject/$topic")({
+export const Route = createFileRoute("/$subject/$topic/")({
   loader: async ({ context, params }) => {
     const subjects = await context.queryClient.ensureQueryData(subjectsQuery);
     const subject = subjects.find((s: Subject) => s.slug === params.subject);
