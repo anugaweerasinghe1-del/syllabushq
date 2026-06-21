@@ -1,4 +1,6 @@
 import { queryOptions } from "@tanstack/react-query";
+import subjectsData from "@/data/subjects.json";
+import questionsData from "@/data/questions.json";
 
 export type Topic = { slug: string; name: string };
 export type Subject = { slug: string; name: string; topics: Topic[] };
@@ -11,30 +13,18 @@ export type Question = {
   explanation: string;
 };
 
-function resolveUrl(path: string): string {
-  if (typeof window !== "undefined") return path;
-  // SSR: needs an absolute URL. Use env or localhost fallback.
-  const base =
-    (typeof process !== "undefined" && process.env?.APP_BASE_URL) ||
-    "http://localhost:8080";
-  return `${base}${path}`;
-}
-
-async function fetchJson<T>(url: string): Promise<T> {
-  const res = await fetch(resolveUrl(url));
-  if (!res.ok) throw new Error(`Failed to load ${url}: ${res.status}`);
-  return (await res.json()) as T;
-}
+const SUBJECTS: Subject[] = subjectsData as Subject[];
+const QUESTIONS: Question[] = questionsData as Question[];
 
 export const subjectsQuery = queryOptions({
   queryKey: ["subjects"],
-  queryFn: () => fetchJson<Subject[]>("/subjects.json"),
+  queryFn: async (): Promise<Subject[]> => SUBJECTS,
   staleTime: Infinity,
 });
 
 export const questionsQuery = queryOptions({
   queryKey: ["questions"],
-  queryFn: () => fetchJson<Question[]>("/questions.json"),
+  queryFn: async (): Promise<Question[]> => QUESTIONS,
   staleTime: Infinity,
 });
 
