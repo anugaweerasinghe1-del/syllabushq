@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { subjectsQuery } from "@/lib/content";
+import { subjectsQuery, type Subject, type Topic } from "@/lib/content";
 import { SiteHeader } from "@/components/SiteHeader";
 
 type ResultItem = {
@@ -22,11 +22,11 @@ type Results = {
 export const Route = createFileRoute("/$subject/$topic/results")({
   loader: async ({ context, params }) => {
     const subjects = await context.queryClient.ensureQueryData(subjectsQuery);
-    const subject = subjects.find((s) => s.slug === params.subject);
+    const subject = subjects.find((s: Subject) => s.slug === params.subject);
     if (!subject) throw notFound();
-    const topic = subject.topics.find((t) => t.slug === params.topic);
+    const topic = subject.topics.find((t: Topic) => t.slug === params.topic);
     if (!topic) throw notFound();
-    return { subject, topic };
+    return { subject, topic } as { subject: Subject; topic: Topic };
   },
   head: ({ loaderData }) => ({
     meta: loaderData
