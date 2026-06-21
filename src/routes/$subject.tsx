@@ -1,15 +1,21 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { subjectsQuery, questionsQuery, countByTopic } from "@/lib/content";
+import {
+  subjectsQuery,
+  questionsQuery,
+  countByTopic,
+  type Subject,
+  type Topic,
+} from "@/lib/content";
 import { SiteHeader } from "@/components/SiteHeader";
 
 export const Route = createFileRoute("/$subject")({
   loader: async ({ context, params }) => {
     const subjects = await context.queryClient.ensureQueryData(subjectsQuery);
-    const subject = subjects.find((s) => s.slug === params.subject);
+    const subject = subjects.find((s: Subject) => s.slug === params.subject);
     if (!subject) throw notFound();
     await context.queryClient.ensureQueryData(questionsQuery);
-    return { subject };
+    return { subject } as { subject: Subject };
   },
   head: ({ loaderData }) => ({
     meta: loaderData
@@ -83,7 +89,7 @@ function SubjectPage() {
         </header>
 
         <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-          {subject.topics.map((t) => {
+          {subject.topics.map((t: Topic) => {
             const count = counts.get(`${subject.slug}::${t.slug}`) ?? 0;
             const disabled = count === 0;
             return (
