@@ -3,8 +3,7 @@
 // Calls Lovable AI Gateway to generate original MCQs per topic per subject.
 // Output: public/questions.json and public/subjects.json
 
-import { writeFileSync, mkdirSync } from "node:fs";
-import { dirname } from "node:path";
+import { writeFileSync, mkdirSync, readFileSync, existsSync } from "node:fs";
 
 const API_KEY = process.env.LOVABLE_API_KEY;
 if (!API_KEY) {
@@ -215,18 +214,37 @@ async function runWithConcurrency(tasks, limit) {
 }
 
 async function main() {
-  const all = [];
+  // Resume support: load existing questions and skip (subject, topic) pairs already covered.
+  const existing = existsSync("public/questions.json")
+    ? JSON.parse(readFileSync("public/questions.json", "utf8"))
+    : [];
+  const have = new Map();
+  for (const q of existing) {
+    const k = `${q.subject}::${q.topic}`;
+    have.set(k, (have.get(k) || 0) + 1);
+  }
+  const all = [...existing];
   for (const subject of subjects) {
     console.log(`\n=== ${subject.name} (${subject.topics.length} topics) ===`);
-    const tasks = subject.topics.map((t) => async () => {
+    const todo = subject.topics.filter(
+      (t) => (have.get(`${subject.slug}::${t.slug}`) || 0) < QUESTIONS_PER_TOPIC,
+    );
+    if (todo.length === 0) {
+      console.log(`  (already complete)`);
+      continue;
+    }
+    const tasks = todo.map((t) => async () => {
       const items = await genTopic(subject, t);
       console.log(`  ${t.name}: ${items.length}`);
       return items;
     });
-    const batches = await runWithConcurrency(tasks, 4);
+    const batches = await runWithConcurrency(tasks, 1);
     const subjectItems = batches.flat();
-    console.log(`  total ${subject.name}: ${subjectItems.length}`);
+    console.log(`  new for ${subject.name}: ${subjectItems.length}`);
     all.push(...subjectItems);
+    // Persist after each subject to checkpoint.
+    mkdirSync("public", { recursive: true });
+    writeFileSync("public/questions.json", JSON.stringify(all, null, 2));
   }
 
   // Dedupe by question text
