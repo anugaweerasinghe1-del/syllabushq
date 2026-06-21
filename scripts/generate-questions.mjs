@@ -137,14 +137,16 @@ async function callGateway(prompt, attempt = 1) {
   });
   if (!res.ok) {
     const text = await res.text();
-    if ((res.status === 429 || res.status >= 500) && attempt < 4) {
-      const wait = 2000 * attempt;
+    if ((res.status === 429 || res.status >= 500) && attempt < 8) {
+      const wait = Math.min(60000, 5000 * Math.pow(1.6, attempt - 1));
       console.warn(`  retry in ${wait}ms (status ${res.status})`);
       await new Promise((r) => setTimeout(r, wait));
       return callGateway(prompt, attempt + 1);
     }
     throw new Error(`Gateway ${res.status}: ${text.slice(0, 200)}`);
   }
+  // Small pacing delay to avoid burst rate limits.
+  await new Promise((r) => setTimeout(r, 1500));
   const data = await res.json();
   const content = data.choices?.[0]?.message?.content ?? "";
   return content;
