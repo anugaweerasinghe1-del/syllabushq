@@ -5,6 +5,8 @@ import {
   subjectsQuery,
   questionsQuery,
   countByTopic,
+  type Subject,
+  type Topic,
 } from "@/lib/content";
 import { lastScoreFor } from "@/lib/scores";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -12,12 +14,12 @@ import { SiteHeader } from "@/components/SiteHeader";
 export const Route = createFileRoute("/$subject/$topic")({
   loader: async ({ context, params }) => {
     const subjects = await context.queryClient.ensureQueryData(subjectsQuery);
-    const subject = subjects.find((s) => s.slug === params.subject);
+    const subject = subjects.find((s: Subject) => s.slug === params.subject);
     if (!subject) throw notFound();
-    const topic = subject.topics.find((t) => t.slug === params.topic);
+    const topic = subject.topics.find((t: Topic) => t.slug === params.topic);
     if (!topic) throw notFound();
     await context.queryClient.ensureQueryData(questionsQuery);
-    return { subject, topic };
+    return { subject, topic } as { subject: Subject; topic: Topic };
   },
   head: ({ loaderData }) => ({
     meta: loaderData
