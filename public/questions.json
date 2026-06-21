@@ -1,0 +1,1302 @@
+[
+  {
+    "subject": "mathematics",
+    "topic": "real-numbers",
+    "question": "Which of the following numbers is an irrational number?",
+    "options": [
+      "0.375",
+      "sqrt(16) / 2",
+      "sqrt(12)",
+      "22 / 7"
+    ],
+    "correct": 2,
+    "explanation": "Irrational numbers cannot be expressed as a ratio of two integers; square roots of non-perfect squares like 12 are irrational, whereas sqrt(16) is 4 and 22/7 is a rational approximation."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "real-numbers",
+    "question": "What is the value of the binary number 11011 in base ten?",
+    "options": [
+      "25",
+      "27",
+      "31",
+      "54"
+    ],
+    "correct": 1,
+    "explanation": "To convert 11011 to base ten, calculate (1 * 2^4) + (1 * 2^3) + (0 * 2^2) + (1 * 2^1) + (1 * 2^0), which is 16 + 8 + 0 + 2 + 1 = 27."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "real-numbers",
+    "question": "A certain number is written as 43 in base five. How is this same value represented in base two?",
+    "options": [
+      "10111",
+      "10110",
+      "11101",
+      "1101"
+    ],
+    "correct": 0,
+    "explanation": "First, convert 43 base five to base ten: (4 * 5) + 3 = 23. Then, convert 23 to base two: 16 + 4 + 2 + 1 = 10111."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "real-numbers",
+    "question": "Between which two consecutive integers does the value of sqrt(54) lie?",
+    "options": [
+      "5 and 6",
+      "6 and 7",
+      "7 and 8",
+      "8 and 9"
+    ],
+    "correct": 2,
+    "explanation": "Since 7 squared is 49 and 8 squared is 64, the square root of 54 must lie between the integers 7 and 8."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "real-numbers",
+    "question": "If the binary addition 1011 + 110 results in a number 'x', what is 'x' in binary?",
+    "options": [
+      "10001",
+      "11111",
+      "10101",
+      "1001"
+    ],
+    "correct": 0,
+    "explanation": "Adding 1011 (11 in decimal) and 110 (6 in decimal) gives 17 in decimal. 17 in binary is 10001 (16 + 1)."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "indices-logarithms",
+    "question": "What is the value of (27/8)^(2/3)?",
+    "options": [
+      "3/2",
+      "9/4",
+      "4/9",
+      "27/8"
+    ],
+    "correct": 1,
+    "explanation": "First find the cube root of 27/8 which is 3/2, then square the result (3/2)^2 to get 9/4."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "indices-logarithms",
+    "question": "If log_x 64 = 3, what is the value of x?",
+    "options": [
+      "4",
+      "8",
+      "16",
+      "192"
+    ],
+    "correct": 0,
+    "explanation": "Converting the logarithmic form to index form gives x^3 = 64. Since 4^3 = 64, the value of x is 4."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "indices-logarithms",
+    "question": "Which of the following is equivalent to log a + 2 log b - log c?",
+    "options": [
+      "log (a + 2b - c)",
+      "log (ab^2 / c)",
+      "log (2ab / c)",
+      "log (a / (b^2c))"
+    ],
+    "correct": 1,
+    "explanation": "Using the laws of logarithms, 2 log b becomes log b^2. Then log a + log b^2 is log(ab^2), and subtracting log c results in the division log(ab^2 / c)."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "indices-logarithms",
+    "question": "Solve for n: 3^(n-1) = 81",
+    "options": [
+      "3",
+      "4",
+      "5",
+      "27"
+    ],
+    "correct": 2,
+    "explanation": "Express 81 as a power of 3, which is 3^4. Setting the indices equal, n - 1 = 4, which gives n = 5."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "indices-logarithms",
+    "question": "If log 2 = 0.3010 and log 3 = 0.4771, what is the value of log 60?",
+    "options": [
+      "0.7781",
+      "1.7781",
+      "1.0791",
+      "2.7781"
+    ],
+    "correct": 1,
+    "explanation": "log 60 = log(2 * 3 * 10) = log 2 + log 3 + log 10. Substituting the values gives 0.3010 + 0.4771 + 1 = 1.7781."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "fractions-decimals",
+    "question": "A farmer planted 2/5 of his land with coconut trees and 1/3 of the land with mango trees. What fraction of the total land remains uncultivated?",
+    "options": [
+      "1/15",
+      "4/15",
+      "11/15",
+      "3/8"
+    ],
+    "correct": 1,
+    "explanation": "Total cultivated area is 2/5 + 1/3 = 6/15 + 5/15 = 11/15. The remaining uncultivated part is 1 - 11/15 = 4/15."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "fractions-decimals",
+    "question": "A bag of rice weighs 12.45 kg. If 3.7 kg of rice is removed, and the remaining rice is divided equally into 5 small packets, what is the weight of one small packet in kg?",
+    "options": [
+      "1.75 kg",
+      "2.49 kg",
+      "1.25 kg",
+      "1.755 kg"
+    ],
+    "correct": 0,
+    "explanation": "Weight remaining after removal is 12.45 - 3.70 = 8.75 kg. Dividing this by 5 gives 8.75 / 5 = 1.75 kg."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "fractions-decimals",
+    "question": "Which of the following values is exactly equal to the sum of 0.125 and 3/4?",
+    "options": [
+      "0.425",
+      "0.825",
+      "0.875",
+      "1.125"
+    ],
+    "correct": 2,
+    "explanation": "Converting 3/4 to a decimal gives 0.75. Adding 0.125 to 0.75 results in 0.875."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "fractions-decimals",
+    "question": "A student spent 1/4 of his pocket money on a pen and 2/3 of the remaining money on a book. What fraction of his total pocket money is left with him?",
+    "options": [
+      "1/12",
+      "1/4",
+      "5/12",
+      "1/2"
+    ],
+    "correct": 1,
+    "explanation": "After buying a pen, 3/4 remains. He spent 2/3 of that remainder: (2/3) * (3/4) = 1/2 of total. Total spent is 1/4 + 1/2 = 3/4. Remaining is 1 - 3/4 = 1/4."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "fractions-decimals",
+    "question": "The result of (0.6 * 0.2) / 0.04 is:",
+    "options": [
+      "0.3",
+      "3.0",
+      "30.0",
+      "0.03"
+    ],
+    "correct": 1,
+    "explanation": "First calculate the numerator: 0.6 * 0.2 = 0.12. Then divide by the denominator: 0.12 / 0.04 = 12 / 4 = 3."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "percentages",
+    "question": "A merchant bought an electric fan for Rs. 5,000 and sold it for Rs. 5,750. What is his profit percentage?",
+    "options": [
+      "7.5%",
+      "13%",
+      "15%",
+      "75%"
+    ],
+    "correct": 2,
+    "explanation": "Profit is calculated as Selling Price - Cost Price (5750 - 5000 = 750). The profit percentage is (Profit/Cost Price) * 100, which is (750/5000) * 100 = 15%."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "percentages",
+    "question": "The marked price of a wristwatch is Rs. 3,200. If a 12% discount is allowed on the marked price, what is the selling price of the watch?",
+    "options": [
+      "Rs. 2,816",
+      "Rs. 3,088",
+      "Rs. 3,188",
+      "Rs. 3,584"
+    ],
+    "correct": 0,
+    "explanation": "Discount amount is 12% of 3200 (0.12 * 3200 = 384). The selling price is the marked price minus the discount (3200 - 384 = 2816)."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "percentages",
+    "question": "A shopkeeper sells a bag for Rs. 2,400, incurring a loss of 20%. What was the cost price of the bag?",
+    "options": [
+      "Rs. 1,920",
+      "Rs. 2,880",
+      "Rs. 3,000",
+      "Rs. 3,200"
+    ],
+    "correct": 2,
+    "explanation": "A loss of 20% means the selling price is 80% of the cost price. Therefore, Cost Price = (2400 / 80) * 100 = 3000."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "percentages",
+    "question": "An agent receives a 5% commission for selling a plot of land. If the land was sold for Rs. 1,800,000, how much commission does the agent receive?",
+    "options": [
+      "Rs. 9,000",
+      "Rs. 18,000",
+      "Rs. 50,000",
+      "Rs. 90,000"
+    ],
+    "correct": 3,
+    "explanation": "Commission is calculated as Sale Price * Commission Rate. So, 1,800,000 * (5/100) = 90,000."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "percentages",
+    "question": "A trader marks his goods 25% above the cost price. If he then allows a 10% discount on the marked price, what is his overall profit percentage on the cost price?",
+    "options": [
+      "12.5%",
+      "15%",
+      "22.5%",
+      "35%"
+    ],
+    "correct": 0,
+    "explanation": "If Cost Price is 100, Marked Price is 125. A 10% discount on 125 is 12.5, making the Selling Price 112.5. The gain from 100 to 112.5 is a 12.5% profit."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "ratio-proportion",
+    "question": "If the ratio of the ages of A, B, and C is 2:3:5 and the sum of their ages is 80 years, what is the age of C?",
+    "options": [
+      "16 years",
+      "24 years",
+      "32 years",
+      "40 years"
+    ],
+    "correct": 3,
+    "explanation": "The total parts in the ratio are 2 + 3 + 5 = 10. Since 10 parts equal 80 years, one part is 8 years; therefore, C's age (5 parts) is 5 * 8 = 40 years."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "ratio-proportion",
+    "question": "A concrete mixture is made by mixing cement, sand, and gravel in the ratio 1:2:4 by volume. To prepare 28 cubic meters of this mixture, what volume of sand is required?",
+    "options": [
+      "4 cubic meters",
+      "8 cubic meters",
+      "12 cubic meters",
+      "16 cubic meters"
+    ],
+    "correct": 1,
+    "explanation": "The total ratio parts are 1 + 2 + 4 = 7. The volume of sand is (2/7) * 28 = 8 cubic meters."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "ratio-proportion",
+    "question": "If a:b = 3:4 and b:c = 8:9, what is the ratio a:c in its simplest form?",
+    "options": [
+      "2:3",
+      "3:9",
+      "1:3",
+      "6:9"
+    ],
+    "correct": 0,
+    "explanation": "To find a:c, multiply the ratios: (a/b) * (b/c) = (3/4) * (8/9) = 24/36. Simplifying 24/36 gives 2/3."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "ratio-proportion",
+    "question": "A certain distance is covered by a car traveling at a constant speed of 60 km/h in 3 hours. If the speed is increased to 90 km/h, how many hours will it take to cover the same distance?",
+    "options": [
+      "1.5 hours",
+      "2 hours",
+      "2.5 hours",
+      "4.5 hours"
+    ],
+    "correct": 1,
+    "explanation": "This is an inverse proportion where Speed * Time = Distance. 60 * 3 = 180 km; therefore, the new time is 180 / 90 = 2 hours."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "ratio-proportion",
+    "question": "The prices of two items are in the ratio 5:7. If the price of the first item is 1500 rupees, what is the price of the second item?",
+    "options": [
+      "1071 rupees",
+      "1800 rupees",
+      "2100 rupees",
+      "2500 rupees"
+    ],
+    "correct": 2,
+    "explanation": "Let the prices be 5x and 7x. If 5x = 1500, then x = 300. The price of the second item is 7 * 300 = 2100 rupees."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "algebraic-expressions",
+    "question": "What is the result of simplifying the expression 3(2x - 5) - 2(x - 4)?",
+    "options": [
+      "4x - 7",
+      "4x - 23",
+      "8x - 23",
+      "4x - 11"
+    ],
+    "correct": 0,
+    "explanation": "Expanding the terms gives 6x - 15 - 2x + 8. Combining like terms (6x - 2x) and (-15 + 8) results in 4x - 7."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "algebraic-expressions",
+    "question": "If a = 3 and b = -2, find the value of the algebraic expression 2a^2 - 3ab.",
+    "options": [
+      "0",
+      "36",
+      "18",
+      "54"
+    ],
+    "correct": 1,
+    "explanation": "Substitute the values: 2(3)^2 - 3(3)(-2) = 2(9) - (-18) = 18 + 18 = 36."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "algebraic-expressions",
+    "question": "Which of the following represents the expansion of (2x + 3)(x - 5)?",
+    "options": [
+      "2x^2 - 13x - 15",
+      "2x^2 + 7x - 15",
+      "2x^2 - 7x - 15",
+      "2x^2 - 7x + 15"
+    ],
+    "correct": 2,
+    "explanation": "Using the distributive property: 2x(x) + 2x(-5) + 3(x) + 3(-5) = 2x^2 - 10x + 3x - 15 = 2x^2 - 7x - 15."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "algebraic-expressions",
+    "question": "Simplify the algebraic fraction (4x^2y) / (12xy^2) to its lowest terms.",
+    "options": [
+      "x / (3y)",
+      "3x / y",
+      "x / (8y)",
+      "(x^2) / (3y)"
+    ],
+    "correct": 0,
+    "explanation": "Divide both the numerator and denominator by the common factors 4, x, and y. This leaves x in the numerator and 3y in the denominator."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "algebraic-expressions",
+    "question": "An apple costs x rupees and a mango costs y rupees. If the total cost of 5 apples and 3 mangoes is 450 rupees, which algebraic equation represents this relationship?",
+    "options": [
+      "x/5 + y/3 = 450",
+      "8(x + y) = 450",
+      "3x + 5y = 450",
+      "5x + 3y = 450"
+    ],
+    "correct": 3,
+    "explanation": "The total cost is the sum of (quantity of apples * price) and (quantity of mangoes * price), which is 5x + 3y = 450."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "factors",
+    "question": "Which of the following represents the factors of the expression 12ab - 18b^2?",
+    "options": [
+      "6a(2b - 3b)",
+      "6b(2a - 3b)",
+      "2b(6a - 9b)",
+      "6(2ab - 3b^2)"
+    ],
+    "correct": 1,
+    "explanation": "To factorize by taking the highest common factor (HCF), we identify that 6 and b are common to both terms. Dividing each term by 6b gives the factors 6b(2a - 3b)."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "factors",
+    "question": "What are the binomial factors of the quadratic expression x^2 - 5x - 24?",
+    "options": [
+      "(x - 8)(x + 3)",
+      "(x + 8)(x - 3)",
+      "(x - 6)(x - 4)",
+      "(x - 12)(x + 2)"
+    ],
+    "correct": 0,
+    "explanation": "We look for two numbers that multiply to -24 and add up to -5. Those numbers are -8 and +3, leading to the factors (x - 8) and (x + 3)."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "factors",
+    "question": "Factorize the expression 4a^2 - 49 completely.",
+    "options": [
+      "(4a - 7)(4a + 7)",
+      "(2a - 49)(2a + 1)",
+      "(2a - 7)(2a - 7)",
+      "(2a - 7)(2a + 7)"
+    ],
+    "correct": 3,
+    "explanation": "This is a difference of two squares in the form (2a)^2 - (7)^2. Applying the identity a^2 - b^2 = (a - b)(a + b) results in (2a - 7)(2a + 7)."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "factors",
+    "question": "Find the factors of the expression ax + ay - 3x - 3y.",
+    "options": [
+      "(a - 3)(x - y)",
+      "(a + 3)(x + y)",
+      "(a - 3)(x + y)",
+      "(x - 3)(a + y)"
+    ],
+    "correct": 2,
+    "explanation": "Grouping the terms into pairs, we get a(x + y) - 3(x + y). Taking (x + y) as the common factor results in (x + y)(a - 3)."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "factors",
+    "question": "If (x - 4) is a factor of the expression x^2 + kx - 20, what is the value of the constant k?",
+    "options": [
+      "5",
+      "1",
+      "-1",
+      "-9"
+    ],
+    "correct": 1,
+    "explanation": "Since the constant term is -20 and one factor involves -4, the other factor constant must be 5 because (-4)(5) = -20. The middle term k is the sum of -4 and 5, which is 1."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "equations",
+    "question": "What is the value of x that satisfies the linear equation 3(x - 4) = 12 + x?",
+    "options": [
+      "x = 0",
+      "x = 8",
+      "x = 12",
+      "x = 24"
+    ],
+    "correct": 2,
+    "explanation": "Expanding the brackets gives 3x - 12 = 12 + x. Moving variables to one side and constants to the other results in 2x = 24, which simplifies to x = 12."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "equations",
+    "question": "Which of the following represents the solution set for the inequality 5 - 2x <= 1?",
+    "options": [
+      "x <= 2",
+      "x >= 2",
+      "x <= 3",
+      "x >= -2"
+    ],
+    "correct": 1,
+    "explanation": "Subtracting 5 from both sides gives -2x <= -4. When dividing by -2, the inequality sign must be reversed, resulting in x >= 2."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "equations",
+    "question": "Solving the simultaneous equations 2x + y = 7 and x - y = 2, what is the value of x + y?",
+    "options": [
+      "3",
+      "4",
+      "5",
+      "9"
+    ],
+    "correct": 1,
+    "explanation": "Adding the two equations gives 3x = 9, so x = 3. Substituting x = 3 into the second equation gives 3 - y = 2, so y = 1. Therefore, x + y = 3 + 1 = 4."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "equations",
+    "question": "The roots of the quadratic equation x^2 - 5x + 6 = 0 are:",
+    "options": [
+      "2 and 3",
+      "-2 and -3",
+      "1 and 6",
+      "-1 and -6"
+    ],
+    "correct": 0,
+    "explanation": "The quadratic factors into (x - 2)(x - 3) = 0 because (-2) + (-3) = -5 and (-2) * (-3) = 6. Setting each factor to zero gives x = 2 and x = 3."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "equations",
+    "question": "A student has 500 rupees to buy pens and books. If the price of one pen is 'p' rupees and the price of one book is 'b' rupees, which inequality correctly shows that he can afford 4 pens and 3 books?",
+    "options": [
+      "4p + 3b < 500",
+      "4p + 3b > 500",
+      "4p + 3b <= 500",
+      "3p + 4b <= 500"
+    ],
+    "correct": 2,
+    "explanation": "The total cost of 4 pens and 3 books is 4p + 3b. Since he can afford it, the cost must be less than or equal to his total money, 500 rupees."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "simultaneous-equations",
+    "question": "If 3x + y = 14 and x - y = 2, what is the value of x?",
+    "options": [
+      "3",
+      "4",
+      "5",
+      "8"
+    ],
+    "correct": 1,
+    "explanation": "Adding the two equations eliminates y, giving 4x = 16. Dividing by 4 results in x = 4."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "simultaneous-equations",
+    "question": "A student bought 2 pens and 3 pencils for Rs. 110. The cost of 4 pens and 1 pencil is Rs. 170. If the price of a pen is 'a' and a pencil is 'b', which pair of equations represents this information?",
+    "options": [
+      "2a + 3b = 110; 4a + b = 170",
+      "3a + 2b = 110; a + 4b = 170",
+      "2a + 3b = 170; 4a + b = 110",
+      "5(a + b) = 110; 5(a + b) = 170"
+    ],
+    "correct": 0,
+    "explanation": "The total cost is the sum of (quantity * price) for each item, leading directly to 2a + 3b = 110 and 4a + b = 170."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "simultaneous-equations",
+    "question": "What is the value of 'y' in the solution to the simultaneous equations 2x + 3y = 12 and 2x + y = 8?",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "correct": 1,
+    "explanation": "Subtracting the second equation from the first eliminates 2x, leaving 2y = 4, which simplifies to y = 2."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "simultaneous-equations",
+    "question": "If x = 2 and y = -1 is the solution to the simultaneous equations ax + by = 5 and ax - by = 3, what are the values of 'a' and 'b' respectively?",
+    "options": [
+      "a = 4, b = 1",
+      "a = 1, b = 2",
+      "a = 2, b = 1",
+      "a = 2, b = -1"
+    ],
+    "correct": 2,
+    "explanation": "Substituting the values gives 2a - b = 5 and 2a + b = 3. Adding them gives 4a = 8 (a = 2), and substituting a into the equations gives b = 1."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "simultaneous-equations",
+    "question": "The sum of two numbers is 25 and their difference is 7. What are the two numbers?",
+    "options": [
+      "15 and 10",
+      "18 and 7",
+      "16 and 9",
+      "14 and 11"
+    ],
+    "correct": 2,
+    "explanation": "Letting the numbers be x and y, x + y = 25 and x - y = 7. Solving these gives 2x = 32 (x = 16) and 16 + y = 25 (y = 9)."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "quadratic-equations",
+    "question": "What is the positive root of the quadratic equation x^2 - 5x - 6 = 0?",
+    "options": [
+      "2",
+      "3",
+      "6",
+      "1"
+    ],
+    "correct": 2,
+    "explanation": "Factoring the equation gives (x - 6)(x + 1) = 0. The roots are x = 6 and x = -1, so the positive root is 6."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "quadratic-equations",
+    "question": "A student is solving the equation x^2 + 8x + k = 0 by the method of completing the square. What value should k take for the left side of the equation to be a perfect square?",
+    "options": [
+      "4",
+      "8",
+      "16",
+      "64"
+    ],
+    "correct": 2,
+    "explanation": "To form a perfect square trinomial x^2 + bx + (b/2)^2, k must be (8/2)^2, which equals 16."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "quadratic-equations",
+    "question": "The roots of a quadratic equation are 3 and -2. Which of the following represents this equation?",
+    "options": [
+      "x^2 - x - 6 = 0",
+      "x^2 + x - 6 = 0",
+      "x^2 - 5x + 6 = 0",
+      "x^2 + 5x + 6 = 0"
+    ],
+    "correct": 0,
+    "explanation": "The equation is given by (x - 3)(x + 2) = 0. Expanding this results in x^2 + 2x - 3x - 6 = 0, which simplifies to x^2 - x - 6 = 0."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "quadratic-equations",
+    "question": "The area of a rectangular flower garden is 40 square meters. If the length is 3 meters more than its width (x), which quadratic equation correctly represents this relationship?",
+    "options": [
+      "x^2 - 3x + 40 = 0",
+      "x^2 + 3x - 40 = 0",
+      "x^2 + 3x + 40 = 0",
+      "3x^2 - 40 = 0"
+    ],
+    "correct": 1,
+    "explanation": "Area = width * length, so x(x + 3) = 40. Expanding and rearranging gives x^2 + 3x - 40 = 0."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "quadratic-equations",
+    "question": "If the equation 2x^2 - 4x + (m - 1) = 0 has two equal real roots, what is the value of m?",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "correct": 2,
+    "explanation": "For equal roots, the discriminant b^2 - 4ac must be 0. Thus, (-4)^2 - 4(2)(m - 1) = 0, which means 16 - 8(m - 1) = 0, solving to m = 3."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "sets-probability",
+    "question": "In a group of 40 students, 25 like Cricket and 18 like Football. If 7 students like both sports, how many students like neither Cricket nor Football?",
+    "options": [
+      "4",
+      "11",
+      "15",
+      "2"
+    ],
+    "correct": 0,
+    "explanation": "Using the formula n(A U B) = n(A) + n(B) - n(A n B), we get 25 + 18 - 7 = 36. The number of students who like neither is 40 - 36 = 4."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "sets-probability",
+    "question": "If A and B are two sets such that A is a subset of B, which of the following statements is always true?",
+    "options": [
+      "A intersection B = B",
+      "A union B = A",
+      "A intersection B = A",
+      "A union B is a null set"
+    ],
+    "correct": 2,
+    "explanation": "If A is a subset of B, all elements of A are also in B. Therefore, the intersection (common elements) must be the entire set A."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "sets-probability",
+    "question": "A fair fair six-sided die is rolled once. What is the probability of getting a prime number?",
+    "options": [
+      "1/6",
+      "1/3",
+      "1/2",
+      "2/3"
+    ],
+    "correct": 2,
+    "explanation": "The prime numbers on a die are 2, 3, and 5. There are 3 favorable outcomes out of 6 possible outcomes, so 3/6 = 1/2."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "sets-probability",
+    "question": "A bag contains 5 red balls and 3 blue balls. If two balls are drawn at random one after the other without replacement, what is the probability that both balls are blue?",
+    "options": [
+      "3/28",
+      "9/64",
+      "6/56",
+      "3/8"
+    ],
+    "correct": 0,
+    "explanation": "The probability of the first blue ball is 3/8. Since there is no replacement, the probability for the second blue ball is 2/7. Multiplying them gives (3/8) * (2/7) = 6/56 = 3/28."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "sets-probability",
+    "question": "In a Venn diagram, the universal set E has 100 elements. If n(A') = 60 and n(B') = 70, and n(A U B)' = 40, find n(A n B).",
+    "options": [
+      "10",
+      "20",
+      "30",
+      "0"
+    ],
+    "correct": 0,
+    "explanation": "First, n(A) = 100 - 60 = 40 and n(B) = 100 - 70 = 30. Also, n(A U B) = 100 - 40 = 60. Using n(A U B) = n(A) + n(B) - n(A n B), we get 60 = 40 + 30 - n(A n B), so n(A n B) = 10."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "perimeter-area",
+    "question": "A sector of a circle with a radius of 7 cm has an arc length of 11 cm. What is the total perimeter of the sector?",
+    "options": [
+      "18 cm",
+      "25 cm",
+      "22 cm",
+      "32 cm"
+    ],
+    "correct": 1,
+    "explanation": "The perimeter of a sector is the sum of its arc length and two radii. Therefore, 11 + 7 + 7 = 25 cm."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "perimeter-area",
+    "question": "The area of a square-shaped land is 144 square meters. If a rectangular land has the same perimeter as the square land and its length is 14 meters, what is the width of the rectangular land?",
+    "options": [
+      "8 meters",
+      "12 meters",
+      "10 meters",
+      "6 meters"
+    ],
+    "correct": 2,
+    "explanation": "The side of the square is 12m (sqrt of 144), so its perimeter is 48m. For the rectangle, 2(14 + width) = 48, which simplifies to 14 + width = 24, giving a width of 10m."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "perimeter-area",
+    "question": "A wire of length 44 cm is bent to form a complete circle. Using 22/7 for pi, what is the area enclosed by the circle?",
+    "options": [
+      "154 square cm",
+      "616 square cm",
+      "88 square cm",
+      "44 square cm"
+    ],
+    "correct": 0,
+    "explanation": "The circumference 2*pi*r = 44cm, so r = 7cm. The area is pi*r^2 = (22/7) * 7 * 7 = 154 square cm."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "perimeter-area",
+    "question": "A composite figure consists of a rectangle of 10 cm by 8 cm and a right-angled triangle attached to one of its 8 cm sides. If the area of the entire figure is 104 square cm, what is the length of the base of the triangle perpendicular to the 8 cm side?",
+    "options": [
+      "3 cm",
+      "4 cm",
+      "6 cm",
+      "8 cm"
+    ],
+    "correct": 2,
+    "explanation": "Area of rectangle is 80 sq cm. Area of triangle = 104 - 80 = 24 sq cm. Using Area = 1/2 * base * height, 24 = 1/2 * base * 8, so base = 6 cm."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "perimeter-area",
+    "question": "If the radius of a circle is doubled, by what factor does its area increase?",
+    "options": [
+      "2 times",
+      "3 times",
+      "4 times",
+      "8 times"
+    ],
+    "correct": 2,
+    "explanation": "The area of a circle is proportional to the square of the radius. If radius r becomes 2r, the area becomes pi*(2r)^2 = 4*pi*r^2, which is 4 times the original area."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "A solid rectangular block of wood has dimensions 10 cm, 8 cm, and 5 cm. If it is carved into a cube with the maximum possible side length, what is the volume of the remaining wood?",
+    "options": [
+      "275 cm^3",
+      "400 cm^3",
+      "125 cm^3",
+      "375 cm^3"
+    ],
+    "correct": 0,
+    "explanation": "The maximum side length of the cube is determined by the smallest dimension of the block (5 cm). Volume of block = 10*8*5 = 400 cm^3, Volume of cube = 5^3 = 125 cm^3; the remaining wood is 400 - 125 = 275 cm^3."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "The radius of a solid right circular cylinder is r and its height is 2r. What is the ratio between the area of its curved surface and its total surface area?",
+    "options": [
+      "1 : 2",
+      "2 : 3",
+      "1 : 3",
+      "4 : 5"
+    ],
+    "correct": 1,
+    "explanation": "Curved surface area = 2*pi*r*(2r) = 4*pi*r^2. Total surface area = 4*pi*r^2 + 2*pi*r^2 = 6*pi*r^2. The ratio is 4:6, which simplifies to 2:3."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "If the volume of a sphere is numerically equal to its surface area, what is the radius of the sphere?",
+    "options": [
+      "1 unit",
+      "2 units",
+      "3 units",
+      "4 units"
+    ],
+    "correct": 2,
+    "explanation": "Setting (4/3)*pi*r^3 = 4*pi*r^2 and canceling 4*pi*r^2 gives r/3 = 1, therefore r = 3 units."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "A metal cylinder with radius 6 cm and height 10 cm is melted and recast into small solid spheres of radius 3 cm. How many such spheres can be made if there is no metal wastage?",
+    "options": [
+      "10",
+      "15",
+      "20",
+      "30"
+    ],
+    "correct": 0,
+    "explanation": "Volume of cylinder = pi * 6^2 * 10 = 360*pi. Volume of one sphere = (4/3) * pi * 3^3 = 36*pi. Number of spheres = 360*pi / 36*pi = 10."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "A right circular cone has a base radius of 7 cm and a slant height of 25 cm. What is the perpendicular height of the cone?",
+    "options": [
+      "20 cm",
+      "24 cm",
+      "18 cm",
+      "32 cm"
+    ],
+    "correct": 1,
+    "explanation": "Using the Pythagorean theorem for the right-angled triangle formed by the radius, height, and slant height: h^2 + 7^2 = 25^2. h^2 = 625 - 49 = 576, so h = 24 cm."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "What is the locus of a point that moves on a plane such that it maintains a constant distance of 5 cm from a fixed point O?",
+    "options": [
+      "A straight line parallel to point O.",
+      "A circle with center O and a radius of 5 cm.",
+      "A perpendicular bisector of a line passing through O.",
+      "A pair of parallel lines 5 cm apart."
+    ],
+    "correct": 1,
+    "explanation": "By definition, the locus of points at a constant distance from a single fixed point forms a circle, where the fixed point is the center and the distance is the radius."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "In the construction of the perpendicular bisector of a line segment AB, two arcs are drawn with centers A and B using a radius r. Which of the following must be true regarding the radius r?",
+    "options": [
+      "r must be exactly equal to the length of AB.",
+      "r must be less than half the length of AB.",
+      "r must be greater than half the length of AB.",
+      "r must be equal to half the length of AB."
+    ],
+    "correct": 2,
+    "explanation": "To ensure the arcs drawn from points A and B intersect at two points, the radius must be greater than the distance to the midpoint of the segment."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "A point P moves such that it is always equidistant from two intersecting straight lines OX and OY. The locus of point P is:",
+    "options": [
+      "The angle bisector of the angle XOY.",
+      "A circle with center O.",
+      "A line parallel to OX.",
+      "The perpendicular bisector of the segment XY."
+    ],
+    "correct": 0,
+    "explanation": "The locus of points equidistant from two intersecting lines is the pair of lines that bisect the angles formed by the intersection."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "To construct an angle of 30 degrees using only a ruler and a compass, which sequence of constructions is most appropriate?",
+    "options": [
+      "Construct a 90 degree angle and trisect it.",
+      "Construct a 45 degree angle and subtract 15 degrees.",
+      "Construct an equilateral triangle and bisect one of its internal angles.",
+      "Construct a square and draw its diagonal."
+    ],
+    "correct": 2,
+    "explanation": "The internal angle of an equilateral triangle is 60 degrees. Bisecting this angle results in a 30 degree angle."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "Given a line segment LM of length 8 cm, a point Z moves such that the area of the triangle ZLM is always 12 square centimeters. What is the locus of point Z?",
+    "options": [
+      "A circle with LM as diameter.",
+      "A pair of straight lines parallel to LM at a distance of 3 cm from LM.",
+      "A pair of straight lines parallel to LM at a distance of 1.5 cm from LM.",
+      "The perpendicular bisector of LM."
+    ],
+    "correct": 1,
+    "explanation": "Area = 0.5 * base * height. Here, 12 = 0.5 * 8 * h, which gives h = 3 cm. The locus of points at a constant height (perpendicular distance) from a line is a pair of parallel lines."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "The interior angle of a regular polygon is five times the size of its exterior angle. How many sides does this regular polygon have?",
+    "options": [
+      "8",
+      "10",
+      "12",
+      "14"
+    ],
+    "correct": 2,
+    "explanation": "Let the exterior angle be x. Then interior angle is 5x. Since x + 5x = 180, x = 30. Number of sides = 360/30 = 12."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "In a parallelogram ABCD, the diagonal AC and BD intersect at O. If the area of triangle AOB is 15 cm^2, what is the total area of the parallelogram ABCD?",
+    "options": [
+      "30 cm^2",
+      "45 cm^2",
+      "60 cm^2",
+      "75 cm^2"
+    ],
+    "correct": 2,
+    "explanation": "The diagonals of a parallelogram divide it into four triangles of equal area. Therefore, total area = 4 * 15 = 60 cm^2."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "In triangle PQR, the midpoint of PQ is M and the midpoint of PR is N. If the length of the line segment MN is 4.5 cm and the perimeter of triangle PMN is 12 cm, what is the perimeter of triangle PQR?",
+    "options": [
+      "18 cm",
+      "21.5 cm",
+      "24 cm",
+      "27 cm"
+    ],
+    "correct": 2,
+    "explanation": "By the Midpoint Theorem, QR = 2MN = 9 cm. Since sides PM=MQ and PN=NR, the sides of triangle PQR are double those of PMN, making the perimeter 2 * 12 = 24 cm."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "What is the sum of the interior angles of a convex heptagon (a polygon with 7 sides)?",
+    "options": [
+      "720 degrees",
+      "900 degrees",
+      "1080 degrees",
+      "1260 degrees"
+    ],
+    "correct": 1,
+    "explanation": "The sum of interior angles is given by (n - 2) * 180. For n=7, sum = (7 - 2) * 180 = 5 * 180 = 900 degrees."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "In a quadrilateral PQRS, if PQ is parallel to SR and PS is parallel to QR, and angle PQR is 110 degrees, what is the magnitude of angle QRS?",
+    "options": [
+      "70 degrees",
+      "110 degrees",
+      "180 degrees",
+      "250 degrees"
+    ],
+    "correct": 0,
+    "explanation": "Since PQRS has two pairs of opposite sides parallel, it is a parallelogram. In a parallelogram, adjacent angles are supplementary, so angle QRS = 180 - 110 = 70 degrees."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "circle-theorems",
+    "question": "In a circle with center O, chords AB and CD intersect at point P inside the circle. If AP = 4 cm, PB = 6 cm, and CP = 3 cm, what is the length of PD?",
+    "options": [
+      "4.5 cm",
+      "5 cm",
+      "8 cm",
+      "12 cm"
+    ],
+    "correct": 2,
+    "explanation": "According to the intersecting chords theorem, the products of the segments of the chords are equal (AP * PB = CP * PD). Therefore, 4 * 6 = 3 * PD, which gives 24 = 3 * PD, so PD = 8 cm."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "circle-theorems",
+    "question": "A, B, and C are points on the circumference of a circle with center O. If the angle AOC is 130 degrees and O lies outside the triangle ABC, what is the magnitude of the angle ABC?",
+    "options": [
+      "65 degrees",
+      "115 degrees",
+      "130 degrees",
+      "230 degrees"
+    ],
+    "correct": 1,
+    "explanation": "The angle subtended by an arc at the center is twice the angle subtended at the circumference. The reflex angle AOC is 360 - 130 = 230 degrees, so the angle ABC at the circumference is half of the reflex angle, which is 115 degrees."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "circle-theorems",
+    "question": "Points P, Q, R, and S lie on a circle in that order. If the angle PQR is 85 degrees and the angle QRS is 110 degrees, find the magnitude of angle RSP.",
+    "options": [
+      "70 degrees",
+      "85 degrees",
+      "95 degrees",
+      "110 degrees"
+    ],
+    "correct": 2,
+    "explanation": "PQRS is a cyclic quadrilateral. Opposite angles in a cyclic quadrilateral sum to 180 degrees, so angle RSP = 180 - angle PQR = 180 - 85 = 95 degrees."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "circle-theorems",
+    "question": "A tangent AT is drawn from an external point A to touch a circle at point T. If the radius of the circle is 5 cm and the distance from the center O to point A is 13 cm, what is the length of the tangent segment AT?",
+    "options": [
+      "8 cm",
+      "12 cm",
+      "14.4 cm",
+      "18 cm"
+    ],
+    "correct": 1,
+    "explanation": "The radius is perpendicular to the tangent at the point of contact, forming a right-angled triangle OAT. Using Pythagoras' theorem: AT^2 = OA^2 - OT^2 = 13^2 - 5^2 = 169 - 25 = 144, so AT = 12 cm."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "circle-theorems",
+    "question": "In a circle, a chord XY is 16 cm long and is at a perpendicular distance of 6 cm from the center O. What is the diameter of the circle?",
+    "options": [
+      "10 cm",
+      "12 cm",
+      "20 cm",
+      "28 cm"
+    ],
+    "correct": 2,
+    "explanation": "The perpendicular from the center bisects the chord, so half-chord is 8 cm. Using the right triangle formed by the radius (r), the perpendicular distance (6), and the half-chord (8): r^2 = 6^2 + 8^2 = 36 + 64 = 100, so r = 10 cm and diameter = 20 cm."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "trigonometry",
+    "question": "In a right-angled triangle PQR, where the angle at Q is 90 degrees, the length of the side PQ is 5 cm and the length of the side QR is 12 cm. What is the value of cos(PRQ)?",
+    "options": [
+      "5/12",
+      "5/13",
+      "12/13",
+      "12/5"
+    ],
+    "correct": 2,
+    "explanation": "By Pythagoras' theorem, PR = sqrt(5^2 + 12^2) = 13 cm. Since cos(PRQ) = adjacent/hypotenuse, it is QR/PR = 12/13."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "trigonometry",
+    "question": "A vertical lamp post is 10 m tall. When the angle of elevation of the sun is 30 degrees, what is the length of the shadow cast by the post on level ground?",
+    "options": [
+      "10 * sin(30) m",
+      "10 * cos(30) m",
+      "10 / tan(30) m",
+      "10 * tan(30) m"
+    ],
+    "correct": 2,
+    "explanation": "In the right triangle formed, tan(30) = height / shadow. Therefore, shadow = height / tan(30) = 10 / tan(30)."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "trigonometry",
+    "question": "If sin(x) = 0.6 and cos(x) = 0.8 for an acute angle x, what is the value of tan(x)?",
+    "options": [
+      "0.48",
+      "0.75",
+      "1.33",
+      "1.4"
+    ],
+    "correct": 1,
+    "explanation": "The trigonometric identity tan(x) = sin(x) / cos(x) gives 0.6 / 0.8, which simplifies to 3/4 or 0.75."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "trigonometry",
+    "question": "A ladder 6 m long rests against a vertical wall. If the ladder makes an angle of 60 degrees with the horizontal ground, what is the vertical height from the ground to the point where the ladder touches the wall?",
+    "options": [
+      "3 m",
+      "3 * sqrt(2) m",
+      "3 * sqrt(3) m",
+      "6 m"
+    ],
+    "correct": 2,
+    "explanation": "Height = hypotenuse * sin(60). Since sin(60) = sqrt(3)/2, height = 6 * (sqrt(3)/2) = 3 * sqrt(3) meters."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "trigonometry",
+    "question": "An observer at the top of a building 40 m high observes a car on the road at an angle of depression of 25 degrees. Which expression represents the horizontal distance from the base of the building to the car?",
+    "options": [
+      "40 * tan(25) m",
+      "40 / tan(25) m",
+      "40 * sin(25) m",
+      "40 / cos(25) m"
+    ],
+    "correct": 1,
+    "explanation": "The angle of depression equals the angle of elevation from the car to the top. Using tan(25) = height / distance, we find distance = 40 / tan(25)."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "pythagoras",
+    "question": "In a right-angled triangle, the lengths of the two sides forming the right angle are 5 cm and 12 cm. What is the length of the longest side of this triangle?",
+    "options": [
+      "13 cm",
+      "15 cm",
+      "17 cm",
+      "25 cm"
+    ],
+    "correct": 0,
+    "explanation": "According to Pythagoras' theorem, the square of the hypotenuse is 5^2 + 12^2 = 25 + 144 = 169. The square root of 169 is 13 cm."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "pythagoras",
+    "question": "A ladder is placed against a vertical wall. If the foot of the 10 m long ladder is 6 m away from the base of the wall, how high up the wall does the ladder reach?",
+    "options": [
+      "4 m",
+      "7 m",
+      "8 m",
+      "16 m"
+    ],
+    "correct": 2,
+    "explanation": "The ladder forms a right-angled triangle where the ladder is the hypotenuse (10 m). Using the theorem: h^2 + 6^2 = 10^2, which leads to h^2 = 100 - 36 = 64, so h = 8 m."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "pythagoras",
+    "question": "The lengths of the sides of four triangles are given below. Which of these sets of measurements represents a right-angled triangle?",
+    "options": [
+      "4 cm, 5 cm, 6 cm",
+      "7 cm, 24 cm, 25 cm",
+      "8 cm, 10 cm, 12 cm",
+      "9 cm, 12 cm, 18 cm"
+    ],
+    "correct": 1,
+    "explanation": "A triangle is right-angled if the square of the longest side equals the sum of the squares of the other two sides. Here, 7^2 + 24^2 = 49 + 576 = 625, and 25^2 = 625."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "pythagoras",
+    "question": "In triangle PQR, the angle PRQ is 90 degrees. If PQ = 10 cm and QR = 6 cm, what is the length of side PR?",
+    "options": [
+      "4 cm",
+      "sqrt(64) cm",
+      "sqrt(136) cm",
+      "16 cm"
+    ],
+    "correct": 1,
+    "explanation": "Since PRQ is 90 degrees, PQ is the hypotenuse. Thus PR^2 + QR^2 = PQ^2, which means PR^2 + 6^2 = 10^2, so PR^2 = 100 - 36 = 64. PR = sqrt(64) = 8 cm."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "pythagoras",
+    "question": "The diagonal of a square is sqrt(32) cm long. What is the length of one side of this square?",
+    "options": [
+      "4 cm",
+      "8 cm",
+      "16 cm",
+      "32 cm"
+    ],
+    "correct": 0,
+    "explanation": "In a square with side 'x', the diagonal forms a right-angled triangle with sides x, x and hypotenuse sqrt(32). So x^2 + x^2 = (sqrt(32))^2, which means 2x^2 = 32, x^2 = 16, and x = 4 cm."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "graphs-functions",
+    "question": "Which of the following points lies on the graph represented by the function y = 3x - 5?",
+    "options": [
+      "(2, 11)",
+      "(-1, -2)",
+      "(3, 4)",
+      "(0, 5)"
+    ],
+    "correct": 2,
+    "explanation": "Substitute x = 3 into the equation: y = 3(3) - 5 = 9 - 5 = 4. Therefore, (3, 4) satisfies the equation."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "graphs-functions",
+    "question": "The gradient (m) and the y-intercept (c) of the straight line 2y - 4x = 6 are respectively:",
+    "options": [
+      "m = -4, c = 6",
+      "m = 2, c = 3",
+      "m = 4, c = 3",
+      "m = 2, c = 6"
+    ],
+    "correct": 1,
+    "explanation": "Rewrite the equation in y = mx + c form: 2y = 4x + 6, then divide by 2 to get y = 2x + 3. Thus m = 2 and c = 3."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "graphs-functions",
+    "question": "Consider the quadratic function y = (x - 2)^2 - 9. What are the coordinates of the turning point of this graph?",
+    "options": [
+      "(-2, -9)",
+      "(2, 9)",
+      "(2, -9)",
+      "(-2, 9)"
+    ],
+    "correct": 2,
+    "explanation": "For a quadratic function in the form y = (x - h)^2 + k, the turning point is (h, k). Here h = 2 and k = -9."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "graphs-functions",
+    "question": "The graph of y = -x^2 + 4x + 5 has a maximum value. What is the equation of the axis of symmetry of this graph?",
+    "options": [
+      "x = 2",
+      "x = -2",
+      "x = 4",
+      "y = 5"
+    ],
+    "correct": 0,
+    "explanation": "The axis of symmetry for y = ax^2 + bx + c is given by x = -b / 2a. Here, x = -4 / (2 * -1) = -4 / -2 = 2."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "graphs-functions",
+    "question": "Where does the graph of the function y = 2x - 8 intersect the x-axis?",
+    "options": [
+      "(0, -8)",
+      "(4, 0)",
+      "(-4, 0)",
+      "(0, 4)"
+    ],
+    "correct": 1,
+    "explanation": "The intersection with the x-axis occurs when y = 0. Solving 0 = 2x - 8 gives 2x = 8, so x = 4."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "statistics",
+    "question": "The ages of five students in a chess club are 12, 14, 15, 17, and 17. What is the mean age of these students?",
+    "options": [
+      "14",
+      "15",
+      "17",
+      "75"
+    ],
+    "correct": 1,
+    "explanation": "To find the mean, sum the values (12+14+15+17+17 = 75) and divide by the number of students (75 / 5 = 15)."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "statistics",
+    "question": "In a distribution of data, if the median is 24 and the range is 10, which of the following statements must be true?",
+    "options": [
+      "The mode is 24.",
+      "The mean is 24.",
+      "At least half of the data values are greater than or equal to 24.",
+      "The difference between the highest and lowest value is 24."
+    ],
+    "correct": 2,
+    "explanation": "By definition, the median is the middle value of an ordered data set, meaning at least 50% of the values are at or above it."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "statistics",
+    "question": "A set of five different positive integers has a median of 10. If the three smallest integers are 6, 8, and 10, what is the smallest possible value for the largest integer in the set?",
+    "options": [
+      "11",
+      "12",
+      "13",
+      "15"
+    ],
+    "correct": 1,
+    "explanation": "Since all integers must be different and the median is 10, the fourth integer must be at least 11 and the fifth (largest) must be at least 12."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "statistics",
+    "question": "In a frequency distribution table with grouped data, the 'class mark' (mid-value) of the class interval 20 - 30 is:",
+    "options": [
+      "10",
+      "20",
+      "25",
+      "50"
+    ],
+    "correct": 2,
+    "explanation": "The class mark is calculated by adding the lower limit and upper limit and dividing by two: (20 + 30) / 2 = 25."
+  },
+  {
+    "subject": "mathematics",
+    "topic": "statistics",
+    "question": "A student's average marks for four subjects is 62. After the marks for a fifth subject are added, the average increases to 65. What marks did the student obtain for the fifth subject?",
+    "options": [
+      "65",
+      "68",
+      "77",
+      "80"
+    ],
+    "correct": 2,
+    "explanation": "Total marks for 4 subjects = 62 * 4 = 248. Total for 5 subjects = 65 * 5 = 325. Fifth subject mark = 325 - 248 = 77."
+  }
+]
