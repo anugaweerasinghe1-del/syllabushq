@@ -1,1 +1,1404 @@
-[]
+[
+  {
+    "subject": "mathematics",
+    "topic": "indices-logarithms",
+    "question": "State the condition under which the logarithm of a number is defined.",
+    "modelAnswer": "The logarithm of a number is defined only for positive real numbers. The base of the logarithm must also be a positive real number and not equal to 1.",
+    "markingPoints": [
+      "Number must be positive.",
+      "Base must be positive and not equal to 1."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "indices-logarithms",
+    "question": "Explain how logarithms can simplify the process of multiplication and division.",
+    "modelAnswer": "Logarithms convert multiplication into addition and division into subtraction. By using log tables or calculators, the logarithms of numbers are added or subtracted, and then the antilogarithm of the result is found, simplifying complex calculations.",
+    "markingPoints": [
+      "Converts multiplication to addition and division to subtraction.",
+      "Simplifies calculations by performing simpler operations on transformed numbers."
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "mathematics",
+    "topic": "indices-logarithms",
+    "question": "Consider the expression $P = x^a \\times x^b$. Briefly explain the rule of indices that applies here and state the simplified form.",
+    "modelAnswer": "When multiplying terms with the same base, the rule of indices states that the powers are added. Therefore, the simplified form is $P = x^{a+b}$.",
+    "markingPoints": [
+      "Rule: When multiplying powers with the same base, add the exponents.",
+      "Simplified form: $x^{a+b}$."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "indices-logarithms",
+    "question": "What is the relationship between a number, its base-10 logarithm, and its characteristic? Explain briefly.",
+    "modelAnswer": "The characteristic of a base-10 logarithm is the integer part of the logarithm. It indicates the position of the decimal point in the original number or the number of digits before the decimal point (minus one) if the number is greater than 1.",
+    "markingPoints": [
+      "Characteristic is the integer part of the base-10 logarithm.",
+      "Indicates the position of the decimal point in the original number."
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "mathematics",
+    "topic": "real-numbers",
+    "question": "State the difference between rational numbers and irrational numbers, providing an example for each.",
+    "modelAnswer": "Rational numbers can be expressed as a fraction p/q where p and q are integers and q is not zero, e.g., 2/3. Irrational numbers cannot be expressed in this form, e.g., √2.",
+    "markingPoints": [
+      "Defines rational numbers as expressible in p/q form (p,q integers, q≠0).",
+      "Provides a correct example of a rational number.",
+      "Defines irrational numbers as not expressible in p/q form.",
+      "Provides a correct example of an irrational number."
+    ],
+    "marks": 4
+  },
+  {
+    "subject": "mathematics",
+    "topic": "real-numbers",
+    "question": "Explain why 0.222... (0.2 recurring) is a rational number.",
+    "modelAnswer": "0.222... is a rational number because it can be expressed as a fraction, specifically 2/9. It has a repeating decimal expansion.",
+    "markingPoints": [
+      "States that it can be expressed as a fraction (e.g., 2/9).",
+      "Mentions that it has a recurring/repeating decimal expansion."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "real-numbers",
+    "question": "Convert the binary number 1011₂ into a base 10 (decimal) number. Show your working.",
+    "modelAnswer": "To convert 1011₂ to base 10, we expand it as 1×2³ + 0×2² + 1×2¹ + 1×2⁰. This calculates to 8 + 0 + 2 + 1, which equals 11₁₀.",
+    "markingPoints": [
+      "Correctly sets up the expanded form using powers of 2 (1×2³ + 0×2² + 1×2¹ + 1×2⁰).",
+      "Correctly calculates the sum of the powers.",
+      "Provides the correct final answer as 11₁₀."
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "mathematics",
+    "topic": "real-numbers",
+    "question": "State one advantage of using binary numbers in computer systems.",
+    "modelAnswer": "Binary numbers are fundamental in computer systems because they can be easily represented by electrical signals (on/off, high/low voltage), which simplifies circuit design and data processing.",
+    "markingPoints": [
+      "Mentions easy representation by electrical signals (on/off, high/low voltage).",
+      "Refers to simplified circuit design or data processing."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "fractions-decimals",
+    "question": "A recipe requires 3/4 cup of flour. If you want to make 2/3 of the recipe, what fraction of a cup of flour will be needed?",
+    "modelAnswer": "To find the fraction of flour needed, multiply the required amount by the fraction of the recipe desired: (3/4) * (2/3) = 6/12 = 1/2. Therefore, 1/2 cup of flour will be needed.",
+    "markingPoints": [
+      "Correctly identifies multiplication as the operation needed.",
+      "Calculates the product (3/4) * (2/3) correctly.",
+      "Simplifies the answer to 1/2 cup."
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "mathematics",
+    "topic": "fractions-decimals",
+    "question": "A tailor used 2.35 meters of cloth for a shirt and 1.8 meters for a pair of trousers. Estimate the total length of cloth used to the nearest whole meter.",
+    "modelAnswer": "Rounding 2.35 m to the nearest whole meter gives 2 m. Rounding 1.8 m to the nearest whole meter gives 2 m. The estimated total length is 2 m + 2 m = 4 meters.",
+    "markingPoints": [
+      "Correctly rounds 2.35 m to 2 m.",
+      "Correctly rounds 1.8 m to 2 m.",
+      "Adds the rounded values to find the estimated total."
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "mathematics",
+    "topic": "fractions-decimals",
+    "question": "Arrange the following fractions in ascending order: 2/3, 5/6, 1/2.",
+    "modelAnswer": "To arrange these fractions, first find a common denominator, which is 6. The fractions become 4/6, 5/6, and 3/6 respectively. Arranging them in ascending order gives 1/2, 2/3, 5/6.",
+    "markingPoints": [
+      "Identifies a common denominator (e.g., 6).",
+      "Converts fractions to equivalent fractions with the common denominator (4/6, 5/6, 3/6).",
+      "Lists the original fractions in correct ascending order."
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "mathematics",
+    "topic": "fractions-decimals",
+    "question": "A metal rod is 4.75 cm long. If 1.5 cm is cut off from it, what is the remaining length of the rod?",
+    "modelAnswer": "To find the remaining length, subtract the cut-off length from the original length. So, 4.75 cm - 1.5 cm = 3.25 cm. The remaining length of the rod is 3.25 cm.",
+    "markingPoints": [
+      "Correctly identifies subtraction as the operation needed.",
+      "Performs the subtraction 4.75 - 1.5 correctly.",
+      "States the final answer with units as 3.25 cm."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "percentages",
+    "question": "A shopkeeper bought an item for Rs. 800 and sold it for Rs. 920. Calculate the percentage profit.",
+    "modelAnswer": "The profit is Rs. 120 (920 - 800). The percentage profit is (120/800) * 100%, which equals 15%.",
+    "markingPoints": [
+      "Calculates profit (920-800 = 120)",
+      "Calculates percentage profit using formula (profit/cost price * 100%)",
+      "States final answer as 15%"
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "mathematics",
+    "topic": "percentages",
+    "question": "An article is sold at a 10% discount. If the marked price of the article is Rs. 2500, find the selling price.",
+    "modelAnswer": "The discount amount is 10% of Rs. 2500, which is Rs. 250. Therefore, the selling price is Rs. 2500 - Rs. 250 = Rs. 2250.",
+    "markingPoints": [
+      "Calculates the discount amount (10% of 2500 = 250)",
+      "Subtracts discount from marked price to find selling price",
+      "States final answer as Rs. 2250"
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "mathematics",
+    "topic": "percentages",
+    "question": "A merchant buys goods worth Rs. 5000 and incurs an overhead expense of Rs. 200. If he wishes to make a 15% profit on the total cost, what should be his selling price?",
+    "modelAnswer": "The total cost to the merchant is Rs. 5000 + Rs. 200 = Rs. 5200. To make a 15% profit, he needs to sell it for 115% of the total cost, which is 1.15 * Rs. 5200 = Rs. 5980.",
+    "markingPoints": [
+      "Calculates total cost (5000 + 200 = 5200)",
+      "Calculates profit amount or directly selling price using (1 + profit percentage) * cost",
+      "States final answer as Rs. 5980"
+    ],
+    "marks": 4
+  },
+  {
+    "subject": "mathematics",
+    "topic": "percentages",
+    "question": "A shop sold an item for Rs. 1800, making a profit of 20%. What was the cost price of the item?",
+    "modelAnswer": "If the profit is 20%, then the selling price of Rs. 1800 represents 120% of the cost price. To find the cost price, divide 1800 by 1.20, which gives Rs. 1500.",
+    "markingPoints": [
+      "Recognizes that 1800 represents 120% of the cost price",
+      "Sets up the equation or proportion (1800 / 1.20)",
+      "States final answer as Rs. 1500"
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "mathematics",
+    "topic": "equations",
+    "question": "State one key difference between a linear equation and a quadratic equation in terms of their highest power of the variable.",
+    "modelAnswer": "A linear equation has the highest power of its variable as 1, while a quadratic equation has the highest power of its variable as 2.",
+    "markingPoints": [
+      "Linear equation highest power is 1.",
+      "Quadratic equation highest power is 2."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "equations",
+    "question": "When solving an inequality, explain the condition under which the inequality sign must be reversed.",
+    "modelAnswer": "The inequality sign must be reversed when both sides of the inequality are multiplied or divided by a negative number.",
+    "markingPoints": [
+      "Multiplied or divided by a negative number.",
+      "Inequality sign must be reversed."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "equations",
+    "question": "What is meant by the 'solution set' of an inequality?",
+    "modelAnswer": "The solution set of an inequality refers to all the real values of the variable that make the inequality statement true.",
+    "markingPoints": [
+      "All real values of the variable.",
+      "Make the inequality statement true."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "equations",
+    "question": "Explain why the equation $x^2 = -4$ has no real solutions.",
+    "modelAnswer": "The square of any real number, whether positive or negative, is always non-negative. Therefore, there is no real number whose square is -4.",
+    "markingPoints": [
+      "Square of any real number is non-negative (positive or zero).",
+      "Cannot be negative (-4)."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "factors",
+    "question": "Factorize the expression: $4x^2 - 9$.",
+    "modelAnswer": "Recognize this as a difference of two squares. The factors are $(2x - 3)$ and $(2x + 3)$.",
+    "markingPoints": [
+      "Identifies as difference of two squares.",
+      "Correctly factors into $(2x - 3)(2x + 3)$."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "factors",
+    "question": "Factorize $x^2 + 7x + 12$.",
+    "modelAnswer": "Find two numbers whose product is 12 and sum is 7. These numbers are 3 and 4. Thus, the expression factors to $(x + 3)(x + 4)$.",
+    "markingPoints": [
+      "Identifies two numbers (3 and 4) that satisfy product 12 and sum 7.",
+      "Correctly writes the factors as $(x+3)(x+4)$."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "factors",
+    "question": "Factorize completely: $2a^2 + 4a$.",
+    "modelAnswer": "Identify the common factor which is $2a$. Factor out $2a$ to get $2a(a + 2)$.",
+    "markingPoints": [
+      "Identifies the common factor $2a$.",
+      "Correctly factors the expression as $2a(a+2)$."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "factors",
+    "question": "Factorize $y^2 - 10y + 25$.",
+    "modelAnswer": "Recognize this as a perfect square trinomial since 25 is $5^2$ and $10y$ is $2 \\times y \\times 5$. The expression factors to $(y - 5)^2$.",
+    "markingPoints": [
+      "Recognizes it as a perfect square trinomial or finds two numbers (-5 and -5) that multiply to 25 and sum to -10.",
+      "Correctly writes the factored form as $(y-5)^2$."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "ratio-proportion",
+    "question": "A sum of money Rs. 7500 is divided between Amal and Bimal in the ratio 2:3. Calculate the amount of money Bimal receives.",
+    "modelAnswer": "The total ratio parts are 2+3=5. Bimal receives 3/5 of the total amount. So, Bimal receives (3/5) * Rs. 7500 = Rs. 4500.",
+    "markingPoints": [
+      "Identifies total ratio parts (5)",
+      "Calculates Bimal's share as a fraction (3/5)",
+      "Calculates the final amount Bimal receives (Rs. 4500)"
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "mathematics",
+    "topic": "ratio-proportion",
+    "question": "If 8 men can complete a task in 12 days, how many extra men are needed to complete the same task in 8 days, assuming they work at the same rate?",
+    "modelAnswer": "The total work units are 8 men * 12 days = 96 units. To complete the task in 8 days, 96 units / 8 days = 12 men are needed. Therefore, 12 - 8 = 4 extra men are needed.",
+    "markingPoints": [
+      "Calculates total work units (96)",
+      "Calculates men needed for 8 days (12)",
+      "Calculates extra men needed (4)"
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "mathematics",
+    "topic": "ratio-proportion",
+    "question": "The ages of two brothers are in the ratio 3:5. If the younger brother is 18 years old, what is the age of the older brother?",
+    "modelAnswer": "Let the ages be 3x and 5x. Given that 3x = 18, so x = 6. Therefore, the older brother's age is 5 * 6 = 30 years.",
+    "markingPoints": [
+      "Establishes the relationship 3x = 18 or finds common multiplier (6)",
+      "Calculates the older brother's age (30 years)"
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "ratio-proportion",
+    "question": "A map has a scale of 1:50000. If the actual distance between two towns is 15 km, calculate the distance between these towns on the map in centimeters.",
+    "modelAnswer": "The actual distance of 15 km is 15 * 100000 cm = 1,500,000 cm. Using the scale 1:50000, the map distance is 1,500,000 cm / 50000 = 30 cm.",
+    "markingPoints": [
+      "Converts actual distance to centimeters (1,500,000 cm)",
+      "Applies the scale to find map distance",
+      "States the final map distance (30 cm)"
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "mathematics",
+    "topic": "algebraic-expressions",
+    "question": "Simplify the algebraic expression: $5(2x - 3) - 3(x + 4)$",
+    "modelAnswer": "To simplify, first distribute the constants into the brackets: $10x - 15 - 3x - 12$. Then, combine like terms: $(10x - 3x)$ and $(-15 - 12)$, which results in $7x - 27$.",
+    "markingPoints": [
+      "Correctly expands both brackets ($10x - 15$ and $-3x - 12$).",
+      "Correctly combines like terms to get $7x$.",
+      "Correctly combines constant terms to get $-27$."
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "mathematics",
+    "topic": "algebraic-expressions",
+    "question": "If $x = -2$ and $y = 3$, find the value of $3x^2 - 2y$.",
+    "modelAnswer": "Substitute the given values into the expression. This gives $3(-2)^2 - 2(3)$. Evaluate $(-2)^2$ as $4$, so $3(4) - 6$. Finally, calculate $12 - 6$, which equals $6$.",
+    "markingPoints": [
+      "Correctly substitutes values into the expression ($3(-2)^2 - 2(3)$).",
+      "Correctly evaluates $(-2)^2$ as $4$.",
+      "Correctly calculates the final value as $6$."
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "mathematics",
+    "topic": "algebraic-expressions",
+    "question": "Factorize the expression $4a^2 - 9b^2$.",
+    "modelAnswer": "The expression is a difference of two squares. Recognize $4a^2$ as $(2a)^2$ and $9b^2$ as $(3b)^2$. Therefore, it can be factorized as $(2a - 3b)(2a + 3b)$.",
+    "markingPoints": [
+      "Recognizes the expression as a difference of two squares.",
+      "Identifies $\\sqrt{4a^2}$ as $2a$ and $\\sqrt{9b^2}$ as $3b$.",
+      "Provides the fully factorized form $(2a - 3b)(2a + 3b)$."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "algebraic-expressions",
+    "question": "Explain why $(x-y)^2$ is not equal to $x^2 - y^2$.",
+    "modelAnswer": "$(x-y)^2$ expands to $(x-y)(x-y)$, which equals $x^2 - 2xy + y^2$. This is different from $x^2 - y^2$ because of the middle term $-2xy$. The expression $x^2 - y^2$ is a difference of two squares, not a squared binomial.",
+    "markingPoints": [
+      "Correctly expands $(x-y)^2$ to $x^2 - 2xy + y^2$.",
+      "Highlights the presence of the $-2xy$ term in the expansion.",
+      "States that $x^2 - y^2$ is a difference of two squares formula, not the expansion of $(x-y)^2$."
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "mathematics",
+    "topic": "simultaneous-equations",
+    "question": "When solving a pair of simultaneous equations, one linear and one quadratic, what is the maximum number of solutions possible for the unknown variables?",
+    "modelAnswer": "A pair of simultaneous equations, one linear and one quadratic, can have a maximum of two distinct solutions for the unknown variables. This occurs when the discriminant of the resulting quadratic equation is positive.",
+    "markingPoints": [
+      "Maximum of two solutions.",
+      "Resulting from a quadratic equation."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "simultaneous-equations",
+    "question": "A student solved the simultaneous equations $x+y=5$ and $x-y=1$ and found $x=3$ and $y=2$. Briefly explain how to verify if this solution is correct.",
+    "modelAnswer": "To verify the solution, substitute $x=3$ and $y=2$ into both original equations. If both equations are satisfied, meaning the left-hand side equals the right-hand side for both, then the solution is correct.",
+    "markingPoints": [
+      "Substitute values into BOTH original equations.",
+      "Check if both equations are satisfied (LHS=RHS)."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "simultaneous-equations",
+    "question": "When is the elimination method generally more efficient than the substitution method for solving two linear simultaneous equations?",
+    "modelAnswer": "The elimination method is generally more efficient when one of the variables has coefficients that are either the same or easily made the same (or additive inverses) in both equations, allowing for direct addition or subtraction to eliminate that variable.",
+    "markingPoints": [
+      "Coefficients of one variable are same/additive inverse.",
+      "Allows direct addition/subtraction to eliminate a variable."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "simultaneous-equations",
+    "question": "Consider the simultaneous equations $2x+3y=7$. If you want to use the method of substitution by isolating $x$, what would be the first step and the expression for $x$?",
+    "modelAnswer": "The first step would be to rearrange the equation to make $x$ the subject. This would give $2x = 7 - 3y$, and then $x = \\frac{7-3y}{2}$.",
+    "markingPoints": [
+      "Rearrange equation to make $x$ the subject.",
+      "State the correct expression for $x$ as $x = \\frac{7-3y}{2}$."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "quadratic-equations",
+    "question": "State the necessary condition for a quadratic equation $ax^2 + bx + c = 0$ to have real roots.",
+    "modelAnswer": "For a quadratic equation $ax^2 + bx + c = 0$ to have real roots, its discriminant, $b^2 - 4ac$, must be greater than or equal to zero. This means $b^2 - 4ac \\ge 0$.",
+    "markingPoints": [
+      "Identifies discriminant ($b^2 - 4ac$)",
+      "States condition ($b^2 - 4ac \\ge 0$)"
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "quadratic-equations",
+    "question": "Explain why the equation $x^2 + 4x + 5 = 0$ does not have real roots.",
+    "modelAnswer": "The discriminant of the equation $x^2 + 4x + 5 = 0$ is $b^2 - 4ac = (4)^2 - 4(1)(5) = 16 - 20 = -4$. Since the discriminant is negative ($< 0$), the equation does not have real roots.",
+    "markingPoints": [
+      "Calculates the discriminant as -4",
+      "Concludes that roots are not real because discriminant is negative"
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "mathematics",
+    "topic": "quadratic-equations",
+    "question": "If the roots of a quadratic equation are $p$ and $q$, express the equation in terms of $p$ and $q$ in its standard form.",
+    "modelAnswer": "If the roots of a quadratic equation are $p$ and $q$, the equation can be written as $(x-p)(x-q) = 0$. Expanding this gives $x^2 - (p+q)x + pq = 0$, which is the standard form.",
+    "markingPoints": [
+      "States $(x-p)(x-q) = 0$",
+      "Expands to $x^2 - (p+q)x + pq = 0$"
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "quadratic-equations",
+    "question": "Given that one root of the quadratic equation $x^2 - 6x + k = 0$ is 2, find the value of $k$.",
+    "modelAnswer": "If 2 is a root of the equation $x^2 - 6x + k = 0$, then substituting $x=2$ into the equation must satisfy it. So, $(2)^2 - 6(2) + k = 0$, which simplifies to $4 - 12 + k = 0$. Therefore, $-8 + k = 0$, meaning $k=8$.",
+    "markingPoints": [
+      "Substitutes x=2 into the equation",
+      "Sets up the equation $4 - 12 + k = 0$",
+      "Solves for $k=8$"
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "mathematics",
+    "topic": "perimeter-area",
+    "question": "A rectangular block of land has a length of 25m and a width of 15m. A fence is to be erected around the entire boundary. Calculate the total length of the fence required.",
+    "modelAnswer": "The perimeter of the rectangular land is calculated as 2 * (length + width). Substituting the given values, the total length of the fence required is 2 * (25m + 15m) = 80m.",
+    "markingPoints": [
+      "Formula for perimeter of a rectangle (2(l+w))",
+      "Correct substitution of length and width",
+      "Correct calculation of the perimeter"
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "mathematics",
+    "topic": "perimeter-area",
+    "question": "A circular pond has a radius of 7m. Calculate the area of the pond. (Take π = 22/7)",
+    "modelAnswer": "The area of a circular pond is given by the formula A = πr². Substituting the radius, the area is (22/7) * (7m)² = 22 * 7 m² = 154 m².",
+    "markingPoints": [
+      "Formula for area of a circle (πr²)",
+      "Correct substitution of radius and π",
+      "Correct calculation of the area"
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "mathematics",
+    "topic": "perimeter-area",
+    "question": "The perimeter of an equilateral triangle is 36 cm. Calculate the length of one side of the triangle.",
+    "modelAnswer": "In an equilateral triangle, all three sides are equal in length. Therefore, the length of one side is the perimeter divided by 3, which is 36 cm / 3 = 12 cm.",
+    "markingPoints": [
+      "Understanding that all sides of an equilateral triangle are equal",
+      "Dividing the perimeter by 3",
+      "Correct calculation of the side length"
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "perimeter-area",
+    "question": "A square garden has an area of 144 m². Find the length of one side of the garden.",
+    "modelAnswer": "The area of a square is calculated as side². To find the side length, we take the square root of the area. Thus, the length of one side is √144 m² = 12 m.",
+    "markingPoints": [
+      "Understanding area of square is side²",
+      "Taking the square root of the area",
+      "Correct calculation of the side length"
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "sets-probability",
+    "question": "In a survey of 50 students, 30 liked Mathematics (M), 25 liked Science (S), and 15 liked both. How many students liked neither Mathematics nor Science?",
+    "modelAnswer": "Let N(M) = 30, N(S) = 25, and N(M ∩ S) = 15. The number of students who liked at least one subject is N(M U S) = N(M) + N(S) - N(M ∩ S) = 30 + 25 - 15 = 40. Therefore, the number of students who liked neither is 50 - 40 = 10.",
+    "markingPoints": [
+      "Correctly identifies N(M U S) = N(M) + N(S) - N(M ∩ S)",
+      "Calculates N(M U S) correctly as 40",
+      "Calculates 'neither' as Total - N(M U S) = 10"
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "mathematics",
+    "topic": "sets-probability",
+    "question": "A fair coin is tossed two times. List all possible outcomes in the sample space and state the probability of getting at least one head.",
+    "modelAnswer": "The sample space S = {HH, HT, TH, TT}. The event of getting at least one head is E = {HH, HT, TH}. The probability P(E) = 3/4.",
+    "markingPoints": [
+      "Correctly lists the sample space S = {HH, HT, TH, TT}",
+      "Correctly identifies outcomes for 'at least one head'",
+      "States the probability of 3/4"
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "mathematics",
+    "topic": "sets-probability",
+    "question": "If A = {x : x is an integer, 1 < x ≤ 5} and B = {x : x is a prime number, x ≤ 7}, find the set A ∩ B.",
+    "modelAnswer": "First list the elements for set A: A = {2, 3, 4, 5}. Then list the elements for set B: B = {2, 3, 5, 7}. The intersection A ∩ B contains elements common to both sets, so A ∩ B = {2, 3, 5}.",
+    "markingPoints": [
+      "Correctly lists elements of set A as {2, 3, 4, 5}",
+      "Correctly lists elements of set B as {2, 3, 5, 7}",
+      "Correctly identifies the intersection A ∩ B = {2, 3, 5}"
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "mathematics",
+    "topic": "sets-probability",
+    "question": "A bag contains 4 red balls and 6 blue balls. If a ball is selected at random from the bag, what is the probability that it is a red ball? Express your answer as a simplified fraction.",
+    "modelAnswer": "The total number of balls in the bag is 4 (red) + 6 (blue) = 10. The number of red balls is 4. The probability of selecting a red ball is the number of red balls divided by the total number of balls, which is 4/10. This simplifies to 2/5.",
+    "markingPoints": [
+      "Calculates total number of balls (10)",
+      "States the probability as 4/10",
+      "Simplifies the fraction to 2/5"
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "State the locus of a point which is equidistant from two given intersecting straight lines.",
+    "modelAnswer": "The locus of a point equidistant from two intersecting straight lines is the pair of angle bisectors of the angles formed by the intersecting lines.",
+    "markingPoints": [
+      "Angle bisectors",
+      "of the angles formed by the intersecting lines"
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "A point P moves such that its distance from a fixed point O is always 5 cm. Describe the locus of P.",
+    "modelAnswer": "The locus of point P is a circle with its center at the fixed point O and a radius of 5 cm.",
+    "markingPoints": [
+      "A circle",
+      "Centered at O",
+      "With radius 5 cm"
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "Describe the locus of the center of a circle which touches two parallel lines.",
+    "modelAnswer": "The locus of the center of a circle touching two parallel lines is a straight line parallel to and exactly midway between the two given parallel lines.",
+    "markingPoints": [
+      "A straight line",
+      "Parallel to the given lines",
+      "Exactly midway between them"
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "A point moves such that it is always equidistant from two given points A and B. What is the geological shape of this locus?",
+    "modelAnswer": "The locus of a point equidistant from two given points A and B is the perpendicular bisector of the line segment joining A and B.",
+    "markingPoints": [
+      "Perpendicular bisector",
+      "of the line segment AB"
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "A regular polygon has an exterior angle of 45°. How many sides does this polygon have? State the formula you use.",
+    "modelAnswer": "The polygon has 8 sides. The formula used is (Number of sides) = 360° / (Exterior angle).",
+    "markingPoints": [
+      "Correctly states the number of sides as 8.",
+      "Correctly states the formula: n = 360/exterior angle."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "In a parallelogram ABCD, angle DAB = 70°. Find the measure of angle ABC. Justify your answer.",
+    "modelAnswer": "Angle ABC = 110°. This is because consecutive angles in a parallelogram are supplementary, meaning they add up to 180°.",
+    "markingPoints": [
+      "Correctly identifies angle ABC as 110°.",
+      "States that consecutive angles in a parallelogram are supplementary."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "The interior angles of a quadrilateral are x, 2x, 3x, and 4x. Find the value of x.",
+    "modelAnswer": "The value of x is 36°. The sum of the interior angles of a quadrilateral is 360°, so x + 2x + 3x + 4x = 360° which simplifies to 10x = 360°.",
+    "markingPoints": [
+      "Correctly establishes the equation 10x = 360° (or equivalent).",
+      "Calculates the value of x as 36°."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "State two properties of the diagonals of a rectangle.",
+    "modelAnswer": "The diagonals of a rectangle are equal in length. They also bisect each other.",
+    "markingPoints": [
+      "States that the diagonals are equal in length.",
+      "States that the diagonals bisect each other."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "A cylindrical water tank has a radius of 70 cm and a height of 2 m. Calculate the volume of water the tank can hold in litres. (Use π = 22/7)",
+    "modelAnswer": "First, convert all units to decimetres (dm) as 1 dm³ = 1 litre. The radius is 7 dm and the height is 20 dm. The volume is πr²h = (22/7) × 7² × 20 = 3080 dm³. Therefore, the tank can hold 3080 litres of water.",
+    "markingPoints": [
+      "Correct conversion of units to dm (r=7 dm, h=20 dm).",
+      "Correct formula for cylinder volume (V = πr²h) and substitution.",
+      "Correct calculation of volume in dm³.",
+      "Correct statement of volume in litres."
+    ],
+    "marks": 4
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "A solid metal cube of side length 10 cm is melted down and recast into smaller identical cubes, each of side length 2 cm. How many smaller cubes can be made?",
+    "modelAnswer": "The volume of the large cube is 10 cm × 10 cm × 10 cm = 1000 cm³. The volume of one small cube is 2 cm × 2 cm × 2 cm = 8 cm³. The number of smaller cubes is 1000 cm³ / 8 cm³ = 125.",
+    "markingPoints": [
+      "Correct calculation of volume of large cube.",
+      "Correct calculation of volume of one small cube.",
+      "Correct division to find the number of smaller cubes."
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "The total surface area of a cube is 294 cm². Find the length of one side of the cube.",
+    "modelAnswer": "The formula for the total surface area of a cube is 6a², where 'a' is the side length. So, 6a² = 294 cm². Dividing by 6 gives a² = 49 cm². Therefore, the side length 'a' is √49 cm = 7 cm.",
+    "markingPoints": [
+      "Correct formula for total surface area of a cube.",
+      "Correctly setting up the equation 6a² = 294.",
+      "Correct calculation of a² and subsequently 'a'."
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "A right circular cone has a base radius of 3 cm and a perpendicular height of 4 cm. Calculate its slant height.",
+    "modelAnswer": "Using Pythagoras' theorem, the slant height (l), radius (r), and height (h) are related by l² = r² + h². Substituting the given values, l² = 3² + 4² = 9 + 16 = 25. Therefore, the slant height (l) is √25 = 5 cm.",
+    "markingPoints": [
+      "Correct application of Pythagoras' theorem.",
+      "Correct substitution of values (3² + 4²).",
+      "Correct calculation of the slant height."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "trigonometry",
+    "question": "Given that $\\sin \\theta = \\frac{3}{5}$ and $\\theta$ is an acute angle, find the value of $\\cos \\theta$.",
+    "modelAnswer": "We can use the identity $\\sin^2 \\theta + \\cos^2 \\theta = 1$. Substituting the given value, we get $(\\frac{3}{5})^2 + \\cos^2 \\theta = 1$, which simplifies to $\\frac{9}{25} + \\cos^2 \\theta = 1$. Therefore, $\\cos^2 \\theta = 1 - \\frac{9}{25} = \\frac{16}{25}$. Since $\\theta$ is an acute angle, $\\cos \\theta$ is positive, so $\\cos \\theta = \\sqrt{\\frac{16}{25}} = \\frac{4}{5}$.",
+    "markingPoints": [
+      "Uses the trigonometric identity $\\sin^2 \\theta + \\cos^2 \\theta = 1$.",
+      "Correctly substitutes $\\sin \\theta = \\frac{3}{5}$ and solves for $\\cos^2 \\theta$.",
+      "Calculates the correct positive value for $\\cos \\theta$ as $\\frac{4}{5}$."
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "mathematics",
+    "topic": "trigonometry",
+    "question": "In a right-angled triangle ABC, the right angle is at B. If AB = 8 cm and BC = 6 cm, find the value of $\\tan C$.",
+    "modelAnswer": "In the right-angled triangle ABC, with the right angle at B, the side opposite to angle C is AB and the side adjacent to angle C is BC. Thus, $\\tan C = \\frac{\\text{Opposite}}{\\text{Adjacent}} = \\frac{AB}{BC} = \\frac{8}{6} = \\frac{4}{3}$.",
+    "markingPoints": [
+      "Identifies the opposite and adjacent sides to angle C correctly.",
+      "Applies the definition $\\tan C = \\frac{\\text{Opposite}}{\\text{Adjacent}}$.",
+      "States the correct value of $\\tan C = \\frac{8}{6}$ or $\\frac{4}{3}$."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "trigonometry",
+    "question": "An observer stands 20 m away from the base of a vertical flagpole. The angle of elevation of the top of the flagpole from the observer's eye is $30^\\circ$. Calculate the height of the flagpole.",
+    "modelAnswer": "Let the height of the flagpole be 'h' meters. We have a right-angled triangle where the adjacent side is 20 m and the opposite side is 'h'. Using $\\tan 30^\\circ = \\frac{\\text{Opposite}}{\\text{Adjacent}}$, we get $\\tan 30^\\circ = \\frac{h}{20}$. Since $\\tan 30^\\circ = \\frac{1}{\\sqrt{3}}$, we have $\\frac{1}{\\sqrt{3}} = \\frac{h}{20}$, so $h = \\frac{20}{\\sqrt{3}}$ m or approximately $11.55$ m.",
+    "markingPoints": [
+      "Identifies the correct trigonometric ratio (tangent) to use.",
+      "Sets up the equation $\\tan 30^\\circ = \\frac{h}{20}$.",
+      "Substitutes the value of $\\tan 30^\\circ$ and solves for h."
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "mathematics",
+    "topic": "trigonometry",
+    "question": "State the relationship between $\\sin (90^\\circ - x)$ and $\\cos x$.",
+    "modelAnswer": "The relationship between $\\sin (90^\\circ - x)$ and $\\cos x$ is that they are equal. Specifically, $\\sin (90^\\circ - x) = \\cos x$. This is a co-function identity.",
+    "markingPoints": [
+      "States that $\\sin (90^\\circ - x)$ is equal to $\\cos x$.",
+      "Mentions the co-function identity or complimentary angle relationship."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "circle-theorems",
+    "question": "A cyclic quadrilateral ABCD has angle BCD = 110°. If AB is parallel to DC, find the value of angle ABC. Give reasons for your steps.",
+    "modelAnswer": "Since ABCD is a cyclic quadrilateral, angle BAD + angle BCD = 180°. So, angle BAD = 180° - 110° = 70°. As AB is parallel to DC, angle ADC + angle BAD = 180° (co-interior angles). Thus, angle ABC = 110°.",
+    "markingPoints": [
+      "Opposite angles of a cyclic quadrilateral sum to 180° (∠BAD = 70°).",
+      "Co-interior angles between parallel lines sum to 180° (∠ABC = 110° or alternate segment theorem for parallel chords).",
+      "Or, angles on a straight line, then opposite angles of cyclic quad."
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "mathematics",
+    "topic": "circle-theorems",
+    "question": "In a circle with center O, AB is a chord. The perpendicular from O to AB meets AB at M. If the radius of the circle is 10 cm and AB = 16 cm, calculate the length of OM.",
+    "modelAnswer": "The perpendicular from the center to a chord bisects the chord, so AM = MB = 8 cm. Triangle OMA is a right-angled triangle. By Pythagoras theorem, OM² + AM² = OA². Therefore, OM² + 8² = 10², which gives OM² = 100 - 64 = 36. So, OM = 6 cm.",
+    "markingPoints": [
+      "Perpendicular from center bisects chord (AM = 8 cm).",
+      "Uses Pythagoras theorem correctly (OM² = 10² - 8²).",
+      "Calculates OM = 6 cm."
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "mathematics",
+    "topic": "circle-theorems",
+    "question": "PQ is a tangent to a circle at point P. R is a point on the circle such that PR is a chord. If angle QPR = 65°, find the angle subtended by the chord PR at the circumference in the alternate segment. Give your reason.",
+    "modelAnswer": "By the Alternate Segment Theorem, the angle between the tangent (PQ) and the chord (PR) through the point of contact (P) is equal to the angle (angle PSR) in the alternate segment. Therefore, the angle subtended by the chord PR at the circumference in the alternate segment is 65°.",
+    "markingPoints": [
+      "States or applies the Alternate Segment Theorem.",
+      "Identifies the correct angle in the alternate segment.",
+      "Correctly states the value as 65°."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "circle-theorems",
+    "question": "Two circles intersect at points A and B. A straight line is drawn through A meeting the circles at P and Q respectively. Prove that the angles subtended by the common chord AB at P and Q are equal (i.e., ∠APB = ∠AQB).",
+    "modelAnswer": "The points A, B, Q, and the intersection point with the 'first' circle form a cyclic quadrilateral. Similarly, A, B, P, and the intersection point with the 'second' circle form a cyclic quadrilateral. However, a simpler approach is to consider angles subtended by the same chord in the same segment. Chord AB subtends ∠APB in the first circle and ∠AQB in the second circle. If we consider cyclic quadrilaterals involving the common chord, we can show that for each circle, angles subtended by the same arc are equal. More directly, the angles ∠APB and ∠AQB both subtend the arc AB in their respective circles. If we consider AB as a common chord to both circles, the angles subtended by this chord at any point on the circumference of 'its own' segment are equal. Hence, ∠APB and ∠AQB are equal.",
+    "markingPoints": [
+      "Identifies that for each circle, angles subtended by the same arc at the circumference are equal.",
+      "Recognizes that AB is a common chord to both circles.",
+      "Concludes that both angles, ∠APB and ∠AQB, are subtended by the same arc AB (within their respective circles) or that it is a property of a common chord in intersecting circles."
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "mathematics",
+    "topic": "pythagoras",
+    "question": "A ladder 10 m long is placed against a vertical wall. If the base of the ladder is 6 m away from the wall on horizontal ground, calculate the height at which the top of the ladder touches the wall.",
+    "modelAnswer": "Let the height be 'h'. By the Pythagoras theorem: h² + 6² = 10². This gives h² = 100 - 36 = 64, so h = 8 m. Therefore, the ladder touches the wall at a height of 8 m.",
+    "markingPoints": [
+      "Identifies the sides of the right-angled triangle (hypotenuse as 10m, one leg as 6m).",
+      "Applies Pythagoras theorem correctly: h² + 6² = 10².",
+      "Calculates the correct height: h = 8 m."
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "mathematics",
+    "topic": "pythagoras",
+    "question": "In a right-angled triangle ABC, the hypotenuse AC is 13 cm and side AB is 5 cm. Determine the length of the remaining side BC.",
+    "modelAnswer": "Let the unknown side be BC. According to Pythagoras' theorem, AB² + BC² = AC². Substituting the values, 5² + BC² = 13². This simplifies to 25 + BC² = 169, so BC² = 144. Therefore, BC = 12 cm.",
+    "markingPoints": [
+      "Correctly sets up the Pythagoras equation: 5² + BC² = 13².",
+      "Performs correct calculation for BC² (169 - 25 = 144).",
+      "States the correct final answer for BC (12 cm)."
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "mathematics",
+    "topic": "pythagoras",
+    "question": "A rectangular field has a length of 24 meters and a width of 7 meters. Calculate the length of its diagonal.",
+    "modelAnswer": "The diagonal of a rectangle forms the hypotenuse of a right-angled triangle with the length and width as its legs. Using Pythagoras theorem, d² = 24² + 7². This results in d² = 576 + 49 = 625, so d = 25 meters. The length of the diagonal is 25 meters.",
+    "markingPoints": [
+      "Recognizes that the diagonal is the hypotenuse and applies Pythagoras theorem correctly: d² = 24² + 7².",
+      "Calculates the sum of squares correctly (576 + 49 = 625).",
+      "Finds the correct square root (d = 25 m)."
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "mathematics",
+    "topic": "pythagoras",
+    "question": "State the Pythagoras theorem in your own words with respect to a right-angled triangle 'PQR' where 'Q' is the right angle.",
+    "modelAnswer": "The Pythagoras theorem states that in a right-angled triangle, the square of the length of the hypotenuse (the side opposite the right angle) is equal to the sum of the squares of the lengths of the other two sides. In triangle PQR with Q as the right angle, this means PR² = PQ² + QR².",
+    "markingPoints": [
+      "Defines the theorem as the sum of squares of two shorter sides equals the square of the hypotenuse.",
+      "Correctly identifies the hypotenuse as the side opposite the right angle.",
+      "Applies the theorem specifically to triangle PQR: PR² = PQ² + QR²."
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "mathematics",
+    "topic": "graphs-functions",
+    "question": "The gradient of the straight line segment joining points (3, 5) and (7, y) is 2. Find the value of y. Show your working.",
+    "modelAnswer": "The formula for the gradient is (y2 - y1) / (x2 - x1). Substituting the given values, we get (y - 5) / (7 - 3) = 2. Solving this equation leads to y = 13.",
+    "markingPoints": [
+      "Correctly states or uses the gradient formula.",
+      "Correctly substitutes values into the formula.",
+      "Demonstrates correct algebraic manipulation to solve for y.",
+      "States the final correct value of y."
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "mathematics",
+    "topic": "graphs-functions",
+    "question": "For a quadratic function y = ax² + bx + c, explain how you would determine if the parabola opens upwards or downwards by observing the coefficient 'a'.",
+    "modelAnswer": "If the coefficient 'a' is positive (a > 0), the parabola opens upwards, indicating a minimum turning point. If 'a' is negative (a < 0), the parabola opens downwards, indicating a maximum turning point.",
+    "markingPoints": [
+      "States that 'a' > 0 means the parabola opens upwards.",
+      "States that 'a' < 0 means the parabola opens downwards."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "graphs-functions",
+    "question": "Consider the straight line represented by the equation y = -3x + 4. State the y-intercept and one other point on this line.",
+    "modelAnswer": "The y-intercept is 4 (or (0, 4)). Another point on this line can be found by substituting x=1, which gives y = -3(1) + 4 = 1, so (1, 1).",
+    "markingPoints": [
+      "Correctly identifies the y-intercept (4 or (0,4)).",
+      "Correctly identifies any other valid point on the line (e.g., (1,1), (2,-2))."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "graphs-functions",
+    "question": "The turning point of the quadratic function y = (x - h)² + k is (h, k). If the turning point of a parabola is (-2, 5), write down its equation in this form.",
+    "modelAnswer": "Given the turning point (-2, 5), we can directly substitute h = -2 and k = 5 into the form y = (x - h)² + k. Therefore, the equation is y = (x - (-2))² + 5, which simplifies to y = (x + 2)² + 5.",
+    "markingPoints": [
+      "Correctly substitutes h = -2.",
+      "Correctly substitutes k = 5.",
+      "Writes the final equation in the correct simplified form."
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "mathematics",
+    "topic": "statistics",
+    "question": "State two reasons why it is important to choose an appropriate scale when drawing a histogram or a frequency polygon.",
+    "modelAnswer": "An appropriate scale ensures that the data is represented clearly and accurately, making it easy to interpret the distribution and patterns. It also prevents the graph from being too compressed or too spread out, which could distort the visual representation of the data.",
+    "markingPoints": [
+      "Ensures clear and accurate data representation.",
+      "Facilitates easy interpretation of distribution/patterns.",
+      "Prevents distortion due to compression/spreading out."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "statistics",
+    "question": "Explain one advantage of using a grouped frequency distribution instead of an ungrouped frequency distribution when dealing with a large set of data.",
+    "modelAnswer": "A grouped frequency distribution simplifies a large dataset by organizing it into classes, making it easier to analyze trends and understand the overall pattern of the data. This reduces the complexity and makes the data more manageable for presentation and interpretation.",
+    "markingPoints": [
+      "Simplifies a large dataset/organizes into classes.",
+      "Makes it easier to analyze trends/overall patterns.",
+      "Reduces complexity/makes data more manageable."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "mathematics",
+    "topic": "statistics",
+    "question": "What is the primary difference between a discrete variable and a continuous variable in statistics? Give a relevant example for each.",
+    "modelAnswer": "A discrete variable can only take specific, distinct values, often integers, which can be counted; for example, the number of students in a class. A continuous variable can take any value within a given range and is typically measured; for example, the height of a student.",
+    "markingPoints": [
+      "Discrete variables take specific, distinct/countable values.",
+      "Continuous variables take any value within a range/measurable.",
+      "Correct example for discrete variable (e.g., number of items).",
+      "Correct example for continuous variable (e.g., height, weight)."
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "mathematics",
+    "topic": "statistics",
+    "question": "A student calculated the mean of a set of data as 55. If each data value was increased by 5, what would be the new mean? Justify your answer.",
+    "modelAnswer": "The new mean would be 60. When each data value in a set is increased by a constant, the mean of the data set also increases by that same constant.",
+    "markingPoints": [
+      "New mean is 60.",
+      "When each data value is increased by a constant, the mean also increases by that constant."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "source-documents",
+    "question": "Explain why a 'source document' is considered crucial in the accounting process.",
+    "modelAnswer": "A source document provides objective evidence for each transaction, ensuring accuracy and reliability in financial records. It acts as the initial record from which all accounting entries are made, supporting the audit trail.",
+    "markingPoints": [
+      "Provides objective evidence/proof of transaction.",
+      "Ensures accuracy/reliability of records.",
+      "Supports the audit trail/basis for accounting entries."
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "source-documents",
+    "question": "Identify two distinct books of prime entry that a business might use for its credit transactions.",
+    "modelAnswer": "A business would typically use the Purchases Day Book for recording all credit purchases of goods and the Sales Day Book for recording all credit sales of goods. Other credit transactions like purchase returns would go into the Returns Outwards Book.",
+    "markingPoints": [
+      "Purchases Day Book (for credit purchases).",
+      "Sales Day Book (for credit sales).",
+      "Returns Outwards Book (for purchase returns) / Returns Inwards Book (for sales returns)."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "source-documents",
+    "question": "Distinguish between a 'cash memo' and an 'invoice' as source documents.",
+    "modelAnswer": "A cash memo is issued for cash transactions, indicating immediate payment for goods or services. An invoice, on the other hand, is issued for credit transactions, detailing goods or services provided on credit with payment expected at a later date.",
+    "markingPoints": [
+      "Cash memo for cash transactions / immediate payment.",
+      "Invoice for credit transactions / payment due later."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "source-documents",
+    "question": "Describe the purpose of a 'Petit Cash Book' in an organization.",
+    "modelAnswer": "The Petty Cash Book is used to record small, day-to-day cash expenses that are impractical to record in the main Cash Book. It helps maintain control over minor outgoings and provides an organized record of these small disbursements.",
+    "markingPoints": [
+      "Records small, day-to-day cash expenses.",
+      "Manages/controls minor outgoings.",
+      "Avoids cluttering the main Cash Book."
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "intro-accounting",
+    "question": "State two main objectives of accounting for a business entity.",
+    "modelAnswer": "The primary objectives of accounting are to identify, measure, and communicate economic information to permit informed judgments by users. It also aims to provide information for decision-making and to ascertain the financial performance and position of a business.",
+    "markingPoints": [
+      "To provide information for decision making.",
+      "To ascertain the financial performance (profitability) of the business.",
+      "To ascertain the financial position (assets, liabilities, equity) of the business.",
+      "To communicate economic information to users."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "intro-accounting",
+    "question": "Briefly explain the role of accounting as an information system.",
+    "modelAnswer": "Accounting functions as an information system by identifying, recording, classifying, summarizing, and communicating financial data about a business. This process transforms raw data into meaningful reports that aid various stakeholders in making informed economic decisions.",
+    "markingPoints": [
+      "Identifies and records financial transactions.",
+      "Classifies and summarizes data into meaningful reports (e.g., financial statements).",
+      "Communicates financial information to users.",
+      "Aids in decision-making by providing relevant financial insights."
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "intro-accounting",
+    "question": "Differentiate between bookkeeping and accounting.",
+    "modelAnswer": "Bookkeeping is the methodical recording of financial transactions, serving as the initial stage in the accounting process. Accounting, on the other hand, encompasses bookkeeping but also involves the broader tasks of summarizing, analyzing, interpreting, and reporting financial information.",
+    "markingPoints": [
+      "Bookkeeping is primarily concerned with recording financial transactions.",
+      "Accounting involves summarizing, analyzing, interpreting, and reporting financial information.",
+      "Bookkeeping is a component/part of accounting.",
+      "Accounting uses bookkeeping data to produce financial statements."
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "intro-accounting",
+    "question": "Identify two internal users and two external users of accounting information.",
+    "modelAnswer": "Internal users typically include managers and employees, who use accounting information for operational decisions and performance evaluation. External users often consist of investors, who assess business profitability and risk, and government agencies, for tax assessment and regulatory compliance.",
+    "markingPoints": [
+      "Internal Users: Managers/Owners/Employees.",
+      "External Users: Investors/Creditors/Customers/Government/Public."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "accounting-equation",
+    "question": "State the fundamental accounting equation and briefly explain its significance to a business.",
+    "modelAnswer": "The fundamental accounting equation is Assets = Liabilities + Owner's Equity. It signifies that a business's total resources (assets) are always equal to the total claims against those resources by external parties (liabilities) and the owner (owner's equity).",
+    "markingPoints": [
+      "Correctly states Assets = Liabilities + Owner's Equity",
+      "Explains that assets equal total claims by creditors and owner"
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "accounting-equation",
+    "question": "A business purchased new machinery for Rs. 500,000 using a bank loan. Analyze how this transaction affects the accounting equation.",
+    "modelAnswer": "This transaction increases the asset 'Machinery' by Rs. 500,000 and simultaneously increases the liability 'Bank Loan' by Rs. 500,000. Owner's Equity remains unaffected, thus maintaining the balance of the accounting equation.",
+    "markingPoints": [
+      "Identifies increase in an asset (Machinery/Assets)",
+      "Identifies increase in a liability (Bank Loan/Liabilities)",
+      "States Owner's Equity is unchanged/Equation remains balanced"
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "accounting-equation",
+    "question": "Explain the concept of 'Owner's Equity' within the accounting equation and name two common components that can affect it.",
+    "modelAnswer": "Owner's Equity represents the owner's residual claim on the assets of the business after all liabilities have been settled. It is affected by capital contributions, drawings, profits, and losses. Two common components are Capital and Net Profit/Loss.",
+    "markingPoints": [
+      "Defines Owner's Equity as owner's residual claim/net worth",
+      "Mentions Capital and Net Profit/Loss (or Drawings as a third)"
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "accounting-equation",
+    "question": "If a business makes a profit of Rs. 75,000 during an accounting period, how would this impact the owner's equity component of the accounting equation?",
+    "modelAnswer": "A profit of Rs. 75,000 would increase the owner's equity by the same amount. Profit belongs to the owner, thereby increasing their claim on the business's assets.",
+    "markingPoints": [
+      "States Owner's Equity increases",
+      "States increase by Rs. 75,000",
+      "Explains profit belongs to owner increasing their claim"
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "double-entry",
+    "question": "State two advantages of maintaining double-entry accounting records for a business.",
+    "modelAnswer": "Double-entry system ensures mathematical accuracy of recorded transactions through trial balance preparation. It also provides a complete record of assets, liabilities, and capital, facilitating better financial statement preparation and decision-making.",
+    "markingPoints": [
+      "Ensures mathematical accuracy / facilitates trial balance.",
+      "Provides complete record for financial statements / decision-making."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "double-entry",
+    "question": "Explain the role of a ledger in the double-entry accounting system.",
+    "modelAnswer": "A ledger is a book or collection of accounts where all the financial transactions of a business are recorded, classified, and summarized. It provides a central location for individual accounts (e.g., cash, sales, purchases) to track their balances.",
+    "markingPoints": [
+      "Central location for accounts.",
+      "Records, classifies, and summarizes transactions."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "double-entry",
+    "question": "Differentiate between a debit entry and a credit entry in the context of the double-entry system.",
+    "modelAnswer": "A debit entry typically represents an increase in assets or expenses, or a decrease in liabilities, capital, or revenue. Conversely, a credit entry usually signifies a decrease in assets or expenses, or an increase in liabilities, capital, or revenue.",
+    "markingPoints": [
+      "Debit: Increase in assets/expenses OR decrease in liabilities/capital/revenue.",
+      "Credit: Decrease in assets/expenses OR increase in liabilities/capital/revenue."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "double-entry",
+    "question": "Identify and briefly describe the two main sides of a T-account.",
+    "modelAnswer": "The two main sides of a T-account are the debit side and the credit side. The debit side is the left side of the T-account, while the credit side is the right side. Entries are made on these sides according to the rules of double-entry.",
+    "markingPoints": [
+      "Debit side (left side).",
+      "Credit side (right side)."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "cash-book",
+    "question": "Explain one key difference between a single column cash book and a two-column cash book.",
+    "modelAnswer": "A single column cash book records only cash transactions (receipts and payments), whereas a two-column cash book includes both cash and bank transactions (receipts into bank and payments from bank) in separate columns.",
+    "markingPoints": [
+      "Single column: cash only / no bank column.",
+      "Two-column: cash and bank transactions / separate columns for cash and bank."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "cash-book",
+    "question": "State two reasons why a business might prepare a bank reconciliation statement.",
+    "modelAnswer": "A business prepares a bank reconciliation statement to identify and explain differences between the cash book balance and the bank statement balance. This process helps to detect errors or omissions in either record and ensures the accuracy of the cash balance.",
+    "markingPoints": [
+      "To identify / explain differences between cash book and bank statement.",
+      "To detect errors / omissions in records.",
+      "To ensure accuracy of cash balance."
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "cash-book",
+    "question": "Briefly describe the treatment of unpresented cheques when preparing a bank reconciliation statement.",
+    "modelAnswer": "Unpresented cheques are cheques issued by the business but not yet presented to the bank for payment. When preparing a bank reconciliation statement, these cheques are deducted from the bank statement balance to reconcile it with the cash book balance.",
+    "markingPoints": [
+      "Cheques issued by business not yet paid by bank.",
+      "Deducted from the bank statement balance."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "cash-book",
+    "question": "Identify two common reasons for 'timing differences' that lead to discrepancies between a company's cash book and its bank statement.",
+    "modelAnswer": "Two common reasons for timing differences include unpresented cheques, which are payments recorded in the cash book but not yet cleared by the bank, and uncredited deposits, which are receipts recorded in the cash book but not yet processed by the bank.",
+    "markingPoints": [
+      "Unpresented cheques (cheques issued not yet cleared by bank).",
+      "Uncredited / uncleared deposits (deposits made not yet recorded by bank)."
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "trial-balance",
+    "question": "Explain the primary purpose of preparing a Trial Balance in the accounting cycle.",
+    "modelAnswer": "The primary purpose of preparing a Trial Balance is to check the arithmetical accuracy of the double-entry bookkeeping system. It ensures that the total of all debit balances equals the total of all credit balances, providing a summary list of all ledger account balances.",
+    "markingPoints": [
+      "Checks arithmetical accuracy (of ledger accounts/double entry).",
+      "Ensures total debits equal total credits.",
+      "Summarises all ledger account balances."
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "trial-balance",
+    "question": "Identify two types of errors that would NOT be revealed by a Trial Balance.",
+    "modelAnswer": "Two types of errors not revealed by a Trial Balance are errors of omission, where an entire transaction is completely left out of the books, and errors of principle, where an item is correctly debited or credited but to the wrong class of account.",
+    "markingPoints": [
+      "Errors of omission (transaction completely omitted).",
+      "Errors of commission (correct amount, wrong personal account).",
+      "Errors of principle (correct amount, wrong class of account).",
+      "Compensating errors (two or more errors cancel each other out)."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "trial-balance",
+    "question": "Briefly explain why a Trial Balance, even if it balances, does not guarantee the complete accuracy of financial records.",
+    "modelAnswer": "A balanced Trial Balance only confirms the mathematical equality of total debits and credits. It does not detect certain errors like errors of omission, compensating errors, or errors of principle, which would not disrupt the equality of the debits and credits.",
+    "markingPoints": [
+      "Only checks arithmetical equality/debit=credit.",
+      "Does not detect errors that do not affect the balance (e.g., omission, compensating, principle)."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "trial-balance",
+    "question": "State the financial statement that is prepared directly after the Trial Balance, and mention one item from the Trial Balance that would be transferred to it.",
+    "modelAnswer": "The financial statements prepared directly after the Trial Balance are the Income Statement (or Statement of Profit or Loss) and the Statement of Financial Position (Balance Sheet). An item like Sales revenue or Purchases (for Income Statement) or Capital or Accounts Receivable (for Statement of Financial Position) would be transferred.",
+    "markingPoints": [
+      "Income Statement / Statement of Profit or Loss and/or Statement of Financial Position / Balance Sheet.",
+      "Correct example of an item transferred (e.g., Sales, Purchases, Expenses to Income Statement; Capital, Assets, Liabilities to Statement of Financial Position)."
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "control-accounts",
+    "question": "State two reasons why a business maintains a Sales Ledger Control Account.",
+    "modelAnswer": "A Sales Ledger Control Account helps verify the accuracy of the individual debtor accounts in the sales ledger by providing an independent check. It also facilitates the quick extraction of the total debtors balance for the preparation of financial statements.",
+    "markingPoints": [
+      "To check the arithmetic accuracy of the sales ledger / individual debtor accounts.",
+      "To quickly obtain the total debtors balance / balance for financial statements."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "control-accounts",
+    "question": "Explain the purpose of entering sales returns in a Purchases Ledger Control Account.",
+    "modelAnswer": "Sales returns made by the business to its suppliers, if not immediately repaid cash, reduce the amount owed to those suppliers. Therefore, they are credited to the Purchases Ledger Control Account to accurately reflect the decreased liability to trade payables.",
+    "markingPoints": [
+      "Represents goods returned by the business to its suppliers.",
+      "Reduces the amount owed to suppliers / trade payables.",
+      "Reflects the decreased liability in the Purchases Ledger Control Account."
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "control-accounts",
+    "question": "Outline one difference between a Sales Ledger Control Account and a Purchases Ledger Control Account.",
+    "modelAnswer": "A Sales Ledger Control Account summarises transactions related to trade receivables (debtors) and their balances, whereas a Purchases Ledger Control Account summarises transactions related to trade payables (creditors) and their balances. The former generally has a debit balance, while the latter generally has a credit balance.",
+    "markingPoints": [
+      "Sales Ledger Control Account deals with trade receivables / debtors; Purchases Ledger Control Account deals with trade payables / creditors.",
+      "Sales Ledger Control Account generally has a debit balance; Purchases Ledger Control Account generally has a credit balance."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "control-accounts",
+    "question": "What is the consequence of omitting a debit note issued to a supplier from the Purchases Ledger Control Account?",
+    "modelAnswer": "Omitting a debit note issued to a supplier from the Purchases Ledger Control Account would lead to an overstated balance. This is because the debit note represents a reduction in the amount owed to the supplier which has not been accounted for, thus making the total trade payables appear higher than they actually are.",
+    "markingPoints": [
+      "The Purchases Ledger Control Account balance would be overstated.",
+      "The amount owed to suppliers / trade payables would be inflated.",
+      "The reduction in liability was not recorded."
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "adjustments",
+    "question": "Explain the purpose of preparing a suspense account.",
+    "modelAnswer": "A suspense account is a temporary account opened to record the difference in the totals of the debit and credit sides of the trial balance. Its primary purpose is to localize and hold unidentified errors until they are discovered and rectified, thus allowing the preparation of financial statements.",
+    "markingPoints": [
+      "Temporary account to record difference in trial balance.",
+      "Holds unidentified errors until rectification.",
+      "Allows preparation of financial statements."
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "adjustments",
+    "question": "Differentiate between an error of omission and an error of commission.",
+    "modelAnswer": "An error of omission occurs when a transaction is completely left out of the books of accounts, meaning it is neither debited nor credited. An error of commission, however, happens when a transaction is incorrectly recorded in an account of the correct class, such as recording a transaction in the wrong customer's account.",
+    "markingPoints": [
+      "Error of omission: Transaction completely unrecorded.",
+      "Error of commission: Transaction recorded in wrong account of correct class.",
+      "Example (omission): Not recording a purchase.",
+      "Example (commission): Debiting B's account instead of A's."
+    ],
+    "marks": 4
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "adjustments",
+    "question": "State two reasons why adjustments are necessary before preparing final accounts.",
+    "modelAnswer": "Adjustments are necessary to ensure that the final accounts reflect the true financial position and performance of the business by adhering to the accrual concept. They account for revenues earned and expenses incurred, but not yet recorded, and also for assets consumed or liabilities outstanding during the accounting period.",
+    "markingPoints": [
+      "To reflect true financial position/performance.",
+      "Adherence to accrual concept.",
+      "To account for unrecorded revenues/expenses (e.g., prepayments, accruals).",
+      "To account for depreciation or bad debts."
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "adjustments",
+    "question": "Identify two types of errors that would not affect the agreement of the trial balance.",
+    "modelAnswer": "Two types of errors that would not affect the agreement of the trial balance are errors of complete omission, where a transaction is entirely unrecorded, and compensating errors, where the effect of one error is nullified by another error of an equal and opposite amount.",
+    "markingPoints": [
+      "Error of complete omission.",
+      "Compensating error.",
+      "Error of principle.",
+      "Error of commission where wrong accounts of same class are used (e.g., wrong debtor)."
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "non-profit-accounting",
+    "question": "State two key differences between a Statement of Financial Position (Balance Sheet) of a non-profit organisation and a for-profit business.",
+    "modelAnswer": "A non-profit organisation's Statement of Financial Position features an 'Accumulated Fund' or 'General Fund' instead of owner's equity. Additionally, assets are often dedicated to charitable purposes rather than profit generation.",
+    "markingPoints": [
+      "Accumulated Fund/General Fund vs. Capital/Owner's Equity",
+      "Purpose of assets (charitable vs. profit generation)"
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "non-profit-accounting",
+    "question": "Explain why non-profit organisations typically prepare a Receipts and Payments Account instead of a Cash Book.",
+    "modelAnswer": "Non-profit organisations prepare a Receipts and Payments Account to summarise all cash and bank transactions over a period, providing a clear overview of cash movements without detailing individual transactions like a Cash Book. It serves as a basis for preparing income and expenditure accounts.",
+    "markingPoints": [
+      "Summarises all cash/bank transactions (received and paid)",
+      "Acts as a summary to prepare income and expenditure accounts",
+      "Focuses on overall cash movement rather than daily detailed entries"
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "non-profit-accounting",
+    "question": "Describe the purpose of an Income and Expenditure Account for a non-profit organisation.",
+    "modelAnswer": "The Income and Expenditure Account reports the financial performance of a non-profit organisation over a period, showing whether there was a surplus (excess of income over expenditure) or a deficit (excess of expenditure over income). It is prepared on an accrual basis.",
+    "markingPoints": [
+      "Reports financial performance over a period",
+      "Determines surplus or deficit",
+      "Prepared on an accrual basis"
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "non-profit-accounting",
+    "question": "Identify two types of funds commonly managed by a non-profit organisation other than the General Fund (Accumulated Fund).",
+    "modelAnswer": "Two types of funds commonly managed are 'Endowment Funds' which are permanent funds where only income generated can be spent, and 'Restricted Funds' which are for specific purposes as stipulated by the donor.",
+    "markingPoints": [
+      "Endowment Funds (permanent funds, only income spent)",
+      "Restricted Funds (for specific donor-stipulated purposes)"
+    ],
+    "marks": 2
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "financial-statements",
+    "question": "State two reasons why it is important for a business to prepare financial statements periodically.",
+    "modelAnswer": "Preparing financial statements helps evaluate the financial performance and position of the business, enabling informed decision-making. They are also crucial for communicating financial health to stakeholders such as investors, creditors, and government authorities.",
+    "markingPoints": [
+      "To assess financial performance/position.",
+      "To aid in decision-making.",
+      "To communicate information to stakeholders (e.g., investors, creditors)."
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "financial-statements",
+    "question": "Briefly explain the main purpose of preparing a Statement of Financial Position (Balance Sheet) at the end of an accounting period.",
+    "modelAnswer": "The main purpose of a Statement of Financial Position is to present a snapshot of the business's assets, liabilities, and owner's equity at a specific point in time. It helps stakeholders understand the financial structure and solvency of the entity.",
+    "markingPoints": [
+      "To show assets, liabilities, and owner's equity.",
+      "At a specific point in time.",
+      "To assess financial structure/solvency."
+    ],
+    "marks": 3
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "financial-statements",
+    "question": "Differentiate between 'cost of goods sold' and 'expenses' in the context of a trading business.",
+    "modelAnswer": "Cost of goods sold represents the direct costs associated with inventory that was sold during the period, such as the purchase price of goods. Expenses, on the other hand, are indirect costs incurred in generating revenue, like salaries, rent, and utilities, which are not directly tied to the production or acquisition of goods for sale.",
+    "markingPoints": [
+      "Cost of goods sold is direct cost of inventory sold.",
+      "Expenses are indirect costs for generating revenue.",
+      "Provide examples for each."
+    ],
+    "marks": 4
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "financial-statements",
+    "question": "Explain why 'Drawings' are deducted from Owner's Equity in the Statement of Changes in Equity.",
+    "modelAnswer": "Drawings represent assets or cash withdrawn from the business by the owner for personal use. These withdrawals reduce the owner's investment in the business, thereby decreasing the total owner's equity.",
+    "markingPoints": [
+      "Drawings are assets/cash withdrawn by owner for personal use.",
+      "Reduces the owner's investment.",
+      "Decreases total owner's equity."
+    ],
+    "marks": 3
+  }
+]
