@@ -88,20 +88,28 @@ function SubjectPage() {
             const disabled = count === 0;
             return (
               <li key={t.slug}>
-                <Link
-                  to="/$subject/$topic"
-                  params={{ subject: subject.slug, topic: t.slug }}
-                  disabled={disabled}
-                  className={
-                    "group flex items-center justify-between rounded-xl border border-border bg-card p-4 transition hover:border-ink hover:shadow-sm " +
-                    (disabled ? "pointer-events-none opacity-50" : "")
-                  }
-                >
-                  <span className="font-medium text-ink">{t.name}</span>
-                  <span className="font-num text-xs text-muted-foreground group-hover:text-ink">
-                    {count} Qs
-                  </span>
-                </Link>
+                {disabled ? (
+                  <div
+                    aria-disabled
+                    className="flex items-center justify-between rounded-xl border border-border bg-card p-4 opacity-50"
+                  >
+                    <span className="font-medium text-ink">{t.name}</span>
+                    <span className="font-num text-xs text-muted-foreground">
+                      Coming soon
+                    </span>
+                  </div>
+                ) : (
+                  <Link
+                    to="/$subject/$topic"
+                    params={{ subject: subject.slug, topic: t.slug }}
+                    className="group flex items-center justify-between rounded-xl border border-border bg-card p-4 transition hover:border-ink hover:shadow-sm"
+                  >
+                    <span className="font-medium text-ink">{t.name}</span>
+                    <span className="font-num text-xs text-muted-foreground group-hover:text-ink">
+                      {count} Qs
+                    </span>
+                  </Link>
+                )}
               </li>
             );
           })}
