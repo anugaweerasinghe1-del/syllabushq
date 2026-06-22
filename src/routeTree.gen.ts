@@ -12,11 +12,16 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SuggestRouteImport } from './routes/suggest'
 import { Route as StructuredRouteImport } from './routes/structured'
 import { Route as ReviewsRouteImport } from './routes/reviews'
+import { Route as PracticeRouteImport } from './routes/practice'
 import { Route as SubjectRouteImport } from './routes/$subject'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PracticeIndexRouteImport } from './routes/practice.index'
 import { Route as SubjectIndexRouteImport } from './routes/$subject.index'
+import { Route as PracticeModeRouteImport } from './routes/practice.$mode'
 import { Route as SubjectTopicRouteImport } from './routes/$subject.$topic'
+import { Route as PracticeModeIndexRouteImport } from './routes/practice.$mode.index'
 import { Route as SubjectTopicIndexRouteImport } from './routes/$subject.$topic.index'
+import { Route as PracticeModeSubjectRouteImport } from './routes/practice.$mode.$subject'
 import { Route as SubjectTopicResultsRouteImport } from './routes/$subject.$topic.results'
 import { Route as SubjectTopicPracticeRouteImport } from './routes/$subject.$topic.practice'
 
@@ -35,6 +40,11 @@ const ReviewsRoute = ReviewsRouteImport.update({
   path: '/reviews',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PracticeRoute = PracticeRouteImport.update({
+  id: '/practice',
+  path: '/practice',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SubjectRoute = SubjectRouteImport.update({
   id: '/$subject',
   path: '/$subject',
@@ -45,20 +55,40 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PracticeIndexRoute = PracticeIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => PracticeRoute,
+} as any)
 const SubjectIndexRoute = SubjectIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => SubjectRoute,
+} as any)
+const PracticeModeRoute = PracticeModeRouteImport.update({
+  id: '/$mode',
+  path: '/$mode',
+  getParentRoute: () => PracticeRoute,
 } as any)
 const SubjectTopicRoute = SubjectTopicRouteImport.update({
   id: '/$topic',
   path: '/$topic',
   getParentRoute: () => SubjectRoute,
 } as any)
+const PracticeModeIndexRoute = PracticeModeIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => PracticeModeRoute,
+} as any)
 const SubjectTopicIndexRoute = SubjectTopicIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => SubjectTopicRoute,
+} as any)
+const PracticeModeSubjectRoute = PracticeModeSubjectRouteImport.update({
+  id: '/$subject',
+  path: '/$subject',
+  getParentRoute: () => PracticeModeRoute,
 } as any)
 const SubjectTopicResultsRoute = SubjectTopicResultsRouteImport.update({
   id: '/results',
@@ -74,14 +104,19 @@ const SubjectTopicPracticeRoute = SubjectTopicPracticeRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$subject': typeof SubjectRouteWithChildren
+  '/practice': typeof PracticeRouteWithChildren
   '/reviews': typeof ReviewsRoute
   '/structured': typeof StructuredRoute
   '/suggest': typeof SuggestRoute
   '/$subject/$topic': typeof SubjectTopicRouteWithChildren
+  '/practice/$mode': typeof PracticeModeRouteWithChildren
   '/$subject/': typeof SubjectIndexRoute
+  '/practice/': typeof PracticeIndexRoute
   '/$subject/$topic/practice': typeof SubjectTopicPracticeRoute
   '/$subject/$topic/results': typeof SubjectTopicResultsRoute
+  '/practice/$mode/$subject': typeof PracticeModeSubjectRoute
   '/$subject/$topic/': typeof SubjectTopicIndexRoute
+  '/practice/$mode/': typeof PracticeModeIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -89,36 +124,49 @@ export interface FileRoutesByTo {
   '/structured': typeof StructuredRoute
   '/suggest': typeof SuggestRoute
   '/$subject': typeof SubjectIndexRoute
+  '/practice': typeof PracticeIndexRoute
   '/$subject/$topic/practice': typeof SubjectTopicPracticeRoute
   '/$subject/$topic/results': typeof SubjectTopicResultsRoute
+  '/practice/$mode/$subject': typeof PracticeModeSubjectRoute
   '/$subject/$topic': typeof SubjectTopicIndexRoute
+  '/practice/$mode': typeof PracticeModeIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/$subject': typeof SubjectRouteWithChildren
+  '/practice': typeof PracticeRouteWithChildren
   '/reviews': typeof ReviewsRoute
   '/structured': typeof StructuredRoute
   '/suggest': typeof SuggestRoute
   '/$subject/$topic': typeof SubjectTopicRouteWithChildren
+  '/practice/$mode': typeof PracticeModeRouteWithChildren
   '/$subject/': typeof SubjectIndexRoute
+  '/practice/': typeof PracticeIndexRoute
   '/$subject/$topic/practice': typeof SubjectTopicPracticeRoute
   '/$subject/$topic/results': typeof SubjectTopicResultsRoute
+  '/practice/$mode/$subject': typeof PracticeModeSubjectRoute
   '/$subject/$topic/': typeof SubjectTopicIndexRoute
+  '/practice/$mode/': typeof PracticeModeIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/$subject'
+    | '/practice'
     | '/reviews'
     | '/structured'
     | '/suggest'
     | '/$subject/$topic'
+    | '/practice/$mode'
     | '/$subject/'
+    | '/practice/'
     | '/$subject/$topic/practice'
     | '/$subject/$topic/results'
+    | '/practice/$mode/$subject'
     | '/$subject/$topic/'
+    | '/practice/$mode/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -126,26 +174,35 @@ export interface FileRouteTypes {
     | '/structured'
     | '/suggest'
     | '/$subject'
+    | '/practice'
     | '/$subject/$topic/practice'
     | '/$subject/$topic/results'
+    | '/practice/$mode/$subject'
     | '/$subject/$topic'
+    | '/practice/$mode'
   id:
     | '__root__'
     | '/'
     | '/$subject'
+    | '/practice'
     | '/reviews'
     | '/structured'
     | '/suggest'
     | '/$subject/$topic'
+    | '/practice/$mode'
     | '/$subject/'
+    | '/practice/'
     | '/$subject/$topic/practice'
     | '/$subject/$topic/results'
+    | '/practice/$mode/$subject'
     | '/$subject/$topic/'
+    | '/practice/$mode/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SubjectRoute: typeof SubjectRouteWithChildren
+  PracticeRoute: typeof PracticeRouteWithChildren
   ReviewsRoute: typeof ReviewsRoute
   StructuredRoute: typeof StructuredRoute
   SuggestRoute: typeof SuggestRoute
@@ -174,6 +231,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReviewsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/practice': {
+      id: '/practice'
+      path: '/practice'
+      fullPath: '/practice'
+      preLoaderRoute: typeof PracticeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/$subject': {
       id: '/$subject'
       path: '/$subject'
@@ -188,12 +252,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/practice/': {
+      id: '/practice/'
+      path: '/'
+      fullPath: '/practice/'
+      preLoaderRoute: typeof PracticeIndexRouteImport
+      parentRoute: typeof PracticeRoute
+    }
     '/$subject/': {
       id: '/$subject/'
       path: '/'
       fullPath: '/$subject/'
       preLoaderRoute: typeof SubjectIndexRouteImport
       parentRoute: typeof SubjectRoute
+    }
+    '/practice/$mode': {
+      id: '/practice/$mode'
+      path: '/$mode'
+      fullPath: '/practice/$mode'
+      preLoaderRoute: typeof PracticeModeRouteImport
+      parentRoute: typeof PracticeRoute
     }
     '/$subject/$topic': {
       id: '/$subject/$topic'
@@ -202,12 +280,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SubjectTopicRouteImport
       parentRoute: typeof SubjectRoute
     }
+    '/practice/$mode/': {
+      id: '/practice/$mode/'
+      path: '/'
+      fullPath: '/practice/$mode/'
+      preLoaderRoute: typeof PracticeModeIndexRouteImport
+      parentRoute: typeof PracticeModeRoute
+    }
     '/$subject/$topic/': {
       id: '/$subject/$topic/'
       path: '/'
       fullPath: '/$subject/$topic/'
       preLoaderRoute: typeof SubjectTopicIndexRouteImport
       parentRoute: typeof SubjectTopicRoute
+    }
+    '/practice/$mode/$subject': {
+      id: '/practice/$mode/$subject'
+      path: '/$subject'
+      fullPath: '/practice/$mode/$subject'
+      preLoaderRoute: typeof PracticeModeSubjectRouteImport
+      parentRoute: typeof PracticeModeRoute
     }
     '/$subject/$topic/results': {
       id: '/$subject/$topic/results'
@@ -255,9 +347,38 @@ const SubjectRouteChildren: SubjectRouteChildren = {
 const SubjectRouteWithChildren =
   SubjectRoute._addFileChildren(SubjectRouteChildren)
 
+interface PracticeModeRouteChildren {
+  PracticeModeSubjectRoute: typeof PracticeModeSubjectRoute
+  PracticeModeIndexRoute: typeof PracticeModeIndexRoute
+}
+
+const PracticeModeRouteChildren: PracticeModeRouteChildren = {
+  PracticeModeSubjectRoute: PracticeModeSubjectRoute,
+  PracticeModeIndexRoute: PracticeModeIndexRoute,
+}
+
+const PracticeModeRouteWithChildren = PracticeModeRoute._addFileChildren(
+  PracticeModeRouteChildren,
+)
+
+interface PracticeRouteChildren {
+  PracticeModeRoute: typeof PracticeModeRouteWithChildren
+  PracticeIndexRoute: typeof PracticeIndexRoute
+}
+
+const PracticeRouteChildren: PracticeRouteChildren = {
+  PracticeModeRoute: PracticeModeRouteWithChildren,
+  PracticeIndexRoute: PracticeIndexRoute,
+}
+
+const PracticeRouteWithChildren = PracticeRoute._addFileChildren(
+  PracticeRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SubjectRoute: SubjectRouteWithChildren,
+  PracticeRoute: PracticeRouteWithChildren,
   ReviewsRoute: ReviewsRoute,
   StructuredRoute: StructuredRoute,
   SuggestRoute: SuggestRoute,

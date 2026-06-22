@@ -3,7 +3,7 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { MODE_BY_SLUG, type Mode } from "@/lib/modes";
-import { subjectsQuery, questionsQuery, type Subject } from "@/lib/content";
+import { subjectsQuery, questionsQuery, type Subject, type Topic } from "@/lib/content";
 import { PremiumCard } from "@/components/PremiumCard";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { startNew } from "@/lib/quiz-session";
@@ -85,7 +85,7 @@ function SetupPage() {
           <Field label="Topic">
             <div className="flex flex-wrap gap-2">
               <Chip active={topic === "mix"} onClick={() => setTopic("mix")}>Mix of everything · {subjectQs.length}</Chip>
-              {subject.topics.map((t) => {
+              {subject.topics.map((t: Topic) => {
                 const c = topicCounts.get(t.slug) ?? 0;
                 if (c === 0) return null;
                 return (
