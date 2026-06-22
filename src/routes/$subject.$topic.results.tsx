@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { subjectsQuery, type Subject, type Topic } from "@/lib/content";
 import { SiteHeader } from "@/components/SiteHeader";
+import { MathText } from "@/components/MathText";
 
 type ResultItem = {
   question: string;
@@ -205,19 +206,19 @@ function ResultsPage() {
                       {idx + 1}
                     </span>
                     <div className="min-w-0">
-                      <p className="font-medium text-ink">{it.question}</p>
+                      <p className="font-medium text-ink"><MathText>{it.question}</MathText></p>
                       <p className="mt-2 text-sm text-charcoal">
                         <span className="text-muted-foreground">Correct:</span>{" "}
-                        {it.options[it.correct]}
+                        <MathText>{it.options[it.correct]}</MathText>
                       </p>
                       {!ok && it.chosen >= 0 && (
                         <p className="mt-1 text-sm text-charcoal">
                           <span className="text-muted-foreground">Your answer:</span>{" "}
-                          {it.options[it.chosen]}
+                          <MathText>{it.options[it.chosen]}</MathText>
                         </p>
                       )}
                       <p className="mt-2 text-sm text-muted-foreground">
-                        {it.explanation}
+                        <MathText>{it.explanation}</MathText>
                       </p>
                     </div>
                   </div>
