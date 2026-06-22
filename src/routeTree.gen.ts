@@ -13,6 +13,7 @@ import { Route as SuggestRouteImport } from './routes/suggest'
 import { Route as StructuredRouteImport } from './routes/structured'
 import { Route as ReviewsRouteImport } from './routes/reviews'
 import { Route as PracticeRouteImport } from './routes/practice'
+import { Route as ExamRouteImport } from './routes/exam'
 import { Route as SubjectRouteImport } from './routes/$subject'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PracticeIndexRouteImport } from './routes/practice.index'
@@ -22,6 +23,8 @@ import { Route as SubjectTopicRouteImport } from './routes/$subject.$topic'
 import { Route as PracticeModeIndexRouteImport } from './routes/practice.$mode.index'
 import { Route as SubjectTopicIndexRouteImport } from './routes/$subject.$topic.index'
 import { Route as PracticeModeSubjectRouteImport } from './routes/practice.$mode.$subject'
+import { Route as ExamStructuredSubjectRouteImport } from './routes/exam.structured.$subject'
+import { Route as ExamShortSubjectRouteImport } from './routes/exam.short.$subject'
 import { Route as SubjectTopicResultsRouteImport } from './routes/$subject.$topic.results'
 import { Route as SubjectTopicPracticeRouteImport } from './routes/$subject.$topic.practice'
 
@@ -43,6 +46,11 @@ const ReviewsRoute = ReviewsRouteImport.update({
 const PracticeRoute = PracticeRouteImport.update({
   id: '/practice',
   path: '/practice',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExamRoute = ExamRouteImport.update({
+  id: '/exam',
+  path: '/exam',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SubjectRoute = SubjectRouteImport.update({
@@ -90,6 +98,16 @@ const PracticeModeSubjectRoute = PracticeModeSubjectRouteImport.update({
   path: '/$subject',
   getParentRoute: () => PracticeModeRoute,
 } as any)
+const ExamStructuredSubjectRoute = ExamStructuredSubjectRouteImport.update({
+  id: '/structured/$subject',
+  path: '/structured/$subject',
+  getParentRoute: () => ExamRoute,
+} as any)
+const ExamShortSubjectRoute = ExamShortSubjectRouteImport.update({
+  id: '/short/$subject',
+  path: '/short/$subject',
+  getParentRoute: () => ExamRoute,
+} as any)
 const SubjectTopicResultsRoute = SubjectTopicResultsRouteImport.update({
   id: '/results',
   path: '/results',
@@ -104,6 +122,7 @@ const SubjectTopicPracticeRoute = SubjectTopicPracticeRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$subject': typeof SubjectRouteWithChildren
+  '/exam': typeof ExamRouteWithChildren
   '/practice': typeof PracticeRouteWithChildren
   '/reviews': typeof ReviewsRoute
   '/structured': typeof StructuredRoute
@@ -114,12 +133,15 @@ export interface FileRoutesByFullPath {
   '/practice/': typeof PracticeIndexRoute
   '/$subject/$topic/practice': typeof SubjectTopicPracticeRoute
   '/$subject/$topic/results': typeof SubjectTopicResultsRoute
+  '/exam/short/$subject': typeof ExamShortSubjectRoute
+  '/exam/structured/$subject': typeof ExamStructuredSubjectRoute
   '/practice/$mode/$subject': typeof PracticeModeSubjectRoute
   '/$subject/$topic/': typeof SubjectTopicIndexRoute
   '/practice/$mode/': typeof PracticeModeIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/exam': typeof ExamRouteWithChildren
   '/reviews': typeof ReviewsRoute
   '/structured': typeof StructuredRoute
   '/suggest': typeof SuggestRoute
@@ -127,6 +149,8 @@ export interface FileRoutesByTo {
   '/practice': typeof PracticeIndexRoute
   '/$subject/$topic/practice': typeof SubjectTopicPracticeRoute
   '/$subject/$topic/results': typeof SubjectTopicResultsRoute
+  '/exam/short/$subject': typeof ExamShortSubjectRoute
+  '/exam/structured/$subject': typeof ExamStructuredSubjectRoute
   '/practice/$mode/$subject': typeof PracticeModeSubjectRoute
   '/$subject/$topic': typeof SubjectTopicIndexRoute
   '/practice/$mode': typeof PracticeModeIndexRoute
@@ -135,6 +159,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/$subject': typeof SubjectRouteWithChildren
+  '/exam': typeof ExamRouteWithChildren
   '/practice': typeof PracticeRouteWithChildren
   '/reviews': typeof ReviewsRoute
   '/structured': typeof StructuredRoute
@@ -145,6 +170,8 @@ export interface FileRoutesById {
   '/practice/': typeof PracticeIndexRoute
   '/$subject/$topic/practice': typeof SubjectTopicPracticeRoute
   '/$subject/$topic/results': typeof SubjectTopicResultsRoute
+  '/exam/short/$subject': typeof ExamShortSubjectRoute
+  '/exam/structured/$subject': typeof ExamStructuredSubjectRoute
   '/practice/$mode/$subject': typeof PracticeModeSubjectRoute
   '/$subject/$topic/': typeof SubjectTopicIndexRoute
   '/practice/$mode/': typeof PracticeModeIndexRoute
@@ -154,6 +181,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/$subject'
+    | '/exam'
     | '/practice'
     | '/reviews'
     | '/structured'
@@ -164,12 +192,15 @@ export interface FileRouteTypes {
     | '/practice/'
     | '/$subject/$topic/practice'
     | '/$subject/$topic/results'
+    | '/exam/short/$subject'
+    | '/exam/structured/$subject'
     | '/practice/$mode/$subject'
     | '/$subject/$topic/'
     | '/practice/$mode/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/exam'
     | '/reviews'
     | '/structured'
     | '/suggest'
@@ -177,6 +208,8 @@ export interface FileRouteTypes {
     | '/practice'
     | '/$subject/$topic/practice'
     | '/$subject/$topic/results'
+    | '/exam/short/$subject'
+    | '/exam/structured/$subject'
     | '/practice/$mode/$subject'
     | '/$subject/$topic'
     | '/practice/$mode'
@@ -184,6 +217,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/$subject'
+    | '/exam'
     | '/practice'
     | '/reviews'
     | '/structured'
@@ -194,6 +228,8 @@ export interface FileRouteTypes {
     | '/practice/'
     | '/$subject/$topic/practice'
     | '/$subject/$topic/results'
+    | '/exam/short/$subject'
+    | '/exam/structured/$subject'
     | '/practice/$mode/$subject'
     | '/$subject/$topic/'
     | '/practice/$mode/'
@@ -202,6 +238,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SubjectRoute: typeof SubjectRouteWithChildren
+  ExamRoute: typeof ExamRouteWithChildren
   PracticeRoute: typeof PracticeRouteWithChildren
   ReviewsRoute: typeof ReviewsRoute
   StructuredRoute: typeof StructuredRoute
@@ -236,6 +273,13 @@ declare module '@tanstack/react-router' {
       path: '/practice'
       fullPath: '/practice'
       preLoaderRoute: typeof PracticeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/exam': {
+      id: '/exam'
+      path: '/exam'
+      fullPath: '/exam'
+      preLoaderRoute: typeof ExamRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/$subject': {
@@ -301,6 +345,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PracticeModeSubjectRouteImport
       parentRoute: typeof PracticeModeRoute
     }
+    '/exam/structured/$subject': {
+      id: '/exam/structured/$subject'
+      path: '/structured/$subject'
+      fullPath: '/exam/structured/$subject'
+      preLoaderRoute: typeof ExamStructuredSubjectRouteImport
+      parentRoute: typeof ExamRoute
+    }
+    '/exam/short/$subject': {
+      id: '/exam/short/$subject'
+      path: '/short/$subject'
+      fullPath: '/exam/short/$subject'
+      preLoaderRoute: typeof ExamShortSubjectRouteImport
+      parentRoute: typeof ExamRoute
+    }
     '/$subject/$topic/results': {
       id: '/$subject/$topic/results'
       path: '/results'
@@ -347,6 +405,18 @@ const SubjectRouteChildren: SubjectRouteChildren = {
 const SubjectRouteWithChildren =
   SubjectRoute._addFileChildren(SubjectRouteChildren)
 
+interface ExamRouteChildren {
+  ExamShortSubjectRoute: typeof ExamShortSubjectRoute
+  ExamStructuredSubjectRoute: typeof ExamStructuredSubjectRoute
+}
+
+const ExamRouteChildren: ExamRouteChildren = {
+  ExamShortSubjectRoute: ExamShortSubjectRoute,
+  ExamStructuredSubjectRoute: ExamStructuredSubjectRoute,
+}
+
+const ExamRouteWithChildren = ExamRoute._addFileChildren(ExamRouteChildren)
+
 interface PracticeModeRouteChildren {
   PracticeModeSubjectRoute: typeof PracticeModeSubjectRoute
   PracticeModeIndexRoute: typeof PracticeModeIndexRoute
@@ -378,6 +448,7 @@ const PracticeRouteWithChildren = PracticeRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SubjectRoute: SubjectRouteWithChildren,
+  ExamRoute: ExamRouteWithChildren,
   PracticeRoute: PracticeRouteWithChildren,
   ReviewsRoute: ReviewsRoute,
   StructuredRoute: StructuredRoute,
