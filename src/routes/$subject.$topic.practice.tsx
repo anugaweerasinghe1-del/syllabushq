@@ -13,6 +13,7 @@ import { markStudiedToday } from "@/lib/streak";
 import { recordScore } from "@/lib/scores";
 import { SiteHeader } from "@/components/SiteHeader";
 import { loadOrCreate, save, clear, startNew, defaultConfig, type Session } from "@/lib/quiz-session";
+import { MathText } from "@/components/MathText";
 
 export const Route = createFileRoute("/$subject/$topic/practice")({
   loader: async ({ context, params }) => {
@@ -225,7 +226,7 @@ function PracticePage() {
               <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-amber">Question {i + 1} of {set.length}</p>
               <span className="text-[11px] text-muted-foreground">1 mark</span>
             </div>
-            <h1 className="mt-3 text-xl font-medium leading-snug text-foreground sm:text-2xl">{q.question}</h1>
+            <h1 className="mt-3 text-xl font-medium leading-snug text-foreground sm:text-2xl"><MathText>{q.question}</MathText></h1>
 
             <ul className="mt-6 space-y-2.5">
               {q.options.map((opt, idx) => {
@@ -245,7 +246,7 @@ function PracticePage() {
                   <li key={idx}>
                     <button type="button" onClick={() => choose(idx)} className={cls}>
                       <span className={`font-num text-xs ${chosen ? "text-amber" : "text-muted-foreground"} pt-0.5`}>{String.fromCharCode(65 + idx)}</span>
-                      <span className="text-charcoal">{opt}</span>
+                      <span className="text-charcoal"><MathText>{opt}</MathText></span>
                     </button>
                   </li>
                 );
@@ -257,7 +258,7 @@ function PracticePage() {
                 <p className="font-semibold" style={{ color: picked === q.correct ? "var(--mint)" : "var(--coral)" }}>
                   {picked === q.correct ? "Correct" : "Not quite"}
                 </p>
-                <p className="mt-1 text-charcoal">{q.explanation}</p>
+                <p className="mt-1 text-charcoal"><MathText>{q.explanation}</MathText></p>
               </div>
             )}
 

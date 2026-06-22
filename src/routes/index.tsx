@@ -4,6 +4,8 @@ import { Suspense } from "react";
 import { subjectsQuery, questionsQuery, countBySubject } from "@/lib/content";
 import { StreakHeatmap } from "@/components/StreakHeatmap";
 import { SiteHeader } from "@/components/SiteHeader";
+import { PremiumCard } from "@/components/PremiumCard";
+import { MODES } from "@/lib/modes";
 
 const SITE = "https://syllabushq.lovable.app";
 
@@ -63,26 +65,23 @@ function Home() {
     <div className="min-h-screen">
       <SiteHeader />
       <main className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-16">
-        <section className="mb-12 sm:mb-16">
-          <p className="rise text-[11px] font-medium uppercase tracking-[0.28em] text-amber">
-            Sri Lankan G.C.E. O/L · English medium
+        <section className="mb-14 sm:mb-20">
+          <p className="rise text-[11px] font-medium uppercase tracking-[0.28em] text-muted-foreground">
+            Sri Lankan G.C.E. O/L · English medium · Exam intelligence
           </p>
-          <h1 className="rise-2 mt-4 font-display text-[44px] leading-[1.05] text-foreground sm:text-[72px] text-balance">
-            Master the syllabus.
-            <br />
-            <span className="italic text-amber">Own</span> the exam.
+          <h1 className="rise-2 mt-5 font-display text-[44px] leading-[1.02] text-foreground sm:text-[80px] text-balance">
+            Train like the <span className="italic text-muted-foreground">paper</span> is tomorrow.
           </h1>
-          <p className="rise-3 mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg">
-            Original O/L-style practice across Mathematics, Science, and Business
-            &amp; Accounting Studies. MCQs, structured papers, and short-answer
-            drills — built for the real paper, not for cramming.
+          <p className="rise-3 mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
+            A premium exam simulator for Mathematics, Science, and Business &amp; Accounting Studies.
+            Four dedicated modes. Real exam formatting. Math typeset properly.
           </p>
-          <div className="rise-3 mt-7 flex flex-wrap gap-3 text-sm">
-            <a href="#subjects" className="inline-flex items-center justify-center rounded-lg bg-amber px-5 py-3 font-semibold text-[color:var(--bg)] transition hover:brightness-110">
+          <div className="rise-3 mt-8 flex flex-wrap gap-3 text-sm">
+            <Link to="/practice" className="inline-flex items-center justify-center rounded-lg bg-foreground px-6 py-3 font-semibold text-background transition hover:brightness-110 animate-pulse-glow">
               Start practising →
-            </a>
-            <Link to="/structured" className="inline-flex items-center justify-center rounded-lg border border-hairline px-5 py-3 font-medium text-foreground transition hover:bg-secondary">
-              Structured papers
+            </Link>
+            <Link to="/practice/$mode" params={{ mode: "exam" }} className="inline-flex items-center justify-center rounded-lg border border-hairline-strong px-6 py-3 font-medium text-foreground transition hover:bg-surface-2">
+              Full exam simulation
             </Link>
           </div>
         </section>
@@ -91,17 +90,35 @@ function Home() {
           <StreakHeatmap />
         </Suspense>
 
-        <section id="subjects" className="mt-14 scroll-mt-20">
+        <section id="modes" className="mt-16 scroll-mt-20">
+          <div className="mb-6 flex items-end justify-between">
+            <h2 className="font-display text-3xl text-foreground sm:text-4xl">Four dedicated modes.</h2>
+            <Link to="/practice" className="text-xs text-muted-foreground hover:text-foreground">All modes →</Link>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {MODES.map((m, i) => (
+              <Link key={m.slug} to="/practice/$mode" params={{ mode: m.slug }}>
+                <PremiumCard className="p-5 h-full">
+                  <p className="font-num text-[10px] text-muted-foreground">0{i + 1}</p>
+                  <h3 className="mt-3 font-display text-xl text-foreground">{m.name}</h3>
+                  <p className="mt-1 text-[12px] text-muted-foreground">{m.tagline}</p>
+                </PremiumCard>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <section id="subjects" className="mt-16 scroll-mt-20">
           <div className="mb-5 flex items-end justify-between">
-            <h2 className="font-display text-3xl text-foreground sm:text-4xl">Pick a subject</h2>
-            <span className="text-xs text-muted-foreground">3 subjects · 22 topics each</span>
+            <h2 className="font-display text-3xl text-foreground sm:text-4xl">Three subjects.</h2>
+            <span className="text-xs text-muted-foreground">All English medium</span>
           </div>
           <SubjectGrid />
         </section>
 
         <section className="mt-16 grid gap-4 sm:grid-cols-3">
           <Feature title="Original questions" body="Every question is written for SyllabusHQ — never lifted from past papers." />
-          <Feature title="Three formats" body="MCQs for recall, structured papers for the real exam, short answer for written practice." />
+          <Feature title="Math typeset properly" body="No ugly sqrt(x)/2 — every expression rendered as real notation." />
           <Feature title="Honest streak" body="24-hour rolling streak. Miss a day, it resets. No fake gamification." />
         </section>
       </main>
@@ -119,10 +136,10 @@ function Home() {
 
 function Feature({ title, body }: { title: string; body: string }) {
   return (
-    <div className="rounded-2xl border border-hairline bg-surface p-5">
+    <PremiumCard className="p-5" hover={false}>
       <h3 className="font-display text-xl text-foreground">{title}</h3>
       <p className="mt-1.5 text-sm text-muted-foreground">{body}</p>
-    </div>
+    </PremiumCard>
   );
 }
 
@@ -130,37 +147,26 @@ function SubjectGrid() {
   const { data: subjects } = useSuspenseQuery(subjectsQuery);
   const { data: questions } = useSuspenseQuery(questionsQuery);
   const counts = countBySubject(questions);
-  const meta = [
-    { tag: "Numeric", glow: "rgba(245,165,36,0.25)" },
-    { tag: "Conceptual", glow: "rgba(61,220,151,0.22)" },
-    { tag: "Applied", glow: "rgba(255,107,92,0.2)" },
-  ];
+  const meta = ["Numeric", "Conceptual", "Applied"];
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {subjects.map((s, i) => {
         const count = counts.get(s.slug) ?? 0;
-        const m = meta[i % meta.length];
         return (
           <Link
             key={s.slug}
-            to="/$subject"
-            params={{ subject: s.slug }}
-            className="group relative overflow-hidden rounded-2xl border border-hairline bg-surface p-6 transition hover:-translate-y-0.5 hover:border-amber/40"
-            style={{ boxShadow: `0 0 0 0 ${m.glow}` }}
+            to="/practice/$mode/$subject"
+            params={{ mode: "mcq", subject: s.slug }}
           >
-            <div
-              className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100"
-              style={{ background: m.glow }}
-            />
-            <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-muted-foreground">
-              {m.tag}
-            </p>
-            <h3 className="mt-3 font-display text-2xl text-foreground">{s.name}</h3>
-            <p className="mt-1 text-sm text-muted-foreground">{s.topics.length} topics</p>
-            <div className="mt-8 flex items-baseline justify-between">
-              <span className="text-sm text-foreground/80 group-hover:text-amber">Start practice →</span>
-              <span className="font-num text-xs text-muted-foreground">{count} Qs</span>
-            </div>
+            <PremiumCard className="p-6 h-full">
+              <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-muted-foreground">{meta[i % 3]}</p>
+              <h3 className="mt-3 font-display text-2xl text-foreground">{s.name}</h3>
+              <p className="mt-1 text-sm text-muted-foreground">{s.topics.length} topics</p>
+              <div className="mt-8 flex items-baseline justify-between">
+                <span className="text-sm text-foreground">Start practice →</span>
+                <span className="font-num text-xs text-muted-foreground">{count} Qs</span>
+              </div>
+            </PremiumCard>
           </Link>
         );
       })}

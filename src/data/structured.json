@@ -1,1 +1,86 @@
-[]
+[
+  {
+    "subject": "mathematics", "topic": "quadratic-equations",
+    "context": "Solve the following problems showing all working clearly.",
+    "parts": [
+      { "label": "a", "prompt": "Solve the quadratic equation $x^2 - 5x + 6 = 0$ by factorisation.", "answer": "$(x-2)(x-3)=0$, so $x=2$ or $x=3$.", "marks": 3 },
+      { "label": "b", "prompt": "Hence find the values of $y$ when $y = 2x + 1$.", "answer": "When $x=2$, $y=5$. When $x=3$, $y=7$.", "marks": 2 },
+      { "label": "c", "prompt": "Verify your answer to (a) using the quadratic formula $x = \\dfrac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$.", "answer": "$a=1, b=-5, c=6$. Discriminant $= 25-24 = 1$. $x = (5\\pm 1)/2 = 3$ or $2$.", "marks": 3 }
+    ]
+  },
+  {
+    "subject": "mathematics", "topic": "trigonometry",
+    "context": "A vertical tower stands on horizontal ground. From a point P on the ground 24 m from the base of the tower, the angle of elevation to the top is 35°.",
+    "parts": [
+      { "label": "a", "prompt": "Draw a clear sketch showing the tower, point P, and the angle of elevation.", "answer": "Right triangle with horizontal side 24 m, angle 35° at P, vertical side h (height).", "marks": 2 },
+      { "label": "b", "prompt": "Calculate the height of the tower correct to two decimal places.", "answer": "$h = 24 \\tan 35° = 24 \\times 0.7002 = 16.80$ m.", "marks": 3 },
+      { "label": "c", "prompt": "From a second point Q, in line with P and the base, the angle of elevation is 50°. Find the distance PQ.", "answer": "Distance from base to Q: $h/\\tan 50° = 16.80/1.1918 = 14.10$ m. PQ $= 24 - 14.10 = 9.90$ m.", "marks": 3 }
+    ]
+  },
+  {
+    "subject": "mathematics", "topic": "statistics",
+    "context": "The marks obtained by 30 students in a mathematics test are summarised below. Marks: 10, 20, 30, 40, 50. Frequencies: 4, 7, 10, 6, 3.",
+    "parts": [
+      { "label": "a", "prompt": "Calculate the mean mark.", "answer": "$\\bar{x} = (40+140+300+240+150)/30 = 870/30 = 29$.", "marks": 3 },
+      { "label": "b", "prompt": "State the modal mark.", "answer": "Mode is 30 (highest frequency = 10).", "marks": 1 },
+      { "label": "c", "prompt": "Find the median mark.", "answer": "Median is the average of the 15th and 16th values. Cumulative: 4, 11, 21, … Both lie in the 30 class. Median = 30.", "marks": 2 }
+    ]
+  },
+  {
+    "subject": "science", "topic": "electricity",
+    "context": "A 12 V battery is connected to two resistors, $R_1 = 4 \\Omega$ and $R_2 = 6 \\Omega$, in series.",
+    "parts": [
+      { "label": "a", "prompt": "Calculate the total resistance of the circuit.", "answer": "$R = R_1 + R_2 = 4 + 6 = 10 \\Omega$.", "marks": 2 },
+      { "label": "b", "prompt": "Calculate the current flowing through the circuit.", "answer": "$I = V/R = 12/10 = 1.2$ A.", "marks": 2 },
+      { "label": "c", "prompt": "Calculate the potential difference across $R_2$.", "answer": "$V_2 = IR_2 = 1.2 \\times 6 = 7.2$ V.", "marks": 2 },
+      { "label": "d", "prompt": "State one advantage of connecting household appliances in parallel rather than in series.", "answer": "Each appliance receives the full mains voltage; failure of one does not disconnect the others.", "marks": 2 }
+    ]
+  },
+  {
+    "subject": "science", "topic": "chemical-reactions",
+    "context": "When dilute hydrochloric acid is added to magnesium ribbon, hydrogen gas is liberated.",
+    "parts": [
+      { "label": "a", "prompt": "Write the balanced chemical equation for the reaction.", "answer": "$\\text{Mg} + 2\\text{HCl} \\rightarrow \\text{MgCl}_2 + \\text{H}_2$.", "marks": 2 },
+      { "label": "b", "prompt": "Identify the type of reaction.", "answer": "Displacement (single replacement / redox) reaction.", "marks": 1 },
+      { "label": "c", "prompt": "Describe a simple test for hydrogen gas.", "answer": "Bring a burning splint to the mouth of the test tube; hydrogen burns with a 'pop' sound.", "marks": 2 },
+      { "label": "d", "prompt": "Calculate the volume of hydrogen produced at STP when 2.4 g of magnesium reacts completely. (Mg = 24, molar volume = 22.4 dm³)", "answer": "Moles Mg = 2.4/24 = 0.1 mol. Moles H$_2$ = 0.1. Volume = 0.1 × 22.4 = 2.24 dm³.", "marks": 3 }
+    ]
+  },
+  {
+    "subject": "science", "topic": "human-systems",
+    "context": "The diagram of the human heart shows four chambers and major blood vessels.",
+    "parts": [
+      { "label": "a", "prompt": "Name the chamber that pumps oxygenated blood to the body.", "answer": "Left ventricle.", "marks": 1 },
+      { "label": "b", "prompt": "State the function of the bicuspid (mitral) valve.", "answer": "Prevents backflow of blood from the left ventricle into the left atrium.", "marks": 2 },
+      { "label": "c", "prompt": "Explain why the wall of the left ventricle is thicker than that of the right ventricle.", "answer": "It must generate higher pressure to pump blood through the systemic circulation around the entire body, while the right ventricle only pumps to the nearby lungs.", "marks": 3 },
+      { "label": "d", "prompt": "Define 'double circulation'.", "answer": "Blood passes through the heart twice in one complete circuit: once through the pulmonary circuit (heart-lungs-heart) and once through the systemic circuit (heart-body-heart).", "marks": 2 }
+    ]
+  },
+  {
+    "subject": "business-accounting", "topic": "financial-statements",
+    "context": "The following balances were extracted from the books of Lakshan Traders on 31.12.2025: Sales 480,000; Purchases 290,000; Opening stock 35,000; Closing stock 42,000; Salaries 48,000; Rent 24,000; Other expenses 18,000.",
+    "parts": [
+      { "label": "a", "prompt": "Calculate the cost of goods sold.", "answer": "COGS = Opening stock + Purchases − Closing stock = 35,000 + 290,000 − 42,000 = 283,000.", "marks": 3 },
+      { "label": "b", "prompt": "Prepare the Trading and Profit & Loss Account in vertical format and calculate the Net Profit.", "answer": "Gross Profit = 480,000 − 283,000 = 197,000. Less expenses (48,000 + 24,000 + 18,000 = 90,000). Net Profit = 197,000 − 90,000 = 107,000.", "marks": 5 },
+      { "label": "c", "prompt": "Calculate the Gross Profit ratio and comment.", "answer": "GP ratio = 197,000/480,000 × 100 = 41.04%. Healthy margin; the firm controls cost of purchases well.", "marks": 2 }
+    ]
+  },
+  {
+    "subject": "business-accounting", "topic": "cash-book",
+    "context": "On 30 June 2025 the cash book of Nimal showed a debit balance of Rs. 18,400. The bank statement showed a credit balance of Rs. 21,200. The following items were identified: (i) Unpresented cheques Rs. 4,800; (ii) A direct deposit by a customer of Rs. 2,500 not recorded in the cash book; (iii) Bank charges of Rs. 300 not yet entered.",
+    "parts": [
+      { "label": "a", "prompt": "Update the cash book and find the adjusted cash book balance.", "answer": "Adjusted balance = 18,400 + 2,500 − 300 = 20,600.", "marks": 3 },
+      { "label": "b", "prompt": "Prepare a bank reconciliation statement starting from the adjusted cash book balance.", "answer": "Adjusted cash book 20,600 + Unpresented cheques 4,800 − (Outstanding deposits, none) = Bank statement balance 25,400. (If 21,200 is shown, additional unrecorded items would be reconciled.)", "marks": 4 },
+      { "label": "c", "prompt": "Explain one reason why differences arise between the cash book and the bank statement.", "answer": "Timing differences such as cheques issued by the firm but not yet presented for payment by the payee.", "marks": 2 }
+    ]
+  },
+  {
+    "subject": "business-accounting", "topic": "marketing",
+    "context": "A small bakery in Kandy plans to launch a new range of healthy bread products.",
+    "parts": [
+      { "label": "a", "prompt": "State two elements of the marketing mix.", "answer": "Any two of: Product, Price, Place, Promotion.", "marks": 2 },
+      { "label": "b", "prompt": "Suggest two suitable promotional methods for the bakery and justify each.", "answer": "Social media adverts (low cost, targets health-conscious youth) and in-store sampling (builds trust, encourages trial).", "marks": 4 },
+      { "label": "c", "prompt": "Explain why market segmentation is important before launching the new product.", "answer": "It allows the bakery to focus on customers most likely to value healthy bread, design appropriate pricing and channels, and avoid wasting promotional budget on uninterested groups.", "marks": 3 }
+    ]
+  }
+]
