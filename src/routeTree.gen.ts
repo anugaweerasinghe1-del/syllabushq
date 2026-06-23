@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SuggestRouteImport } from './routes/suggest'
 import { Route as StructuredRouteImport } from './routes/structured'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ReviewsRouteImport } from './routes/reviews'
 import { Route as PracticeRouteImport } from './routes/practice'
 import { Route as ExamRouteImport } from './routes/exam'
@@ -27,6 +28,7 @@ import { Route as ExamStructuredSubjectRouteImport } from './routes/exam.structu
 import { Route as ExamShortSubjectRouteImport } from './routes/exam.short.$subject'
 import { Route as SubjectTopicResultsRouteImport } from './routes/$subject.$topic.results'
 import { Route as SubjectTopicPracticeRouteImport } from './routes/$subject.$topic.practice'
+import { Route as LearnSubjectTopicSlugRouteImport } from './routes/learn.$subject.$topic.$slug'
 
 const SuggestRoute = SuggestRouteImport.update({
   id: '/suggest',
@@ -36,6 +38,11 @@ const SuggestRoute = SuggestRouteImport.update({
 const StructuredRoute = StructuredRouteImport.update({
   id: '/structured',
   path: '/structured',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ReviewsRoute = ReviewsRouteImport.update({
@@ -118,6 +125,11 @@ const SubjectTopicPracticeRoute = SubjectTopicPracticeRouteImport.update({
   path: '/practice',
   getParentRoute: () => SubjectTopicRoute,
 } as any)
+const LearnSubjectTopicSlugRoute = LearnSubjectTopicSlugRouteImport.update({
+  id: '/learn/$subject/$topic/$slug',
+  path: '/learn/$subject/$topic/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -125,6 +137,7 @@ export interface FileRoutesByFullPath {
   '/exam': typeof ExamRouteWithChildren
   '/practice': typeof PracticeRouteWithChildren
   '/reviews': typeof ReviewsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/structured': typeof StructuredRoute
   '/suggest': typeof SuggestRoute
   '/$subject/$topic': typeof SubjectTopicRouteWithChildren
@@ -138,11 +151,13 @@ export interface FileRoutesByFullPath {
   '/practice/$mode/$subject': typeof PracticeModeSubjectRoute
   '/$subject/$topic/': typeof SubjectTopicIndexRoute
   '/practice/$mode/': typeof PracticeModeIndexRoute
+  '/learn/$subject/$topic/$slug': typeof LearnSubjectTopicSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/exam': typeof ExamRouteWithChildren
   '/reviews': typeof ReviewsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/structured': typeof StructuredRoute
   '/suggest': typeof SuggestRoute
   '/$subject': typeof SubjectIndexRoute
@@ -154,6 +169,7 @@ export interface FileRoutesByTo {
   '/practice/$mode/$subject': typeof PracticeModeSubjectRoute
   '/$subject/$topic': typeof SubjectTopicIndexRoute
   '/practice/$mode': typeof PracticeModeIndexRoute
+  '/learn/$subject/$topic/$slug': typeof LearnSubjectTopicSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -162,6 +178,7 @@ export interface FileRoutesById {
   '/exam': typeof ExamRouteWithChildren
   '/practice': typeof PracticeRouteWithChildren
   '/reviews': typeof ReviewsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/structured': typeof StructuredRoute
   '/suggest': typeof SuggestRoute
   '/$subject/$topic': typeof SubjectTopicRouteWithChildren
@@ -175,6 +192,7 @@ export interface FileRoutesById {
   '/practice/$mode/$subject': typeof PracticeModeSubjectRoute
   '/$subject/$topic/': typeof SubjectTopicIndexRoute
   '/practice/$mode/': typeof PracticeModeIndexRoute
+  '/learn/$subject/$topic/$slug': typeof LearnSubjectTopicSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -184,6 +202,7 @@ export interface FileRouteTypes {
     | '/exam'
     | '/practice'
     | '/reviews'
+    | '/sitemap.xml'
     | '/structured'
     | '/suggest'
     | '/$subject/$topic'
@@ -197,11 +216,13 @@ export interface FileRouteTypes {
     | '/practice/$mode/$subject'
     | '/$subject/$topic/'
     | '/practice/$mode/'
+    | '/learn/$subject/$topic/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/exam'
     | '/reviews'
+    | '/sitemap.xml'
     | '/structured'
     | '/suggest'
     | '/$subject'
@@ -213,6 +234,7 @@ export interface FileRouteTypes {
     | '/practice/$mode/$subject'
     | '/$subject/$topic'
     | '/practice/$mode'
+    | '/learn/$subject/$topic/$slug'
   id:
     | '__root__'
     | '/'
@@ -220,6 +242,7 @@ export interface FileRouteTypes {
     | '/exam'
     | '/practice'
     | '/reviews'
+    | '/sitemap.xml'
     | '/structured'
     | '/suggest'
     | '/$subject/$topic'
@@ -233,6 +256,7 @@ export interface FileRouteTypes {
     | '/practice/$mode/$subject'
     | '/$subject/$topic/'
     | '/practice/$mode/'
+    | '/learn/$subject/$topic/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -241,8 +265,10 @@ export interface RootRouteChildren {
   ExamRoute: typeof ExamRouteWithChildren
   PracticeRoute: typeof PracticeRouteWithChildren
   ReviewsRoute: typeof ReviewsRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   StructuredRoute: typeof StructuredRoute
   SuggestRoute: typeof SuggestRoute
+  LearnSubjectTopicSlugRoute: typeof LearnSubjectTopicSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -259,6 +285,13 @@ declare module '@tanstack/react-router' {
       path: '/structured'
       fullPath: '/structured'
       preLoaderRoute: typeof StructuredRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/reviews': {
@@ -373,6 +406,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SubjectTopicPracticeRouteImport
       parentRoute: typeof SubjectTopicRoute
     }
+    '/learn/$subject/$topic/$slug': {
+      id: '/learn/$subject/$topic/$slug'
+      path: '/learn/$subject/$topic/$slug'
+      fullPath: '/learn/$subject/$topic/$slug'
+      preLoaderRoute: typeof LearnSubjectTopicSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -451,8 +491,10 @@ const rootRouteChildren: RootRouteChildren = {
   ExamRoute: ExamRouteWithChildren,
   PracticeRoute: PracticeRouteWithChildren,
   ReviewsRoute: ReviewsRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   StructuredRoute: StructuredRoute,
   SuggestRoute: SuggestRoute,
+  LearnSubjectTopicSlugRoute: LearnSubjectTopicSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
