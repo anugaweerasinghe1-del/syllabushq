@@ -1,121 +1,110 @@
-
 ## Goal
 
-Rebuild SyllabusHQ into a premium, dark, cinematic exam simulator inspired by TradingHQ. Restructure navigation so **Mode comes first**, then Subject → Topic → Setup → Exam. Each mode is its own experience. Fix math rendering with KaTeX. Expand question banks to 50+ per subject/mode.
+Transform SyllabusHQ into a premium AI-graded exam ecosystem for Sri Lankan GCSE O/L students — focused first on **Business & Accounting** and **Science (Combined)** — with on-the-fly original paper generation, AI marking against schemes, Apple-grade UI, retention loops, and ~500 programmatic SEO landing pages.
 
-## 1. Information Architecture (route restructure)
+## Phase 1 — AI Engineering
 
-Replace the current `/subject/topic` flow with a mode-first flow:
+**Bring-your-own free key.** I'll request `GOOGLE_AI_API_KEY` (Google AI Studio — free Gemini 2.5 Flash tier, 1500 req/day). One server-side helper `src/lib/ai-gateway.server.ts` wraps it via the AI SDK's `@ai-sdk/google` provider so we can hot-swap later.
 
+**Real-time AI Grading (`gradeAnswer.functions.ts`)**
+- Input: `{ question, studentAnswer, markingScheme, totalMarks, subject }`
+- Returns structured JSON via AI SDK `Output.object`: `{ marksAwarded, breakdown[{point,awarded,evidence}], misconceptions[], modelAnswer, nextStepHint }`
+- System prompt enforces Cambridge/Edexcel-style marking: award per scheme point, no double-credit, accept synonyms.
+- Streams partial feedback for perceived speed.
+
+**Original Paper Generation (`generatePaper.functions.ts`)**
+- Templates per subject in `src/data/paper-templates/`: each declares exact Paper 1 / Paper 2 structure (item count, marks, command words, topic distribution).
+  - Business Paper 1: 40 MCQ × 1 mark
+  - Business Paper 2: 5 structured (4–10 marks) + 1 case study
+  - Science Paper 1: 40 MCQ
+  - Science Paper 2: structured short + extended response
+- Generator calls Gemini with template + topic + difficulty + seed → returns LaTeX-rendered, scheme-attached questions.
+- **Cache layer**: hash(template+topic+difficulty+seed) → Lovable Cloud `generated_questions` table. Reuse on repeat, regenerate on miss. Keeps cost near zero and load instant.
+- Originality guard: prompt rewrites in own words, randomized names/numbers, banned-phrases list.
+
+**Math notation**: keep existing KaTeX `<MathText>`. Force generator to emit `$...$` / `$$...$$`. Add post-processor to validate.
+
+## Phase 2 — UI/UX (Apple Standard)
+
+**Style guide additions to `src/styles.css`**
+- Palette (dark luxe + light counterpart):
+  - bg `#07080B` / fg `#F5F5F7`
+  - surface glass `rgba(255,255,255,0.04)` + `backdrop-blur-2xl` + 1px `rgba(255,255,255,0.08)` border
+  - accent platinum `#C9CDD4`, focus glow `oklch(0.78 0.05 250)`
+  - subject hues: Business `#D4AF37`, Science `#5BC0BE`, Math `#9D8DF1`
+- Typography: keep `Instrument Serif` display, swap UI to **Geist Sans** + `Geist Mono` for marks/timer.
+- Motion tokens: ease `cubic-bezier(0.22, 1, 0.36, 1)`, durations 180/280/420ms. Page transitions via `framer-motion` (`AnimatePresence`, `layoutId` on cards).
+- Parallax: lightweight scroll-linked transforms on landing hero (no library — `useScroll` from framer-motion already installed).
+
+**Topic selection (Step 3) redesign**
+- 12-col responsive grid, glass cards with subject-tinted icon, hover lift + glow, multi-select chips, "Mix all" hero card spans 2 columns. Icons from `lucide-react`.
+
+**Global polish pass**
+- Buttons → unified `<GlowButton>` variants (primary/ghost/destructive).
+- Inputs/textareas → frosted with focus ring.
+- Loading screens use existing premium loader; add skeleton glassmorphism.
+
+## Phase 3 — Retention
+
+- **Zeigarnik resume**: home shows "Continue exam — Q14/40" card if `localStorage` has an incomplete session. Pulse animation, dismissable.
+- **Apple-style progress rings**: 3 concentric rings (Daily questions / Accuracy / Streak) on home + results. Pure SVG component `<ActivityRings>`.
+- **Mastery badges**: per topic accuracy ≥ 80% over ≥20 questions unlocks Bronze/Silver/Gold. Stored in `mastery` table. Subtle reveal animation on unlock.
+- Keep 24h honest streak; redesign visualization to a minimalist 12-week heatmap with platinum cells.
+
+**Copywriting rewrite (delivered in landing route)**
+- Hero: "Mastery, measured." / sub: "AI-graded O/L practice papers. Original questions. Instant feedback. Built for Sri Lanka's sharpest."
+- Three pillars: *Marked like a chief examiner.* / *Papers that never repeat.* / *Progress you can feel.*
+- CTA: "Begin a paper" (not "Start practice").
+
+## Phase 4 — Programmatic SEO (~500 pages)
+
+Matrix: `subjects(2) × topics(~10 each) × difficulty(3) × cities(8 SL cities: Colombo, Kandy, Galle, Jaffna, Negombo, Matara, Kurunegala, Anuradhapura)` ≈ 480 pages.
+
+- New dynamic route: `src/routes/learn.$subject.$topic.$slug.tsx` where slug encodes difficulty/city.
+- Static generation list built from `src/data/seo-matrix.ts`.
+- Each page renders: H1 (e.g. "Best Accounting Practice for O/L Students in Colombo"), 3 AI-pre-rendered original sample questions with worked solutions, study tips, FAQ schema, internal links to sibling topics + CTA to launch generator.
+- Replace static `public/sitemap.xml` with **dynamic** `src/routes/sitemap[.]xml.ts` enumerating the matrix.
+- `robots.txt` keeps `Allow: /` + Sitemap directive.
+- JSON-LD: `EducationalOccupationalProgram` + `FAQPage` + `BreadcrumbList` per page.
+- Per-route `head()` with unique title/description/canonical/og:url (no shared metadata).
+
+## Logic Flow — AI Marking & Paper Generation
+
+```text
+[Setup Wizard] -> generatePaper({subject, paper, topics, difficulty, count, seed})
+   |                |
+   |                v
+   |        hash() -> cache hit? -> return cached paper
+   |                |  miss
+   |                v
+   |        Gemini (template + constraints) -> validate + cache -> return
+   v
+[Exam Runtime] each answer -> gradeAnswer({question, scheme, studentAnswer})
+                              -> stream JSON marks + feedback
+                              -> persist attempt -> update mastery
+                              v
+[Results] aggregate -> recommendations + ring animations + badge unlocks
 ```
-/                         Landing (premium hero, "Start Practicing")
-/practice                 Mode selector (MCQ / Structured / Short Answer / Full Exam)
-/practice/$mode           Subject selector (Math / Science / Business)
-/practice/$mode/$subject  Topic + setup (topic or "Mix of everything", count, difficulty, time)
-/exam/$sessionId          Active exam runtime (per-mode UI)
-/exam/$sessionId/results  Results screen
-/reviews, /suggest        Keep as-is
-```
 
-Delete the leftover broken routes (`..index.tsx`, `..practice.tsx`, `..results.tsx`, `.index.tsx`, and the old `$subject.*` files). Keep `structured.tsx` only if used; otherwise remove. The `/practice/$mode` URL guarantees no mode bleed-through (Structured page never shows MCQ tabs, etc.).
+## Technical Notes
 
-## 2. Design system — TradingHQ-inspired dark premium
+- Stack stays: TanStack Start + Tailwind v4 + Lovable Cloud (Supabase) + KaTeX + framer-motion + lucide.
+- New deps: `@ai-sdk/google`, `ai` (already), `@fontsource/geist-sans`, `@fontsource/geist-mono`.
+- New tables (migration): `generated_questions(hash pk, subject, payload jsonb, created_at)`, `attempts(id, user_visitor, question_id, marks_awarded, total, created_at)`, `mastery(visitor, subject, topic, accuracy, attempts, tier)`. RLS + grants per project rules. Visitor-anon scoped (no auth in this pass).
+- Secret: request `GOOGLE_AI_API_KEY` from user after plan approval.
+- Image generation deferred — no OG images this pass to avoid placeholder penalty.
 
-Update `src/styles.css`:
+## Out of Scope (flagged)
 
-- Base: near-black `oklch(0.14 0.01 260)` background, graphite surfaces, subtle radial glow accents
-- Accent: single restrained accent (cool platinum/electric white with faint cyan glow) — drop the amber/mint/coral mix
-- Glassmorphism cards: `backdrop-blur-xl`, 1px hairline borders in `white/8`, soft inset highlights
-- Typography: keep `Instrument Serif` for editorial display, pair with `Geist` or `Inter Tight` for UI; tighten tracking on headlines
-- New tokens: `--surface-1/2/3`, `--border-hairline`, `--glow-accent`, `--shadow-cinematic`
-- Motion: subtle fade/slide-up on mount, no bouncy animations
+- User accounts/login (still anonymous via `visitor.ts`).
+- Math subject AI generator (templates exist but not prioritized this pass — kept on existing static bank).
+- Local LLM / Ollama (not viable in production).
 
-Build a small primitive layer: `PremiumCard`, `GlowButton`, `SectionHeading`, `StatPill`, `ProgressRing` in `src/components/ui-premium/`.
+## Deliverable order on approval
 
-## 3. Logo / branding
-
-Create `src/components/BrandMark.tsx`: minimal monogram "S/HQ" set in Instrument Serif with a thin platinum underline and faint glow. Use everywhere (header, favicon SVG, OG image, loading screen). Generate a matching favicon and `/og.png` (1200×630).
-
-## 4. Mode-specific experiences
-
-### MCQ
-- 1 question at a time, large answer cards, keyboard 1–4
-- Instant correct/incorrect feedback + explanation (toggle off in Full Exam)
-- Up to 50 questions, topic or Mix
-
-### Structured Papers
-- Pure exam-paper aesthetic: paper header ("National O/L Style — Specimen Paper"), candidate-number field (cosmetic), "Section A / B", bold mark allocations `[3]`
-- Multi-part questions `(a) (i) (ii)`, free-response textareas, no MCQ tabs
-- Reveal model answer + marking points after submit
-
-### Short Answer
-- 50 questions, one-at-a-time with progress bar
-- Textarea + "Reveal answer" with marking points & self-grade (correct / partial / wrong)
-- Score tallied from self-grade
-
-### Full Exam Simulation
-- Mixed paper: ~40 MCQ + 5 short + 2 structured (configurable)
-- Hard timer (default 2 hours), section progression, no feedback until submission
-- Final results: section-by-section breakdown, mark total, weak topics
-
-## 5. Question bank expansion (50+ per subject per mode)
-
-Reshape data files for fast lookups:
-
-```
-src/data/banks/
-  mathematics.mcq.json        ≥50
-  mathematics.short.json      ≥50
-  mathematics.structured.json ≥10 multi-part papers
-  science.*.json
-  business-accounting.*.json
-```
-
-Each item: `{ id, topic, difficulty: 'easy'|'medium'|'hard', marks, question, ... }`.
-
-Generation: run `scripts/generate-bank.mjs` using the Lovable AI Gateway in batches (per subject × mode), with strict O/L style prompts and JSON-schema validation. Cache to disk; never generate at runtime. Existing `questions.json` and `short-answer.json` content is merged in as the seed; we top up to ≥50 per (subject, mode).
-
-Style rules baked into the prompt: real GCSE/O/L phrasing, varied command words (State / Explain / Calculate / Justify), explicit `[marks]`, and **math written in LaTeX** (`$\sqrt{16}\div 2$`) — never `sqrt(16)/2`.
-
-`src/lib/bank.ts` exposes `getQuestions({ subject, mode, topic|'mix', difficulty, count, seed })` with deterministic sampling tied to the session.
-
-## 6. Math rendering (KaTeX)
-
-- `bun add katex react-katex` and import `katex/dist/katex.min.css` in `__root.tsx`
-- `<MathText>` component: splits text on `$...$` / `$$...$$` and renders inline/block KaTeX, plain text otherwise
-- Use `<MathText>` everywhere a question/option/explanation is rendered
-- Migration pass on existing data: regex-replace `sqrt(x)` → `$\sqrt{x}$`, `x^y` → `$x^{y}$`, `*` → `\times`, `/` → `\div` (script `scripts/latexify-bank.mjs`, manual spot-check)
-
-## 7. Setup wizard + loading screen
-
-`/practice/$mode/$subject` shows a 1-page card stack:
-1. Topic chips (incl. "Mix of everything")
-2. Difficulty (Easy / Medium / Hard / Mixed)
-3. Count slider (5–50)
-4. Time limit (Off / 15 / 30 / 60 / 120 min) — auto-defaulted per mode
-5. "Begin Exam" → loading screen (animated progress ring, rotating exam tips for ~1.2s) → `/exam/$sessionId`
-
-Session persisted in `sessionStorage` (existing `quiz-session.ts` extended; deterministic seed prevents reshuffles on refresh — the prior glitch fix is preserved).
-
-## 8. Results
-
-Premium completion screen: big score ring, correct/incorrect/blank, per-topic weakness chart, 3 personalized recommendations, "Retry weak topics" CTA, share/permalink. Save attempt summary to `localStorage` for streak/heatmap continuity.
-
-## 9. Cleanup / preservation
-
-- Keep: streak heatmap, reviews, suggestions, Supabase wiring, SEO (sitemap/llms.txt/robots), admin delete password
-- Remove: dead `..*.tsx` route files, legacy `structured.tsx` if superseded, unused `case-studies.json`
-- Regenerate `sitemap.xml` for new URLs
-
-## 10. Technical notes
-
-- TanStack file routes: new files `practice.tsx` (layout), `practice.index.tsx`, `practice.$mode.tsx`, `practice.$mode.$subject.tsx`, `exam.$sessionId.tsx`, `exam.$sessionId.results.tsx`
-- All data reads via `getQuestions()` — no per-render fetching from Supabase
-- Reusable components: `<ModeCard>`, `<SubjectCard>`, `<TopicChip>`, `<ExamShell>`, `<QuestionRenderer mode=...>`, `<ResultsPanel>`
-- No business-logic changes to Supabase tables; only UI + content additions
-
-## Out of scope (ask if you want them)
-
-- Server-side AI grading of short answers (currently self-graded)
-- Login/accounts (still anonymous per-browser)
-- Adding subjects beyond Math / Science / Business & Accounting
+1. Request `GOOGLE_AI_API_KEY` + provision migration & secrets.
+2. AI gateway helper + `gradeAnswer` + `generatePaper` server fns with cache.
+3. Style tokens + GlowButton/Glass primitives + redesigned topic picker.
+4. ActivityRings + Zeigarnik resume + mastery badges.
+5. Landing copy rewrite + parallax hero.
+6. SEO matrix + dynamic routes + dynamic sitemap.
