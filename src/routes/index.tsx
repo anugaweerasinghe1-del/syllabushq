@@ -148,7 +148,7 @@ function ProgressSection() {
 
   useEffect(() => {
     const days = getStudyDays();
-    const { currentStreak } = computeStreaks(days);
+    const { current } = computeStreaks(days);
     const today = new Date().toISOString().slice(0, 10);
     const daily = days.has(today) ? 1 : 0;
     // Accuracy fallback when no attempts yet: use 0.
@@ -160,7 +160,7 @@ function ProgressSection() {
     setData({
       daily,
       accuracy,
-      streak: Math.min(1, currentStreak / 7),
+      streak: Math.min(1, current / 7),
     });
   }, []);
 
