@@ -1,26 +1,29 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { subjectsQuery, questionsQuery, countBySubject } from "@/lib/content";
 import { StreakHeatmap } from "@/components/StreakHeatmap";
 import { SiteHeader } from "@/components/SiteHeader";
 import { PremiumCard } from "@/components/PremiumCard";
 import { MODES } from "@/lib/modes";
+import { ActivityRings } from "@/components/ActivityRings";
+import { ZeigarnikResume } from "@/components/ZeigarnikResume";
+import { getStudyDays, computeStreaks } from "@/lib/streak";
 
 const SITE = "https://syllabushq.lovable.app";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "SyllabusHQ — Free O/L practice for Sri Lankan students" },
+      { title: "SyllabusHQ — Mastery, measured. Free O/L exam practice." },
       {
         name: "description",
         content:
-          "Master Sri Lankan G.C.E. O/L Mathematics, Science, and Business & Accounting Studies. 325+ MCQs, structured papers, short-answer practice, and instant feedback. English medium. Free.",
+          "AI-graded Sri Lankan G.C.E. O/L practice papers. Original questions, instant feedback, real marking schemes. Mathematics, Science, Business & Accounting — English medium. Free.",
       },
       { name: "keywords", content: "O/L past papers, Sri Lanka O/L, G.C.E. Ordinary Level, O/L Mathematics, O/L Science, O/L Business Studies, O/L Accounting, English medium, MCQ practice, structured questions, model answers" },
-      { property: "og:title", content: "SyllabusHQ — Master the syllabus. Own the exam." },
-      { property: "og:description", content: "Free Sri Lankan O/L practice in English medium — MCQs, structured papers, and short-answer drills." },
+      { property: "og:title", content: "SyllabusHQ — Mastery, measured." },
+      { property: "og:description", content: "AI-graded O/L practice papers. Original questions. Instant feedback. Built for Sri Lanka's sharpest." },
       { property: "og:url", content: SITE + "/" },
     ],
     links: [{ rel: "canonical", href: SITE + "/" }],
@@ -70,15 +73,15 @@ function Home() {
             Sri Lankan G.C.E. O/L · English medium · Exam intelligence
           </p>
           <h1 className="rise-2 mt-5 font-display text-[44px] leading-[1.02] text-foreground sm:text-[80px] text-balance">
-            Train like the <span className="italic text-muted-foreground">paper</span> is tomorrow.
+            Mastery, <span className="italic text-muted-foreground">measured.</span>
           </h1>
           <p className="rise-3 mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
-            A premium exam simulator for Mathematics, Science, and Business &amp; Accounting Studies.
-            Four dedicated modes. Real exam formatting. Math typeset properly.
+            AI-graded O/L practice papers. Original questions, instant feedback,
+            real marking schemes. Built for Sri Lanka's sharpest.
           </p>
           <div className="rise-3 mt-8 flex flex-wrap gap-3 text-sm">
             <Link to="/practice" className="inline-flex items-center justify-center rounded-lg bg-foreground px-6 py-3 font-semibold text-background transition hover:brightness-110 animate-pulse-glow">
-              Start practising →
+              Begin a paper →
             </Link>
             <Link to="/practice/$mode" params={{ mode: "exam" }} className="inline-flex items-center justify-center rounded-lg border border-hairline-strong px-6 py-3 font-medium text-foreground transition hover:bg-surface-2">
               Full exam simulation
@@ -86,13 +89,19 @@ function Home() {
           </div>
         </section>
 
+        <div className="mb-8">
+          <ZeigarnikResume />
+        </div>
+
+        <ProgressSection />
+
         <Suspense fallback={<div className="h-44 animate-pulse rounded-2xl bg-surface" />}>
           <StreakHeatmap />
         </Suspense>
 
         <section id="modes" className="mt-16 scroll-mt-20">
           <div className="mb-6 flex items-end justify-between">
-            <h2 className="font-display text-3xl text-foreground sm:text-4xl">Four dedicated modes.</h2>
+            <h2 className="font-display text-3xl text-foreground sm:text-4xl">Four ways to practise.</h2>
             <Link to="/practice" className="text-xs text-muted-foreground hover:text-foreground">All modes →</Link>
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -117,9 +126,9 @@ function Home() {
         </section>
 
         <section className="mt-16 grid gap-4 sm:grid-cols-3">
-          <Feature title="Original questions" body="Every question is written for SyllabusHQ — never lifted from past papers." />
-          <Feature title="Math typeset properly" body="No ugly sqrt(x)/2 — every expression rendered as real notation." />
-          <Feature title="Honest streak" body="24-hour rolling streak. Miss a day, it resets. No fake gamification." />
+          <Feature title="Marked like a chief examiner." body="Type your answer. An AI grades it against a real marking scheme, point by point, in seconds." />
+          <Feature title="Papers that never repeat." body="Every question is generated fresh in the exact style of the Sri Lankan O/L English-medium papers." />
+          <Feature title="Progress you can feel." body="Apple-style rings, an honest 24-hour streak, and topic mastery badges that earn themselves." />
         </section>
       </main>
 
@@ -131,6 +140,53 @@ function Home() {
         </div>
       </footer>
     </div>
+  );
+}
+
+function ProgressSection() {
+  const [data, setData] = useState({ daily: 0, accuracy: 0, streak: 0 });
+
+  useEffect(() => {
+    const days = getStudyDays();
+    const { current } = computeStreaks(days);
+    const today = new Date().toISOString().slice(0, 10);
+    const daily = days.has(today) ? 1 : 0;
+    // Accuracy fallback when no attempts yet: use 0.
+    let accuracy = 0;
+    try {
+      const raw = localStorage.getItem("shq:accuracy");
+      if (raw) accuracy = Math.max(0, Math.min(1, Number(JSON.parse(raw))));
+    } catch {}
+    setData({
+      daily,
+      accuracy,
+      streak: Math.min(1, current / 7),
+    });
+  }, []);
+
+  return (
+    <section className="mb-10">
+      <PremiumCard className="p-6 sm:p-8" hover={false}>
+        <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-muted-foreground">
+              Today
+            </p>
+            <h2 className="mt-2 font-display text-3xl text-foreground">Three rings. One discipline.</h2>
+            <p className="mt-1 max-w-md text-sm text-muted-foreground">
+              Close the rings every day. Daily question, rolling accuracy, weekly streak.
+            </p>
+          </div>
+          <ActivityRings
+            rings={[
+              { label: "Daily", value: data.daily, color: "#6ee7b7" },
+              { label: "Accuracy", value: data.accuracy, color: "#fbbf24" },
+              { label: "Streak (week)", value: data.streak, color: "#e8ecf3" },
+            ]}
+          />
+        </div>
+      </PremiumCard>
+    </section>
   );
 }
 

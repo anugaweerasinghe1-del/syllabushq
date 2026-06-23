@@ -14,6 +14,105 @@ export type Database = {
   }
   public: {
     Tables: {
+      attempts: {
+        Row: {
+          created_at: string
+          id: string
+          marks_awarded: number
+          mode: string
+          question_hash: string | null
+          subject: string
+          topic: string | null
+          total_marks: number
+          visitor_token: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          marks_awarded?: number
+          mode: string
+          question_hash?: string | null
+          subject: string
+          topic?: string | null
+          total_marks?: number
+          visitor_token: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          marks_awarded?: number
+          mode?: string
+          question_hash?: string | null
+          subject?: string
+          topic?: string | null
+          total_marks?: number
+          visitor_token?: string
+        }
+        Relationships: []
+      }
+      generated_questions: {
+        Row: {
+          created_at: string
+          difficulty: string
+          hash: string
+          mode: string
+          payload: Json
+          subject: string
+          topic: string | null
+        }
+        Insert: {
+          created_at?: string
+          difficulty: string
+          hash: string
+          mode: string
+          payload: Json
+          subject: string
+          topic?: string | null
+        }
+        Update: {
+          created_at?: string
+          difficulty?: string
+          hash?: string
+          mode?: string
+          payload?: Json
+          subject?: string
+          topic?: string | null
+        }
+        Relationships: []
+      }
+      mastery: {
+        Row: {
+          attempts_count: number
+          correct_count: number
+          id: string
+          subject: string
+          tier: string
+          topic: string
+          updated_at: string
+          visitor_token: string
+        }
+        Insert: {
+          attempts_count?: number
+          correct_count?: number
+          id?: string
+          subject: string
+          tier?: string
+          topic: string
+          updated_at?: string
+          visitor_token: string
+        }
+        Update: {
+          attempts_count?: number
+          correct_count?: number
+          id?: string
+          subject?: string
+          tier?: string
+          topic?: string
+          updated_at?: string
+          visitor_token?: string
+        }
+        Relationships: []
+      }
       reviews: {
         Row: {
           comment: string
