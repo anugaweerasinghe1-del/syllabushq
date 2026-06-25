@@ -6,6 +6,7 @@ import { MathText } from "@/components/MathText";
 import { subjectsQuery, type Subject } from "@/lib/content";
 import shortData from "@/data/short-answer.json";
 import { markStudiedToday } from "@/lib/streak";
+import { StructuredAnswerInput } from "@/components/StructuredAnswerInput";
 
 type ShortQ = {
   subject: string; topic: string;
@@ -35,9 +36,6 @@ function ShortAnswerRunner() {
   const { subject } = Route.useLoaderData();
   const pool = useMemo(() => ALL.filter((q) => q.subject === subject.slug), [subject.slug]);
   const [i, setI] = useState(0);
-  const [draft, setDraft] = useState("");
-  const [reveal, setReveal] = useState(false);
-  const [grades, setGrades] = useState<Record<number, "correct" | "partial" | "wrong">>({});
 
   if (pool.length === 0) {
     return (
@@ -54,10 +52,8 @@ function ShortAnswerRunner() {
 
   const q = pool[i];
   const total = pool.length;
-  const score = Object.values(grades).reduce((acc, g) => acc + (g === "correct" ? 1 : g === "partial" ? 0.5 : 0), 0);
 
   function next() {
-    setReveal(false); setDraft("");
     if (i + 1 < total) setI(i + 1);
     markStudiedToday();
   }
@@ -68,7 +64,7 @@ function ShortAnswerRunner() {
       <main className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12">
         <div className="mb-5 flex items-center justify-between text-sm">
           <Link to="/practice/$mode/$subject" params={{ mode: "short", subject: subject.slug }} className="text-muted-foreground hover:text-foreground">← Exit</Link>
-          <span className="text-muted-foreground font-num">{i + 1} / {total} · Self-score {score}/{total}</span>
+          <span className="text-muted-foreground font-num">{i + 1} / {total}</span>
         </div>
 
         <div className="mb-6 h-1 w-full overflow-hidden rounded-full bg-[var(--hairline)]">
@@ -84,51 +80,25 @@ function ShortAnswerRunner() {
             <MathText>{q.question}</MathText>
           </h1>
 
-          <textarea
-            value={draft}
-            onChange={(e) => setDraft(e.target.value)}
-            disabled={reveal}
-            placeholder="Type your answer…"
-            className="mt-6 w-full min-h-[140px] resize-y rounded-xl border border-hairline bg-surface-2 p-4 text-sm text-foreground placeholder:text-muted-foreground/60 focus:border-foreground/40 focus:outline-none"
+          <StructuredAnswerInput
+            key={`${subject.slug}-${i}`}
+            question={q.question}
+            markingScheme={q.markingPoints.map((p) => `- ${p}`).join("\n") + `\n\nReference model answer:\n${q.modelAnswer}`}
+            totalMarks={q.marks}
+            subject={subject.name}
+            storageKey={`ol-short-${subject.slug}-${i}`}
           />
 
-          {!reveal ? (
-            <div className="mt-5 flex justify-end gap-2">
-              <button onClick={() => setReveal(true)} className="rounded-lg bg-foreground px-5 py-2 text-sm font-semibold text-background">
-                Reveal model answer
-              </button>
-            </div>
-          ) : (
-            <>
-              <div className="mt-6 rounded-xl border border-hairline bg-surface-2 p-5">
-                <p className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground">Model answer</p>
-                <p className="mt-2 text-sm text-foreground/90"><MathText>{q.modelAnswer}</MathText></p>
-                <p className="mt-4 text-[10px] uppercase tracking-[0.22em] text-muted-foreground">Marking points</p>
-                <ul className="mt-2 space-y-1 text-sm text-muted-foreground">
-                  {q.markingPoints.map((p, k) => (
-                    <li key={k}>· <MathText>{p}</MathText></li>
-                  ))}
-                </ul>
-              </div>
-              <div className="mt-5 flex flex-wrap items-center justify-between gap-2">
-                <div className="flex gap-2">
-                  <GradeBtn label="Correct" tone="mint" onClick={() => { setGrades({ ...grades, [i]: "correct" }); next(); }} />
-                  <GradeBtn label="Partial" tone="amber" onClick={() => { setGrades({ ...grades, [i]: "partial" }); next(); }} />
-                  <GradeBtn label="Wrong" tone="coral" onClick={() => { setGrades({ ...grades, [i]: "wrong" }); next(); }} />
-                </div>
-                <button onClick={next} className="text-xs text-muted-foreground hover:text-foreground">Skip →</button>
-              </div>
-            </>
-          )}
+          <div className="mt-6 flex justify-end">
+            <button
+              onClick={next}
+              className="rounded-lg border border-hairline px-4 py-2 text-xs text-muted-foreground hover:text-foreground"
+            >
+              Next question →
+            </button>
+          </div>
         </PremiumCard>
       </main>
     </div>
   );
-}
-
-function GradeBtn({ label, tone, onClick }: { label: string; tone: "mint" | "amber" | "coral"; onClick: () => void }) {
-  const c = tone === "mint" ? "border-[var(--mint)]/40 text-[var(--mint)] hover:bg-[color-mix(in_srgb,var(--mint)_10%,transparent)]"
-         : tone === "amber" ? "border-[var(--amber)]/40 text-[var(--amber)] hover:bg-[color-mix(in_srgb,var(--amber)_10%,transparent)]"
-         : "border-[var(--coral)]/40 text-[var(--coral)] hover:bg-[color-mix(in_srgb,var(--coral)_10%,transparent)]";
-  return <button onClick={onClick} className={`rounded-lg border px-4 py-2 text-xs font-semibold ${c}`}>{label}</button>;
 }

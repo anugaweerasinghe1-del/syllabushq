@@ -3,10 +3,13 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { MODE_BY_SLUG, type Mode } from "@/lib/modes";
-import { subjectsQuery, questionsQuery, type Subject, type Topic } from "@/lib/content";
+import { subjectsQuery, questionsQuery, type Subject } from "@/lib/content";
 import { PremiumCard } from "@/components/PremiumCard";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { startNew } from "@/lib/quiz-session";
+import { TopicPicker } from "@/components/TopicPicker";
+import { Slider } from "@/components/ui/slider";
+import { pickQuestions } from "@/lib/pickQuestions";
 
 export const Route = createFileRoute("/practice/$mode/$subject")({
   loader: async ({ params, context }) => {
@@ -26,7 +29,8 @@ function SetupPage() {
   const { data: allQuestions } = useSuspenseQuery(questionsQuery);
   const navigate = useNavigate();
 
-  const [topic, setTopic] = useState<string>("mix");
+  const [selectedTopics, setSelectedTopics] = useState<string[]>([]); // empty = mix
+  const [balanced, setBalanced] = useState(true);
   const [difficulty, setDifficulty] = useState<"all" | "easy" | "medium" | "hard">("all");
   const [count, setCount] = useState(mode.defaults.count);
   const [time, setTime] = useState(mode.defaults.time);
@@ -46,11 +50,16 @@ function SetupPage() {
     setLoading(true);
     setTimeout(() => {
       if (mode.slug === "mcq" || mode.slug === "exam") {
-        const pool = topic === "mix" ? subjectQs : subjectQs.filter((q) => q.topic === topic);
-        if (pool.length === 0) { setLoading(false); alert("No questions for this filter yet."); return; }
-        const topicSlug = topic === "mix" ? (subject.topics[0]?.slug ?? "mix") : topic;
-        startNew(subject.slug, topicSlug, pool, {
-          count: Math.min(count, pool.length),
+        const picked = pickQuestions({
+          pool: subjectQs,
+          topics: selectedTopics,
+          count,
+          balanced,
+        });
+        if (picked.length === 0) { setLoading(false); alert("No questions available for that selection yet."); return; }
+        const topicSlug = selectedTopics.length === 1 ? selectedTopics[0] : "mix";
+        startNew(subject.slug, topicSlug, picked, {
+          count: picked.length,
           timeLimitSec: time,
           difficulty,
           mode: mode.slug === "exam" ? "exam" : "mcq",
@@ -82,38 +91,42 @@ function SetupPage() {
         </div>
 
         <PremiumCard className="p-6 sm:p-8 rise-2" hover={false}>
-          <Field label="Topic">
-            <div className="flex flex-wrap gap-2">
-              <Chip active={topic === "mix"} onClick={() => setTopic("mix")}>Mix of everything · {subjectQs.length}</Chip>
-              {subject.topics.map((t: Topic) => {
-                const c = topicCounts.get(t.slug) ?? 0;
-                if (c === 0) return null;
-                return (
-                  <Chip key={t.slug} active={topic === t.slug} onClick={() => setTopic(t.slug)}>
-                    {t.name} · {c}
-                  </Chip>
-                );
-              })}
-            </div>
+          <Field label="Topics">
+            <TopicPicker
+              topics={subject.topics}
+              counts={topicCounts}
+              value={selectedTopics}
+              onChange={setSelectedTopics}
+              balanced={balanced}
+              onBalancedChange={setBalanced}
+            />
           </Field>
 
           {(mode.slug === "mcq" || mode.slug === "exam") && (
             <Field label="Difficulty">
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2">
                 {(["all", "easy", "medium", "hard"] as const).map((d) => (
                   <Chip key={d} active={difficulty === d} onClick={() => setDifficulty(d)}>{d}</Chip>
                 ))}
               </div>
+              <p className="mt-2 text-[11px] text-muted-foreground">
+                Each difficulty pulls a separately calibrated question bank.
+              </p>
             </Field>
           )}
 
-          <Field label={`Questions: ${count}`}>
-            <input
-              type="range" min={5} max={50} step={5}
-              value={count}
-              onChange={(e) => setCount(Number(e.target.value))}
-              className="w-full accent-foreground"
+          <Field label={`Number of questions · ${count}`}>
+            <Slider
+              value={[count]}
+              min={5}
+              max={50}
+              step={5}
+              onValueChange={(v) => setCount(v[0] ?? count)}
+              className="mt-1"
             />
+            <div className="mt-2 flex justify-between text-[10px] tabular-nums text-muted-foreground">
+              <span>5</span><span>15</span><span>25</span><span>35</span><span>50</span>
+            </div>
           </Field>
 
           <Field label="Time limit">
@@ -129,6 +142,9 @@ function SetupPage() {
                 <Chip key={o.v} active={time === o.v} onClick={() => setTime(o.v)}>{o.l}</Chip>
               ))}
             </div>
+            <p className="mt-2 text-[11px] text-muted-foreground">
+              The timer is enforced live — your paper auto-submits when it hits zero.
+            </p>
           </Field>
 
           <div className="mt-8 flex items-center justify-between">

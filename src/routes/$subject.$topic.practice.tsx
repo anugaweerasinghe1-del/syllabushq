@@ -14,6 +14,7 @@ import { recordScore } from "@/lib/scores";
 import { SiteHeader } from "@/components/SiteHeader";
 import { loadOrCreate, save, clear, startNew, defaultConfig, type Session } from "@/lib/quiz-session";
 import { MathText } from "@/components/MathText";
+import { ExamTimer } from "@/components/ExamTimer";
 
 export const Route = createFileRoute("/$subject/$topic/practice")({
   loader: async ({ context, params }) => {
@@ -58,31 +59,12 @@ function PracticePage() {
     setSession(loadOrCreate(subject.slug, topic.slug, pool));
   }, [pool, subject.slug, topic.slug]);
 
-  // Live ticking clock for the timer
-  const [now, setNow] = useState(() => Date.now());
-  useEffect(() => {
-    if (!session?.config?.timeLimitSec) return;
-    const t = setInterval(() => setNow(Date.now()), 1000);
-    return () => clearInterval(t);
-  }, [session?.config?.timeLimitSec]);
-
   const isExam = session?.config?.mode === "exam";
   const set: Question[] = useMemo(
     () => (session ? session.order.map((idx) => pool[idx]).filter(Boolean) : []),
     [session, pool],
   );
-
-  // Time remaining
   const timeLimit = session?.config?.timeLimitSec ?? 0;
-  const elapsed = session ? Math.floor((now - session.startedAt) / 1000) : 0;
-  const remaining = timeLimit ? Math.max(0, timeLimit - elapsed) : 0;
-
-  // Auto-submit when time runs out
-  useEffect(() => {
-    if (!session || !timeLimit) return;
-    if (remaining <= 0) finish();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [remaining === 0]);
 
   // Keyboard
   useEffect(() => {
@@ -190,10 +172,6 @@ function PracticePage() {
     });
   }
 
-  const mm = String(Math.floor(remaining / 60)).padStart(2, "0");
-  const ss = String(remaining % 60).padStart(2, "0");
-  const lowTime = timeLimit && remaining > 0 && remaining < 60;
-
   return (
     <div className="min-h-screen">
       <SiteHeader />
@@ -206,9 +184,11 @@ function PracticePage() {
           </div>
           <div className="flex items-center gap-4">
             {timeLimit > 0 && (
-              <div className={`font-num rounded-md border px-2.5 py-1 ${lowTime ? "border-coral text-coral animate-pulse" : "border-hairline text-foreground"}`}>
-                {mm}:{ss}
-              </div>
+              <ExamTimer
+                storageKey={`ol-timer-${subject.slug}-${topic.slug}-${session.attemptId}`}
+                durationSec={timeLimit}
+                onExpire={finish}
+              />
             )}
             <span className="font-num text-muted-foreground">{answered}/{set.length} answered · {completion}%</span>
             <button onClick={() => { if (confirm("Submit exam now?")) finish(); }} className="rounded-md bg-amber text-background px-3 py-1.5 text-xs font-semibold">Submit</button>
