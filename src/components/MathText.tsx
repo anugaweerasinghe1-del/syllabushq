@@ -1,6 +1,12 @@
 import { Fragment, useMemo } from "react";
-import { InlineMath, BlockMath } from "react-katex";
+import reactKatex from "react-katex";
 import "katex/dist/katex.min.css";
+
+// react-katex ships as CommonJS; named exports aren't reliable under Vite SSR/ESM.
+const { InlineMath, BlockMath } = reactKatex as unknown as {
+  InlineMath: React.ComponentType<{ math: string }>;
+  BlockMath: React.ComponentType<{ math: string }>;
+};
 
 /**
  * Renders text that may contain LaTeX delimited by $...$ (inline) or $$...$$ (block).
