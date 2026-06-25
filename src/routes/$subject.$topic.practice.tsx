@@ -14,6 +14,7 @@ import { recordScore } from "@/lib/scores";
 import { SiteHeader } from "@/components/SiteHeader";
 import { loadOrCreate, save, clear, startNew, defaultConfig, type Session } from "@/lib/quiz-session";
 import { MathText } from "@/components/MathText";
+import { ExamTimer } from "@/components/ExamTimer";
 
 export const Route = createFileRoute("/$subject/$topic/practice")({
   loader: async ({ context, params }) => {
