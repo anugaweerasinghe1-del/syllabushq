@@ -1,19 +1,24 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound, redirect } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import {
   subjectsQuery,
   questionsQuery,
   countByTopic,
+  resolveSubject,
   type Subject,
   type Topic,
 } from "@/lib/content";
 import { SiteHeader } from "@/components/SiteHeader";
+import { NotFoundShell } from "@/components/NotFoundShell";
 
 export const Route = createFileRoute("/$subject/")({
   loader: async ({ context, params }) => {
     const subjects = await context.queryClient.ensureQueryData(subjectsQuery);
-    const subject = subjects.find((s: Subject) => s.slug === params.subject);
+    const subject = resolveSubject(subjects, params.subject);
     if (!subject) throw notFound();
+    if (subject.slug !== params.subject) {
+      throw redirect({ to: "/$subject", params: { subject: subject.slug } });
+    }
     await context.queryClient.ensureQueryData(questionsQuery);
     return { subject } as { subject: Subject };
   },
@@ -39,24 +44,13 @@ export const Route = createFileRoute("/$subject/")({
       : [],
   }),
   notFoundComponent: () => (
-    <div className="min-h-screen bg-paper">
-      <SiteHeader />
-      <main className="mx-auto max-w-3xl px-4 py-16 text-center">
-        <h1 className="text-2xl font-semibold text-ink">Subject not found</h1>
-        <Link to="/" className="mt-4 inline-block text-marigold hover:underline">
-          Back to home
-        </Link>
-      </main>
-    </div>
+    <NotFoundShell
+      title="Subject not found"
+      message="Pick a subject below — Mathematics, Science, or Business & Accounting."
+    />
   ),
   errorComponent: ({ error }) => (
-    <div className="min-h-screen bg-paper">
-      <SiteHeader />
-      <main className="mx-auto max-w-3xl px-4 py-16 text-center">
-        <h1 className="text-2xl font-semibold text-ink">Couldn't load subject</h1>
-        <p className="mt-2 text-sm text-muted-foreground">{error.message}</p>
-      </main>
-    </div>
+    <NotFoundShell title="Couldn't load that subject" message={error.message} />
   ),
   component: SubjectPage,
 });

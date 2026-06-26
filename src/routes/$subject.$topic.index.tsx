@@ -5,20 +5,23 @@ import {
   subjectsQuery,
   questionsQuery,
   countByTopic,
+  resolveSubject,
+  resolveTopic,
   type Subject,
   type Topic,
 } from "@/lib/content";
 import { lastScoreFor } from "@/lib/scores";
 import { SiteHeader } from "@/components/SiteHeader";
+import { NotFoundShell } from "@/components/NotFoundShell";
 import { startNew, type QuizConfig } from "@/lib/quiz-session";
 import { getQuestionsFor } from "@/lib/content";
 
 export const Route = createFileRoute("/$subject/$topic/")({
   loader: async ({ context, params }) => {
     const subjects = await context.queryClient.ensureQueryData(subjectsQuery);
-    const subject = subjects.find((s: Subject) => s.slug === params.subject);
+    const subject = resolveSubject(subjects, params.subject);
     if (!subject) throw notFound();
-    const topic = subject.topics.find((t: Topic) => t.slug === params.topic);
+    const topic = resolveTopic(subject, params.topic);
     if (!topic) throw notFound();
     await context.queryClient.ensureQueryData(questionsQuery);
     return { subject, topic } as { subject: Subject; topic: Topic };
@@ -44,16 +47,9 @@ export const Route = createFileRoute("/$subject/$topic/")({
         ]
       : [],
   }),
-  notFoundComponent: () => (
-    <div className="min-h-screen bg-paper">
-      <SiteHeader />
-      <main className="mx-auto max-w-3xl px-4 py-16 text-center">
-        <h1 className="text-2xl font-semibold text-ink">Topic not found</h1>
-        <Link to="/" className="mt-4 inline-block text-marigold hover:underline">
-          Back to home
-        </Link>
-      </main>
-    </div>
+  notFoundComponent: () => <NotFoundShell />,
+  errorComponent: ({ error }) => (
+    <NotFoundShell title="Couldn't load that topic" message={error.message} />
   ),
   component: TopicPage,
 });
