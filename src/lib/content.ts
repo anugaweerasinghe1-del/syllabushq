@@ -61,3 +61,103 @@ export function pickRandom<T>(items: T[], n: number): T[] {
   }
   return a.slice(0, Math.min(n, a.length));
 }
+
+// ---------- Robust subject/topic resolution -----------------------------------
+// Handles URL-encoding, casing, trailing slashes, near-misses (e.g. plural
+// drift, hyphen drift). Returns null instead of throwing so callers can render
+// a branded NotFound state rather than crashing the route.
+
+function normaliseSlug(raw: string): string {
+  try { raw = decodeURIComponent(raw); } catch { /* ignore */ }
+  return raw
+    .toLowerCase()
+    .trim()
+    .replace(/[\s_]+/g, "-")
+    .replace(/[^a-z0-9-]/g, "")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+// Hand-curated aliases for legacy / pluralised slugs that have appeared in old
+// links. Extend freely — first match wins.
+const TOPIC_ALIASES: Record<string, string> = {
+  "real-number": "real-numbers",
+  "indices-and-logarithms": "indices-logarithms",
+  "indices": "indices-logarithms",
+  "logarithms": "indices-logarithms",
+  "percentage": "percentages",
+  "ratio": "ratio-proportion",
+  "proportion": "ratio-proportion",
+  "algebra": "algebraic-expressions",
+  "factorisation": "factors",
+  "factorization": "factors",
+  "equation": "equations",
+  "quadratic": "quadratic-equations",
+  "simultaneous": "simultaneous-equations",
+  "sets": "sets-probability",
+  "probability": "sets-probability",
+  "area": "perimeter-area",
+  "perimeter": "perimeter-area",
+  "volume": "volume-surface-area",
+  "surface-area": "volume-surface-area",
+  "triangle": "triangles",
+  "circle": "circle-theorems",
+  "trig": "trigonometry",
+  "graphs": "graphs-functions",
+  "functions": "graphs-functions",
+  "matrix": "matrices",
+  "vector": "vectors",
+  "atom": "atomic-structure",
+  "bonding": "chemical-bonding",
+  "acids": "acids-bases-salts",
+  "metals": "metals-non-metals",
+  "organic": "organic-chemistry",
+  "motion": "motion-forces",
+  "forces": "motion-forces",
+  "energy": "work-energy-power",
+  "cells": "cells-tissues",
+  "digestion": "nutrition-digestion",
+  "respiration": "respiration-circulation",
+  "ecosystem": "ecosystems",
+  "microbes": "microorganisms",
+  "marketing-mix": "marketing",
+  "bank": "money-banking",
+  "transport": "transport-communication",
+  "accounting": "intro-accounting",
+  "ledger": "double-entry",
+  "trial-balances": "trial-balance",
+};
+
+export function resolveSubject(
+  subjects: Subject[],
+  raw: string | undefined,
+): Subject | null {
+  if (!raw) return null;
+  const want = normaliseSlug(raw);
+  return (
+    subjects.find((s) => s.slug === want) ??
+    subjects.find((s) => normaliseSlug(s.slug) === want) ??
+    subjects.find((s) => normaliseSlug(s.name) === want) ??
+    null
+  );
+}
+
+export function resolveTopic(
+  subject: Subject,
+  raw: string | undefined,
+): Topic | null {
+  if (!raw) return null;
+  const want = normaliseSlug(raw);
+  const aliased = TOPIC_ALIASES[want] ?? want;
+  return (
+    subject.topics.find((t) => t.slug === want) ??
+    subject.topics.find((t) => t.slug === aliased) ??
+    subject.topics.find((t) => normaliseSlug(t.name) === want) ??
+    subject.topics.find((t) => normaliseSlug(t.slug).includes(want) || want.includes(normaliseSlug(t.slug))) ??
+    null
+  );
+}
+
+export function suggestTopics(subject: Subject, n = 6): Topic[] {
+  return subject.topics.slice(0, n);
+}

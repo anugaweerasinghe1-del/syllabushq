@@ -1,141 +1,97 @@
-## SyllabusHQ v2 — Sri Lankan O/L Mastery Platform
+# SyllabusHQ Overhaul — Analysis + Build Plan
 
-A focused rebuild of content, marking, layout, and SEO so a student can pass O/L using this site alone — dark Apple-startup aesthetic, NIE-locked content, AI marking with strict-but-fair rubric grading.
-
----
-
-### 1. Content foundation (NIE syllabus lock)
-
-Build a **typed question-bank** under `src/data/bank/` per subject:
-
-```text
-bank/
-  maths/         (Grade 10 + 11 NIE units)
-  science/       (Bio, Chem, Phys, Earth strands)
-  business-accounting/  (BS units + Accounting units)
-```
-
-Each topic file exports `{ mcq[], short[], structured[], essay[] }` with `difficulty: 'easy'|'medium'|'hard'`, `marks`, `markingScheme[]` (point-by-point), `acceptableAlternatives[]`, `medium: 'english'|'sinhala'|'tamil'`. Sourced/paraphrased from NIE syllabus + Dept. of Examinations past paper *structures* — no verbatim copies. Seed ~60 questions per topic (20 per difficulty), enough for the bank-first strategy.
-
-A `generatePaper()` server fn samples from the bank first, only calling Gemini to top up when the bank can't supply diversity (cached into `generated_questions`). This kills the "MCQ-only full exam" bug.
-
-### 2. Exam structures (replica of paper format)
-
-`src/data/paper-structures/` defines the exact O/L structure per subject. Examples:
-
-- **Maths Paper 1:** 25 short-answer (2 marks ea) — first 1hr, no calculator section noted.
-- **Maths Paper 2:** Part A (5 structured ×10) + Part B (choose 5 of 7 essays ×12).
-- **Science Paper 1:** 40 MCQ (1 mark).
-- **Science Paper 2:** 10 structured + 2 essays.
-- **Business & Accounting Paper 1:** 40 MCQ. **Paper 2:** structured + accounting problem (trial balance, trading/P&L, balance sheet).
-
-Full exam simulation pulls the exact mix from these structures — never MCQ-only.
-
-### 3. AI marking (strict-rubric, BYO Gemini key)
-
-- New `secrets--add_secret` for `USER_GEMINI_API_KEY` (user provides their free AI Studio key; falls back to project `GOOGLE_AI_API_KEY`).
-- `gradeAnswer.functions.ts` rewritten with a Cambridge-style **per-marking-point** rubric. System prompt: "Award the mark if the candidate's idea matches the marking point — even if wording differs, spelling is imperfect, or method is described in words. Do not penalise missing diagrams when the method is correctly described. Do NOT use self-grading."
-- Returns `{ pointsAwarded: [{point, awarded, evidence}], totalMarks, modelAnswer, examinerNote, nextStep }`.
-- Works for short, structured, **and essay** answers across all subjects. Accounting answers parse numeric ledger lines.
-- Removes the existing "self-score" path entirely.
-
-### 4. Structured paper UX (draw-free)
-
-New `<StructuredQuestionCard>` with two input modes per question:
-
-1. **Describe** — textarea with explicit helper: *"You don't need to draw. Describe your graph/diagram (axes, points, shape, trend) or explain your working in words — full marks if the reasoning is correct."*
-2. **Photo** — optional image upload; Gemini Vision marks handwritten work via multimodal call.
-
-Cleaner layout: question | scratch area | answer area in vertical stack, monospace for numeric work, KaTeX live-preview for math.
-
-### 5. Topic selection redesign
-
-Replace the current long chip rail (the "cheap reference image line") with a polished **Command-K style picker** + grouped accordion:
-
-```text
-[ Subject ▾ ]  [ Strand ▾ ]  [ Difficulty: ●●○ ]  [ # Questions: 20 ]
-            ▼
-  ⌘K search… "photosynthesis"
-  ▸ Biology · Life Processes  (12)
-  ▸ Biology · Ecosystems       (8)
-```
-
-- shadcn `Command` + `Accordion` + `Popover`.
-- Multi-select with token chips, "Select all in strand", "Balanced mix" toggle (equal split per topic — fixes the "mix only has 100+ of everything" complaint).
-- Mobile: full-screen sheet variant.
-
-### 6. Timer (works everywhere)
-
-Single `useExamTimer(durationSec, onExpire)` hook + `<ExamTimer>` component wired into **every** mode (practice, short, structured, full sim). Persists to `sessionStorage` so refresh doesn't reset. Auto-submits + locks inputs on expiry. Visible glass pill, color shift at <5min, <1min.
-
-### 7. Balanced question distribution
-
-`pickQuestions({ topics, count, difficulty, balanced })`:
-
-- `balanced: true` → `Math.floor(count / topics.length)` per topic, remainder spread round-robin.
-- Difficulty selector "Mix" → equal easy/med/hard split.
-- Bank-first; only top up via AI when bank can't fulfil the slice.
-- Applies to all 3 subjects.
-
-### 8. Programmatic SEO — quality > quantity (~150 pages)
-
-Three high-intent clusters, each page hand-templated with **real value** (notes + 3 worked examples + try-now CTA + FAQ schema):
-
-**Cluster A — Model papers (~30 pages)**
-`/o-level/{subject}/model-paper-2026` and `/{subject}/marking-scheme-2026`. High annual search, low competition.
-
-**Cluster B — Topic short notes (~80 pages)**
-`/o-level/{subject}/{topic}-short-notes-sinhala-medium` and `…-english-medium`. Long-tail study intent.
-
-**Cluster C — District landing (~40 pages)**
-`/o-level-tuition/{subject}/{district}` for Colombo, Kandy, Jaffna, Galle, Matara, Kurunegala, Negombo, Anuradhapura. Near-zero competition, geographic intent.
-
-Each page: unique `<title>` <60ch + meta desc <160ch, H1, JSON-LD (`LearningResource` / `FAQPage` / `LocalBusiness`), internal links to practice routes, OG image derived from subject token. Sitemap.xml regenerates from the matrix. Removes thin auto-pages from prior 480-page approach.
-
-### 9. UI/UX premium polish (dark Apple-startup)
-
-- **Palette:** `#07080B` bg, `#0E1014` surface, `#F5F5F7` text, platinum `#C9CDD4`, restrained subject accents.
-- **Type:** Geist Sans + Geist Mono; tight tracking on hero, generous line-height in notes.
-- **Components:** glass cards with `backdrop-blur-xl bg-white/[0.03] border-white/[0.06]`, `<GlowButton>` w/ subtle radial sheen, frosted inputs, skeletons matching glass.
-- **Motion:** Motion-for-React, 180/280/420ms cubic-bezier easing, parallax hero, soft entry stagger.
-- **Header:** monogram + thin separator, no shouting.
-- **Removes** the current thin progress-bar artefact under "Number of questions" (replaced with proper slider + numeric chip).
-- **Activity rings + Zeigarnik resume + Mastery badges** kept, restyled to match.
-
-### 10. Database additions
-
-Migration adds:
-
-- `attempts.answer_text`, `attempts.ai_feedback jsonb`, `attempts.medium`.
-- `bank_overrides` (admin-curated corrections, optional).
-- Index on `(visitor_token, subject, created_at desc)` for resume.
-
-All RLS preserved (anon insert/select on `attempts`/`mastery`).
+Per your instruction, **Section A is the brutal analysis you asked to review first**. Sections B–F are the build plan I will only start after you confirm A (and answer the 3 questions at the bottom).
 
 ---
 
-### Build order
+## A. Brutal competitor + retention analysis (no sycophancy)
 
-1. Secrets prompt → `USER_GEMINI_API_KEY` (optional override).
-2. Question-bank scaffolding + seed first 3 topics per subject (proof of pattern).
-3. `pickQuestions` + balanced sampler + paper-structure runner → fix full-sim MCQ bug + timer everywhere.
-4. New `gradeAnswer` (rubric-strict, multimodal-ready) + structured-paper UX with describe/photo modes.
-5. Topic Command-K picker + slider + premium polish pass.
-6. SEO matrix v2 (~150 pages, three clusters) + dynamic sitemap regen.
-7. Activity rings/Zeigarnik restyle + mastery badge surfaces.
+Benchmarks: **savemyexams.com**, **physicsandmathstutor.com**, **tutopiya.com**, **senior.lk**, **Khan Academy**, **Quizlet**.
 
-### Technical notes
+**Where SyllabusHQ currently loses:**
 
-- Stack stays TanStack Start + Lovable Cloud (Supabase) + AI SDK via Lovable AI Gateway (fallback) or user Gemini key.
-- All grading server-only via `createServerFn` + `requireSupabaseAuth`-free (anon visitor token model).
-- No copyrighted past-paper text reproduced — only structural format mirrored; questions paraphrased from NIE syllabus learning outcomes.
-- Bundle of seed questions kept under ~120KB per subject (lazy-loaded per topic).
+1. **Trust collapses on first click.** "Topic not found" fires from at least 5 routes (`$subject.$topic.*`, `exam.structured.$subject`, etc.) because topic slugs in the question bank don't match the slugs the cards link to. A student who hits this on question 1 never comes back. This is the single biggest retention leak — bigger than any design issue.
+2. **No "why am I here today" loop.** SaveMyExams hooks users with topic-question-mark-scheme in 3 clicks. We force a 4-step setup wizard before a single question appears. Friction kills daily return.
+3. **No proof of progress.** Streak exists but there's no XP, no per-topic mastery %, no "you're 62% ready for Paper 1" signal. Students grind only when they can see the bar move.
+4. **Content depth is shallow vs claim.** ~325 MCQs across 3 subjects ≈ 12 questions per sub-topic. SaveMyExams ships 60–150 per sub-topic. Claim of "pass O/L using only this site" is not yet defensible.
+5. **No spaced repetition / wrong-answer queue.** Every top competitor re-surfaces missed questions. We throw results away after the session.
+6. **No social proof on landing.** Reviews tab is buried. Tradinghq-style hero shows live numbers ("12,438 questions answered today") — we show nothing.
+7. **SEO surface is thin.** Programmatic `/learn/...` pages exist but aren't internally linked from subject hubs, so Google won't crawl them deeply.
 
-### Out of scope (this iteration)
+**5 retention levers I will build (ranked by ROI):**
 
-- User accounts / cross-device sync.
-- Sinhala/Tamil full-UI localisation (content medium toggle yes; chrome stays EN).
-- Live tutor / chat.
-- Mobile app shell.  
+1. **Daily Question hero on `/**` — one curated question, streak-eligible only if attempted. Single biggest re-open driver.
+2. **Per-topic mastery rings** (0–100%) computed from last 10 attempts. Visible on every subject hub.
+3. **Wrong-answer queue** auto-built from every session; surfaced as "Fix 7 mistakes" CTA.
+4. **Exam-readiness score** per subject (weighted by topic coverage × accuracy × recency) shown as the headline number.
+5. **Streak freeze (1/week)** + milestone badges (7/30/100 days). Loss aversion > gain motivation.
+
+---
+
+## B. Critical bug fixes (Phase 1, blocking)
+
+- Audit every `notFound()` call site listed above. Root cause is slug mismatch between `subjects.json` topic slugs and `questions.json` `topic` field. Fix: normalize both at load time via a single `resolveTopic(subjectSlug, topicSlug)` helper in `src/lib/content.ts` with fuzzy fallback (slugify + case-insensitive + alias map for renamed topics).
+- Replace bare `notFound()` UI with a branded `<NotFoundShell>` (glass card, "Browse topics" CTA, related-topic suggestions) — keeps users in funnel.
+- Add a route-level `errorComponent` on every dynamic route + a top-level error boundary in `__root.tsx` so a thrown error never blanks the screen.
+
+## C. Model Answers + Rate-Limited Hints (Phase 2)
+
+- `<ModelAnswerToggle>` component, collapsed by default, framer-style height+opacity transition. Lives in MCQ runner, short-answer runner, structured runner.
+- `<HintButton>` with 4/24h rolling-window quota stored in `localStorage` under `hints:v1` as `{ timestamps: number[] }`. On click: prune > 24h, check length < 4, reveal next hint, push timestamp. Server-generated hints (one-shot via Lovable AI Gateway, cached per question id in IndexedDB so repeat views are free). When exhausted: show countdown to oldest-timestamp + 24h.
+
+## D. Content expansion to 100+ per sub-topic (Phase 3)
+
+- Run a one-time build script (`scripts/generate-bank.ts`) using Lovable AI Gateway (`google/gemini-3-flash-preview`) that, per sub-topic, generates batches of 25 until ≥100 exist, with strict JSON schema (subject, topic, sub-topic, difficulty, paper-style tag, question, options, answer, explanation, marking-points). Diversified across Easy/Medium/Hard buckets (40/40/20).
+- Output written to `public/questions.json` (chunked per subject to keep payloads small: `public/banks/<subject>.json` lazy-loaded by route).
+- Strict syllabus guardrail: prompt is grounded in the Sri Lankan NIE O/L syllabus text already attached, with explicit "reject Cambridge/Edexcel phrasing" instruction.
+
+## E. Apple-grade redesign (Phase 4)
+
+- Tokens in `src/styles.css`: deeper graphite base (`oklch(0.14 0.01 250)`), 1px hairline borders via `color-mix`, glass surfaces (`backdrop-blur-2xl bg-white/[0.03]`), accent gradient reserved for primary CTAs only.
+- New `<GlassCard>`, `<HairlineDivider>`, `<ParallaxHero>` primitives.
+- Homepage rebuilt to tradinghq cadence: oversized serif headline, live counter strip, Daily Question card, 3-subject grid, social-proof rail, footer. No purple, no generic gradients.
+- Page transitions via `motion/react` (already viable) — fade+8px rise, 220ms, respecting `prefers-reduced-motion`.
+- Performance budget: keep route JS < 180KB gz; lazy-load KaTeX and question banks.
+
+## F. Programmatic SEO (Phase 5)
+
+- 20 landing pages at `/learn/<subject>/<topic>/<slug>` targeting low-comp Sri Lankan O/L queries (I'll pull volume via the semrush tool before generating). Each page: H1 + 600-word topical primer + 5 example questions with worked solutions + internal links to 3 sibling topics + JSON-LD `LearningResource`.
+- Internal linking: subject hub lists every sub-topic with link; sitemap.xml regenerated.
+- Per-route `head()` with unique title/description/og — no template duplication.
+
+---
+
+## Technical sketch
+
+```text
+src/lib/content.ts          ← resolveTopic() + alias map, fuzzy fallback
+src/lib/hints.ts            ← 4/24h quota, localStorage + IndexedDB cache
+src/lib/mastery.ts          ← per-topic rolling accuracy
+src/components/
+  NotFoundShell.tsx
+  ModelAnswerToggle.tsx
+  HintButton.tsx
+  GlassCard.tsx
+  DailyQuestion.tsx
+  MasteryRing.tsx
+scripts/generate-bank.ts    ← one-shot AI bank expansion (build-time only)
+public/banks/<subject>.json ← chunked lazy-loaded banks
+src/routes/learn.$subject.$topic.$slug.tsx  ← upgraded SEO template
+```
+
+No live AI calls on the deployed app except the hint generator (cached per question, hard-rate-limited client-side).
+
+---
+
+## Before I build — 3 questions
+
+1. **Hints — AI-generated or hand-authored?** AI-generated (cheap, scales to every question, cached) is my default. Hand-authored = higher quality but only on questions we curate.
+2. **Content regeneration scope.** Full expansion to ~100/sub-topic across all 3 subjects is ~30–45 min of AI Gateway calls and will consume credits. OK to proceed, or cap at e.g. 50/sub-topic first?
+3. **Daily Question source.** Rotate deterministically from existing bank (free, instant), or AI-curate a fresh one daily server-side (richer, costs credits)?
+
+Confirm A + answer 1–3 and I'll execute B→F in order.  
   
-FIX ANY GLITCHES / SECURITY ISSUES / ERRORS IN THE WEBSITE.
+1) AI generated  
+2) Cap at 60 sub-topics first  
+3) AI-curate a fresh one daily server-side   
+IMPORTANT: ensure everything can be done for 100% free
