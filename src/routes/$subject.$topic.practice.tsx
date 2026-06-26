@@ -15,6 +15,8 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { loadOrCreate, save, clear, startNew, defaultConfig, type Session } from "@/lib/quiz-session";
 import { MathText } from "@/components/MathText";
 import { ExamTimer } from "@/components/ExamTimer";
+import { HintButton } from "@/components/HintButton";
+import { ModelAnswerToggle } from "@/components/ModelAnswerToggle";
 
 export const Route = createFileRoute("/$subject/$topic/practice")({
   loader: async ({ context, params }) => {
@@ -240,6 +242,22 @@ function PracticePage() {
                 </p>
                 <p className="mt-1 text-charcoal"><MathText>{q.explanation}</MathText></p>
               </div>
+            )}
+
+            {!isExam && (
+              <HintButton
+                subject={subject.slug}
+                topic={topic.slug}
+                question={q.question}
+                options={q.options}
+              />
+            )}
+
+            {!isExam && (
+              <ModelAnswerToggle
+                answer={`The correct answer is ${String.fromCharCode(65 + q.correct)}) ${q.options[q.correct]}.`}
+                explanation={q.explanation}
+              />
             )}
 
             <div className="mt-6 flex items-center justify-between gap-2">

@@ -9,6 +9,7 @@ import { MODES } from "@/lib/modes";
 import { ActivityRings } from "@/components/ActivityRings";
 import { ZeigarnikResume } from "@/components/ZeigarnikResume";
 import { getStudyDays, computeStreaks } from "@/lib/streak";
+import { DailyQuestion } from "@/components/DailyQuestion";
 
 const SITE = "https://syllabushq.lovable.app";
 
@@ -92,6 +93,10 @@ function Home() {
         <div className="mb-8">
           <ZeigarnikResume />
         </div>
+
+        <section className="mb-10 rise-2">
+          <DailyQuestion />
+        </section>
 
         <ProgressSection />
 
