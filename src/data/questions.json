@@ -12539,5 +12539,215 @@
     "correct": 0,
     "explanation": "The total selling price is 20 kg * Rs. 60/kg = Rs. 1200. The profit is Selling Price - Cost Price = Rs. 1200 - Rs. 1000 = Rs. 200.",
     "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "percentages",
+    "question": "A shopkeeper bought an antique clock for Rs. 15,000. He spent Rs. 2,500 on repairs. If he wants to make a profit of 20% on his total outlay, what should be the selling price of the clock?",
+    "options": [
+      "Rs. 21,000",
+      "Rs. 18,000",
+      "Rs. 20,500",
+      "Rs. 19,500"
+    ],
+    "correct": 0,
+    "explanation": "Total cost includes purchase price and repair cost. Calculate 20% profit on this total cost and add it to find the selling price.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "percentages",
+    "question": "A wholesaler buys spices for Rs. 800 per kg. He marks up the price by 25% but then offers a 10% discount on the marked price. What is his percentage profit?",
+    "options": [
+      "12.5%",
+      "15%",
+      "17.5%",
+      "10%"
+    ],
+    "correct": 1,
+    "explanation": "First, calculate the marked price by adding the 25% markup. Then, calculate the selling price by applying the 10% discount to the marked price. Finally, determine the profit percentage based on the original cost.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "percentages",
+    "question": "A trader sold two different types of fabric for Rs. 12,000 each. On one fabric, he made a profit of 20%, and on the other, he incurred a loss of 20%. What was his net profit or loss percentage on the entire transaction?",
+    "options": [
+      "10% loss",
+      "A small loss (approximately 4%)",
+      "No profit, no loss",
+      "A small profit (approximately 4%)"
+    ],
+    "correct": 1,
+    "explanation": "When two items are sold at the same price, and one generates a profit of x% while the other incurs a loss of x%, there will always be a net loss. Calculate the cost price for each item separately to find the overall profit/loss.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "percentages",
+    "question": "A shop offers a scheme where if a customer buys an item for its marked price, they get a 15% discount. If the shopkeeper still makes a profit of 27.5% on the transaction, what percentage above the cost price was the item marked?",
+    "options": [
+      "50%",
+      "40%",
+      "45%",
+      "35%"
+    ],
+    "correct": 0,
+    "explanation": "Let cost price be C. Selling price (after 15% discount) yields a 27.5% profit on C. Work backward from the selling price to the marked price by accounting for the discount.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "ratio-proportion",
+    "question": "A sum of money is divided among Amal, Bimal and Kamal in the ratio 2:3:5 respectively. If Amal receives Rs. 240, what is the total sum of money?",
+    "options": [
+      "Rs. 1200",
+      "Rs. 720",
+      "Rs. 480",
+      "Rs. 960"
+    ],
+    "correct": 0,
+    "explanation": "If Amal's share (2 parts) is Rs. 240, then one part is Rs. 120. The total sum is 2+3+5 = 10 parts, so 10 * 120 = Rs. 1200.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "algebraic-expressions",
+    "question": "Simplify the algebraic expression: 3x + 5y - x + 2y",
+    "options": [
+      "2x + 7y",
+      "4x + 3y",
+      "2x + 3y",
+      "4x + 7y"
+    ],
+    "correct": 0,
+    "explanation": "To simplify, combine like terms. (3x - x) gives 2x, and (5y + 2y) gives 7y.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "algebraic-expressions",
+    "question": "What is the value of the expression 2a + 3b when a = 4 and b = 1?",
+    "options": [
+      "11",
+      "10",
+      "7",
+      "9"
+    ],
+    "correct": 0,
+    "explanation": "Substitute the given values into the expression: 2(4) + 3(1) = 8 + 3 = 11.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "algebraic-expressions",
+    "question": "Expand the expression: 2(x + 5)",
+    "options": [
+      "2x + 10",
+      "2x + 5",
+      "x + 10",
+      "7x"
+    ],
+    "correct": 0,
+    "explanation": "Multiply the term outside the parenthesis by each term inside: 2 * x = 2x and 2 * 5 = 10.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "algebraic-expressions",
+    "question": "Identify the coefficient of x in the term -7xy.",
+    "options": [
+      "-7y",
+      "-7",
+      "y",
+      "7"
+    ],
+    "correct": 0,
+    "explanation": "The coefficient of a variable is the part of the term that multiplies that variable. In -7xy, x is multiplied by -7y.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "algebraic-expressions",
+    "question": "Which of the following is equivalent to (p + q) + (p - q)?",
+    "options": [
+      "2p",
+      "2q",
+      "2p - 2q",
+      "p^2 - q^2"
+    ],
+    "correct": 0,
+    "explanation": "Remove the brackets and combine like terms: p + q + p - q = (p + p) + (q - q) = 2p.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "algebraic-expressions",
+    "question": "Simplify: 5m - (2m + n)",
+    "options": [
+      "3m - n",
+      "7m + n",
+      "3m + n",
+      "7m - n"
+    ],
+    "correct": 0,
+    "explanation": "Distribute the negative sign to both terms inside the parenthesis: 5m - 2m - n = 3m - n.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "algebraic-expressions",
+    "question": "If x = 3, what is the value of x^2 - 4x + 1?",
+    "options": [
+      "-2",
+      "2",
+      "1",
+      "-1"
+    ],
+    "correct": 0,
+    "explanation": "Substitute x = 3 into the expression: (3)^2 - 4(3) + 1 = 9 - 12 + 1 = -2.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "algebraic-expressions",
+    "question": "Which term is NOT a like term with 4pq?",
+    "options": [
+      "4p",
+      "-pq",
+      "1/2 pq",
+      "7qp"
+    ],
+    "correct": 0,
+    "explanation": "Like terms have the same variables raised to the same powers. 4p only has 'p', not 'pq'.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "algebraic-expressions",
+    "question": "Multiply: 3 * (4y)",
+    "options": [
+      "12y",
+      "7y",
+      "4y^3",
+      "34y"
+    ],
+    "correct": 0,
+    "explanation": "Multiply the numerical coefficients: 3 * 4 = 12. The variable 'y' remains unchanged.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "algebraic-expressions",
+    "question": "What is the result when 6 is subtracted from 'k'?",
+    "options": [
+      "k - 6",
+      "6 - k",
+      "6k",
+      "k/6"
+    ],
+    "correct": 0,
+    "explanation": "Subtracting 6 from 'k' means taking 6 away from 'k', which is represented as k - 6.",
+    "difficulty": "easy"
   }
 ]
