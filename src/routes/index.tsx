@@ -321,11 +321,14 @@ function ProgressSection() {
   );
 }
 
-function Feature({ title, body }: { title: string; body: string }) {
+function Feature({ n, title, body }: { n?: string; title: string; body: string }) {
   return (
-    <PremiumCard className="p-5" hover={false}>
-      <h3 className="font-display text-xl text-foreground">{title}</h3>
-      <p className="mt-1.5 text-sm text-muted-foreground">{body}</p>
+    <PremiumCard className="p-6 h-full">
+      {n && (
+        <p className="font-num text-[10px] tracking-widest text-muted-foreground">{n}</p>
+      )}
+      <h3 className="mt-4 font-display text-xl text-foreground">{title}</h3>
+      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{body}</p>
     </PremiumCard>
   );
 }
