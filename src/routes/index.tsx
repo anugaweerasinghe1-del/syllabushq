@@ -68,82 +68,208 @@ function Home() {
   return (
     <div className="min-h-screen">
       <SiteHeader />
-      <main className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-16">
-        <section className="mb-14 sm:mb-20">
-          <p className="rise text-[11px] font-medium uppercase tracking-[0.28em] text-muted-foreground">
-            Sri Lankan G.C.E. O/L · English medium · Exam intelligence
-          </p>
-          <h1 className="rise-2 mt-5 font-display text-[44px] leading-[1.02] text-foreground sm:text-[80px] text-balance">
-            Mastery, <span className="italic text-muted-foreground">measured.</span>
+      <main className="mx-auto max-w-6xl px-4 pb-24 pt-12 sm:px-6 sm:pt-20">
+        {/* HERO */}
+        <section className="relative mb-20 sm:mb-28">
+          <div className="rise inline-flex items-center gap-2 rounded-full border border-white/8 bg-white/[0.03] px-3 py-1.5 backdrop-blur-md">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_10px_2px_rgba(52,211,153,0.6)]" />
+            <p className="text-[10.5px] font-medium uppercase tracking-[0.28em] text-foreground/70">
+              G.C.E. O/L · English medium · Built in Sri Lanka
+            </p>
+          </div>
+
+          <h1 className="rise-2 mt-7 font-display text-[52px] leading-[0.98] sm:text-[112px] text-balance">
+            <span className="text-gradient">Mastery,</span>{" "}
+            <span className="italic text-aurora">measured.</span>
           </h1>
-          <p className="rise-3 mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
-            AI-graded O/L practice papers. Original questions, instant feedback,
-            real marking schemes. Built for Sri Lanka's sharpest.
+
+          <p className="rise-3 mt-7 max-w-2xl text-[15px] leading-relaxed text-muted-foreground sm:text-[18px]">
+            An exam simulator engineered like an Apple product. AI-graded
+            papers, real marking schemes, and questions that never repeat —
+            built for the sharpest O/L students in the country.
           </p>
-          <div className="rise-3 mt-8 flex flex-wrap gap-3 text-sm">
-            <Link to="/practice" className="inline-flex items-center justify-center rounded-lg bg-foreground px-6 py-3 font-semibold text-background transition hover:brightness-110 animate-pulse-glow">
-              Begin a paper →
+
+          <div className="rise-4 mt-10 flex flex-wrap items-center gap-3 text-sm">
+            <Link
+              to="/practice"
+              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-foreground px-7 py-3.5 font-semibold text-background transition hover:brightness-110"
+            >
+              <span className="absolute inset-0 -z-10 bg-foreground blur-xl opacity-40 transition group-hover:opacity-70" />
+              Begin a paper
+              <span className="transition group-hover:translate-x-0.5">→</span>
             </Link>
-            <Link to="/practice/$mode" params={{ mode: "exam" }} className="inline-flex items-center justify-center rounded-lg border border-hairline-strong px-6 py-3 font-medium text-foreground transition hover:bg-surface-2">
+            <Link
+              to="/practice/$mode"
+              params={{ mode: "exam" }}
+              className="group inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.02] px-6 py-3.5 font-medium text-foreground backdrop-blur-md transition hover:border-white/20 hover:bg-white/[0.05]"
+            >
               Full exam simulation
+              <span className="text-muted-foreground transition group-hover:text-foreground">↗</span>
             </Link>
+          </div>
+
+          {/* Stat strip */}
+          <div className="rise-4 mt-14 grid max-w-2xl grid-cols-3 gap-px overflow-hidden rounded-2xl border border-white/8 bg-white/[0.02] backdrop-blur-md">
+            <Stat n="900+" l="Original Qs" />
+            <Stat n="3" l="O/L subjects" />
+            <Stat n="AI" l="Grading engine" />
           </div>
         </section>
 
-        <div className="mb-8">
+        <div className="mb-10">
           <ZeigarnikResume />
         </div>
 
-        <section className="mb-10 rise-2">
+        <section className="mb-14 rise-2">
           <DailyQuestion />
         </section>
 
         <ProgressSection />
 
-        <Suspense fallback={<div className="h-44 animate-pulse rounded-2xl bg-surface" />}>
+        <Suspense fallback={<div className="h-44 animate-pulse rounded-2xl bg-white/[0.02]" />}>
           <StreakHeatmap />
         </Suspense>
 
-        <section id="modes" className="mt-16 scroll-mt-20">
-          <div className="mb-6 flex items-end justify-between">
-            <h2 className="font-display text-3xl text-foreground sm:text-4xl">Four ways to practise.</h2>
-            <Link to="/practice" className="text-xs text-muted-foreground hover:text-foreground">All modes →</Link>
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {/* MODES */}
+        <section id="modes" className="mt-24 scroll-mt-24">
+          <SectionHeader
+            kicker="Modes"
+            title="Four ways to practise."
+            right={
+              <Link to="/practice" className="text-xs text-muted-foreground hover:text-foreground">
+                All modes →
+              </Link>
+            }
+          />
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {MODES.map((m, i) => (
-              <Link key={m.slug} to="/practice/$mode" params={{ mode: m.slug }}>
-                <PremiumCard className="p-5 h-full">
-                  <p className="font-num text-[10px] text-muted-foreground">0{i + 1}</p>
-                  <h3 className="mt-3 font-display text-xl text-foreground">{m.name}</h3>
-                  <p className="mt-1 text-[12px] text-muted-foreground">{m.tagline}</p>
+              <Link key={m.slug} to="/practice/$mode" params={{ mode: m.slug }} className="block">
+                <PremiumCard className="h-full p-6">
+                  <div className="flex items-center justify-between">
+                    <p className="font-num text-[10px] tracking-widest text-muted-foreground">
+                      0{i + 1} / 04
+                    </p>
+                    <span className="h-1.5 w-1.5 rounded-full bg-white/30" />
+                  </div>
+                  <h3 className="mt-6 font-display text-[22px] text-foreground">{m.name}</h3>
+                  <p className="mt-1.5 text-[12.5px] leading-relaxed text-muted-foreground">
+                    {m.tagline}
+                  </p>
+                  <p className="mt-8 text-[11px] uppercase tracking-[0.2em] text-foreground/60">
+                    Enter →
+                  </p>
                 </PremiumCard>
               </Link>
             ))}
           </div>
         </section>
 
-        <section id="subjects" className="mt-16 scroll-mt-20">
-          <div className="mb-5 flex items-end justify-between">
-            <h2 className="font-display text-3xl text-foreground sm:text-4xl">Three subjects.</h2>
-            <span className="text-xs text-muted-foreground">All English medium</span>
+        {/* SUBJECTS */}
+        <section id="subjects" className="mt-24 scroll-mt-24">
+          <SectionHeader
+            kicker="Subjects"
+            title="Three subjects, mastered."
+            right={<span className="text-xs text-muted-foreground">All English medium</span>}
+          />
+          <div className="mt-8">
+            <SubjectGrid />
           </div>
-          <SubjectGrid />
         </section>
 
-        <section className="mt-16 grid gap-4 sm:grid-cols-3">
-          <Feature title="Marked like a chief examiner." body="Type your answer. An AI grades it against a real marking scheme, point by point, in seconds." />
-          <Feature title="Papers that never repeat." body="Every question is generated fresh in the exact style of the Sri Lankan O/L English-medium papers." />
-          <Feature title="Progress you can feel." body="Apple-style rings, an honest 24-hour streak, and topic mastery badges that earn themselves." />
+        {/* FEATURES */}
+        <section className="mt-24">
+          <SectionHeader kicker="Engineered" title="Built like an instrument." />
+          <div className="mt-8 grid gap-4 sm:grid-cols-3">
+            <Feature
+              n="A"
+              title="Marked like a chief examiner."
+              body="Type your answer. AI grades against the real marking scheme, point by point, in seconds."
+            />
+            <Feature
+              n="B"
+              title="Papers that never repeat."
+              body="Every question generated fresh in the exact style of Sri Lankan O/L English-medium papers."
+            />
+            <Feature
+              n="C"
+              title="Progress you can feel."
+              body="Apple-style rings, honest 24-hour streaks, and topic mastery that earns itself."
+            />
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="mt-24">
+          <PremiumCard className="overflow-hidden p-10 text-center sm:p-16" variant="deep" hover={false}>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-muted-foreground">
+              Open. Free. Unlimited.
+            </p>
+            <h2 className="mt-4 font-display text-4xl text-gradient sm:text-6xl text-balance">
+              The paper opens itself.
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-sm text-muted-foreground sm:text-base">
+              No account. No paywall. Just sit down and crush the syllabus.
+            </p>
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
+              <Link
+                to="/practice"
+                className="inline-flex items-center gap-2 rounded-xl bg-foreground px-6 py-3 text-sm font-semibold text-background transition hover:brightness-110 animate-pulse-glow"
+              >
+                Begin →
+              </Link>
+              <Link
+                to="/reviews"
+                className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-6 py-3 text-sm font-medium text-foreground transition hover:bg-white/5"
+              >
+                See reviews
+              </Link>
+            </div>
+          </PremiumCard>
         </section>
       </main>
 
-      <footer className="mt-20 border-t border-hairline">
-        <div className="mx-auto max-w-6xl px-4 py-8 text-xs text-muted-foreground sm:px-6">
-          Built for Sri Lankan O/L students · English medium ·{" "}
-          <Link to="/reviews" className="hover:text-foreground">Reviews</Link> ·{" "}
-          <Link to="/suggest" className="hover:text-foreground">Suggest a feature</Link>
+      <footer className="mt-20 border-t border-white/5">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-10 text-xs text-muted-foreground sm:px-6">
+          <p>© {new Date().getFullYear()} SyllabusHQ — Built for Sri Lankan O/L students.</p>
+          <div className="flex items-center gap-4">
+            <Link to="/reviews" className="hover:text-foreground">Reviews</Link>
+            <Link to="/suggest" className="hover:text-foreground">Suggest a feature</Link>
+          </div>
         </div>
       </footer>
+    </div>
+  );
+}
+
+function Stat({ n, l }: { n: string; l: string }) {
+  return (
+    <div className="bg-white/[0.01] p-5">
+      <p className="font-display text-2xl text-foreground sm:text-3xl">{n}</p>
+      <p className="mt-1 text-[10.5px] uppercase tracking-[0.22em] text-muted-foreground">{l}</p>
+    </div>
+  );
+}
+
+function SectionHeader({
+  kicker,
+  title,
+  right,
+}: {
+  kicker: string;
+  title: string;
+  right?: React.ReactNode;
+}) {
+  return (
+    <div className="flex items-end justify-between gap-4">
+      <div>
+        <p className="text-[10.5px] font-semibold uppercase tracking-[0.32em] text-muted-foreground">
+          {kicker}
+        </p>
+        <h2 className="mt-2 font-display text-3xl text-gradient sm:text-5xl text-balance">
+          {title}
+        </h2>
+      </div>
+      {right}
     </div>
   );
 }
