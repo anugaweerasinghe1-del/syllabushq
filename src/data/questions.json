@@ -12483,5 +12483,61 @@
     "correct": 0,
     "explanation": "To convert a fraction to a decimal, divide the numerator by the denominator. So, 3 divided by 5 is 0.6.",
     "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "percentages",
+    "question": "A shopkeeper bought an item for Rs. 500 and sold it for Rs. 600. What is the profit percentage?",
+    "options": [
+      "20%",
+      "16.67%",
+      "10%",
+      "25%"
+    ],
+    "correct": 0,
+    "explanation": "Profit is (Selling Price - Cost Price) = Rs. 100. Profit percentage is (Profit / Cost Price) * 100%, so (100 / 500) * 100% = 20%.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "percentages",
+    "question": "If the marked price of a shirt is Rs. 800 and a discount of 10% is offered, what is the selling price of the shirt?",
+    "options": [
+      "Rs. 720",
+      "Rs. 700",
+      "Rs. 880",
+      "Rs. 750"
+    ],
+    "correct": 0,
+    "explanation": "A 10% discount on Rs. 800 is (10/100) * 800 = Rs. 80. The selling price is the marked price minus the discount, Rs. 800 - Rs. 80 = Rs. 720.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "percentages",
+    "question": "An item is sold for Rs. 440 after a 10% profit. What was the cost price of the item?",
+    "options": [
+      "Rs. 400",
+      "Rs. 484",
+      "Rs. 396",
+      "Rs. 420"
+    ],
+    "correct": 0,
+    "explanation": "If there is a 10% profit, the selling price is 110% of the cost price. So, 110% of Cost Price = Rs. 440, which means Cost Price = (440 / 110) * 100 = Rs. 400.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "percentages",
+    "question": "A fruit vendor bought 20 kg of apples for Rs. 1000. He sold them at Rs. 60 per kg. What was his profit?",
+    "options": [
+      "Rs. 200",
+      "Rs. 100",
+      "Rs. 500",
+      "Rs. 1200"
+    ],
+    "correct": 0,
+    "explanation": "The total selling price is 20 kg * Rs. 60/kg = Rs. 1200. The profit is Selling Price - Cost Price = Rs. 1200 - Rs. 1000 = Rs. 200.",
+    "difficulty": "easy"
   }
 ]
