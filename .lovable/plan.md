@@ -1,97 +1,63 @@
-# SyllabusHQ Overhaul — Analysis + Build Plan
+## Scope (this plan only)
 
-Per your instruction, **Section A is the brutal analysis you asked to review first**. Sections B–F are the build plan I will only start after you confirm A (and answer the 3 questions at the bottom).
+You picked **Stability + domain swap** with the **Editorial Minimal** aesthetic. UI redesign, content/exam-correctness audit, and the competitor/SEO teardown will each be their own follow-up plan so nothing ships half-done.
 
----
+## 1. Domain swap → `https://app.syllabushq.workers.dev`
 
-## A. Brutal competitor + retention analysis (no sycophancy)
+Repoint every hardcoded reference in one pass. Files touched:
 
-Benchmarks: **savemyexams.com**, **physicsandmathstutor.com**, **tutopiya.com**, **senior.lk**, **Khan Academy**, **Quizlet**.
+- `public/robots.txt` — update `Sitemap:` line
+- `src/routes/sitemap[.]xml.ts` — `BASE_URL`
+- `src/routes/index.tsx`, `practice.index.tsx`, `structured.tsx`, `reviews.tsx`, `suggest.tsx`, `learn.$subject.$topic.$slug.tsx` — canonical, `og:url`, JSON-LD `url` fields
+- `src/routes/__root.tsx` — any absolute references (og:site_name is fine, but if og:url is set here, swap it)
+- Add a single `src/lib/site.ts` exporting `SITE_URL = "https://app.syllabushq.workers.dev"` and refactor call-sites to import it, so we never drift again.
 
-**Where SyllabusHQ currently loses:**
+Also update `.lovable/plan.md` note only if it references the domain (docs, not code).
 
-1. **Trust collapses on first click.** "Topic not found" fires from at least 5 routes (`$subject.$topic.*`, `exam.structured.$subject`, etc.) because topic slugs in the question bank don't match the slugs the cards link to. A student who hits this on question 1 never comes back. This is the single biggest retention leak — bigger than any design issue.
-2. **No "why am I here today" loop.** SaveMyExams hooks users with topic-question-mark-scheme in 3 clicks. We force a 4-step setup wizard before a single question appears. Friction kills daily return.
-3. **No proof of progress.** Streak exists but there's no XP, no per-topic mastery %, no "you're 62% ready for Paper 1" signal. Students grind only when they can see the bar move.
-4. **Content depth is shallow vs claim.** ~325 MCQs across 3 subjects ≈ 12 questions per sub-topic. SaveMyExams ships 60–150 per sub-topic. Claim of "pass O/L using only this site" is not yet defensible.
-5. **No spaced repetition / wrong-answer queue.** Every top competitor re-surfaces missed questions. We throw results away after the session.
-6. **No social proof on landing.** Reviews tab is buried. Tradinghq-style hero shows live numbers ("12,438 questions answered today") — we show nothing.
-7. **SEO surface is thin.** Programmatic `/learn/...` pages exist but aren't internally linked from subject hubs, so Google won't crawl them deeply.
-
-**5 retention levers I will build (ranked by ROI):**
-
-1. **Daily Question hero on `/**` — one curated question, streak-eligible only if attempted. Single biggest re-open driver.
-2. **Per-topic mastery rings** (0–100%) computed from last 10 attempts. Visible on every subject hub.
-3. **Wrong-answer queue** auto-built from every session; surfaced as "Fix 7 mistakes" CTA.
-4. **Exam-readiness score** per subject (weighted by topic coverage × accuracy × recency) shown as the headline number.
-5. **Streak freeze (1/week)** + milestone badges (7/30/100 days). Loss aversion > gain motivation.
-
----
-
-## B. Critical bug fixes (Phase 1, blocking)
-
-- Audit every `notFound()` call site listed above. Root cause is slug mismatch between `subjects.json` topic slugs and `questions.json` `topic` field. Fix: normalize both at load time via a single `resolveTopic(subjectSlug, topicSlug)` helper in `src/lib/content.ts` with fuzzy fallback (slugify + case-insensitive + alias map for renamed topics).
-- Replace bare `notFound()` UI with a branded `<NotFoundShell>` (glass card, "Browse topics" CTA, related-topic suggestions) — keeps users in funnel.
-- Add a route-level `errorComponent` on every dynamic route + a top-level error boundary in `__root.tsx` so a thrown error never blanks the screen.
-
-## C. Model Answers + Rate-Limited Hints (Phase 2)
-
-- `<ModelAnswerToggle>` component, collapsed by default, framer-style height+opacity transition. Lives in MCQ runner, short-answer runner, structured runner.
-- `<HintButton>` with 4/24h rolling-window quota stored in `localStorage` under `hints:v1` as `{ timestamps: number[] }`. On click: prune > 24h, check length < 4, reveal next hint, push timestamp. Server-generated hints (one-shot via Lovable AI Gateway, cached per question id in IndexedDB so repeat views are free). When exhausted: show countdown to oldest-timestamp + 24h.
-
-## D. Content expansion to 100+ per sub-topic (Phase 3)
-
-- Run a one-time build script (`scripts/generate-bank.ts`) using Lovable AI Gateway (`google/gemini-3-flash-preview`) that, per sub-topic, generates batches of 25 until ≥100 exist, with strict JSON schema (subject, topic, sub-topic, difficulty, paper-style tag, question, options, answer, explanation, marking-points). Diversified across Easy/Medium/Hard buckets (40/40/20).
-- Output written to `public/questions.json` (chunked per subject to keep payloads small: `public/banks/<subject>.json` lazy-loaded by route).
-- Strict syllabus guardrail: prompt is grounded in the Sri Lankan NIE O/L syllabus text already attached, with explicit "reject Cambridge/Edexcel phrasing" instruction.
-
-## E. Apple-grade redesign (Phase 4)
-
-- Tokens in `src/styles.css`: deeper graphite base (`oklch(0.14 0.01 250)`), 1px hairline borders via `color-mix`, glass surfaces (`backdrop-blur-2xl bg-white/[0.03]`), accent gradient reserved for primary CTAs only.
-- New `<GlassCard>`, `<HairlineDivider>`, `<ParallaxHero>` primitives.
-- Homepage rebuilt to tradinghq cadence: oversized serif headline, live counter strip, Daily Question card, 3-subject grid, social-proof rail, footer. No purple, no generic gradients.
-- Page transitions via `motion/react` (already viable) — fade+8px rise, 220ms, respecting `prefers-reduced-motion`.
-- Performance budget: keep route JS < 180KB gz; lazy-load KaTeX and question banks.
-
-## F. Programmatic SEO (Phase 5)
-
-- 20 landing pages at `/learn/<subject>/<topic>/<slug>` targeting low-comp Sri Lankan O/L queries (I'll pull volume via the semrush tool before generating). Each page: H1 + 600-word topical primer + 5 example questions with worked solutions + internal links to 3 sibling topics + JSON-LD `LearningResource`.
-- Internal linking: subject hub lists every sub-topic with link; sitemap.xml regenerated.
-- Per-route `head()` with unique title/description/og — no template duplication.
-
----
-
-## Technical sketch
-
-```text
-src/lib/content.ts          ← resolveTopic() + alias map, fuzzy fallback
-src/lib/hints.ts            ← 4/24h quota, localStorage + IndexedDB cache
-src/lib/mastery.ts          ← per-topic rolling accuracy
-src/components/
-  NotFoundShell.tsx
-  ModelAnswerToggle.tsx
-  HintButton.tsx
-  GlassCard.tsx
-  DailyQuestion.tsx
-  MasteryRing.tsx
-scripts/generate-bank.ts    ← one-shot AI bank expansion (build-time only)
-public/banks/<subject>.json ← chunked lazy-loaded banks
-src/routes/learn.$subject.$topic.$slug.tsx  ← upgraded SEO template
-```
-
-No live AI calls on the deployed app except the hint generator (cached per question, hard-rate-limited client-side).
-
----
-
-## Before I build — 3 questions
-
-1. **Hints — AI-generated or hand-authored?** AI-generated (cheap, scales to every question, cached) is my default. Hand-authored = higher quality but only on questions we curate.
-2. **Content regeneration scope.** Full expansion to ~100/sub-topic across all 3 subjects is ~30–45 min of AI Gateway calls and will consume credits. OK to proceed, or cap at e.g. 50/sub-topic first?
-3. **Daily Question source.** Rotate deterministically from existing bank (free, instant), or AI-curate a fresh one daily server-side (richer, costs credits)?
-
-Confirm A + answer 1–3 and I'll execute B→F in order.  
+Not touched: `syllabushq.lovable.app` in Lovable's own hosting DNS — that's platform-side. We only control what the app emits.  
   
-1) AI generated  
-2) Cap at 60 sub-topics first  
-3) AI-curate a fresh one daily server-side   
-IMPORTANT: ensure everything can be done for 100% free
+EXTRA: ADD THE LOGO THROUGHOUT THE ENTIRE SITE!
+
+## 2. Stability & "Topic not found" fixes
+
+Global scrutiny of the resolver + every route that can 404:
+
+- **Audit `src/data/subjects.json` vs `src/data/questions.json**` — dump every distinct `(subject, topic)` pair in questions and diff against the subjects list. Any orphan topic (question refers to a topic slug that isn't in subjects.json, or vice versa) is a guaranteed "Topic not found". Add the missing slugs to subjects.json OR remap the questions, whichever preserves content.
+- **Extend `TOPIC_ALIASES**` in `src/lib/content.ts` with every drifted slug found in the audit, so old shared links keep resolving.
+- **Fix wrong exam structures** in `src/lib/paper-structures.ts` — verified count/mark per NIE spec:
+  - Maths Paper I: Part A = 25×2, Part B = answer 5 of 10 ×10 ✓ (keep)
+  - Maths Paper II: confirm Part B is 5 of 10 (not 5 of 7 as currently)
+  - Science Paper II: confirm Part A = 4 structured of 6 (not "all 10 × 7")
+  - Business Paper II: confirm section counts against 2023/2024 papers
+  - I'll cross-check against the NIE syllabus PDFs already in the project and fix any that are wrong.
+- **Every route with a `loader` gets a `notFoundComponent` + `errorComponent**` using `NotFoundShell`, not the generic root 404. Currently only `$subject.$topic.tsx` has it — extend to `$subject.tsx`, `$subject.index.tsx`, `$subject.$topic.index.tsx`, `$subject.$topic.practice.tsx`, `practice.$mode.tsx`, `practice.$mode.$subject.tsx`, `exam.short.$subject.tsx`, `exam.structured.$subject.tsx`, `learn.$subject.$topic.$slug.tsx`.
+- **Kill the "glitch"** — audit any remaining `Math.random()` at render time in question-picking paths; if found, move to session-seeded `pickQuestions`.
+- **Run `bun run build` and `tsgo` after each batch** to keep the tree green.
+
+## 3. Editorial-minimal design pass (light-touch — full redesign is the next plan)
+
+Just enough to make the site look coherent with the chosen palette so nothing looks broken while the deeper redesign lands next turn:
+
+- Update `src/styles.css` tokens:
+  - `--background: #0a0a0a`
+  - `--foreground: #f5f5f4`
+  - `--muted: #292524`
+  - `--accent: #c9a961` (warm brass)
+  - Retire aurora orb colors from `AmbientBackground` — replace with a single subtle vignette + grain, editorial not gamer.
+- Keep Instrument Serif for display, Inter for body (already loaded).
+- Remove `animate-pulse-glow` on the "Begin Exam" button (feels cheap for editorial); replace with a simple hairline hover.
+- No layout rewrites yet — that's the next plan.
+
+## 4. Verification
+
+- `bun run build` clean
+- Grep `syllabushq.lovable.app` returns zero matches
+- Manually visit `/`, `/practice`, `/mathematics`, `/mathematics/algebra`, `/reviews`, `/sitemap.xml` in the sandbox preview via Playwright to confirm no "Topic not found" and canonicals point at workers.dev.
+
+## What's NOT in this plan (queued for follow-up)
+
+1. Full editorial redesign of every page (hero, practice setup, exam shell, results, structured runtime, reviews, suggest).
+2. Deep competitor teardown (SaveMyExams, Tutopiya, e-thaksalawa, pastpapers.wiki) + programmatic SEO landing pages + schema/internal-linking pass to actually rank page 1 in LK.
+3. Content depth audit: question quality, syllabus coverage per sub-topic, AI-marked past-paper walkthroughs, model-answer library.
+
+Say "go" and I'll execute this plan; the next two follow-up plans will land right after.
