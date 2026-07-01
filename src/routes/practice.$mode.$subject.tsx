@@ -153,7 +153,7 @@ function SetupPage() {
             </p>
             <button
               onClick={begin}
-              className="rounded-lg bg-foreground px-6 py-3 text-sm font-semibold text-background transition hover:brightness-110 animate-pulse-glow"
+              className="rounded-lg bg-foreground px-6 py-3 text-sm font-semibold text-background transition hover:brightness-110"
             >
               Begin Exam →
             </button>
