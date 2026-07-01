@@ -55,65 +55,64 @@
 }
 
 :root {
-  --radius: 0.875rem;
+  --radius: 0.75rem;
 
-  /* Obsidian-aurora palette — true black graphite with cool platinum accents. */
-  --bg: #05060a;
-  --surface: #0a0c12;
-  --surface-2: #0f1118;
-  --surface-3: #161922;
-  --hairline: #1a1e28;
-  --hairline-strong: #2a2f3b;
+  /* Editorial-minimal palette. Near-black paper, warm off-white ink, brass accent. */
+  --bg: #0a0a0a;
+  --surface: #111110;
+  --surface-2: #171715;
+  --surface-3: #1f1e1c;
+  --hairline: #26241f;
+  --hairline-strong: #3a3731;
 
-  /* Single cool accent. Subtle, expensive — never neon. */
-  --accent-1: #e8ecf3;          /* platinum */
-  --accent-2: #8ea4c2;          /* faint cyan-steel */
-  --aurora-1: #5b8def;          /* cobalt */
-  --aurora-2: #a78bfa;          /* iris */
-  --aurora-3: #34d399;          /* peridot */
-  --glow: rgba(232,236,243,0.18);
+  /* Single warm brass accent — editorial, not gamer. */
+  --accent-1: #c9a961;          /* brass */
+  --accent-2: #d9be82;          /* soft brass */
+  --aurora-1: #c9a961;
+  --aurora-2: #d9be82;
+  --aurora-3: #f5f5f4;
+  --glow: rgba(201,169,97,0.16);
 
-  /* Feedback */
-  --mint: #6ee7b7;
-  --coral: #fb7185;
-  --amber: #fbbf24;             /* retained for legacy class usage */
-  --amber-soft: #fde68a;
+  /* Feedback (kept subdued for editorial tone) */
+  --mint: #a3b18a;
+  --coral: #c9553c;
+  --amber: #c9a961;
+  --amber-soft: #d9be82;
 
-  /* Legacy aliases (keep old class names compiling) */
-  --ink: #f3f5f8;
-  --paper: #06070a;
-  --charcoal: #c6cbd4;
+  /* Legacy aliases */
+  --ink: #f5f5f4;
+  --paper: #0a0a0a;
+  --charcoal: #a8a29e;
   --marigold: var(--accent-1);
   --sage: var(--mint);
   --clay: var(--coral);
 
-  --background: #05060a;
-  --foreground: #f3f5f8;
-  --card: #0b0d12;
-  --card-foreground: #f3f5f8;
-  --popover: #11141b;
-  --popover-foreground: #f3f5f8;
-  --primary: #e8ecf3;
-  --primary-foreground: #06070a;
-  --secondary: #11141b;
-  --secondary-foreground: #f3f5f8;
-  --muted: #11141b;
-  --muted-foreground: #7e8593;
-  --accent: #e8ecf3;
-  --accent-foreground: #06070a;
-  --destructive: #fb7185;
-  --destructive-foreground: #06070a;
-  --border: #1c2029;
-  --input: #1c2029;
-  --ring: rgba(232,236,243,0.5);
+  --background: #0a0a0a;
+  --foreground: #f5f5f4;
+  --card: #111110;
+  --card-foreground: #f5f5f4;
+  --popover: #171715;
+  --popover-foreground: #f5f5f4;
+  --primary: #f5f5f4;
+  --primary-foreground: #0a0a0a;
+  --secondary: #171715;
+  --secondary-foreground: #f5f5f4;
+  --muted: #171715;
+  --muted-foreground: #a8a29e;
+  --accent: #c9a961;
+  --accent-foreground: #0a0a0a;
+  --destructive: #c9553c;
+  --destructive-foreground: #f5f5f4;
+  --border: #26241f;
+  --input: #26241f;
+  --ring: rgba(201,169,97,0.5);
 
   --shadow-cinematic:
-    0 30px 80px -30px rgba(0,0,0,0.9),
-    0 1px 0 0 rgba(255,255,255,0.04) inset,
-    0 0 0 1px rgba(255,255,255,0.02) inset;
+    0 20px 60px -30px rgba(0,0,0,0.8),
+    0 1px 0 0 rgba(255,255,255,0.03) inset;
   --shadow-lift:
-    0 50px 120px -40px rgba(0,0,0,1),
-    0 1px 0 0 rgba(255,255,255,0.06) inset;
+    0 40px 100px -40px rgba(0,0,0,0.95),
+    0 1px 0 0 rgba(255,255,255,0.04) inset;
 }
 
 @layer base {
