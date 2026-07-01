@@ -1,24 +1,22 @@
-import { createFileRoute, Outlet, Link, notFound } from "@tanstack/react-router";
-import { subjectsQuery, type Subject } from "@/lib/content";
-import { SiteHeader } from "@/components/SiteHeader";
+import { createFileRoute, Outlet, notFound, redirect } from "@tanstack/react-router";
+import { subjectsQuery, resolveSubject, type Subject } from "@/lib/content";
+import { NotFoundShell } from "@/components/NotFoundShell";
 
 export const Route = createFileRoute("/$subject")({
   loader: async ({ context, params }) => {
     const subjects = await context.queryClient.ensureQueryData(subjectsQuery);
-    const subject = subjects.find((s: Subject) => s.slug === params.subject);
+    const subject = resolveSubject(subjects, params.subject);
     if (!subject) throw notFound();
+    if (subject.slug !== params.subject) {
+      throw redirect({ to: "/$subject", params: { subject: subject.slug } });
+    }
     return { subject } as { subject: Subject };
   },
   notFoundComponent: () => (
-    <div className="min-h-screen bg-paper">
-      <SiteHeader />
-      <main className="mx-auto max-w-3xl px-4 py-16 text-center">
-        <h1 className="text-2xl font-semibold text-ink">Subject not found</h1>
-        <Link to="/" className="mt-4 inline-block text-marigold hover:underline">
-          Back to home
-        </Link>
-      </main>
-    </div>
+    <NotFoundShell title="Subject not found" message="That subject slug isn't on the syllabus. Pick one below." />
+  ),
+  errorComponent: ({ error }) => (
+    <NotFoundShell title="Couldn't load that subject" message={error.message} />
   ),
   component: () => <Outlet />,
 });

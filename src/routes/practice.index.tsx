@@ -3,7 +3,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { MODES } from "@/lib/modes";
 import { PremiumCard } from "@/components/PremiumCard";
 
-const SITE = "https://syllabushq.lovable.app";
+const SITE = "https://app.syllabushq.workers.dev";
 
 export const Route = createFileRoute("/practice/")({
   head: () => ({

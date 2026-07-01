@@ -11,7 +11,7 @@ import { ZeigarnikResume } from "@/components/ZeigarnikResume";
 import { getStudyDays, computeStreaks } from "@/lib/streak";
 import { DailyQuestion } from "@/components/DailyQuestion";
 
-const SITE = "https://syllabushq.lovable.app";
+const SITE = "https://app.syllabushq.workers.dev";
 
 export const Route = createFileRoute("/")({
   head: () => ({
