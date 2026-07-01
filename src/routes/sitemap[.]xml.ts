@@ -4,7 +4,7 @@ import subjectsData from "@/data/subjects.json";
 import { SEO_PAGES } from "@/data/seo-matrix";
 import { MODES } from "@/lib/modes";
 
-const BASE_URL = "https://syllabushq.lovable.app";
+const BASE_URL = "https://app.syllabushq.workers.dev";
 
 interface SitemapEntry {
   path: string;

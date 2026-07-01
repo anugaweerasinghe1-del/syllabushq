@@ -5,7 +5,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { listReviews, submitReview, deleteReview } from "@/lib/reviews.functions";
 import { getVisitorToken } from "@/lib/visitor";
 
-const SITE = "https://syllabushq.lovable.app";
+const SITE = "https://app.syllabushq.workers.dev";
 
 type Review = { id: string; name: string; rating: number; comment: string; created_at: string };
 
