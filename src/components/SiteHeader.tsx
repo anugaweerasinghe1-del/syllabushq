@@ -29,8 +29,9 @@ export function SiteHeader() {
         <BrandMark />
         <nav className="hidden items-center gap-0.5 text-[13px] text-muted-foreground sm:flex">
           <NavLink to="/practice">Practice</NavLink>
+          <NavLink to="/resources">Resources</NavLink>
+          <NavLink to="/for-teachers">Teachers</NavLink>
           <NavLink to="/reviews">Reviews</NavLink>
-          <NavLink to="/suggest">Suggest</NavLink>
         </nav>
         <Link
           to="/practice"

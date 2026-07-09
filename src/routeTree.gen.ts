@@ -13,13 +13,17 @@ import { Route as SuggestRouteImport } from './routes/suggest'
 import { Route as StructuredRouteImport } from './routes/structured'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ReviewsRouteImport } from './routes/reviews'
+import { Route as ResourcesRouteImport } from './routes/resources'
+import { Route as PressRouteImport } from './routes/press'
 import { Route as PracticeRouteImport } from './routes/practice'
+import { Route as ForTeachersRouteImport } from './routes/for-teachers'
 import { Route as ExamRouteImport } from './routes/exam'
 import { Route as SubjectRouteImport } from './routes/$subject'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PracticeIndexRouteImport } from './routes/practice.index'
 import { Route as SubjectIndexRouteImport } from './routes/$subject.index'
 import { Route as PracticeModeRouteImport } from './routes/practice.$mode'
+import { Route as EmbedDailyRouteImport } from './routes/embed.daily'
 import { Route as SubjectTopicRouteImport } from './routes/$subject.$topic'
 import { Route as PracticeModeIndexRouteImport } from './routes/practice.$mode.index'
 import { Route as SubjectTopicIndexRouteImport } from './routes/$subject.$topic.index'
@@ -50,9 +54,24 @@ const ReviewsRoute = ReviewsRouteImport.update({
   path: '/reviews',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResourcesRoute = ResourcesRouteImport.update({
+  id: '/resources',
+  path: '/resources',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PressRoute = PressRouteImport.update({
+  id: '/press',
+  path: '/press',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PracticeRoute = PracticeRouteImport.update({
   id: '/practice',
   path: '/practice',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForTeachersRoute = ForTeachersRouteImport.update({
+  id: '/for-teachers',
+  path: '/for-teachers',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ExamRoute = ExamRouteImport.update({
@@ -84,6 +103,11 @@ const PracticeModeRoute = PracticeModeRouteImport.update({
   id: '/$mode',
   path: '/$mode',
   getParentRoute: () => PracticeRoute,
+} as any)
+const EmbedDailyRoute = EmbedDailyRouteImport.update({
+  id: '/embed/daily',
+  path: '/embed/daily',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const SubjectTopicRoute = SubjectTopicRouteImport.update({
   id: '/$topic',
@@ -135,12 +159,16 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$subject': typeof SubjectRouteWithChildren
   '/exam': typeof ExamRouteWithChildren
+  '/for-teachers': typeof ForTeachersRoute
   '/practice': typeof PracticeRouteWithChildren
+  '/press': typeof PressRoute
+  '/resources': typeof ResourcesRoute
   '/reviews': typeof ReviewsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/structured': typeof StructuredRoute
   '/suggest': typeof SuggestRoute
   '/$subject/$topic': typeof SubjectTopicRouteWithChildren
+  '/embed/daily': typeof EmbedDailyRoute
   '/practice/$mode': typeof PracticeModeRouteWithChildren
   '/$subject/': typeof SubjectIndexRoute
   '/practice/': typeof PracticeIndexRoute
@@ -156,10 +184,14 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/exam': typeof ExamRouteWithChildren
+  '/for-teachers': typeof ForTeachersRoute
+  '/press': typeof PressRoute
+  '/resources': typeof ResourcesRoute
   '/reviews': typeof ReviewsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/structured': typeof StructuredRoute
   '/suggest': typeof SuggestRoute
+  '/embed/daily': typeof EmbedDailyRoute
   '/$subject': typeof SubjectIndexRoute
   '/practice': typeof PracticeIndexRoute
   '/$subject/$topic/practice': typeof SubjectTopicPracticeRoute
@@ -176,12 +208,16 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/$subject': typeof SubjectRouteWithChildren
   '/exam': typeof ExamRouteWithChildren
+  '/for-teachers': typeof ForTeachersRoute
   '/practice': typeof PracticeRouteWithChildren
+  '/press': typeof PressRoute
+  '/resources': typeof ResourcesRoute
   '/reviews': typeof ReviewsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/structured': typeof StructuredRoute
   '/suggest': typeof SuggestRoute
   '/$subject/$topic': typeof SubjectTopicRouteWithChildren
+  '/embed/daily': typeof EmbedDailyRoute
   '/practice/$mode': typeof PracticeModeRouteWithChildren
   '/$subject/': typeof SubjectIndexRoute
   '/practice/': typeof PracticeIndexRoute
@@ -200,12 +236,16 @@ export interface FileRouteTypes {
     | '/'
     | '/$subject'
     | '/exam'
+    | '/for-teachers'
     | '/practice'
+    | '/press'
+    | '/resources'
     | '/reviews'
     | '/sitemap.xml'
     | '/structured'
     | '/suggest'
     | '/$subject/$topic'
+    | '/embed/daily'
     | '/practice/$mode'
     | '/$subject/'
     | '/practice/'
@@ -221,10 +261,14 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/exam'
+    | '/for-teachers'
+    | '/press'
+    | '/resources'
     | '/reviews'
     | '/sitemap.xml'
     | '/structured'
     | '/suggest'
+    | '/embed/daily'
     | '/$subject'
     | '/practice'
     | '/$subject/$topic/practice'
@@ -240,12 +284,16 @@ export interface FileRouteTypes {
     | '/'
     | '/$subject'
     | '/exam'
+    | '/for-teachers'
     | '/practice'
+    | '/press'
+    | '/resources'
     | '/reviews'
     | '/sitemap.xml'
     | '/structured'
     | '/suggest'
     | '/$subject/$topic'
+    | '/embed/daily'
     | '/practice/$mode'
     | '/$subject/'
     | '/practice/'
@@ -263,11 +311,15 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SubjectRoute: typeof SubjectRouteWithChildren
   ExamRoute: typeof ExamRouteWithChildren
+  ForTeachersRoute: typeof ForTeachersRoute
   PracticeRoute: typeof PracticeRouteWithChildren
+  PressRoute: typeof PressRoute
+  ResourcesRoute: typeof ResourcesRoute
   ReviewsRoute: typeof ReviewsRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   StructuredRoute: typeof StructuredRoute
   SuggestRoute: typeof SuggestRoute
+  EmbedDailyRoute: typeof EmbedDailyRoute
   LearnSubjectTopicSlugRoute: typeof LearnSubjectTopicSlugRoute
 }
 
@@ -301,11 +353,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReviewsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/resources': {
+      id: '/resources'
+      path: '/resources'
+      fullPath: '/resources'
+      preLoaderRoute: typeof ResourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/press': {
+      id: '/press'
+      path: '/press'
+      fullPath: '/press'
+      preLoaderRoute: typeof PressRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/practice': {
       id: '/practice'
       path: '/practice'
       fullPath: '/practice'
       preLoaderRoute: typeof PracticeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/for-teachers': {
+      id: '/for-teachers'
+      path: '/for-teachers'
+      fullPath: '/for-teachers'
+      preLoaderRoute: typeof ForTeachersRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/exam': {
@@ -349,6 +422,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/practice/$mode'
       preLoaderRoute: typeof PracticeModeRouteImport
       parentRoute: typeof PracticeRoute
+    }
+    '/embed/daily': {
+      id: '/embed/daily'
+      path: '/embed/daily'
+      fullPath: '/embed/daily'
+      preLoaderRoute: typeof EmbedDailyRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/$subject/$topic': {
       id: '/$subject/$topic'
@@ -489,23 +569,17 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SubjectRoute: SubjectRouteWithChildren,
   ExamRoute: ExamRouteWithChildren,
+  ForTeachersRoute: ForTeachersRoute,
   PracticeRoute: PracticeRouteWithChildren,
+  PressRoute: PressRoute,
+  ResourcesRoute: ResourcesRoute,
   ReviewsRoute: ReviewsRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   StructuredRoute: StructuredRoute,
   SuggestRoute: SuggestRoute,
+  EmbedDailyRoute: EmbedDailyRoute,
   LearnSubjectTopicSlugRoute: LearnSubjectTopicSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

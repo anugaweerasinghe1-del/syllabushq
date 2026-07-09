@@ -1,63 +1,60 @@
-## Scope (this plan only)
+## Goal
 
-You picked **Stability + domain swap** with the **Editorial Minimal** aesthetic. UI redesign, content/exam-correctness audit, and the competitor/SEO teardown will each be their own follow-up plan so nothing ships half-done.
+Run a Semrush backlink teardown on the three main LK O/L competitors, then translate the findings into concrete on-site changes that make SyllabusHQ *linkable* — so the referring-domain types that already point at competitors will point at us too.
 
-## 1. Domain swap → `https://app.syllabushq.workers.dev`
+## Phase 1 — Competitive backlink teardown (research, no code)
 
-Repoint every hardcoded reference in one pass. Files touched:
+Run `semrush--backlink_analysis` on each:
 
-- `public/robots.txt` — update `Sitemap:` line
-- `src/routes/sitemap[.]xml.ts` — `BASE_URL`
-- `src/routes/index.tsx`, `practice.index.tsx`, `structured.tsx`, `reviews.tsx`, `suggest.tsx`, `learn.$subject.$topic.$slug.tsx` — canonical, `og:url`, JSON-LD `url` fields
-- `src/routes/__root.tsx` — any absolute references (og:site_name is fine, but if og:url is set here, swap it)
-- Add a single `src/lib/site.ts` exporting `SITE_URL = "https://app.syllabushq.workers.dev"` and refactor call-sites to import it, so we never drift again.
+- `tutopiya.com`
+- `savemyexams.com`
+- `pastpapers.wiki`
 
-Also update `.lovable/plan.md` note only if it references the domain (docs, not code).
+For each, capture: Authority Score, total backlinks, referring domains, follow/nofollow split, top 10 referring domains, anchor-text distribution. Then bucket the top referring domains into the taxonomy from the last message (school `.edu`/`.ac.lk`, news, Reddit/forums, YouTube, teacher blogs, directories, GitHub, aggregators). Output a shortlist of ~20 real referring domains we should target.
 
-Not touched: `syllabushq.lovable.app` in Lovable's own hosting DNS — that's platform-side. We only control what the app emits.  
+Also run `semrush--domain_analysis` on `app.syllabushq.workers.dev` for a baseline (likely near-zero — that's fine, it sets the "before" number).
+
+Deliverable: a short teardown written into `docs/backlink-teardown.md` in the repo so it's versioned and referable.
+
+## Phase 2 — Make the site *linkable* (on-site changes)
+
+Backlinks only happen if there's something worth linking to. Concrete additions:
+
+1. `**/resources` hub** — a single high-signal page listing: NIE syllabus links, past-paper archives, marking schemes, exam-day checklist. This is the page teachers and journalists actually link to.
+2. `**/for-teachers` page** — "Free classroom resources, printable question packs, embed our daily question widget." Gives school sites and tutors a reason to link.
+3. **Embeddable Daily Question widget** — a copy-paste `<iframe>` snippet + a public `/embed/daily` route. Every embed is a followed backlink from a student/teacher blog.
+4. **Shareable results card** — after a practice session, generate an OG image ("I scored 18/20 on O/L Maths Algebra") with a link back. Drives Reddit/Facebook shares → natural links.
+5. `**/press` page** — one-paragraph project story, founder quote, brand assets (logo, screenshots, colors), contact email. Journalists won't cover you without this.
+6. `**llms.txt` + rich `Article` schema on `/learn/*` pages** — makes the programmatic SEO pages citable by Perplexity/ChatGPT and by aggregator sites that scrape structured data.
+
+## Phase 3 — Outreach assets (content, not code)
+
+Draft into `docs/outreach/`:
+
+- Teacher email template (for `.ac.lk` school resource pages)
+- Reddit r/srilanka intro post draft (value-first, not spammy)
+- Product Hunt launch copy + tagline
+- One 1200-word guest post pitching Sri Lankan edtech blogs
+
+These are user-executed but I'll write them.
+
+## Phase 4 — Measurement
+
+Add to the teardown doc: baseline Authority Score, backlink count, referring domains. Re-run `semrush--backlink_analysis` after 30/60/90 days and log deltas.
+
+## What's NOT in this plan
+
+- Full editorial redesign of every page (still queued)
+- Programmatic SEO landing pages for high-intent LK keywords (still queued)
+- Content depth / NIE structure audit (still queued)
+
+## Tech notes
+
+- `/embed/daily` route: pathless layout that skips `SiteHeader`, sets `X-Frame-Options: ALLOWALL` via response headers, minimal CSS.
+- OG image generation: TanStack server route under `/api/public/og/results` using `@vercel/og` or a hand-rolled SVG→PNG (Worker-compatible; no `sharp`).
+- `/resources`, `/for-teachers`, `/press`: static route files, each with proper `head()` (title, description, canonical, og:*, JSON-LD).
+- `llms.txt` already exists at `public/llms.txt` — audit and expand.
+
+Say "go" and I'll run Phase 1 first, then implement Phase 2 in one build pass.  
   
-EXTRA: ADD THE LOGO THROUGHOUT THE ENTIRE SITE!
-
-## 2. Stability & "Topic not found" fixes
-
-Global scrutiny of the resolver + every route that can 404:
-
-- **Audit `src/data/subjects.json` vs `src/data/questions.json**` — dump every distinct `(subject, topic)` pair in questions and diff against the subjects list. Any orphan topic (question refers to a topic slug that isn't in subjects.json, or vice versa) is a guaranteed "Topic not found". Add the missing slugs to subjects.json OR remap the questions, whichever preserves content.
-- **Extend `TOPIC_ALIASES**` in `src/lib/content.ts` with every drifted slug found in the audit, so old shared links keep resolving.
-- **Fix wrong exam structures** in `src/lib/paper-structures.ts` — verified count/mark per NIE spec:
-  - Maths Paper I: Part A = 25×2, Part B = answer 5 of 10 ×10 ✓ (keep)
-  - Maths Paper II: confirm Part B is 5 of 10 (not 5 of 7 as currently)
-  - Science Paper II: confirm Part A = 4 structured of 6 (not "all 10 × 7")
-  - Business Paper II: confirm section counts against 2023/2024 papers
-  - I'll cross-check against the NIE syllabus PDFs already in the project and fix any that are wrong.
-- **Every route with a `loader` gets a `notFoundComponent` + `errorComponent**` using `NotFoundShell`, not the generic root 404. Currently only `$subject.$topic.tsx` has it — extend to `$subject.tsx`, `$subject.index.tsx`, `$subject.$topic.index.tsx`, `$subject.$topic.practice.tsx`, `practice.$mode.tsx`, `practice.$mode.$subject.tsx`, `exam.short.$subject.tsx`, `exam.structured.$subject.tsx`, `learn.$subject.$topic.$slug.tsx`.
-- **Kill the "glitch"** — audit any remaining `Math.random()` at render time in question-picking paths; if found, move to session-seeded `pickQuestions`.
-- **Run `bun run build` and `tsgo` after each batch** to keep the tree green.
-
-## 3. Editorial-minimal design pass (light-touch — full redesign is the next plan)
-
-Just enough to make the site look coherent with the chosen palette so nothing looks broken while the deeper redesign lands next turn:
-
-- Update `src/styles.css` tokens:
-  - `--background: #0a0a0a`
-  - `--foreground: #f5f5f4`
-  - `--muted: #292524`
-  - `--accent: #c9a961` (warm brass)
-  - Retire aurora orb colors from `AmbientBackground` — replace with a single subtle vignette + grain, editorial not gamer.
-- Keep Instrument Serif for display, Inter for body (already loaded).
-- Remove `animate-pulse-glow` on the "Begin Exam" button (feels cheap for editorial); replace with a simple hairline hover.
-- No layout rewrites yet — that's the next plan.
-
-## 4. Verification
-
-- `bun run build` clean
-- Grep `syllabushq.lovable.app` returns zero matches
-- Manually visit `/`, `/practice`, `/mathematics`, `/mathematics/algebra`, `/reviews`, `/sitemap.xml` in the sandbox preview via Playwright to confirm no "Topic not found" and canonicals point at workers.dev.
-
-## What's NOT in this plan (queued for follow-up)
-
-1. Full editorial redesign of every page (hero, practice setup, exam shell, results, structured runtime, reviews, suggest).
-2. Deep competitor teardown (SaveMyExams, Tutopiya, e-thaksalawa, pastpapers.wiki) + programmatic SEO landing pages + schema/internal-linking pass to actually rank page 1 in LK.
-3. Content depth audit: question quality, syllabus coverage per sub-topic, AI-marked past-paper walkthroughs, model-answer library.
-
-Say "go" and I'll execute this plan; the next two follow-up plans will land right after.
+after implementing phase 2, continue programmatic seo and rest of it in this plan, try atleast without 0 errors
