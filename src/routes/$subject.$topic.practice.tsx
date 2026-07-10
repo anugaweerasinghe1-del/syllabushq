@@ -69,7 +69,10 @@ function PracticePage() {
   const navigate = useNavigate();
 
   const pool = useMemo(
-    () => getQuestionsFor(questions, subject.slug, topic.slug),
+    () =>
+      topic.slug === "mix"
+        ? questions.filter((q) => q.subject === subject.slug)
+        : getQuestionsFor(questions, subject.slug, topic.slug),
     [questions, subject.slug, topic.slug],
   );
 
