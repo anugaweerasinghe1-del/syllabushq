@@ -38,16 +38,16 @@ export const Route = createFileRoute("/resources")({
 type Row = { title: string; href: string; note: string };
 
 const SYLLABI: Row[] = [
-  { title: "NIE — O/L Mathematics syllabus (English medium)", href: "https://nie.lk/pdffiles/tg/syllabus/OL_Maths_Syllabus_E.pdf", note: "Official grade 10–11 syllabus PDF from the National Institute of Education." },
-  { title: "NIE — O/L Science syllabus", href: "https://nie.lk/syllabus.php?syd=2&lm=en", note: "Full unit-wise Science syllabus, grade 10 & 11." },
-  { title: "NIE — Business & Accounting Studies syllabus", href: "https://nie.lk/syllabus.php?syd=3&lm=en", note: "Two-year unit breakdown with weighting per paper." },
-  { title: "Department of Examinations — Exam calendar", href: "https://doenets.lk/", note: "Official exam timetable and admission-card portal." },
+  { title: "National Institute of Education (NIE) — syllabus portal", href: "https://nie.lk/", note: "The official source for every G.C.E. O/L syllabus. From the homepage open 'Curriculum' → 'Syllabi' to pick a subject and download the current-year PDF." },
+  { title: "e-thaksalawa — Ministry of Education subject portal", href: "https://e-thaksalawa.moe.gov.lk/", note: "Government e-learning portal. Every syllabus, teacher's guide, and textbook is filed here by grade and subject." },
+  { title: "Ministry of Education — Sri Lanka", href: "https://moe.gov.lk/", note: "Circulars, curriculum policy updates, and the official school calendar." },
+  { title: "Department of Examinations — main portal", href: "https://doenets.lk/", note: "Exam timetables, admission-card downloads, and result checking." },
 ];
 
 const PAST_PAPERS: Row[] = [
-  { title: "e-thaksalawa — Ministry past papers", href: "https://e-thaksalawa.moe.gov.lk/", note: "Government-hosted past papers by year, subject and medium." },
-  { title: "Department of Examinations — Past papers", href: "https://doenets.lk/exam", note: "Official past papers and marking schemes released after each sitting." },
-  { title: "pastpapers.wiki — community archive", href: "https://pastpapers.wiki/", note: "User-uploaded archive spanning ~15 years — cross-check answers before trusting." },
+  { title: "Department of Examinations — past papers", href: "https://doenets.lk/", note: "Official past papers and marking schemes released after each sitting. On the homepage open 'Examinations' → 'Past Papers'." },
+  { title: "e-thaksalawa — model & past papers", href: "https://e-thaksalawa.moe.gov.lk/", note: "Ministry-hosted archive of past papers, model papers, and marking schemes by year, subject, and medium." },
+  { title: "pastpapers.wiki — community archive", href: "https://pastpapers.wiki/", note: "Community-uploaded archive spanning ~15 years. Cross-check answers with the official marking scheme before trusting." },
 ];
 
 const EXAM_DAY: Row[] = [
