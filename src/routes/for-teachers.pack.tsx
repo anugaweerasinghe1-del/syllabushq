@@ -1,21 +1,19 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
-import { z } from "zod";
-import { fallback, zodValidator } from "@tanstack/zod-adapter";
 import { subjectsQuery, questionsQuery } from "@/lib/content";
 import { MathText } from "@/components/MathText";
 import { pickQuestions } from "@/lib/pickQuestions";
 
-const searchSchema = z.object({
-  subject: fallback(z.string(), "mathematics").default("mathematics"),
-  topic: fallback(z.string(), "mix").default("mix"),
-  count: fallback(z.number().int(), 20).default(20),
-  difficulty: fallback(z.string(), "all").default("all"),
-});
+type PackSearch = { subject: string; topic: string; count: number; difficulty: string };
 
 export const Route = createFileRoute("/for-teachers/pack")({
-  validateSearch: zodValidator(searchSchema),
+  validateSearch: (raw: Record<string, unknown>): PackSearch => ({
+    subject: typeof raw.subject === "string" ? raw.subject : "mathematics",
+    topic: typeof raw.topic === "string" ? raw.topic : "mix",
+    count: Number(raw.count) > 0 ? Math.floor(Number(raw.count)) : 20,
+    difficulty: typeof raw.difficulty === "string" ? raw.difficulty : "all",
+  }),
   loader: async ({ context }) => {
     await context.queryClient.ensureQueryData(subjectsQuery);
     await context.queryClient.ensureQueryData(questionsQuery);
