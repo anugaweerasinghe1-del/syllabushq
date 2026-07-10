@@ -11,6 +11,7 @@ import { TopicPicker } from "@/components/TopicPicker";
 import { Slider } from "@/components/ui/slider";
 import { pickQuestions } from "@/lib/pickQuestions";
 import { saveExamConfig } from "@/lib/exam-config";
+import { savePickedPool } from "@/lib/quiz-session";
 
 export const Route = createFileRoute("/practice/$mode/$subject")({
   loader: async ({ params, context }) => {
@@ -59,6 +60,9 @@ function SetupPage() {
         });
         if (picked.length === 0) { setLoading(false); alert("No questions available for that selection yet."); return; }
         const topicSlug = selectedTopics.length === 1 ? selectedTopics[0] : "mix";
+        // Stash the picked pool so the practice route can rebuild the exact set
+        // even when topic === "mix" (which has no natural pool of its own).
+        savePickedPool(subject.slug, topicSlug, picked);
         startNew(subject.slug, topicSlug, picked, {
           count: picked.length,
           timeLimitSec: time,

@@ -15,7 +15,7 @@ import { markStudiedToday } from "@/lib/streak";
 import { recordScore } from "@/lib/scores";
 import { SiteHeader } from "@/components/SiteHeader";
 import { NotFoundShell } from "@/components/NotFoundShell";
-import { loadOrCreate, save, clear, startNew, defaultConfig, type Session } from "@/lib/quiz-session";
+import { loadOrCreate, save, clear, startNew, defaultConfig, loadPickedPool, type Session } from "@/lib/quiz-session";
 import { MathText } from "@/components/MathText";
 import { ExamTimer } from "@/components/ExamTimer";
 import { HintButton } from "@/components/HintButton";
@@ -69,10 +69,14 @@ function PracticePage() {
   const navigate = useNavigate();
 
   const pool = useMemo(
-    () =>
-      topic.slug === "mix"
-        ? questions.filter((q) => q.subject === subject.slug)
-        : getQuestionsFor(questions, subject.slug, topic.slug),
+    () => {
+      // 1. If the setup screen stashed an exact pool for this attempt, use it.
+      const stashed = loadPickedPool(subject.slug, topic.slug);
+      if (stashed && stashed.length) return stashed;
+      // 2. "mix" pseudo-topic falls back to every question in the subject.
+      if (topic.slug === "mix") return questions.filter((q) => q.subject === subject.slug);
+      return getQuestionsFor(questions, subject.slug, topic.slug);
+    },
     [questions, subject.slug, topic.slug],
   );
 
