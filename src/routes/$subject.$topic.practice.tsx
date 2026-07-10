@@ -15,11 +15,10 @@ import { markStudiedToday } from "@/lib/streak";
 import { recordScore } from "@/lib/scores";
 import { SiteHeader } from "@/components/SiteHeader";
 import { NotFoundShell } from "@/components/NotFoundShell";
-import { loadOrCreate, save, clear, startNew, defaultConfig, type Session } from "@/lib/quiz-session";
+import { loadOrCreate, save, clear, startNew, defaultConfig, loadPickedPool, type Session } from "@/lib/quiz-session";
 import { MathText } from "@/components/MathText";
 import { ExamTimer } from "@/components/ExamTimer";
 import { HintButton } from "@/components/HintButton";
-import { ModelAnswerToggle } from "@/components/ModelAnswerToggle";
 
 export const Route = createFileRoute("/$subject/$topic/practice")({
   loader: async ({ context, params }) => {
@@ -70,7 +69,14 @@ function PracticePage() {
   const navigate = useNavigate();
 
   const pool = useMemo(
-    () => getQuestionsFor(questions, subject.slug, topic.slug),
+    () => {
+      // 1. If the setup screen stashed an exact pool for this attempt, use it.
+      const stashed = loadPickedPool(subject.slug, topic.slug);
+      if (stashed && stashed.length) return stashed;
+      // 2. "mix" pseudo-topic falls back to every question in the subject.
+      if (topic.slug === "mix") return questions.filter((q) => q.subject === subject.slug);
+      return getQuestionsFor(questions, subject.slug, topic.slug);
+    },
     [questions, subject.slug, topic.slug],
   );
 
@@ -270,13 +276,6 @@ function PracticePage() {
                 topic={topic.slug}
                 question={q.question}
                 options={q.options}
-              />
-            )}
-
-            {!isExam && (
-              <ModelAnswerToggle
-                answer={`The correct answer is ${String.fromCharCode(65 + q.correct)}) ${q.options[q.correct]}.`}
-                explanation={q.explanation}
               />
             )}
 

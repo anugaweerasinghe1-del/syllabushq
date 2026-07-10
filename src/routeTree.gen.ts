@@ -23,6 +23,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as PracticeIndexRouteImport } from './routes/practice.index'
 import { Route as SubjectIndexRouteImport } from './routes/$subject.index'
 import { Route as PracticeModeRouteImport } from './routes/practice.$mode'
+import { Route as ForTeachersPackRouteImport } from './routes/for-teachers.pack'
 import { Route as EmbedDailyRouteImport } from './routes/embed.daily'
 import { Route as SubjectTopicRouteImport } from './routes/$subject.$topic'
 import { Route as PracticeModeIndexRouteImport } from './routes/practice.$mode.index'
@@ -104,6 +105,11 @@ const PracticeModeRoute = PracticeModeRouteImport.update({
   path: '/$mode',
   getParentRoute: () => PracticeRoute,
 } as any)
+const ForTeachersPackRoute = ForTeachersPackRouteImport.update({
+  id: '/pack',
+  path: '/pack',
+  getParentRoute: () => ForTeachersRoute,
+} as any)
 const EmbedDailyRoute = EmbedDailyRouteImport.update({
   id: '/embed/daily',
   path: '/embed/daily',
@@ -159,7 +165,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$subject': typeof SubjectRouteWithChildren
   '/exam': typeof ExamRouteWithChildren
-  '/for-teachers': typeof ForTeachersRoute
+  '/for-teachers': typeof ForTeachersRouteWithChildren
   '/practice': typeof PracticeRouteWithChildren
   '/press': typeof PressRoute
   '/resources': typeof ResourcesRoute
@@ -169,6 +175,7 @@ export interface FileRoutesByFullPath {
   '/suggest': typeof SuggestRoute
   '/$subject/$topic': typeof SubjectTopicRouteWithChildren
   '/embed/daily': typeof EmbedDailyRoute
+  '/for-teachers/pack': typeof ForTeachersPackRoute
   '/practice/$mode': typeof PracticeModeRouteWithChildren
   '/$subject/': typeof SubjectIndexRoute
   '/practice/': typeof PracticeIndexRoute
@@ -184,7 +191,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/exam': typeof ExamRouteWithChildren
-  '/for-teachers': typeof ForTeachersRoute
+  '/for-teachers': typeof ForTeachersRouteWithChildren
   '/press': typeof PressRoute
   '/resources': typeof ResourcesRoute
   '/reviews': typeof ReviewsRoute
@@ -192,6 +199,7 @@ export interface FileRoutesByTo {
   '/structured': typeof StructuredRoute
   '/suggest': typeof SuggestRoute
   '/embed/daily': typeof EmbedDailyRoute
+  '/for-teachers/pack': typeof ForTeachersPackRoute
   '/$subject': typeof SubjectIndexRoute
   '/practice': typeof PracticeIndexRoute
   '/$subject/$topic/practice': typeof SubjectTopicPracticeRoute
@@ -208,7 +216,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/$subject': typeof SubjectRouteWithChildren
   '/exam': typeof ExamRouteWithChildren
-  '/for-teachers': typeof ForTeachersRoute
+  '/for-teachers': typeof ForTeachersRouteWithChildren
   '/practice': typeof PracticeRouteWithChildren
   '/press': typeof PressRoute
   '/resources': typeof ResourcesRoute
@@ -218,6 +226,7 @@ export interface FileRoutesById {
   '/suggest': typeof SuggestRoute
   '/$subject/$topic': typeof SubjectTopicRouteWithChildren
   '/embed/daily': typeof EmbedDailyRoute
+  '/for-teachers/pack': typeof ForTeachersPackRoute
   '/practice/$mode': typeof PracticeModeRouteWithChildren
   '/$subject/': typeof SubjectIndexRoute
   '/practice/': typeof PracticeIndexRoute
@@ -246,6 +255,7 @@ export interface FileRouteTypes {
     | '/suggest'
     | '/$subject/$topic'
     | '/embed/daily'
+    | '/for-teachers/pack'
     | '/practice/$mode'
     | '/$subject/'
     | '/practice/'
@@ -269,6 +279,7 @@ export interface FileRouteTypes {
     | '/structured'
     | '/suggest'
     | '/embed/daily'
+    | '/for-teachers/pack'
     | '/$subject'
     | '/practice'
     | '/$subject/$topic/practice'
@@ -294,6 +305,7 @@ export interface FileRouteTypes {
     | '/suggest'
     | '/$subject/$topic'
     | '/embed/daily'
+    | '/for-teachers/pack'
     | '/practice/$mode'
     | '/$subject/'
     | '/practice/'
@@ -311,7 +323,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SubjectRoute: typeof SubjectRouteWithChildren
   ExamRoute: typeof ExamRouteWithChildren
-  ForTeachersRoute: typeof ForTeachersRoute
+  ForTeachersRoute: typeof ForTeachersRouteWithChildren
   PracticeRoute: typeof PracticeRouteWithChildren
   PressRoute: typeof PressRoute
   ResourcesRoute: typeof ResourcesRoute
@@ -422,6 +434,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/practice/$mode'
       preLoaderRoute: typeof PracticeModeRouteImport
       parentRoute: typeof PracticeRoute
+    }
+    '/for-teachers/pack': {
+      id: '/for-teachers/pack'
+      path: '/pack'
+      fullPath: '/for-teachers/pack'
+      preLoaderRoute: typeof ForTeachersPackRouteImport
+      parentRoute: typeof ForTeachersRoute
     }
     '/embed/daily': {
       id: '/embed/daily'
@@ -537,6 +556,18 @@ const ExamRouteChildren: ExamRouteChildren = {
 
 const ExamRouteWithChildren = ExamRoute._addFileChildren(ExamRouteChildren)
 
+interface ForTeachersRouteChildren {
+  ForTeachersPackRoute: typeof ForTeachersPackRoute
+}
+
+const ForTeachersRouteChildren: ForTeachersRouteChildren = {
+  ForTeachersPackRoute: ForTeachersPackRoute,
+}
+
+const ForTeachersRouteWithChildren = ForTeachersRoute._addFileChildren(
+  ForTeachersRouteChildren,
+)
+
 interface PracticeModeRouteChildren {
   PracticeModeSubjectRoute: typeof PracticeModeSubjectRoute
   PracticeModeIndexRoute: typeof PracticeModeIndexRoute
@@ -569,7 +600,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SubjectRoute: SubjectRouteWithChildren,
   ExamRoute: ExamRouteWithChildren,
-  ForTeachersRoute: ForTeachersRoute,
+  ForTeachersRoute: ForTeachersRouteWithChildren,
   PracticeRoute: PracticeRouteWithChildren,
   PressRoute: PressRoute,
   ResourcesRoute: ResourcesRoute,
@@ -583,13 +614,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

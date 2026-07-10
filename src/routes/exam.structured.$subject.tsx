@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { PremiumCard } from "@/components/PremiumCard";
 import { MathText } from "@/components/MathText";
@@ -9,6 +9,8 @@ import { markStudiedToday } from "@/lib/streak";
 import { StructuredAnswerInput } from "@/components/StructuredAnswerInput";
 import { ExamTimer } from "@/components/ExamTimer";
 import { getStructuresFor } from "@/lib/paper-structures";
+import { loadExamConfig } from "@/lib/exam-config";
+import { shuffle, mulberry32 } from "@/lib/pickQuestions";
 
 type StructuredPart = { label: string; prompt: string; answer: string; marks: number };
 type StructuredQ = { subject: string; topic: string; context: string; parts: StructuredPart[] };
@@ -33,9 +35,30 @@ export const Route = createFileRoute("/exam/structured/$subject")({
 
 function StructuredRunner() {
   const { subject } = Route.useLoaderData();
-  const items = useMemo(() => ALL.filter((q) => q.subject === subject.slug), [subject.slug]);
-  const [revealed, setRevealed] = useState<Record<number, boolean>>({});
+  const [cfg, setCfg] = useState<{ count: number; timeLimitSec: number; topics: string[] } | null>(null);
+  useEffect(() => {
+    // Structured papers are heavy — default to 4 questions if setup didn't run.
+    setCfg(loadExamConfig("structured", subject.slug, { count: 4, timeLimitSec: 60 * 60, topics: [] }));
+  }, [subject.slug]);
+
+  const items = useMemo(() => {
+    const base = ALL.filter((q) => q.subject === subject.slug);
+    if (!cfg) return base;
+    const filtered = cfg.topics.length ? base.filter((q) => cfg.topics.includes(q.topic)) : base;
+    const pool = filtered.length ? filtered : base;
+    const seed = [...subject.slug].reduce((a, c) => a + c.charCodeAt(0), 0);
+    return shuffle(pool, mulberry32(seed)).slice(0, Math.max(1, cfg.count));
+  }, [subject.slug, cfg]);
   const [submitted, setSubmitted] = useState(false);
+
+  if (!cfg) {
+    return (
+      <div className="min-h-screen">
+        <SiteHeader />
+        <main className="mx-auto max-w-2xl px-4 py-20 text-center text-muted-foreground">Loading…</main>
+      </div>
+    );
+  }
 
   if (items.length === 0) {
     return (
@@ -52,7 +75,7 @@ function StructuredRunner() {
 
   const totalMarks = items.reduce((a, q) => a + q.parts.reduce((s, p) => s + p.marks, 0), 0);
   const structure = getStructuresFor(subject.slug).find((p) => p.name.includes("II")) ?? getStructuresFor(subject.slug)[0];
-  const durationMin = structure?.durationMinutes ?? 120;
+  const durationMin = cfg.timeLimitSec > 0 ? Math.round(cfg.timeLimitSec / 60) : (structure?.durationMinutes ?? 120);
 
   return (
     <div className="min-h-screen">

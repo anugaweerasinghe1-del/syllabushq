@@ -1,60 +1,112 @@
-## Goal
 
-Run a Semrush backlink teardown on the three main LK O/L competitors, then translate the findings into concrete on-site changes that make SyllabusHQ *linkable* — so the referring-domain types that already point at competitors will point at us too.
+# SyllabusHQ execution queue
 
-## Phase 1 — Competitive backlink teardown (research, no code)
+Ordered so blockers ship first, cosmetics last. Every step ends verified.
 
-Run `semrush--backlink_analysis` on each:
+---
 
-- `tutopiya.com`
-- `savemyexams.com`
-- `pastpapers.wiki`
+## Phase A — Bug fixes & functionality (highest priority)
 
-For each, capture: Authority Score, total backlinks, referring domains, follow/nofollow split, top 10 referring domains, anchor-text distribution. Then bucket the top referring domains into the taxonomy from the last message (school `.edu`/`.ac.lk`, news, Reddit/forums, YouTube, teacher blogs, directories, GitHub, aggregators). Output a shortlist of ~20 real referring domains we should target.
+### A1. Fix "we couldn't find that topic" completely (issue 4)
+Root cause audit across all 3 subjects × all modes. Rewrite `pickQuestions()` and topic-resolution logic so:
+- Any valid subject+topic slug always resolves (fallback to any question in that subject if topic is empty).
+- Mode routes (`/exam/short/*`, `/exam/structured/*`, `/$subject/$topic/*`) never render the not-found shell when the user came from a valid picker.
+- Add graceful degradation: if bank is thin, borrow from adjacent topics before showing empty state.
+- Add unit test-style assertions in-code (dev-only warn) for every subject/topic combination.
 
-Also run `semrush--domain_analysis` on `app.syllabushq.workers.dev` for a baseline (likely near-zero — that's fine, it sets the "before" number).
+### A2. Question count is ignored (issue 6)
+`pickQuestions` / session start currently returns full pool for short/structured. Fix so `count` slider is honored across all modes (mcq, exam, short, structured). Verify by starting each mode with count=5 and asserting session length.
 
-Deliverable: a short teardown written into `docs/backlink-teardown.md` in the repo so it's versioned and referable.
+### A3. Timer not showing (issue 7)
+Audit `ExamTimer` mount conditions on `/$subject/$topic/practice`, short, and structured routes. It's probably gated on `mode === "exam"`. Show it whenever `timeLimitSec > 0` regardless of mode. Visible top-right sticky.
 
-## Phase 2 — Make the site *linkable* (on-site changes)
+### A4. Attach handwriting upload broken (issue 5)
+`StructuredAnswerInput` file input works, but the base64 encode via `btoa(String.fromCharCode(...))` blows the stack on large images and the "Attach photo" button is inside a flex that hides feedback. Rewrite with `FileReader.readAsDataURL`, show a real thumbnail preview, and confirm gateway grading receives `imageBase64` + `imageMime`.
 
-Backlinks only happen if there's something worth linking to. Concrete additions:
+### A5. Remove "Toggle model answer" from MCQ (issue 3)
+Strip `ModelAnswerToggle` usage from MCQ result cards; keep on short/structured only. Hints stay.
 
-1. `**/resources` hub** — a single high-signal page listing: NIE syllabus links, past-paper archives, marking schemes, exam-day checklist. This is the page teachers and journalists actually link to.
-2. `**/for-teachers` page** — "Free classroom resources, printable question packs, embed our daily question widget." Gives school sites and tutors a reason to link.
-3. **Embeddable Daily Question widget** — a copy-paste `<iframe>` snippet + a public `/embed/daily` route. Every embed is a followed backlink from a student/teacher blog.
-4. **Shareable results card** — after a practice session, generate an OG image ("I scored 18/20 on O/L Maths Algebra") with a link back. Drives Reddit/Facebook shares → natural links.
-5. `**/press` page** — one-paragraph project story, founder quote, brand assets (logo, screenshots, colors), contact email. Journalists won't cover you without this.
-6. `**llms.txt` + rich `Article` schema on `/learn/*` pages** — makes the programmatic SEO pages citable by Perplexity/ChatGPT and by aggregator sites that scrape structured data.
+### A6. Math renders as "lo (16) + lo (1/2)" instead of log₂ (issue 10)
+`MathText` isn't parsing bare `log_2(16)` — the bank stores plain text. Two fixes:
+- Update `MathText` to detect `log_N(x)` and `sqrt(x)` outside `$...$` and wrap them in KaTeX.
+- Backfill the questions JSON: run a one-off script pass to convert `log_2(16)` → `$\log_2(16)$`, `sqrt(x)` → `$\sqrt{x}$`, `x^2` → `$x^2$`, fractions `1/2` inside math contexts → `$\frac{1}{2}$`.
 
-## Phase 3 — Outreach assets (content, not code)
+### A7. Fix Resources page links (issue 8)
+Every "Official syllabi" link is guessed/wrong. Replace with verified URLs:
+- NIE (nie.lk) actual syllabus PDF landing pages per subject
+- Department of Examinations (doenets.lk) past papers portal
+- MOE (moe.gov.lk) circulars
+Verify each URL returns 200 via fetch_website before committing.
 
-Draft into `docs/outreach/`:
+---
 
-- Teacher email template (for `.ac.lk` school resource pages)
-- Reddit r/srilanka intro post draft (value-first, not spammy)
-- Product Hunt launch copy + tagline
-- One 1200-word guest post pitching Sri Lankan edtech blogs
+## Phase B — Hybrid AI question selection (issue 11)
 
-These are user-executed but I'll write them.
+Chosen approach: **AI picks from existing bank; generates fresh only when bank is thin.**
 
-## Phase 4 — Measurement
+- New server fn `selectQuestions.functions.ts`:
+  1. Filter bank by subject+topic+difficulty locally.
+  2. If ≥ `count` matches → shuffle deterministically by session seed, return.
+  3. If < `count` → call Gemini Flash Lite (cheapest) with the filtered bank + user selection; ask it to pick the most relevant subset and, only if still short, generate the missing questions in the same call.
+- Fallback chain (on 429/402/timeout): Gemini Flash Lite → Gemini 2.5 Flash Lite → static deterministic pick from adjacent topics. Log which tier served.
+- In-memory LRU cache keyed by `(subject, topic, difficulty, count)` for 10 min → 100+ concurrent students share cache hits, keeping free-tier credit usage minimal.
+- Expected free-tier cost: <5 requests/min under normal load. Safe.
 
-Add to the teardown doc: baseline Authority Score, backlink count, referring domains. Re-run `semrush--backlink_analysis` after 30/60/90 days and log deltas.
+Wire into `startNew()` so mcq/exam/short/structured all route through it.
 
-## What's NOT in this plan
+---
 
-- Full editorial redesign of every page (still queued)
-- Programmatic SEO landing pages for high-intent LK keywords (still queued)
-- Content depth / NIE structure audit (still queued)
+## Phase C — Teacher page pivot (issue 9)
 
-## Tech notes
+Rebuild `/for-teachers` around two things user picked:
+1. **Printable question packs** — teacher selects subject/topic/count/difficulty → server generates a print-styled HTML page (`/for-teachers/pack/[id]`) with questions on page 1 and marking scheme on page 2. `@media print` styles. No auth needed.
+2. **Free resources hub for teachers** — curated: lesson-plan templates, past-paper analyses per subject, exam tips, downloadable worksheets (link to printable packs).
 
-- `/embed/daily` route: pathless layout that skips `SiteHeader`, sets `X-Frame-Options: ALLOWALL` via response headers, minimal CSS.
-- OG image generation: TanStack server route under `/api/public/og/results` using `@vercel/og` or a hand-rolled SVG→PNG (Worker-compatible; no `sharp`).
-- `/resources`, `/for-teachers`, `/press`: static route files, each with proper `head()` (title, description, canonical, og:*, JSON-LD).
-- `llms.txt` already exists at `public/llms.txt` — audit and expand.
+Remove: embeddable widget code snippet, "developer" language, iframe copy-paste UI. Keep `/embed/daily` route itself (still useful for LMS embeds) but don't foreground it.
 
-Say "go" and I'll run Phase 1 first, then implement Phase 2 in one build pass.  
-  
-after implementing phase 2, continue programmatic seo and rest of it in this plan, try atleast without 0 errors
+---
+
+## Phase D — Light editorial theme (issue 1)
+
+Full switch from dark aesthetic to Apple-like light editorial. Scope:
+- Rewrite `src/styles.css` tokens: background `oklch(0.99 0 0)`, foreground near-black, hairlines `oklch(0.92 0 0)`, aurora accent kept but muted.
+- Update `PremiumCard`, `AmbientBackground`, `SiteHeader`, `DailyQuestion`, all question/option surfaces, exam pages, results pages.
+- Keep font stack (display serif + sans body).
+- Test contrast on every question type against WCAG AA.
+
+This alone addresses issue 1 (readability) since questions now sit on white.
+
+---
+
+## Phase E — Homepage redesign (issue 2, lowest priority)
+
+Reorganize `/` into Apple-product-page structure:
+- Hero: single sentence + Daily Question CTA
+- Section 2: "One question. Every morning." — Daily Question card, huge
+- Section 3: "Practice like the paper" — 3-mode grid (MCQ / Short / Structured) with mini previews
+- Section 4: "Every subject on the syllabus" — subject grid with topic counts
+- Section 5: Streak + activity rings social proof
+- Section 6: Teacher / press strip
+- Footer
+
+Uses Phase D tokens. Type-driven, generous whitespace, no gradients.
+
+---
+
+## Technical details
+
+- **Files touched (rough):** `src/lib/pickQuestions.ts`, `src/lib/quiz-session.ts`, `src/lib/selectQuestions.functions.ts` (new), `src/components/StructuredAnswerInput.tsx`, `src/components/ExamTimer.tsx`, `src/components/MathText.tsx`, `src/routes/$subject.$topic.practice.tsx`, `src/routes/exam.short.$subject.tsx`, `src/routes/exam.structured.$subject.tsx`, `src/routes/practice.$mode.$subject.tsx`, `src/routes/resources.tsx`, `src/routes/for-teachers.tsx`, `src/routes/for-teachers.pack.$id.tsx` (new), `src/routes/index.tsx`, `src/styles.css`, `src/data/questions.json` (math backfill script).
+- **Verification per phase:** shell curl of URLs (A7), Playwright screenshots at each mode (A2, A3, A4, D), math rendering visual check (A6), 5-req burst against `selectQuestions` to confirm cache + fallback (B).
+- **No schema changes.** No new secrets. `LOVABLE_API_KEY` already provisioned.
+
+---
+
+## Execution order (single build pass per phase)
+
+1. A1–A7 (bug fixes) — one build
+2. B (AI question selector) — one build
+3. C (teachers pivot) — one build
+4. D (light theme) — one build, largest visual diff
+5. E (homepage) — one build
+
+After each phase I'll verify and only proceed if clean. Approve to start Phase A.

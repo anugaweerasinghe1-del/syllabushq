@@ -21,7 +21,10 @@ export const Route = createFileRoute("/$subject/$topic/")({
     const subjects = await context.queryClient.ensureQueryData(subjectsQuery);
     const subject = resolveSubject(subjects, params.subject);
     if (!subject) throw notFound();
-    const topic = resolveTopic(subject, params.topic);
+    const topic =
+      params.topic === "mix"
+        ? ({ slug: "mix", name: "Mixed topics" } as Topic)
+        : (resolveTopic(subject, params.topic) ?? subject.topics[0]);
     if (!topic) throw notFound();
     await context.queryClient.ensureQueryData(questionsQuery);
     return { subject, topic } as { subject: Subject; topic: Topic };
