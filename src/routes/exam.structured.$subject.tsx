@@ -49,7 +49,6 @@ function StructuredRunner() {
     const seed = [...subject.slug].reduce((a, c) => a + c.charCodeAt(0), 0);
     return shuffle(pool, mulberry32(seed)).slice(0, Math.max(1, cfg.count));
   }, [subject.slug, cfg]);
-  const [revealed, setRevealed] = useState<Record<number, boolean>>({});
   const [submitted, setSubmitted] = useState(false);
 
   if (!cfg) {

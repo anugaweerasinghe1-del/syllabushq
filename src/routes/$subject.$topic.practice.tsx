@@ -19,7 +19,6 @@ import { loadOrCreate, save, clear, startNew, defaultConfig, type Session } from
 import { MathText } from "@/components/MathText";
 import { ExamTimer } from "@/components/ExamTimer";
 import { HintButton } from "@/components/HintButton";
-import { ModelAnswerToggle } from "@/components/ModelAnswerToggle";
 
 export const Route = createFileRoute("/$subject/$topic/practice")({
   loader: async ({ context, params }) => {
@@ -270,13 +269,6 @@ function PracticePage() {
                 topic={topic.slug}
                 question={q.question}
                 options={q.options}
-              />
-            )}
-
-            {!isExam && (
-              <ModelAnswerToggle
-                answer={`The correct answer is ${String.fromCharCode(65 + q.correct)}) ${q.options[q.correct]}.`}
-                explanation={q.explanation}
               />
             )}
 
