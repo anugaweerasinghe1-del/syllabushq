@@ -10,6 +10,7 @@ import { startNew } from "@/lib/quiz-session";
 import { TopicPicker } from "@/components/TopicPicker";
 import { Slider } from "@/components/ui/slider";
 import { pickQuestions } from "@/lib/pickQuestions";
+import { saveExamConfig } from "@/lib/exam-config";
 
 export const Route = createFileRoute("/practice/$mode/$subject")({
   loader: async ({ params, context }) => {
@@ -69,8 +70,10 @@ function SetupPage() {
           params: { subject: subject.slug, topic: topicSlug },
         });
       } else if (mode.slug === "short") {
+        saveExamConfig("short", subject.slug, { count, timeLimitSec: time, topics: selectedTopics });
         navigate({ to: "/exam/short/$subject", params: { subject: subject.slug } });
       } else if (mode.slug === "structured") {
+        saveExamConfig("structured", subject.slug, { count, timeLimitSec: time, topics: selectedTopics });
         navigate({ to: "/exam/structured/$subject", params: { subject: subject.slug } });
       }
     }, 1400);
