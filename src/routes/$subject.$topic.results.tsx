@@ -1,7 +1,14 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound, redirect } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { subjectsQuery, type Subject, type Topic } from "@/lib/content";
+import {
+  subjectsQuery,
+  resolveSubject,
+  resolveTopic,
+  type Subject,
+  type Topic,
+} from "@/lib/content";
 import { SiteHeader } from "@/components/SiteHeader";
+import { NotFoundShell } from "@/components/NotFoundShell";
 import { MathText } from "@/components/MathText";
 
 type ResultItem = {
@@ -25,10 +32,23 @@ type Results = {
 export const Route = createFileRoute("/$subject/$topic/results")({
   loader: async ({ context, params }) => {
     const subjects = await context.queryClient.ensureQueryData(subjectsQuery);
-    const subject = subjects.find((s: Subject) => s.slug === params.subject);
+    const subject = resolveSubject(subjects, params.subject);
     if (!subject) throw notFound();
-    const topic = subject.topics.find((t: Topic) => t.slug === params.topic);
-    if (!topic) throw notFound();
+    // "mix" is the pseudo-topic used by the multi-topic practice picker.
+    const topic =
+      params.topic === "mix"
+        ? ({ slug: "mix", name: "Mixed topics" } as Topic)
+        : resolveTopic(subject, params.topic);
+    if (!topic) throw notFound({ data: { subjectSlug: subject.slug } });
+    if (
+      subject.slug !== params.subject ||
+      (params.topic !== "mix" && topic.slug !== params.topic)
+    ) {
+      throw redirect({
+        to: "/$subject/$topic/results",
+        params: { subject: subject.slug, topic: topic.slug },
+      });
+    }
     return { subject, topic } as { subject: Subject; topic: Topic };
   },
   head: ({ loaderData }) => ({
@@ -41,6 +61,10 @@ export const Route = createFileRoute("/$subject/$topic/results")({
         ]
       : [],
   }),
+  notFoundComponent: () => <NotFoundShell title="Results not found" message="Finish a practice paper to see your score here." />,
+  errorComponent: ({ error }) => (
+    <NotFoundShell title="Couldn't load your results" message={error.message} />
+  ),
   component: ResultsPage,
 });
 
