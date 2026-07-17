@@ -114,6 +114,11 @@ function Home() {
             <Stat n="3" l="O/L subjects" />
             <Stat n="AI" l="Grading engine" />
           </div>
+
+          {/* Trust strip */}
+          <p className="rise-4 mt-6 max-w-2xl text-[11px] uppercase tracking-[0.24em] text-muted-foreground/80">
+            Aligned with NIE syllabi · Trusted by Sri Lankan O/L students · No account required
+          </p>
         </section>
 
         <div className="mb-10">

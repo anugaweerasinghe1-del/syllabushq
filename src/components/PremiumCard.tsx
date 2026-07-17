@@ -40,7 +40,7 @@ export function PremiumCard({
         "relative overflow-hidden rounded-2xl",
         base,
         "before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:h-px",
-        "before:bg-gradient-to-r before:from-transparent before:via-black/10 before:to-transparent",
+        "before:bg-gradient-to-r before:from-transparent before:via-white/15 before:to-transparent",
         hover
           ? "spotlight transition duration-500 will-change-transform hover:-translate-y-1 hover:shadow-lg"
           : "",
