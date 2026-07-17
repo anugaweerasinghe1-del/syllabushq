@@ -6,7 +6,7 @@ import shortData from "@/data/short-answer.json";
 import caseData from "@/data/case-studies.json";
 import subjectsData from "@/data/subjects.json";
 
-const SITE = "https://app.syllabushq.workers.dev";
+const SITE = "https://syllabushq.lovable.app";
 
 type StructuredPart = { label: string; prompt: string; answer: string; marks: number };
 type StructuredQ = { subject: string; topic: string; context: string; parts: StructuredPart[] };

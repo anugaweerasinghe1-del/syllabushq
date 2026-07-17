@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { PremiumCard } from "@/components/PremiumCard";
 import { MathText } from "@/components/MathText";
@@ -7,9 +7,6 @@ import { subjectsQuery, type Subject } from "@/lib/content";
 import shortData from "@/data/short-answer.json";
 import { markStudiedToday } from "@/lib/streak";
 import { StructuredAnswerInput } from "@/components/StructuredAnswerInput";
-import { ExamTimer } from "@/components/ExamTimer";
-import { loadExamConfig } from "@/lib/exam-config";
-import { shuffle, mulberry32 } from "@/lib/pickQuestions";
 
 type ShortQ = {
   subject: string; topic: string;
@@ -37,32 +34,8 @@ export const Route = createFileRoute("/exam/short/$subject")({
 
 function ShortAnswerRunner() {
   const { subject } = Route.useLoaderData();
-  const [cfg, setCfg] = useState<{ count: number; timeLimitSec: number; topics: string[] } | null>(null);
-  useEffect(() => {
-    setCfg(loadExamConfig("short", subject.slug, { count: 15, timeLimitSec: 0, topics: [] }));
-  }, [subject.slug]);
-
-  const pool = useMemo(() => {
-    const base = ALL.filter((q) => q.subject === subject.slug);
-    if (!cfg) return base.slice(0, 15);
-    const filtered = cfg.topics.length ? base.filter((q) => cfg.topics.includes(q.topic)) : base;
-    // Deterministic per-subject shuffle so the same session order sticks.
-    const seed = [...subject.slug].reduce((a, c) => a + c.charCodeAt(0), 0);
-    const shuffled = shuffle(filtered.length ? filtered : base, mulberry32(seed));
-    return shuffled.slice(0, Math.max(1, cfg.count));
-  }, [subject.slug, cfg]);
-
+  const pool = useMemo(() => ALL.filter((q) => q.subject === subject.slug), [subject.slug]);
   const [i, setI] = useState(0);
-  const [submitted, setSubmitted] = useState(false);
-
-  if (!cfg) {
-    return (
-      <div className="min-h-screen">
-        <SiteHeader />
-        <main className="mx-auto max-w-2xl px-4 py-20 text-center text-muted-foreground">Loading…</main>
-      </div>
-    );
-  }
 
   if (pool.length === 0) {
     return (
@@ -82,7 +55,6 @@ function ShortAnswerRunner() {
 
   function next() {
     if (i + 1 < total) setI(i + 1);
-    else setSubmitted(true);
     markStudiedToday();
   }
 
@@ -90,29 +62,14 @@ function ShortAnswerRunner() {
     <div className="min-h-screen">
       <SiteHeader />
       <main className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12">
-        <div className="mb-5 flex flex-wrap items-center justify-between gap-3 text-sm">
+        <div className="mb-5 flex items-center justify-between text-sm">
           <Link to="/practice/$mode/$subject" params={{ mode: "short", subject: subject.slug }} className="text-muted-foreground hover:text-foreground">← Exit</Link>
-          <div className="flex items-center gap-3">
-            {cfg.timeLimitSec > 0 && (
-              <ExamTimer
-                storageKey={`ol-short-timer-${subject.slug}`}
-                durationSec={cfg.timeLimitSec}
-                onExpire={() => setSubmitted(true)}
-              />
-            )}
-            <span className="text-muted-foreground font-num">{i + 1} / {total}</span>
-          </div>
+          <span className="text-muted-foreground font-num">{i + 1} / {total}</span>
         </div>
 
         <div className="mb-6 h-1 w-full overflow-hidden rounded-full bg-[var(--hairline)]">
           <div className="h-full bg-foreground transition-all" style={{ width: `${((i + 1) / total) * 100}%` }} />
         </div>
-
-        {submitted && (
-          <div className="mb-4 rounded-xl border border-mint/40 bg-mint/10 p-4 text-sm text-foreground">
-            Paper submitted. Review your marked answers below or start a new set.
-          </div>
-        )}
 
         <PremiumCard className="p-6 sm:p-8 rise" hover={false}>
           <div className="flex items-center justify-between">
@@ -137,7 +94,7 @@ function ShortAnswerRunner() {
               onClick={next}
               className="rounded-lg border border-hairline px-4 py-2 text-xs text-muted-foreground hover:text-foreground"
             >
-              {i + 1 < total ? "Next question →" : "Finish paper"}
+              Next question →
             </button>
           </div>
         </PremiumCard>

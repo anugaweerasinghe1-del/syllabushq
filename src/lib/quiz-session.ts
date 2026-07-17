@@ -7,27 +7,6 @@ import type { Question } from "@/lib/content";
 
 const DEFAULT_LEN = 10;
 
-// Optional externally-picked pool (used by the multi-topic "mix" flow so the
-// practice route can rebuild the exact set the setup screen chose).
-function poolKey(subject: string, topic: string) {
-  return `ol-quiz-pool-${subject}-${topic}`;
-}
-
-export function savePickedPool(subject: string, topic: string, pool: Question[]) {
-  if (typeof window === "undefined") return;
-  try { window.sessionStorage.setItem(poolKey(subject, topic), JSON.stringify(pool)); } catch { /* quota */ }
-}
-
-export function loadPickedPool(subject: string, topic: string): Question[] | null {
-  if (typeof window === "undefined") return null;
-  try {
-    const raw = window.sessionStorage.getItem(poolKey(subject, topic));
-    if (!raw) return null;
-    const parsed = JSON.parse(raw) as Question[];
-    return Array.isArray(parsed) && parsed.length ? parsed : null;
-  } catch { return null; }
-}
-
 export type QuizConfig = {
   count: number;       // number of questions
   timeLimitSec: number; // 0 = untimed

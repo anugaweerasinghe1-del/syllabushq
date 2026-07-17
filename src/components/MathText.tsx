@@ -66,15 +66,6 @@ function normalize(src: string): string {
   if (src.includes("$")) return normalizeInsideMath(src);
 
   let s = src;
-  // log_N(x) / log_N x  ->  $\log_{N}$ (must run BEFORE the generic _ rule
-  // which otherwise splits "log_2" as "lo" + subscript, rendering as "lo").
-  s = s.replace(/\blog_(\{[^}]+\}|\d+|[A-Za-z])/g, (_m, n) => {
-    const sub = n.startsWith("{") ? n.slice(1, -1) : n;
-    return `$\\log_{${sub}}$`;
-  });
-  // ln(x)  ->  $\ln(x)$   (leave plain "ln x" alone to avoid over-eating)
-  s = s.replace(/\bln\(([^()]+)\)/g, "$\\ln($1)$");
-  // 1/2 style bare fractions in obviously-math contexts: leave alone in prose.
   // sqrt(...)
   s = s.replace(/sqrt\(([^()]+)\)/g, "$$\\sqrt{$1}$$");
   // a^{...} or a^b (single token b)
@@ -83,9 +74,7 @@ function normalize(src: string): string {
     return `$${base}^{${e}}$`;
   });
   // a_{...} or a_b
-  // Only wrap when the base is a single letter/digit — avoids eating the last
-  // letter of a longer word (e.g. "log_2" -> "lo" + "$g_{2}$").
-  s = s.replace(/(?<![A-Za-z])([A-Za-z0-9])_(\{[^{}]+\}|\d+|[A-Za-z])/g, (_m, base, sub) => {
+  s = s.replace(/([A-Za-z0-9)\]])_(\{[^{}]+\}|\d+|[A-Za-z])/g, (_m, base, sub) => {
     const x = sub.startsWith("{") ? sub.slice(1, -1) : sub;
     return `$${base}_{${x}}$`;
   });

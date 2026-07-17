@@ -13,17 +13,10 @@ export const Route = createFileRoute("/$subject/$topic")({
     const subjects = await context.queryClient.ensureQueryData(subjectsQuery);
     const subject = resolveSubject(subjects, params.subject);
     if (!subject) throw notFound();
-    // "mix" is a valid pseudo-topic used by the multi-topic practice picker.
-    const topic =
-      params.topic === "mix"
-        ? ({ slug: "mix", name: "Mixed topics" } as Topic)
-        : resolveTopic(subject, params.topic);
+    const topic = resolveTopic(subject, params.topic);
     if (!topic) throw notFound({ data: { subjectSlug: subject.slug } });
     // Canonical-slug redirect when the URL drifted (case/encoding/alias).
-    if (
-      subject.slug !== params.subject ||
-      (params.topic !== "mix" && topic.slug !== params.topic)
-    ) {
+    if (subject.slug !== params.subject || topic.slug !== params.topic) {
       throw redirect({
         to: "/$subject/$topic",
         params: { subject: subject.slug, topic: topic.slug },

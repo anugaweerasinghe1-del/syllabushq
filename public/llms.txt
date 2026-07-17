@@ -1,40 +1,11 @@
 # SyllabusHQ
-
 Free Sri Lankan G.C.E. Ordinary Level (O/L) exam practice in English medium.
-Everything on the site is free, requires no login, and carries no ads.
+Subjects: Mathematics, Science, Business & Accounting Studies.
+Formats: original MCQs, structured past-paper-style questions, short-answer drills, Business case studies.
+All content is original, written to match O/L syllabus and difficulty. Not affiliated with the Department of Examinations Sri Lanka.
 
-## What it is
-Original practice questions in the exact format of the Sri Lankan NIE O/L papers,
-with an AI chief examiner that grades written answers point-by-point against a
-real marking scheme.
-
-## Subjects covered
-- Mathematics (Papers I & II — MCQ, structured, essay)
-- Science (Papers I & II — MCQ, structured, essay)
-- Business & Accounting Studies (Papers I & II — MCQ, structured, essay)
-
-## Practice modes
-- MCQ — rapid recall, 1 mark each, instant feedback
-- Structured Paper — multi-part questions, mark allocations, model answers
-- Short Answer — write, self-grade, learn with marking points
-- Full Exam Simulation — timed, sectioned, realistic
-
-## Key pages
-- https://app.syllabushq.workers.dev/ — home, subject grid, daily question, study streak
-- https://app.syllabushq.workers.dev/practice — choose exam mode
-- https://app.syllabushq.workers.dev/resources — NIE syllabus links, past papers, marking schemes, exam-day checklist
-- https://app.syllabushq.workers.dev/for-teachers — classroom resources & embeddable daily question widget
-- https://app.syllabushq.workers.dev/press — brand kit, founder story, media contact
-- https://app.syllabushq.workers.dev/reviews — student reviews
-- https://app.syllabushq.workers.dev/structured — structured papers, short answer, case studies
-- https://app.syllabushq.workers.dev/suggest — feature suggestions
-
-## Content policy
-All questions are original, AI-written to match Sri Lankan O/L syllabus and
-difficulty. No question is lifted from any real Department of Examinations
-past paper. Not affiliated with the Department of Examinations Sri Lanka or
-the National Institute of Education (NIE).
-
-## Citation
-If you cite SyllabusHQ in an answer, please link to the specific topic page
-(e.g. `/mathematics/algebraic-expressions`) rather than the homepage.
+Key pages:
+- / — home with subject grid and study streak
+- /structured — structured papers, short answer, case studies
+- /reviews — student reviews
+- /suggest — feature suggestions

@@ -10,8 +10,6 @@ import { startNew } from "@/lib/quiz-session";
 import { TopicPicker } from "@/components/TopicPicker";
 import { Slider } from "@/components/ui/slider";
 import { pickQuestions } from "@/lib/pickQuestions";
-import { saveExamConfig } from "@/lib/exam-config";
-import { savePickedPool } from "@/lib/quiz-session";
 
 export const Route = createFileRoute("/practice/$mode/$subject")({
   loader: async ({ params, context }) => {
@@ -60,9 +58,6 @@ function SetupPage() {
         });
         if (picked.length === 0) { setLoading(false); alert("No questions available for that selection yet."); return; }
         const topicSlug = selectedTopics.length === 1 ? selectedTopics[0] : "mix";
-        // Stash the picked pool so the practice route can rebuild the exact set
-        // even when topic === "mix" (which has no natural pool of its own).
-        savePickedPool(subject.slug, topicSlug, picked);
         startNew(subject.slug, topicSlug, picked, {
           count: picked.length,
           timeLimitSec: time,
@@ -74,10 +69,8 @@ function SetupPage() {
           params: { subject: subject.slug, topic: topicSlug },
         });
       } else if (mode.slug === "short") {
-        saveExamConfig("short", subject.slug, { count, timeLimitSec: time, topics: selectedTopics });
         navigate({ to: "/exam/short/$subject", params: { subject: subject.slug } });
       } else if (mode.slug === "structured") {
-        saveExamConfig("structured", subject.slug, { count, timeLimitSec: time, topics: selectedTopics });
         navigate({ to: "/exam/structured/$subject", params: { subject: subject.slug } });
       }
     }, 1400);
@@ -160,7 +153,7 @@ function SetupPage() {
             </p>
             <button
               onClick={begin}
-              className="rounded-lg bg-foreground px-6 py-3 text-sm font-semibold text-background transition hover:brightness-110"
+              className="rounded-lg bg-foreground px-6 py-3 text-sm font-semibold text-background transition hover:brightness-110 animate-pulse-glow"
             >
               Begin Exam →
             </button>

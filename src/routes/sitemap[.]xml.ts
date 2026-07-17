@@ -4,7 +4,7 @@ import subjectsData from "@/data/subjects.json";
 import { SEO_PAGES } from "@/data/seo-matrix";
 import { MODES } from "@/lib/modes";
 
-const BASE_URL = "https://app.syllabushq.workers.dev";
+const BASE_URL = "https://syllabushq.lovable.app";
 
 interface SitemapEntry {
   path: string;
@@ -21,9 +21,6 @@ export const Route = createFileRoute("/sitemap.xml")({
         const entries: SitemapEntry[] = [
           { path: "/", changefreq: "weekly", priority: "1.0" },
           { path: "/practice", changefreq: "weekly", priority: "0.9" },
-          { path: "/resources", changefreq: "monthly", priority: "0.8" },
-          { path: "/for-teachers", changefreq: "monthly", priority: "0.7" },
-          { path: "/press", changefreq: "monthly", priority: "0.5" },
           { path: "/reviews", changefreq: "weekly", priority: "0.4" },
           { path: "/suggest", changefreq: "monthly", priority: "0.3" },
         ];

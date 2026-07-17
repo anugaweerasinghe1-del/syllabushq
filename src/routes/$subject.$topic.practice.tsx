@@ -1,12 +1,10 @@
-import { createFileRoute, Link, notFound, redirect, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound, useNavigate } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { useEffect, useMemo, useState } from "react";
 import {
   subjectsQuery,
   questionsQuery,
   getQuestionsFor,
-  resolveSubject,
-  resolveTopic,
   type Question,
   type Subject,
   type Topic,
@@ -14,32 +12,19 @@ import {
 import { markStudiedToday } from "@/lib/streak";
 import { recordScore } from "@/lib/scores";
 import { SiteHeader } from "@/components/SiteHeader";
-import { NotFoundShell } from "@/components/NotFoundShell";
-import { loadOrCreate, save, clear, startNew, defaultConfig, loadPickedPool, type Session } from "@/lib/quiz-session";
+import { loadOrCreate, save, clear, startNew, defaultConfig, type Session } from "@/lib/quiz-session";
 import { MathText } from "@/components/MathText";
 import { ExamTimer } from "@/components/ExamTimer";
 import { HintButton } from "@/components/HintButton";
+import { ModelAnswerToggle } from "@/components/ModelAnswerToggle";
 
 export const Route = createFileRoute("/$subject/$topic/practice")({
   loader: async ({ context, params }) => {
     const subjects = await context.queryClient.ensureQueryData(subjectsQuery);
-    const subject = resolveSubject(subjects, params.subject);
+    const subject = subjects.find((s: Subject) => s.slug === params.subject);
     if (!subject) throw notFound();
-    // Allow "mix" pseudo-topic used by the multi-topic practice picker.
-    const topic =
-      params.topic === "mix"
-        ? ({ slug: "mix", name: "Mixed topics" } as Topic)
-        : resolveTopic(subject, params.topic);
-    if (!topic) throw notFound({ data: { subjectSlug: subject.slug } });
-    if (
-      subject.slug !== params.subject ||
-      (params.topic !== "mix" && topic.slug !== params.topic)
-    ) {
-      throw redirect({
-        to: "/$subject/$topic/practice",
-        params: { subject: subject.slug, topic: topic.slug },
-      });
-    }
+    const topic = subject.topics.find((t: Topic) => t.slug === params.topic);
+    if (!topic) throw notFound();
     await context.queryClient.ensureQueryData(questionsQuery);
     return { subject, topic } as { subject: Subject; topic: Topic };
   },
@@ -56,10 +41,6 @@ export const Route = createFileRoute("/$subject/$topic/practice")({
         ]
       : [],
   }),
-  notFoundComponent: () => <NotFoundShell />,
-  errorComponent: ({ error }) => (
-    <NotFoundShell title="Couldn't start practice" message={error.message} />
-  ),
   component: PracticePage,
 });
 
@@ -69,14 +50,7 @@ function PracticePage() {
   const navigate = useNavigate();
 
   const pool = useMemo(
-    () => {
-      // 1. If the setup screen stashed an exact pool for this attempt, use it.
-      const stashed = loadPickedPool(subject.slug, topic.slug);
-      if (stashed && stashed.length) return stashed;
-      // 2. "mix" pseudo-topic falls back to every question in the subject.
-      if (topic.slug === "mix") return questions.filter((q) => q.subject === subject.slug);
-      return getQuestionsFor(questions, subject.slug, topic.slug);
-    },
+    () => getQuestionsFor(questions, subject.slug, topic.slug),
     [questions, subject.slug, topic.slug],
   );
 
@@ -276,6 +250,13 @@ function PracticePage() {
                 topic={topic.slug}
                 question={q.question}
                 options={q.options}
+              />
+            )}
+
+            {!isExam && (
+              <ModelAnswerToggle
+                answer={`The correct answer is ${String.fromCharCode(65 + q.correct)}) ${q.options[q.correct]}.`}
+                explanation={q.explanation}
               />
             )}
 

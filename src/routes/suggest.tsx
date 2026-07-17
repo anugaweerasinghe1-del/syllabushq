@@ -5,7 +5,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { listSuggestions, submitSuggestion } from "@/lib/suggestions.functions";
 import { getVisitorToken } from "@/lib/visitor";
 
-const SITE = "https://app.syllabushq.workers.dev";
+const SITE = "https://syllabushq.lovable.app";
 
 type Suggestion = { id: string; name: string; idea: string; created_at: string };
 

@@ -45,22 +45,10 @@ export function StructuredAnswerInput({
       setError("Image too large — keep it under 2.4 MB.");
       return;
     }
-    // FileReader.readAsDataURL is safe for large images; the previous
-    // btoa(String.fromCharCode(...bytes)) approach blew the call stack.
-    try {
-      const dataUrl: string = await new Promise((resolve, reject) => {
-        const r = new FileReader();
-        r.onload = () => resolve(String(r.result ?? ""));
-        r.onerror = () => reject(new Error("Couldn't read that image."));
-        r.readAsDataURL(file);
-      });
-      const comma = dataUrl.indexOf(",");
-      const b64 = comma >= 0 ? dataUrl.slice(comma + 1) : dataUrl;
-      setImageData({ b64, mime: file.type || "image/jpeg", name: file.name });
-      setError(null);
-    } catch (e) {
-      setError(e instanceof Error ? e.message : "Couldn't read that image.");
-    }
+    const buf = await file.arrayBuffer();
+    const b64 = btoa(String.fromCharCode(...new Uint8Array(buf)));
+    setImageData({ b64, mime: file.type || "image/jpeg", name: file.name });
+    setError(null);
   }
 
   async function mark() {
@@ -131,23 +119,14 @@ export function StructuredAnswerInput({
       </div>
 
       {imageData && (
-        <div className="mt-2 flex items-center gap-3 rounded-lg border border-hairline bg-white/[0.02] p-2 text-[11px] text-muted-foreground">
-          <img
-            src={`data:${imageData.mime};base64,${imageData.b64}`}
-            alt="Your handwritten working"
-            className="h-16 w-16 rounded-md object-cover"
-          />
-          <div className="min-w-0 flex-1">
-            <p className="truncate text-foreground">{imageData.name}</p>
-            <p className="mt-0.5">Attached — the examiner will read this alongside your typed answer.</p>
-          </div>
+        <div className="mt-2 flex items-center justify-between rounded-lg border border-hairline bg-white/[0.02] px-3 py-2 text-[11px] text-muted-foreground">
+          <span>📎 {imageData.name}</span>
           <button
             onClick={() => setImageData(null)}
             disabled={grading}
-            aria-label="Remove attached image"
             className="text-muted-foreground hover:text-foreground"
           >
-            <X className="h-3.5 w-3.5" />
+            <X className="h-3 w-3" />
           </button>
         </div>
       )}

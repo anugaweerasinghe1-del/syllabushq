@@ -3,7 +3,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { PremiumCard } from "@/components/PremiumCard";
 import { findSeoPage, seoTitle, seoDescription } from "@/data/seo-matrix";
 
-const SITE = "https://app.syllabushq.workers.dev";
+const SITE = "https://syllabushq.lovable.app";
 
 export const Route = createFileRoute("/learn/$subject/$topic/$slug")({
   loader: ({ params }) => {
