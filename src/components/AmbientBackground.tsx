@@ -10,18 +10,23 @@ export function AmbientBackground() {
       className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
       style={{ contain: "strict" }}
     >
-      {/* Editorial vignette: warm top-light on cream paper. */}
+      {/* Aurora orbs — slow indigo/cyan/jade drift on obsidian. */}
       <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse 70% 55% at 50% 0%, rgba(181,138,43,0.08) 0%, transparent 60%), radial-gradient(ellipse 100% 90% at 50% 50%, transparent 40%, rgba(30,25,15,0.06) 100%)",
-        }}
+        className="absolute -top-40 left-1/2 h-[70vh] w-[80vw] -translate-x-1/2 rounded-full blur-[120px] animate-float-orb"
+        style={{ background: "radial-gradient(circle, rgba(167,139,250,0.30), transparent 65%)" }}
+      />
+      <div
+        className="absolute top-1/3 -right-32 h-[55vh] w-[55vw] rounded-full blur-[120px] animate-aurora"
+        style={{ background: "radial-gradient(circle, rgba(103,232,249,0.20), transparent 65%)", animationDelay: "-6s" }}
+      />
+      <div
+        className="absolute -bottom-32 -left-24 h-[50vh] w-[55vw] rounded-full blur-[120px] animate-float-orb"
+        style={{ background: "radial-gradient(circle, rgba(74,222,128,0.16), transparent 65%)", animationDelay: "-12s" }}
       />
 
-      {/* Grain */}
+      {/* Grain overlay for texture on the deep base. */}
       <div
-        className="absolute inset-0 opacity-[0.04] mix-blend-multiply"
+        className="absolute inset-0 opacity-[0.05] mix-blend-overlay"
         style={{
           backgroundImage:
             "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>\")",
