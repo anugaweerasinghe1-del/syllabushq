@@ -5,9 +5,9 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * SyllabusHQ — premium dark design system.
- * Surfaces are matte graphite; type is editorial (Instrument Serif + Inter).
- * Single warm amber accent. Mint = correct, coral = incorrect.
+ * SyllabusHQ — light editorial design system.
+ * Warm off-white paper, deep ink type (Instrument Serif + Inter).
+ * Single warm brass accent. Mint = correct, coral = incorrect.
  * Fonts loaded via <link> in src/routes/__root.tsx.
  */
 
@@ -55,65 +55,64 @@
 }
 
 :root {
-  --radius: 0.875rem;
+  --radius: 0.75rem;
 
-  /* Obsidian-aurora palette — true black graphite with cool platinum accents. */
-  --bg: #05060a;
-  --surface: #0a0c12;
-  --surface-2: #0f1118;
-  --surface-3: #161922;
-  --hairline: #1a1e28;
-  --hairline-strong: #2a2f3b;
+  /* Light editorial palette. Warm off-white paper, deep ink, brass accent. */
+  --bg: #fbfaf7;
+  --surface: #ffffff;
+  --surface-2: #f5f3ee;
+  --surface-3: #eeece5;
+  --hairline: #e6e2d8;
+  --hairline-strong: #cfc9ba;
 
-  /* Single cool accent. Subtle, expensive — never neon. */
-  --accent-1: #e8ecf3;          /* platinum */
-  --accent-2: #8ea4c2;          /* faint cyan-steel */
-  --aurora-1: #5b8def;          /* cobalt */
-  --aurora-2: #a78bfa;          /* iris */
-  --aurora-3: #34d399;          /* peridot */
-  --glow: rgba(232,236,243,0.18);
+  /* Single warm brass accent — editorial. */
+  --accent-1: #8a6a1f;          /* deep brass, AA on white */
+  --accent-2: #b58a2b;          /* soft brass */
+  --aurora-1: #b58a2b;
+  --aurora-2: #d9be82;
+  --aurora-3: #1a1815;
+  --glow: rgba(138,106,31,0.14);
 
-  /* Feedback */
-  --mint: #6ee7b7;
-  --coral: #fb7185;
-  --amber: #fbbf24;             /* retained for legacy class usage */
-  --amber-soft: #fde68a;
+  /* Feedback tuned for AA contrast on light surfaces */
+  --mint: #3f7a45;
+  --coral: #b23a22;
+  --amber: #8a6a1f;
+  --amber-soft: #b58a2b;
 
-  /* Legacy aliases (keep old class names compiling) */
-  --ink: #f3f5f8;
-  --paper: #06070a;
-  --charcoal: #c6cbd4;
+  /* Legacy aliases */
+  --ink: #1a1815;
+  --paper: #fbfaf7;
+  --charcoal: #3d3a34;
   --marigold: var(--accent-1);
   --sage: var(--mint);
   --clay: var(--coral);
 
-  --background: #05060a;
-  --foreground: #f3f5f8;
-  --card: #0b0d12;
-  --card-foreground: #f3f5f8;
-  --popover: #11141b;
-  --popover-foreground: #f3f5f8;
-  --primary: #e8ecf3;
-  --primary-foreground: #06070a;
-  --secondary: #11141b;
-  --secondary-foreground: #f3f5f8;
-  --muted: #11141b;
-  --muted-foreground: #7e8593;
-  --accent: #e8ecf3;
-  --accent-foreground: #06070a;
-  --destructive: #fb7185;
-  --destructive-foreground: #06070a;
-  --border: #1c2029;
-  --input: #1c2029;
-  --ring: rgba(232,236,243,0.5);
+  --background: #fbfaf7;
+  --foreground: #1a1815;
+  --card: #ffffff;
+  --card-foreground: #1a1815;
+  --popover: #ffffff;
+  --popover-foreground: #1a1815;
+  --primary: #1a1815;
+  --primary-foreground: #fbfaf7;
+  --secondary: #f5f3ee;
+  --secondary-foreground: #1a1815;
+  --muted: #f5f3ee;
+  --muted-foreground: #6b6459;
+  --accent: #8a6a1f;
+  --accent-foreground: #ffffff;
+  --destructive: #b23a22;
+  --destructive-foreground: #ffffff;
+  --border: #e6e2d8;
+  --input: #e6e2d8;
+  --ring: rgba(138,106,31,0.35);
 
   --shadow-cinematic:
-    0 30px 80px -30px rgba(0,0,0,0.9),
-    0 1px 0 0 rgba(255,255,255,0.04) inset,
-    0 0 0 1px rgba(255,255,255,0.02) inset;
+    0 12px 40px -20px rgba(30,25,15,0.16),
+    0 1px 0 0 rgba(255,255,255,0.8) inset;
   --shadow-lift:
-    0 50px 120px -40px rgba(0,0,0,1),
-    0 1px 0 0 rgba(255,255,255,0.06) inset;
+    0 28px 70px -30px rgba(30,25,15,0.22),
+    0 1px 0 0 rgba(255,255,255,0.9) inset;
 }
 
 @layer base {
@@ -129,7 +128,7 @@
   body {
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
-    background-color: #05060a;
+    background-color: var(--bg);
     background-attachment: fixed;
     overflow-x: hidden;
   }
@@ -149,17 +148,17 @@
 
 @utility glass-panel {
   background:
-    linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.008) 40%, rgba(255,255,255,0.018) 100%);
-  border: 1px solid rgba(255,255,255,0.07);
-  backdrop-filter: blur(24px) saturate(160%);
+    linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.78) 60%, rgba(255,255,255,0.86) 100%);
+  border: 1px solid var(--hairline);
+  backdrop-filter: blur(18px) saturate(120%);
   box-shadow: var(--shadow-cinematic);
 }
 
 @utility glass-deep {
   background:
-    linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.012) 50%, rgba(255,255,255,0.025) 100%);
-  border: 1px solid rgba(255,255,255,0.08);
-  backdrop-filter: blur(40px) saturate(180%);
+    linear-gradient(180deg, #ffffff, #faf8f3 60%, #f5f3ee 100%);
+  border: 1px solid var(--hairline);
+  backdrop-filter: blur(24px) saturate(140%);
   box-shadow: var(--shadow-lift);
 }
 
@@ -189,7 +188,7 @@
 }
 
 @utility glow-ring {
-  box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 0 40px -10px var(--glow);
+  box-shadow: 0 0 0 1px var(--hairline), 0 0 40px -10px var(--glow);
 }
 
 @utility surface-1 { background: var(--surface); }
@@ -197,14 +196,14 @@
 @utility surface-3 { background: var(--surface-3); }
 
 @utility text-gradient {
-  background: linear-gradient(180deg, #ffffff 0%, #c9cfdc 60%, #8b93a3 100%);
+  background: linear-gradient(180deg, #1a1815 0%, #3d3a34 60%, #6b6459 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 @utility text-aurora {
-  background: linear-gradient(120deg, #a78bfa 0%, #5b8def 40%, #34d399 100%);
+  background: linear-gradient(120deg, #8a6a1f 0%, #b58a2b 50%, #3f7a45 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -221,8 +220,8 @@
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 0 40px -10px rgba(232,236,243,0.12); }
-  50%      { box-shadow: 0 0 0 1px rgba(255,255,255,0.10), 0 0 60px -10px rgba(232,236,243,0.30); }
+  0%, 100% { box-shadow: 0 0 0 1px var(--hairline), 0 0 40px -10px rgba(138,106,31,0.20); }
+  50%      { box-shadow: 0 0 0 1px var(--hairline-strong), 0 0 60px -10px rgba(138,106,31,0.35); }
 }
 
 .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
@@ -278,7 +277,7 @@
 }
 
 /* Selection */
-::selection { background: rgba(232,236,243,0.25); color: #fff; }
+::selection { background: rgba(138,106,31,0.25); color: #1a1815; }
 
 /* KaTeX inherits color */
 .katex { color: inherit; font-size: 1.02em; }

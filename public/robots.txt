@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /*/practice
 Disallow: /*/results
-Sitemap: https://syllabushq.lovable.app/sitemap.xml
+Sitemap: https://app.syllabushq.workers.dev/sitemap.xml

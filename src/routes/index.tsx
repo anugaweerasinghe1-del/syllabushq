@@ -11,7 +11,7 @@ import { ZeigarnikResume } from "@/components/ZeigarnikResume";
 import { getStudyDays, computeStreaks } from "@/lib/streak";
 import { DailyQuestion } from "@/components/DailyQuestion";
 
-const SITE = "https://syllabushq.lovable.app";
+const SITE = "https://app.syllabushq.workers.dev";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -71,8 +71,8 @@ function Home() {
       <main className="mx-auto max-w-6xl px-4 pb-24 pt-12 sm:px-6 sm:pt-20">
         {/* HERO */}
         <section className="relative mb-20 sm:mb-28">
-          <div className="rise inline-flex items-center gap-2 rounded-full border border-white/8 bg-white/[0.03] px-3 py-1.5 backdrop-blur-md">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_10px_2px_rgba(52,211,153,0.6)]" />
+          <div className="rise inline-flex items-center gap-2 rounded-full border border-hairline bg-surface px-3 py-1.5 backdrop-blur-md">
+            <span className="h-1.5 w-1.5 rounded-full bg-mint shadow-[0_0_10px_2px_rgba(63,122,69,0.35)]" />
             <p className="text-[10.5px] font-medium uppercase tracking-[0.28em] text-foreground/70">
               G.C.E. O/L · English medium · Built in Sri Lanka
             </p>
@@ -101,7 +101,7 @@ function Home() {
             <Link
               to="/practice/$mode"
               params={{ mode: "exam" }}
-              className="group inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.02] px-6 py-3.5 font-medium text-foreground backdrop-blur-md transition hover:border-white/20 hover:bg-white/[0.05]"
+              className="group inline-flex items-center gap-2 rounded-xl border border-hairline-strong bg-surface px-6 py-3.5 font-medium text-foreground backdrop-blur-md transition hover:bg-surface-2"
             >
               Full exam simulation
               <span className="text-muted-foreground transition group-hover:text-foreground">↗</span>
@@ -109,7 +109,7 @@ function Home() {
           </div>
 
           {/* Stat strip */}
-          <div className="rise-4 mt-14 grid max-w-2xl grid-cols-3 gap-px overflow-hidden rounded-2xl border border-white/8 bg-white/[0.02] backdrop-blur-md">
+          <div className="rise-4 mt-14 grid max-w-2xl grid-cols-3 gap-px overflow-hidden rounded-2xl border border-hairline bg-surface backdrop-blur-md">
             <Stat n="900+" l="Original Qs" />
             <Stat n="3" l="O/L subjects" />
             <Stat n="AI" l="Grading engine" />
@@ -126,7 +126,7 @@ function Home() {
 
         <ProgressSection />
 
-        <Suspense fallback={<div className="h-44 animate-pulse rounded-2xl bg-white/[0.02]" />}>
+        <Suspense fallback={<div className="h-44 animate-pulse rounded-2xl bg-surface-2" />}>
           <StreakHeatmap />
         </Suspense>
 
@@ -219,7 +219,7 @@ function Home() {
               </Link>
               <Link
                 to="/reviews"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-6 py-3 text-sm font-medium text-foreground transition hover:bg-white/5"
+                className="inline-flex items-center gap-2 rounded-xl border border-hairline-strong px-6 py-3 text-sm font-medium text-foreground transition hover:bg-surface-2"
               >
                 See reviews
               </Link>
@@ -228,7 +228,7 @@ function Home() {
         </section>
       </main>
 
-      <footer className="mt-20 border-t border-white/5">
+      <footer className="mt-20 border-t border-hairline">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-10 text-xs text-muted-foreground sm:px-6">
           <p>© {new Date().getFullYear()} SyllabusHQ — Built for Sri Lankan O/L students.</p>
           <div className="flex items-center gap-4">
@@ -243,7 +243,7 @@ function Home() {
 
 function Stat({ n, l }: { n: string; l: string }) {
   return (
-    <div className="bg-white/[0.01] p-5">
+    <div className="bg-surface p-5">
       <p className="font-display text-2xl text-foreground sm:text-3xl">{n}</p>
       <p className="mt-1 text-[10.5px] uppercase tracking-[0.22em] text-muted-foreground">{l}</p>
     </div>

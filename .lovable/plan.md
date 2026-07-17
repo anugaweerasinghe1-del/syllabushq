@@ -1,97 +1,94 @@
-# SyllabusHQ Overhaul — Analysis + Build Plan
 
-Per your instruction, **Section A is the brutal analysis you asked to review first**. Sections B–F are the build plan I will only start after you confirm A (and answer the 3 questions at the bottom).
+## Root-cause diagnosis of the 404 blocking final results
 
----
-
-## A. Brutal competitor + retention analysis (no sycophancy)
-
-Benchmarks: **savemyexams.com**, **physicsandmathstutor.com**, **tutopiya.com**, **senior.lk**, **Khan Academy**, **Quizlet**.
-
-**Where SyllabusHQ currently loses:**
-
-1. **Trust collapses on first click.** "Topic not found" fires from at least 5 routes (`$subject.$topic.*`, `exam.structured.$subject`, etc.) because topic slugs in the question bank don't match the slugs the cards link to. A student who hits this on question 1 never comes back. This is the single biggest retention leak — bigger than any design issue.
-2. **No "why am I here today" loop.** SaveMyExams hooks users with topic-question-mark-scheme in 3 clicks. We force a 4-step setup wizard before a single question appears. Friction kills daily return.
-3. **No proof of progress.** Streak exists but there's no XP, no per-topic mastery %, no "you're 62% ready for Paper 1" signal. Students grind only when they can see the bar move.
-4. **Content depth is shallow vs claim.** ~325 MCQs across 3 subjects ≈ 12 questions per sub-topic. SaveMyExams ships 60–150 per sub-topic. Claim of "pass O/L using only this site" is not yet defensible.
-5. **No spaced repetition / wrong-answer queue.** Every top competitor re-surfaces missed questions. We throw results away after the session.
-6. **No social proof on landing.** Reviews tab is buried. Tradinghq-style hero shows live numbers ("12,438 questions answered today") — we show nothing.
-7. **SEO surface is thin.** Programmatic `/learn/...` pages exist but aren't internally linked from subject hubs, so Google won't crawl them deeply.
-
-**5 retention levers I will build (ranked by ROI):**
-
-1. **Daily Question hero on `/**` — one curated question, streak-eligible only if attempted. Single biggest re-open driver.
-2. **Per-topic mastery rings** (0–100%) computed from last 10 attempts. Visible on every subject hub.
-3. **Wrong-answer queue** auto-built from every session; surfaced as "Fix 7 mistakes" CTA.
-4. **Exam-readiness score** per subject (weighted by topic coverage × accuracy × recency) shown as the headline number.
-5. **Streak freeze (1/week)** + milestone badges (7/30/100 days). Loss aversion > gain motivation.
-
----
-
-## B. Critical bug fixes (Phase 1, blocking)
-
-- Audit every `notFound()` call site listed above. Root cause is slug mismatch between `subjects.json` topic slugs and `questions.json` `topic` field. Fix: normalize both at load time via a single `resolveTopic(subjectSlug, topicSlug)` helper in `src/lib/content.ts` with fuzzy fallback (slugify + case-insensitive + alias map for renamed topics).
-- Replace bare `notFound()` UI with a branded `<NotFoundShell>` (glass card, "Browse topics" CTA, related-topic suggestions) — keeps users in funnel.
-- Add a route-level `errorComponent` on every dynamic route + a top-level error boundary in `__root.tsx` so a thrown error never blanks the screen.
-
-## C. Model Answers + Rate-Limited Hints (Phase 2)
-
-- `<ModelAnswerToggle>` component, collapsed by default, framer-style height+opacity transition. Lives in MCQ runner, short-answer runner, structured runner.
-- `<HintButton>` with 4/24h rolling-window quota stored in `localStorage` under `hints:v1` as `{ timestamps: number[] }`. On click: prune > 24h, check length < 4, reveal next hint, push timestamp. Server-generated hints (one-shot via Lovable AI Gateway, cached per question id in IndexedDB so repeat views are free). When exhausted: show countdown to oldest-timestamp + 24h.
-
-## D. Content expansion to 100+ per sub-topic (Phase 3)
-
-- Run a one-time build script (`scripts/generate-bank.ts`) using Lovable AI Gateway (`google/gemini-3-flash-preview`) that, per sub-topic, generates batches of 25 until ≥100 exist, with strict JSON schema (subject, topic, sub-topic, difficulty, paper-style tag, question, options, answer, explanation, marking-points). Diversified across Easy/Medium/Hard buckets (40/40/20).
-- Output written to `public/questions.json` (chunked per subject to keep payloads small: `public/banks/<subject>.json` lazy-loaded by route).
-- Strict syllabus guardrail: prompt is grounded in the Sri Lankan NIE O/L syllabus text already attached, with explicit "reject Cambridge/Edexcel phrasing" instruction.
-
-## E. Apple-grade redesign (Phase 4)
-
-- Tokens in `src/styles.css`: deeper graphite base (`oklch(0.14 0.01 250)`), 1px hairline borders via `color-mix`, glass surfaces (`backdrop-blur-2xl bg-white/[0.03]`), accent gradient reserved for primary CTAs only.
-- New `<GlassCard>`, `<HairlineDivider>`, `<ParallaxHero>` primitives.
-- Homepage rebuilt to tradinghq cadence: oversized serif headline, live counter strip, Daily Question card, 3-subject grid, social-proof rail, footer. No purple, no generic gradients.
-- Page transitions via `motion/react` (already viable) — fade+8px rise, 220ms, respecting `prefers-reduced-motion`.
-- Performance budget: keep route JS < 180KB gz; lazy-load KaTeX and question banks.
-
-## F. Programmatic SEO (Phase 5)
-
-- 20 landing pages at `/learn/<subject>/<topic>/<slug>` targeting low-comp Sri Lankan O/L queries (I'll pull volume via the semrush tool before generating). Each page: H1 + 600-word topical primer + 5 example questions with worked solutions + internal links to 3 sibling topics + JSON-LD `LearningResource`.
-- Internal linking: subject hub lists every sub-topic with link; sitemap.xml regenerated.
-- Per-route `head()` with unique title/description/og — no template duplication.
-
----
-
-## Technical sketch
-
-```text
-src/lib/content.ts          ← resolveTopic() + alias map, fuzzy fallback
-src/lib/hints.ts            ← 4/24h quota, localStorage + IndexedDB cache
-src/lib/mastery.ts          ← per-topic rolling accuracy
-src/components/
-  NotFoundShell.tsx
-  ModelAnswerToggle.tsx
-  HintButton.tsx
-  GlassCard.tsx
-  DailyQuestion.tsx
-  MasteryRing.tsx
-scripts/generate-bank.ts    ← one-shot AI bank expansion (build-time only)
-public/banks/<subject>.json ← chunked lazy-loaded banks
-src/routes/learn.$subject.$topic.$slug.tsx  ← upgraded SEO template
+The practice flow finishes here:
+```
+finish() → navigate("/$subject/$topic/results", { topic: "mix" | <slug> })
 ```
 
-No live AI calls on the deployed app except the hint generator (cached per question, hard-rate-limited client-side).
+`src/routes/$subject.$topic.results.tsx` loader does:
+```ts
+const topic = subject.topics.find((t) => t.slug === params.topic);
+if (!topic) throw notFound();
+```
 
----
+`"mix"` is a **pseudo-topic** (used by the multi-topic practice picker) and never exists in `subject.topics`. It also does not use `resolveTopic`, so any drifted slug (case, alias, singular/plural) also 404s. This is why the user hits *"We couldn't find that topic"* right when trying to see their score.
 
-## Before I build — 3 questions
+Same issue exists in a couple of other places I want to sweep.
 
-1. **Hints — AI-generated or hand-authored?** AI-generated (cheap, scales to every question, cached) is my default. Hand-authored = higher quality but only on questions we curate.
-2. **Content regeneration scope.** Full expansion to ~100/sub-topic across all 3 subjects is ~30–45 min of AI Gateway calls and will consume credits. OK to proceed, or cap at e.g. 50/sub-topic first?
-3. **Daily Question source.** Rotate deterministically from existing bank (free, instant), or AI-curate a fresh one daily server-side (richer, costs credits)?
+## Phase A-fix — 404 sweep (do first, small)
 
-Confirm A + answer 1–3 and I'll execute B→F in order.  
-  
-1) AI generated  
-2) Cap at 60 sub-topics first  
-3) AI-curate a fresh one daily server-side   
-IMPORTANT: ensure everything can be done for 100% free
+1. `src/routes/$subject.$topic.results.tsx` loader: mirror the practice route — accept `"mix"` as `{ slug: "mix", name: "Mixed topics" }`, use `resolveSubject` + `resolveTopic`, redirect on drift, add `notFoundComponent` + `errorComponent` using `NotFoundShell`.
+2. Audit every `createFileRoute` under `/$subject/...` for the same anti-pattern; convert to `resolveSubject`/`resolveTopic` + mix support.
+3. Make `NotFoundShell` show a "Return to results" CTA when session storage still has `ol-last-results` so a stray 404 never blocks the final score.
+
+## Phase B — Hybrid AI question selection
+
+New file `src/lib/selectQuestions.functions.ts` (`createServerFn`, `.inputValidator(zod)`, `.handler(...)`):
+
+Pipeline:
+1. Filter the local bank by `{subject, topics[], difficulty}`.
+2. If `filtered.length >= count` → return a deterministic shuffle keyed by `{subject, topics, count, dayBucket}` (so 100 concurrent students get varied but reproducible papers, and the LRU cache hits).
+3. If `filtered.length < count` → call Lovable AI Gateway:
+   - Primary: `google/gemini-2.5-flash-lite`
+   - Fallback 1: `google/gemini-flash-1.5-8b`
+   - Fallback 2: `openai/gpt-5-nano`
+   - Ask the model to *rank / dedupe / pad* from the existing bank first; only if still short, generate net-new MCQs in the same JSON schema.
+4. In-memory LRU (`Map` capped at 200 entries, 10-min TTL) on the server function so the same setup for many students collapses to one call.
+5. Hard budget guard: max 1 request per 3 s per subject, else fall back to local shuffle silently.
+
+Client wiring:
+- `practice.$mode.$subject.tsx` calls `selectQuestions(...)` via `useServerFn`, then hands the returned pool to `savePickedPool` + `startNew` unchanged.
+- Same for `exam.short.$subject.tsx` and `exam.structured.$subject.tsx`.
+- All local fallbacks preserved — the AI path is *additive*, never a hard dependency.
+
+Expected free-tier cost: ~5 req/min under 100 concurrent students thanks to LRU + local-first.
+
+## Phase D — Light editorial theme (full switch)
+
+Rewrite `src/styles.css` tokens (keep names, flip values):
+- `--bg: oklch(0.99 0 0)`, `--surface-1: #fff`, `--surface-2: oklch(0.97 0 0)`
+- `--foreground: oklch(0.15 0 0)`, `--muted-foreground: oklch(0.45 0 0)`
+- `--hairline: oklch(0.92 0 0)`, `--hairline-strong: oklch(0.82 0 0)`
+- Accent kept (`--amber`, `--mint`, `--coral`) at slightly deeper values for AA contrast on white.
+- Aurora background reduced to a soft cream gradient, opacity < 6%.
+- `PremiumCard`, `SiteHeader`, `AmbientBackground`, `LoadingScreen`, `MathText` re-tinted (any hardcoded dark hex swapped for tokens).
+- Verify AA contrast on body text, muted text, and hairline borders.
+
+## Phase E — Homepage redesign (Apple-product-page cadence)
+
+`src/routes/index.tsx` restructured to:
+```
+Nav (SiteHeader)
+Hero            — headline + subhead + primary CTA (Start today's paper) + secondary (Browse practice)
+Trust strip     — "Aligned with NIE syllabi · Trusted by X students"
+Daily Question  — one editorial card
+Modes           — 3-mode grid (MCQ · Timed exam · Structured)
+Subjects        — 3-subject grid with topic counts
+Streak / rings  — ActivityRings + StreakHeatmap side by side
+For teachers    — pack builder teaser
+Press strip     — case studies / reviews
+Footer
+```
+Full-bleed sections, generous whitespace, single H1, semantic HTML, updated head metadata + og:image.
+
+## Technical order in one build
+
+1. Fix `$subject.$topic.results.tsx` + sibling audit (unblocks users NOW).
+2. Add `selectQuestions.functions.ts` + wire the three setup routes.
+3. Flip `src/styles.css` tokens; adjust the handful of components that hardcoded dark values.
+4. Rewrite `src/routes/index.tsx`.
+5. Build → check dev-server logs → fix any typecheck fallout → done.
+
+## Files touched (approx)
+
+- `src/routes/$subject.$topic.results.tsx` (fix)
+- `src/components/NotFoundShell.tsx` (results-recovery CTA)
+- `src/lib/selectQuestions.functions.ts` (new)
+- `src/routes/practice.$mode.$subject.tsx`, `src/routes/exam.short.$subject.tsx`, `src/routes/exam.structured.$subject.tsx` (call AI picker)
+- `src/styles.css` (theme flip)
+- `src/components/PremiumCard.tsx`, `AmbientBackground.tsx`, `SiteHeader.tsx`, `LoadingScreen.tsx`, `MathText.tsx` (token cleanup)
+- `src/routes/index.tsx` (homepage rewrite)
+- `src/routes/__root.tsx` (metadata refresh)
+
+Approve and I'll ship all four in one pass.

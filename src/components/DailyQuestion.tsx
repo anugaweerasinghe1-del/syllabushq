@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
@@ -8,14 +8,18 @@ import { MathText } from "@/components/MathText";
 
 export function DailyQuestion() {
   const fetchDaily = useServerFn(getDailyQuestion);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
   const { data, isLoading } = useQuery({
     queryKey: ["daily-question", new Date().toISOString().slice(0, 10)],
     queryFn: () => fetchDaily(),
     staleTime: 1000 * 60 * 60, // 1h
     refetchOnWindowFocus: false,
+    enabled: mounted, // avoid SSR fetch that can crash Suspense boundary
+    retry: 1,
   });
 
-  if (isLoading || !data) {
+  if (!mounted || isLoading || !data) {
     return (
       <PremiumCard className="p-8" hover={false} variant="deep">
         <div className="h-4 w-32 animate-pulse rounded bg-white/5" />

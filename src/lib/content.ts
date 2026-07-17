@@ -154,7 +154,20 @@ export function resolveTopic(
     subject.topics.find((t) => t.slug === aliased) ??
     subject.topics.find((t) => normaliseSlug(t.name) === want) ??
     subject.topics.find((t) => normaliseSlug(t.slug).includes(want) || want.includes(normaliseSlug(t.slug))) ??
-    null
+    // Last-resort: fuzzy word-overlap match so a URL like "circles" resolves
+    // to "circle-theorems". Prevents dead "we couldn't find that topic"
+    // screens on legitimate but drifted slugs.
+    (() => {
+      const wantWords = new Set(want.split("-").filter(Boolean));
+      let best: { t: Topic; score: number } | null = null;
+      for (const t of subject.topics) {
+        const tw = new Set(normaliseSlug(t.slug).split("-").filter(Boolean));
+        let score = 0;
+        for (const w of wantWords) if (tw.has(w)) score++;
+        if (score > 0 && (!best || score > best.score)) best = { t, score };
+      }
+      return best?.t ?? null;
+    })()
   );
 }
 
