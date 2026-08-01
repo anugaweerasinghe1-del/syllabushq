@@ -2,32 +2,13 @@ import { generateObject } from "ai";
 import { z } from "zod";
 import { googleAi, FAST_MODEL, SMART_MODEL } from "./ai-gateway.server";
 import subjectsData from "@/data/subjects.json";
+import type { Json } from "@/integrations/supabase/types";
+import type { BankMode, McqItem, ShortItem, StructuredItem, BankItem } from "./bank-types";
 
 type SubjectJSON = { slug: string; name: string; topics: { slug: string; name: string }[] };
 const SUBJECTS = subjectsData as SubjectJSON[];
 
-export type BankMode = "mcq" | "short" | "structured";
-
-export type McqItem = {
-  topic: string;
-  question: string;
-  options: string[];
-  correct: number;
-  explanation: string;
-};
-export type ShortItem = {
-  topic: string;
-  question: string;
-  modelAnswer: string;
-  markingPoints: string[];
-  marks: number;
-};
-export type StructuredItem = {
-  topic: string;
-  context: string;
-  parts: { label: string; prompt: string; answer: string; marks: number }[];
-};
-export type BankItem = McqItem | ShortItem | StructuredItem;
+export type { BankMode, McqItem, ShortItem, StructuredItem, BankItem };
 
 const McqSchema = z.object({
   questions: z.array(
@@ -134,7 +115,7 @@ export async function writeBank(
         topic: it.topic,
         mode,
         difficulty,
-        payload: it as unknown as Record<string, unknown>,
+        payload: it as unknown as Json,
       })),
       { onConflict: "hash", ignoreDuplicates: true },
     );

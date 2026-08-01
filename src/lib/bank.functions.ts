@@ -1,5 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
+import type { BankItem } from "./bank-types";
 
 const Input = z.object({
   mode: z.enum(["mcq", "short", "structured"]),
@@ -11,7 +12,7 @@ const Input = z.object({
 });
 
 export type EnsureResult = {
-  items: unknown[];
+  items: BankItem[];
   source: "bank" | "ai" | "mixed" | "none";
 };
 
