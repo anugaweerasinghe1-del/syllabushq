@@ -1,94 +1,71 @@
+# Full site audit + fix plan
 
-## Root-cause diagnosis of the 404 blocking final results
+I ran the real flows in a headless browser and queried the data files. Below is what is actually broken — no sugar-coating — then the fix.
 
-The practice flow finishes here:
+## What I verified
+
+Content bank, counted from the data files:
+
+| Subject | MCQs | Short-answer topics covered | Structured topics covered |
+|---|---|---|---|
+| Mathematics | 766 | 20 / 22 | 3 / 22 |
+| Science | 110 | 0 / 22 | 3 / 22 |
+| Business & Accounting | 105 (topic `source-documents` has 0) | 10 / 22 | 3 / 22 |
+
+Structured papers: only **3 questions exist per subject**, but the setup screen defaults to 6 and lets you ask for up to 50.
+
+## Confirmed bugs
+
+1. **Teacher question pack is completely dead.** `/for-teachers` is the parent route of `/for-teachers/pack`, but its component never renders `<Outlet />`. Clicking "Build & preview pack" changes the URL and then re-renders the same teacher page. Confirmed in the browser: zero questions rendered on the pack URL.
+2. **"0 questions in the bank" / "Coming soon".** Science short-answer has no questions at all; Business is half-covered; structured is 3 per subject. Any selection outside the small covered set dead-ends.
+3. **AI top-up only runs for MCQ.** Short-answer and structured modes never call the generator, so they hard-fail instead of filling the gap. The MCQ top-up is also capped at 20 and is per-request only — nothing is saved, so the same gap is regenerated forever.
+4. **"Full Exam Simulation" is MCQ-only.** It routes to the same MCQ runner — no Paper I + Paper II sections, no structured part.
+5. **Structured/short setup silently under-delivers.** Ask for 6 structured questions, get 3, with no explanation.
+6. **Topic dead ends.** `source-documents` and any empty-bank topic behave like a missing topic; the "mix" pseudo-topic still has sharp edges on results/resume paths.
+7. **Handwriting upload.** The upload itself works and AI marking works — verified live, a real answer came back with a mark breakdown. The real problems: a hard 2.4 MB limit that a normal phone photo exceeds, no direct camera capture on mobile, no compression, one image only, no upload on the short-answer/MCQ paths, and no clear error when marking fails.
+8. **Wrong contact details.** `hello@syllabushq.app`, `press@syllabushq.app`, and the pack footer still says `syllabushq.lovable.app`.
+
+## The fix: a self-growing question bank (free)
+
+The Google AI Studio key already in the project works and is on the free tier — I tested a live call just now. Instead of one-off throwaway generation, questions get **generated on demand and then saved permanently** to the backend database, so the bank grows itself and each gap costs free-tier quota exactly once.
+
+```text
+student picks topics ->
+  1. local JSON bank        (instant)
+  2. saved AI bank in DB    (instant, grows over time)
+  3. generate now via AI    (2-6s, with a real progress state)
+  4. save results to DB     -> next student gets it instantly
 ```
-finish() → navigate("/$subject/$topic/results", { topic: "mix" | <slug> })
-```
 
-`src/routes/$subject.$topic.results.tsx` loader does:
-```ts
-const topic = subject.topics.find((t) => t.slug === params.topic);
-if (!topic) throw notFound();
-```
+Applies to all three content types: MCQ, short-answer, structured. Nothing is ever a dead end again — worst case the student waits a few seconds.
 
-`"mix"` is a **pseudo-topic** (used by the multi-topic practice picker) and never exists in `subject.topics`. It also does not use `resolveTopic`, so any drifted slug (case, alias, singular/plural) also 404s. This is why the user hits *"We couldn't find that topic"* right when trying to see their score.
+Free-tier safety: per-visitor and global daily caps, request collapsing so a burst becomes one call, cached reuse across students, and a graceful "at capacity, here's the local bank" fallback. No paid service is added.
 
-Same issue exists in a couple of other places I want to sweep.
+## Work items
 
-## Phase A-fix — 404 sweep (do first, small)
+**A. Critical fixes**
+- Render `<Outlet />` in `/for-teachers` so the pack works; verify print layout and the marking-scheme page break.
+- Correct all contact addresses to `anugaweerasinghe1@gmail.com` and fix the pack footer domain.
 
-1. `src/routes/$subject.$topic.results.tsx` loader: mirror the practice route — accept `"mix"` as `{ slug: "mix", name: "Mixed topics" }`, use `resolveSubject` + `resolveTopic`, redirect on drift, add `notFoundComponent` + `errorComponent` using `NotFoundShell`.
-2. Audit every `createFileRoute` under `/$subject/...` for the same anti-pattern; convert to `resolveSubject`/`resolveTopic` + mix support.
-3. Make `NotFoundShell` show a "Return to results" CTA when session storage still has `ol-last-results` so a stray 404 never blocks the final score.
+**B. Question supply**
+- Backend table for generated questions (mcq / short / structured), keyed by subject + topic + difficulty, with dedupe.
+- One generation service covering all three types, syllabus-locked prompts per subject, quality validation before saving (4 options, exactly one correct answer, topic in-syllabus, no duplicates).
+- Wire short-answer and structured runners to it; remove the 20-question cap; keep the local bank first.
+- Backfill run now: Science short-answer, Business missing topics, and structured coverage across every topic — so the site is already full before a student hits it.
 
-## Phase B — Hybrid AI question selection
+**C. Full Exam Simulation**
+- Rebuild as a real sectioned paper following `paper-structures.ts`: Section A MCQ, Section B structured/short, one shared timer, no feedback until submit, then a combined marked result.
 
-New file `src/lib/selectQuestions.functions.ts` (`createServerFn`, `.inputValidator(zod)`, `.handler(...)`):
+**D. Handwriting / photo answers**
+- Client-side image compression so any phone photo fits, `capture="environment"` for direct camera use, multiple images per answer, clear per-stage errors, retry on transient AI failure.
+- Enable photo answers on short-answer mode too.
 
-Pipeline:
-1. Filter the local bank by `{subject, topics[], difficulty}`.
-2. If `filtered.length >= count` → return a deterministic shuffle keyed by `{subject, topics, count, dayBucket}` (so 100 concurrent students get varied but reproducible papers, and the LRU cache hits).
-3. If `filtered.length < count` → call Lovable AI Gateway:
-   - Primary: `google/gemini-2.5-flash-lite`
-   - Fallback 1: `google/gemini-flash-1.5-8b`
-   - Fallback 2: `openai/gpt-5-nano`
-   - Ask the model to *rank / dedupe / pad* from the existing bank first; only if still short, generate net-new MCQs in the same JSON schema.
-4. In-memory LRU (`Map` capped at 200 entries, 10-min TTL) on the server function so the same setup for many students collapses to one call.
-5. Hard budget guard: max 1 request per 3 s per subject, else fall back to local shuffle silently.
+**E. Full clickable sweep**
+- Automated pass over every mode x every subject x mix/single topic x every difficulty x every timer option, plus reviews, suggest, resources, press, teachers, embed, sitemap and all 404 paths — asserting no dead ends, no 0-question states, working timers, working submit and results.
+- Every failure that sweep finds gets fixed in the same build.
 
-Client wiring:
-- `practice.$mode.$subject.tsx` calls `selectQuestions(...)` via `useServerFn`, then hands the returned pool to `savePickedPool` + `startNew` unchanged.
-- Same for `exam.short.$subject.tsx` and `exam.structured.$subject.tsx`.
-- All local fallbacks preserved — the AI path is *additive*, never a hard dependency.
+## Technical notes
 
-Expected free-tier cost: ~5 req/min under 100 concurrent students thanks to LRU + local-first.
-
-## Phase D — Light editorial theme (full switch)
-
-Rewrite `src/styles.css` tokens (keep names, flip values):
-- `--bg: oklch(0.99 0 0)`, `--surface-1: #fff`, `--surface-2: oklch(0.97 0 0)`
-- `--foreground: oklch(0.15 0 0)`, `--muted-foreground: oklch(0.45 0 0)`
-- `--hairline: oklch(0.92 0 0)`, `--hairline-strong: oklch(0.82 0 0)`
-- Accent kept (`--amber`, `--mint`, `--coral`) at slightly deeper values for AA contrast on white.
-- Aurora background reduced to a soft cream gradient, opacity < 6%.
-- `PremiumCard`, `SiteHeader`, `AmbientBackground`, `LoadingScreen`, `MathText` re-tinted (any hardcoded dark hex swapped for tokens).
-- Verify AA contrast on body text, muted text, and hairline borders.
-
-## Phase E — Homepage redesign (Apple-product-page cadence)
-
-`src/routes/index.tsx` restructured to:
-```
-Nav (SiteHeader)
-Hero            — headline + subhead + primary CTA (Start today's paper) + secondary (Browse practice)
-Trust strip     — "Aligned with NIE syllabi · Trusted by X students"
-Daily Question  — one editorial card
-Modes           — 3-mode grid (MCQ · Timed exam · Structured)
-Subjects        — 3-subject grid with topic counts
-Streak / rings  — ActivityRings + StreakHeatmap side by side
-For teachers    — pack builder teaser
-Press strip     — case studies / reviews
-Footer
-```
-Full-bleed sections, generous whitespace, single H1, semantic HTML, updated head metadata + og:image.
-
-## Technical order in one build
-
-1. Fix `$subject.$topic.results.tsx` + sibling audit (unblocks users NOW).
-2. Add `selectQuestions.functions.ts` + wire the three setup routes.
-3. Flip `src/styles.css` tokens; adjust the handful of components that hardcoded dark values.
-4. Rewrite `src/routes/index.tsx`.
-5. Build → check dev-server logs → fix any typecheck fallout → done.
-
-## Files touched (approx)
-
-- `src/routes/$subject.$topic.results.tsx` (fix)
-- `src/components/NotFoundShell.tsx` (results-recovery CTA)
-- `src/lib/selectQuestions.functions.ts` (new)
-- `src/routes/practice.$mode.$subject.tsx`, `src/routes/exam.short.$subject.tsx`, `src/routes/exam.structured.$subject.tsx` (call AI picker)
-- `src/styles.css` (theme flip)
-- `src/components/PremiumCard.tsx`, `AmbientBackground.tsx`, `SiteHeader.tsx`, `LoadingScreen.tsx`, `MathText.tsx` (token cleanup)
-- `src/routes/index.tsx` (homepage rewrite)
-- `src/routes/__root.tsx` (metadata refresh)
-
-Approve and I'll ship all four in one pass.
+- Generation uses the existing `@ai-sdk/google` provider (`gemini-2.5-flash-lite` primary, `gemini-2.5-flash` fallback) behind server functions — no keys reach the browser.
+- Saved questions live in the backend database with row-level security: public read, server-only write.
+- Existing JSON files stay as the instant-load base layer; nothing currently working is removed.
