@@ -41,25 +41,17 @@ export function StructuredAnswerInput({
   }
 
   async function handleFile(file: File) {
-    if (file.size > 2_400_000) {
-      setError("Image too large — keep it under 2.4 MB.");
-      return;
-    }
-    // FileReader.readAsDataURL is safe for large images; the previous
-    // btoa(String.fromCharCode(...bytes)) approach blew the call stack.
+    setError(null);
+    setCompressing(true);
     try {
-      const dataUrl: string = await new Promise((resolve, reject) => {
-        const r = new FileReader();
-        r.onload = () => resolve(String(r.result ?? ""));
-        r.onerror = () => reject(new Error("Couldn't read that image."));
-        r.readAsDataURL(file);
-      });
-      const comma = dataUrl.indexOf(",");
-      const b64 = comma >= 0 ? dataUrl.slice(comma + 1) : dataUrl;
-      setImageData({ b64, mime: file.type || "image/jpeg", name: file.name });
-      setError(null);
+      // Modern phone photos are 4-12 MB, far past what the marker accepts.
+      // Downscale + re-encode in the browser so ANY photo works.
+      const { b64, mime } = await compressImage(file);
+      setImageData({ b64, mime, name: file.name || "working.jpg" });
     } catch (e) {
       setError(e instanceof Error ? e.message : "Couldn't read that image.");
+    } finally {
+      setCompressing(false);
     }
   }
 

@@ -31,6 +31,7 @@ import { Route as SubjectTopicIndexRouteImport } from './routes/$subject.$topic.
 import { Route as PracticeModeSubjectRouteImport } from './routes/practice.$mode.$subject'
 import { Route as ExamStructuredSubjectRouteImport } from './routes/exam.structured.$subject'
 import { Route as ExamShortSubjectRouteImport } from './routes/exam.short.$subject'
+import { Route as ExamFullSubjectRouteImport } from './routes/exam.full.$subject'
 import { Route as SubjectTopicResultsRouteImport } from './routes/$subject.$topic.results'
 import { Route as SubjectTopicPracticeRouteImport } from './routes/$subject.$topic.practice'
 import { Route as LearnSubjectTopicSlugRouteImport } from './routes/learn.$subject.$topic.$slug'
@@ -145,6 +146,11 @@ const ExamShortSubjectRoute = ExamShortSubjectRouteImport.update({
   path: '/short/$subject',
   getParentRoute: () => ExamRoute,
 } as any)
+const ExamFullSubjectRoute = ExamFullSubjectRouteImport.update({
+  id: '/full/$subject',
+  path: '/full/$subject',
+  getParentRoute: () => ExamRoute,
+} as any)
 const SubjectTopicResultsRoute = SubjectTopicResultsRouteImport.update({
   id: '/results',
   path: '/results',
@@ -181,6 +187,7 @@ export interface FileRoutesByFullPath {
   '/practice/': typeof PracticeIndexRoute
   '/$subject/$topic/practice': typeof SubjectTopicPracticeRoute
   '/$subject/$topic/results': typeof SubjectTopicResultsRoute
+  '/exam/full/$subject': typeof ExamFullSubjectRoute
   '/exam/short/$subject': typeof ExamShortSubjectRoute
   '/exam/structured/$subject': typeof ExamStructuredSubjectRoute
   '/practice/$mode/$subject': typeof PracticeModeSubjectRoute
@@ -204,6 +211,7 @@ export interface FileRoutesByTo {
   '/practice': typeof PracticeIndexRoute
   '/$subject/$topic/practice': typeof SubjectTopicPracticeRoute
   '/$subject/$topic/results': typeof SubjectTopicResultsRoute
+  '/exam/full/$subject': typeof ExamFullSubjectRoute
   '/exam/short/$subject': typeof ExamShortSubjectRoute
   '/exam/structured/$subject': typeof ExamStructuredSubjectRoute
   '/practice/$mode/$subject': typeof PracticeModeSubjectRoute
@@ -232,6 +240,7 @@ export interface FileRoutesById {
   '/practice/': typeof PracticeIndexRoute
   '/$subject/$topic/practice': typeof SubjectTopicPracticeRoute
   '/$subject/$topic/results': typeof SubjectTopicResultsRoute
+  '/exam/full/$subject': typeof ExamFullSubjectRoute
   '/exam/short/$subject': typeof ExamShortSubjectRoute
   '/exam/structured/$subject': typeof ExamStructuredSubjectRoute
   '/practice/$mode/$subject': typeof PracticeModeSubjectRoute
@@ -261,6 +270,7 @@ export interface FileRouteTypes {
     | '/practice/'
     | '/$subject/$topic/practice'
     | '/$subject/$topic/results'
+    | '/exam/full/$subject'
     | '/exam/short/$subject'
     | '/exam/structured/$subject'
     | '/practice/$mode/$subject'
@@ -284,6 +294,7 @@ export interface FileRouteTypes {
     | '/practice'
     | '/$subject/$topic/practice'
     | '/$subject/$topic/results'
+    | '/exam/full/$subject'
     | '/exam/short/$subject'
     | '/exam/structured/$subject'
     | '/practice/$mode/$subject'
@@ -311,6 +322,7 @@ export interface FileRouteTypes {
     | '/practice/'
     | '/$subject/$topic/practice'
     | '/$subject/$topic/results'
+    | '/exam/full/$subject'
     | '/exam/short/$subject'
     | '/exam/structured/$subject'
     | '/practice/$mode/$subject'
@@ -491,6 +503,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ExamShortSubjectRouteImport
       parentRoute: typeof ExamRoute
     }
+    '/exam/full/$subject': {
+      id: '/exam/full/$subject'
+      path: '/full/$subject'
+      fullPath: '/exam/full/$subject'
+      preLoaderRoute: typeof ExamFullSubjectRouteImport
+      parentRoute: typeof ExamRoute
+    }
     '/$subject/$topic/results': {
       id: '/$subject/$topic/results'
       path: '/results'
@@ -545,11 +564,13 @@ const SubjectRouteWithChildren =
   SubjectRoute._addFileChildren(SubjectRouteChildren)
 
 interface ExamRouteChildren {
+  ExamFullSubjectRoute: typeof ExamFullSubjectRoute
   ExamShortSubjectRoute: typeof ExamShortSubjectRoute
   ExamStructuredSubjectRoute: typeof ExamStructuredSubjectRoute
 }
 
 const ExamRouteChildren: ExamRouteChildren = {
+  ExamFullSubjectRoute: ExamFullSubjectRoute,
   ExamShortSubjectRoute: ExamShortSubjectRoute,
   ExamStructuredSubjectRoute: ExamStructuredSubjectRoute,
 }
