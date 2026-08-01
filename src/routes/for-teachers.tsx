@@ -1,4 +1,4 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet, useNavigate, useRouterState } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -38,8 +38,19 @@ export const Route = createFileRoute("/for-teachers")({
       },
     ],
   }),
-  component: TeachersPage,
+  component: TeachersRoute,
 });
+
+/**
+ * `/for-teachers` is the PARENT of `/for-teachers/pack`, so it must render an
+ * <Outlet />. Without this the pack route silently re-rendered this page and
+ * the printable pack never appeared.
+ */
+function TeachersRoute() {
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const isChild = pathname.replace(/\/$/, "") !== "/for-teachers";
+  return isChild ? <Outlet /> : <TeachersPage />;
+}
 
 function TeachersPage() {
   const { data: subjects } = useSuspenseQuery(subjectsQuery);
@@ -208,7 +219,7 @@ function TeachersPage() {
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <a
-              href="mailto:hello@syllabushq.app?subject=Custom%20O%2FL%20question%20pack"
+              href="mailto:anugaweerasinghe1@gmail.com?subject=Custom%20O%2FL%20question%20pack"
               className="inline-flex items-center justify-center rounded-lg bg-foreground px-6 py-3 text-sm font-semibold text-background"
             >
               Email us
