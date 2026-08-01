@@ -12,6 +12,8 @@ import { Slider } from "@/components/ui/slider";
 import { pickQuestions } from "@/lib/pickQuestions";
 import { saveExamConfig } from "@/lib/exam-config";
 import { savePickedPool } from "@/lib/quiz-session";
+import { useServerFn } from "@tanstack/react-start";
+import { topUpQuestions } from "@/lib/selectQuestions.functions";
 
 export const Route = createFileRoute("/practice/$mode/$subject")({
   loader: async ({ params, context }) => {
@@ -30,6 +32,7 @@ function SetupPage() {
   const { mode, subject } = Route.useLoaderData();
   const { data: allQuestions } = useSuspenseQuery(questionsQuery);
   const navigate = useNavigate();
+  const topUp = useServerFn(topUpQuestions);
 
   const [selectedTopics, setSelectedTopics] = useState<string[]>([]); // empty = mix
   const [balanced, setBalanced] = useState(true);
@@ -48,16 +51,35 @@ function SetupPage() {
     return m;
   }, [subjectQs]);
 
-  function begin() {
+  async function begin() {
     setLoading(true);
-    setTimeout(() => {
+    await new Promise((r) => setTimeout(r, 900));
+    try {
       if (mode.slug === "mcq" || mode.slug === "exam") {
-        const picked = pickQuestions({
+        let picked = pickQuestions({
           pool: subjectQs,
           topics: selectedTopics,
           count,
           balanced,
         });
+        // Hybrid: if the local bank can't fill the paper, ask the AI to top it
+        // up. Any failure silently keeps the local-only paper.
+        if (picked.length < count) {
+          try {
+            const res = await topUp({
+              data: {
+                subject: subject.slug,
+                topics: selectedTopics,
+                difficulty,
+                need: Math.min(20, count - picked.length),
+                avoid: picked.slice(0, 25).map((q) => q.question),
+              },
+            });
+            if (res.questions.length) picked = [...picked, ...res.questions];
+          } catch {
+            /* local paper is still valid */
+          }
+        }
         if (picked.length === 0) { setLoading(false); alert("No questions available for that selection yet."); return; }
         const topicSlug = selectedTopics.length === 1 ? selectedTopics[0] : "mix";
         // Stash the picked pool so the practice route can rebuild the exact set
@@ -80,7 +102,9 @@ function SetupPage() {
         saveExamConfig("structured", subject.slug, { count, timeLimitSec: time, topics: selectedTopics });
         navigate({ to: "/exam/structured/$subject", params: { subject: subject.slug } });
       }
-    }, 1400);
+    } catch {
+      setLoading(false);
+    }
   }
 
   if (loading) return <LoadingScreen />;
