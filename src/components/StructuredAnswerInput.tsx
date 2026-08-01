@@ -31,6 +31,7 @@ export function StructuredAnswerInput({
   });
   const [imageData, setImageData] = useState<{ b64: string; mime: string; name: string } | null>(null);
   const [grading, setGrading] = useState(false);
+  const [compressing, setCompressing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<GradeResult | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -106,19 +107,21 @@ export function StructuredAnswerInput({
           ref={fileRef}
           type="file"
           accept="image/*"
+          capture="environment"
           className="hidden"
           onChange={(e) => {
             const f = e.target.files?.[0];
             if (f) void handleFile(f);
+            e.target.value = "";
           }}
         />
         <button
           onClick={() => fileRef.current?.click()}
-          disabled={grading || !!result}
+          disabled={grading || compressing || !!result}
           className="inline-flex items-center gap-1.5 rounded-md border border-hairline px-2.5 py-1 text-muted-foreground hover:text-foreground disabled:opacity-50"
         >
           <Camera className="h-3 w-3" />
-          {imageData ? "Replace photo" : "Attach handwritten working"}
+          {compressing ? "Processing photo…" : imageData ? "Replace photo" : "Attach handwritten working"}
         </button>
       </div>
 
