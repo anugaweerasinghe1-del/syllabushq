@@ -40,7 +40,7 @@ const FACTS: Array<{ k: string; v: string }> = [
   { k: "Country", v: "Sri Lanka (English medium)" },
   { k: "Subjects", v: "Mathematics, Science, Business & Accounting" },
   { k: "Pricing", v: "Free — no login, no ads, no paywall" },
-  { k: "Media contact", v: "press@syllabushq.app" },
+  { k: "Media contact", v: "anugaweerasinghe1@gmail.com" },
 ];
 
 function PressPage() {
@@ -141,10 +141,10 @@ function PressPage() {
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <a
-              href="mailto:press@syllabushq.app"
+              href="mailto:anugaweerasinghe1@gmail.com"
               className="inline-flex items-center justify-center rounded-lg bg-foreground px-6 py-3 text-sm font-semibold text-background"
             >
-              press@syllabushq.app
+              anugaweerasinghe1@gmail.com
             </a>
             <Link
               to="/for-teachers"

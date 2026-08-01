@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { Camera, Loader2, Sparkles, X } from "lucide-react";
 import { gradeAnswer, type GradeResult } from "@/lib/gradeAnswer.functions";
 import { AIGradeCard } from "@/components/AIGradeCard";
+import { compressImage } from "@/lib/compressImage";
 
 /**
  * Reusable answer input for short / structured / essay parts.
@@ -31,6 +32,7 @@ export function StructuredAnswerInput({
   });
   const [imageData, setImageData] = useState<{ b64: string; mime: string; name: string } | null>(null);
   const [grading, setGrading] = useState(false);
+  const [compressing, setCompressing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<GradeResult | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -41,25 +43,17 @@ export function StructuredAnswerInput({
   }
 
   async function handleFile(file: File) {
-    if (file.size > 2_400_000) {
-      setError("Image too large — keep it under 2.4 MB.");
-      return;
-    }
-    // FileReader.readAsDataURL is safe for large images; the previous
-    // btoa(String.fromCharCode(...bytes)) approach blew the call stack.
+    setError(null);
+    setCompressing(true);
     try {
-      const dataUrl: string = await new Promise((resolve, reject) => {
-        const r = new FileReader();
-        r.onload = () => resolve(String(r.result ?? ""));
-        r.onerror = () => reject(new Error("Couldn't read that image."));
-        r.readAsDataURL(file);
-      });
-      const comma = dataUrl.indexOf(",");
-      const b64 = comma >= 0 ? dataUrl.slice(comma + 1) : dataUrl;
-      setImageData({ b64, mime: file.type || "image/jpeg", name: file.name });
-      setError(null);
+      // Modern phone photos are 4-12 MB, far past what the marker accepts.
+      // Downscale + re-encode in the browser so ANY photo works.
+      const { b64, mime } = await compressImage(file);
+      setImageData({ b64, mime, name: file.name || "working.jpg" });
     } catch (e) {
       setError(e instanceof Error ? e.message : "Couldn't read that image.");
+    } finally {
+      setCompressing(false);
     }
   }
 
@@ -114,19 +108,21 @@ export function StructuredAnswerInput({
           ref={fileRef}
           type="file"
           accept="image/*"
+          capture="environment"
           className="hidden"
           onChange={(e) => {
             const f = e.target.files?.[0];
             if (f) void handleFile(f);
+            e.target.value = "";
           }}
         />
         <button
           onClick={() => fileRef.current?.click()}
-          disabled={grading || !!result}
+          disabled={grading || compressing || !!result}
           className="inline-flex items-center gap-1.5 rounded-md border border-hairline px-2.5 py-1 text-muted-foreground hover:text-foreground disabled:opacity-50"
         >
           <Camera className="h-3 w-3" />
-          {imageData ? "Replace photo" : "Attach handwritten working"}
+          {compressing ? "Processing photo…" : imageData ? "Replace photo" : "Attach handwritten working"}
         </button>
       </div>
 

@@ -13,7 +13,8 @@ import { pickQuestions } from "@/lib/pickQuestions";
 import { saveExamConfig } from "@/lib/exam-config";
 import { savePickedPool } from "@/lib/quiz-session";
 import { useServerFn } from "@tanstack/react-start";
-import { topUpQuestions } from "@/lib/selectQuestions.functions";
+import { ensureQuestions } from "@/lib/bank.functions";
+import type { McqItem } from "@/lib/bank-types";
 
 export const Route = createFileRoute("/practice/$mode/$subject")({
   loader: async ({ params, context }) => {
@@ -32,7 +33,7 @@ function SetupPage() {
   const { mode, subject } = Route.useLoaderData();
   const { data: allQuestions } = useSuspenseQuery(questionsQuery);
   const navigate = useNavigate();
-  const topUp = useServerFn(topUpQuestions);
+  const topUp = useServerFn(ensureQuestions);
 
   const [selectedTopics, setSelectedTopics] = useState<string[]>([]); // empty = mix
   const [balanced, setBalanced] = useState(true);
@@ -55,7 +56,10 @@ function SetupPage() {
     setLoading(true);
     await new Promise((r) => setTimeout(r, 900));
     try {
-      if (mode.slug === "mcq" || mode.slug === "exam") {
+      if (mode.slug === "exam") {
+        saveExamConfig("exam", subject.slug, { count, timeLimitSec: time, topics: selectedTopics });
+        navigate({ to: "/exam/full/$subject", params: { subject: subject.slug } });
+      } else if (mode.slug === "mcq") {
         let picked = pickQuestions({
           pool: subjectQs,
           topics: selectedTopics,
@@ -68,14 +72,16 @@ function SetupPage() {
           try {
             const res = await topUp({
               data: {
+                mode: "mcq",
                 subject: subject.slug,
                 topics: selectedTopics,
                 difficulty,
-                need: Math.min(20, count - picked.length),
+                need: Math.min(30, count - picked.length),
                 avoid: picked.slice(0, 25).map((q) => q.question),
               },
             });
-            if (res.questions.length) picked = [...picked, ...res.questions];
+            const fresh = (res.items as McqItem[]).map((q) => ({ ...q, subject: subject.slug }));
+            if (fresh.length) picked = [...picked, ...fresh];
           } catch {
             /* local paper is still valid */
           }
@@ -89,7 +95,7 @@ function SetupPage() {
           count: picked.length,
           timeLimitSec: time,
           difficulty,
-          mode: mode.slug === "exam" ? "exam" : "mcq",
+          mode: "mcq",
         });
         navigate({
           to: "/$subject/$topic/practice",
