@@ -11,6 +11,8 @@ import { ExamTimer } from "@/components/ExamTimer";
 import { getStructuresFor } from "@/lib/paper-structures";
 import { loadExamConfig } from "@/lib/exam-config";
 import { shuffle, mulberry32 } from "@/lib/pickQuestions";
+import { useBankTopUp } from "@/hooks/useBankTopUp";
+import type { StructuredItem } from "@/lib/bank-types";
 
 type StructuredPart = { label: string; prompt: string; answer: string; marks: number };
 type StructuredQ = { subject: string; topic: string; context: string; parts: StructuredPart[] };
@@ -41,21 +43,38 @@ function StructuredRunner() {
     setCfg(loadExamConfig("structured", subject.slug, { count: 4, timeLimitSec: 60 * 60, topics: [] }));
   }, [subject.slug]);
 
-  const items = useMemo(() => {
+  const localItems = useMemo(() => {
     const base = ALL.filter((q) => q.subject === subject.slug);
     if (!cfg) return base;
     const filtered = cfg.topics.length ? base.filter((q) => cfg.topics.includes(q.topic)) : base;
-    const pool = filtered.length ? filtered : base;
     const seed = [...subject.slug].reduce((a, c) => a + c.charCodeAt(0), 0);
-    return shuffle(pool, mulberry32(seed)).slice(0, Math.max(1, cfg.count));
+    return shuffle(filtered, mulberry32(seed)).slice(0, Math.max(1, cfg.count));
   }, [subject.slug, cfg]);
+
+  const need = cfg ? Math.max(0, cfg.count - localItems.length) : 0;
+  const { extra, loading: topping } = useBankTopUp({
+    mode: "structured",
+    subject: subject.slug,
+    topics: cfg?.topics ?? [],
+    need,
+    avoid: localItems.slice(0, 8).map((q) => q.context),
+    enabled: !!cfg && need > 0,
+  });
+
+  const items = useMemo<StructuredQ[]>(() => {
+    const mapped = (extra as StructuredItem[]).map((q) => ({ ...q, subject: subject.slug }));
+    return [...localItems, ...mapped];
+  }, [localItems, extra, subject.slug]);
+
   const [submitted, setSubmitted] = useState(false);
 
-  if (!cfg) {
+  if (!cfg || (topping && items.length === 0)) {
     return (
       <div className="min-h-screen">
         <SiteHeader />
-        <main className="mx-auto max-w-2xl px-4 py-20 text-center text-muted-foreground">Loading…</main>
+        <main className="mx-auto max-w-2xl px-4 py-20 text-center text-muted-foreground">
+          {topping ? "Composing a fresh structured paper…" : "Loading…"}
+        </main>
       </div>
     );
   }

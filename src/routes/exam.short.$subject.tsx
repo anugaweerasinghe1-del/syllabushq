@@ -10,6 +10,8 @@ import { StructuredAnswerInput } from "@/components/StructuredAnswerInput";
 import { ExamTimer } from "@/components/ExamTimer";
 import { loadExamConfig } from "@/lib/exam-config";
 import { shuffle, mulberry32 } from "@/lib/pickQuestions";
+import { useBankTopUp } from "@/hooks/useBankTopUp";
+import type { ShortItem } from "@/lib/bank-types";
 
 type ShortQ = {
   subject: string; topic: string;
@@ -42,24 +44,43 @@ function ShortAnswerRunner() {
     setCfg(loadExamConfig("short", subject.slug, { count: 15, timeLimitSec: 0, topics: [] }));
   }, [subject.slug]);
 
-  const pool = useMemo(() => {
+  const localPool = useMemo(() => {
     const base = ALL.filter((q) => q.subject === subject.slug);
     if (!cfg) return base.slice(0, 15);
     const filtered = cfg.topics.length ? base.filter((q) => cfg.topics.includes(q.topic)) : base;
     // Deterministic per-subject shuffle so the same session order sticks.
     const seed = [...subject.slug].reduce((a, c) => a + c.charCodeAt(0), 0);
-    const shuffled = shuffle(filtered.length ? filtered : base, mulberry32(seed));
+    const shuffled = shuffle(filtered, mulberry32(seed));
     return shuffled.slice(0, Math.max(1, cfg.count));
   }, [subject.slug, cfg]);
+
+  // Self-growing bank: whatever the local JSON can't supply is fetched (and
+  // permanently saved) from the shared AI bank.
+  const need = cfg ? Math.max(0, cfg.count - localPool.length) : 0;
+  const { extra, loading: topping } = useBankTopUp({
+    mode: "short",
+    subject: subject.slug,
+    topics: cfg?.topics ?? [],
+    need,
+    avoid: localPool.slice(0, 12).map((q) => q.question),
+    enabled: !!cfg && need > 0,
+  });
+
+  const pool = useMemo<ShortQ[]>(() => {
+    const mapped = (extra as ShortItem[]).map((q) => ({ ...q, subject: subject.slug }));
+    return [...localPool, ...mapped];
+  }, [localPool, extra, subject.slug]);
 
   const [i, setI] = useState(0);
   const [submitted, setSubmitted] = useState(false);
 
-  if (!cfg) {
+  if (!cfg || (topping && pool.length === 0)) {
     return (
       <div className="min-h-screen">
         <SiteHeader />
-        <main className="mx-auto max-w-2xl px-4 py-20 text-center text-muted-foreground">Loading…</main>
+        <main className="mx-auto max-w-2xl px-4 py-20 text-center text-muted-foreground">
+          {topping ? "Writing fresh syllabus questions for you…" : "Loading…"}
+        </main>
       </div>
     );
   }
@@ -77,7 +98,7 @@ function ShortAnswerRunner() {
     );
   }
 
-  const q = pool[i];
+  const q = pool[Math.min(i, pool.length - 1)];
   const total = pool.length;
 
   function next() {
