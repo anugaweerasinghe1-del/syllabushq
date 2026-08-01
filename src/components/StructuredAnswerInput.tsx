@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { Camera, Loader2, Sparkles, X } from "lucide-react";
 import { gradeAnswer, type GradeResult } from "@/lib/gradeAnswer.functions";
 import { AIGradeCard } from "@/components/AIGradeCard";
+import { compressImage } from "@/lib/compressImage";
 
 /**
  * Reusable answer input for short / structured / essay parts.
