@@ -1,10 +1,11 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound, redirect } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { SiteHeader } from "@/components/SiteHeader";
 import { PremiumCard } from "@/components/PremiumCard";
 import { MathText } from "@/components/MathText";
-import { subjectsQuery, questionsQuery, type Subject, type Question } from "@/lib/content";
+import { subjectsQuery, questionsQuery, resolveSubject, type Question } from "@/lib/content";
+import { NotFoundShell } from "@/components/NotFoundShell";
 import structuredData from "@/data/structured.json";
 import { markStudiedToday } from "@/lib/streak";
 import { StructuredAnswerInput } from "@/components/StructuredAnswerInput";
@@ -23,8 +24,11 @@ const STRUCTURED = structuredData as StructuredQ[];
 export const Route = createFileRoute("/exam/full/$subject")({
   loader: async ({ params, context }) => {
     const subjects = await context.queryClient.ensureQueryData(subjectsQuery);
-    const subject = subjects.find((s: Subject) => s.slug === params.subject);
+    const subject = resolveSubject(subjects, params.subject);
     if (!subject) throw notFound();
+    if (subject.slug !== params.subject) {
+      throw redirect({ to: "/exam/full/$subject", params: { subject: subject.slug } });
+    }
     await context.queryClient.ensureQueryData(questionsQuery);
     return { subject };
   },
@@ -37,6 +41,10 @@ export const Route = createFileRoute("/exam/full/$subject")({
       : [],
   }),
   component: FullExam,
+  notFoundComponent: () => <NotFoundShell />,
+  errorComponent: ({ error }) => (
+    <NotFoundShell title="This exam didn't load" message={error.message} />
+  ),
 });
 
 function FullExam() {
