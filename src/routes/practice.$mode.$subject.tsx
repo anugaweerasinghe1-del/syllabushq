@@ -37,7 +37,9 @@ export const Route = createFileRoute("/practice/$mode/$subject")({
   component: SetupPage,
   head: ({ loaderData }) => {
     if (!loaderData) {
-      return { meta: [{ title: "Unavailable — SyllabusHQ" }, { name: "robots", content: "noindex" }] };
+      return {
+        meta: [{ title: "Unavailable — SyllabusHQ" }, { name: "robots", content: "noindex" }],
+      };
     }
     const title = `${loaderData.mode.name} practice — ${loaderData.subject.name} O/L | SyllabusHQ`;
     const description = `Build a custom Sri Lankan O/L ${loaderData.subject.name} ${loaderData.mode.name.toLowerCase()} paper: choose topics, difficulty, question count and timer.`;
