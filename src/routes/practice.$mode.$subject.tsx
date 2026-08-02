@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound, redirect, useNavigate } from "@tanstac
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
-import { MODE_BY_SLUG, type Mode } from "@/lib/modes";
+import { resolveMode, MODE_BY_SLUG } from "@/lib/modes";
 import { subjectsQuery, questionsQuery, resolveSubject } from "@/lib/content";
 import { NotFoundShell } from "@/components/NotFoundShell";
 import { PremiumCard } from "@/components/PremiumCard";
@@ -19,15 +19,16 @@ import type { McqItem } from "@/lib/bank-types";
 
 export const Route = createFileRoute("/practice/$mode/$subject")({
   loader: async ({ params, context }) => {
-    const mode = MODE_BY_SLUG[params.mode as Mode];
-    if (!mode) throw notFound();
+    const modeSlug = resolveMode(params.mode);
+    if (!modeSlug) throw notFound();
+    const mode = MODE_BY_SLUG[modeSlug];
     const subjects = await context.queryClient.ensureQueryData(subjectsQuery);
     const subject = resolveSubject(subjects, params.subject);
     if (!subject) throw notFound();
-    if (subject.slug !== params.subject) {
+    if (subject.slug !== params.subject || modeSlug !== params.mode) {
       throw redirect({
         to: "/practice/$mode/$subject",
-        params: { mode: params.mode, subject: subject.slug },
+        params: { mode: modeSlug, subject: subject.slug },
       });
     }
     await context.queryClient.ensureQueryData(questionsQuery);
