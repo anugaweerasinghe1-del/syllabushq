@@ -27,7 +27,9 @@ export function ZeigarnikResume() {
         return;
       }
       setResume(parsed);
-    } catch {}
+    } catch {
+      /* storage unavailable */
+    }
   }, []);
 
   if (!resume) return null;
@@ -53,11 +55,15 @@ export function ZeigarnikResume() {
 export function setResume(payload: ResumePayload) {
   try {
     localStorage.setItem("shq:resume", JSON.stringify({ ...payload, ts: Date.now() }));
-  } catch {}
+  } catch {
+    /* storage unavailable */
+  }
 }
 
 export function clearResume() {
   try {
     localStorage.removeItem("shq:resume");
-  } catch {}
+  } catch {
+    /* storage unavailable */
+  }
 }

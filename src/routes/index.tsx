@@ -339,7 +339,9 @@ function ProgressSection() {
     try {
       const raw = localStorage.getItem("shq:accuracy");
       if (raw) accuracy = Math.max(0, Math.min(1, Number(JSON.parse(raw))));
-    } catch {}
+    } catch {
+      /* storage unavailable */
+    }
     setData({
       daily,
       accuracy,
