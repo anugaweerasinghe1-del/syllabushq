@@ -87,6 +87,7 @@ function PracticePage() {
 
   // Hydrate the session deterministically (no Math.random in render).
   const [session, setSession] = useState<Session | null>(null);
+  const [confirmSubmit, setConfirmSubmit] = useState(false);
   useEffect(() => {
     if (pool.length === 0) return;
     setSession(loadOrCreate(subject.slug, topic.slug, pool));
@@ -253,15 +254,50 @@ function PracticePage() {
               {answered}/{set.length} answered · {completion}%
             </span>
             <button
-              onClick={() => {
-                if (confirm("Submit exam now?")) finish();
-              }}
+              onClick={() => setConfirmSubmit(true)}
               className="rounded-md bg-amber text-background px-3 py-1.5 text-xs font-semibold"
             >
               Submit
             </button>
           </div>
         </div>
+
+        {confirmSubmit && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 p-4 backdrop-blur-sm"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Confirm submission"
+          >
+            <div className="w-full max-w-sm rounded-2xl border border-hairline bg-surface p-6 shadow-2xl">
+              <h2 className="font-display text-2xl text-foreground">Submit this paper?</h2>
+              <p className="mt-2 text-sm text-muted-foreground">
+                You've answered{" "}
+                <span className="font-num text-foreground">
+                  {answered} of {set.length}
+                </span>
+                . Unanswered questions are marked blank.
+              </p>
+              <div className="mt-6 flex justify-end gap-2">
+                <button
+                  onClick={() => setConfirmSubmit(false)}
+                  className="rounded-lg border border-hairline px-4 py-2 text-sm text-muted-foreground hover:text-foreground"
+                >
+                  Keep working
+                </button>
+                <button
+                  onClick={() => {
+                    setConfirmSubmit(false);
+                    finish();
+                  }}
+                  className="rounded-lg bg-foreground px-4 py-2 text-sm font-semibold text-background hover:brightness-110"
+                >
+                  Submit now
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Progress bar */}
         <div
