@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { subjectsQuery, questionsQuery } from "@/lib/content";
 import { MathText } from "@/components/MathText";
 import { pickQuestions } from "@/lib/pickQuestions";
@@ -45,12 +45,20 @@ function PackPage() {
       topics: topicSlug === "mix" ? [] : [topicSlug],
       count: Math.max(1, Math.min(50, count)),
       balanced: true,
+      // Deterministic seed so SSR and the client render the same pack.
+      seed: `${subject.slug}|${topicSlug}|${count}`
+        .split("")
+        .reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7),
     });
   }, [questions, subject.slug, topicSlug, count]);
 
-  const dateStr = new Date().toLocaleDateString("en-LK", {
-    day: "numeric", month: "long", year: "numeric",
-  });
+  // Rendered after mount only — locale/date differ between server and client.
+  const [dateStr, setDateStr] = useState("");
+  useEffect(() => {
+    setDateStr(
+      new Date().toLocaleDateString("en-LK", { day: "numeric", month: "long", year: "numeric" }),
+    );
+  }, []);
 
   return (
     <div className="pack-root min-h-screen bg-white text-neutral-900">
