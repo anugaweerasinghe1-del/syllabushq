@@ -1,9 +1,10 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound, redirect } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { PremiumCard } from "@/components/PremiumCard";
 import { MathText } from "@/components/MathText";
-import { subjectsQuery, type Subject } from "@/lib/content";
+import { subjectsQuery, resolveSubject } from "@/lib/content";
+import { NotFoundShell } from "@/components/NotFoundShell";
 import structuredData from "@/data/structured.json";
 import { markStudiedToday } from "@/lib/streak";
 import { StructuredAnswerInput } from "@/components/StructuredAnswerInput";
@@ -22,8 +23,11 @@ const ALL = structuredData as StructuredQ[];
 export const Route = createFileRoute("/exam/structured/$subject")({
   loader: async ({ params, context }) => {
     const subjects = await context.queryClient.ensureQueryData(subjectsQuery);
-    const subject = subjects.find((s: Subject) => s.slug === params.subject);
+    const subject = resolveSubject(subjects, params.subject);
     if (!subject) throw notFound();
+    if (subject.slug !== params.subject) {
+      throw redirect({ to: "/exam/structured/$subject", params: { subject: subject.slug } });
+    }
     return { subject };
   },
   head: ({ loaderData }) => ({
@@ -33,6 +37,10 @@ export const Route = createFileRoute("/exam/structured/$subject")({
     ] : [],
   }),
   component: StructuredRunner,
+  notFoundComponent: () => <NotFoundShell />,
+  errorComponent: ({ error }) => (
+    <NotFoundShell title="This paper didn't load" message={error.message} />
+  ),
 });
 
 function StructuredRunner() {
