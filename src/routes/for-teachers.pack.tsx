@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { subjectsQuery, questionsQuery } from "@/lib/content";
 import { MathText } from "@/components/MathText";
 import { pickQuestions } from "@/lib/pickQuestions";
