@@ -1,9 +1,10 @@
-import { createFileRoute, Link, notFound, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound, redirect, useNavigate } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { MODE_BY_SLUG, type Mode } from "@/lib/modes";
-import { subjectsQuery, questionsQuery, type Subject } from "@/lib/content";
+import { subjectsQuery, questionsQuery, resolveSubject } from "@/lib/content";
+import { NotFoundShell } from "@/components/NotFoundShell";
 import { PremiumCard } from "@/components/PremiumCard";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { startNew } from "@/lib/quiz-session";
@@ -21,12 +22,22 @@ export const Route = createFileRoute("/practice/$mode/$subject")({
     const mode = MODE_BY_SLUG[params.mode as Mode];
     if (!mode) throw notFound();
     const subjects = await context.queryClient.ensureQueryData(subjectsQuery);
-    const subject = subjects.find((s: Subject) => s.slug === params.subject);
+    const subject = resolveSubject(subjects, params.subject);
     if (!subject) throw notFound();
+    if (subject.slug !== params.subject) {
+      throw redirect({
+        to: "/practice/$mode/$subject",
+        params: { mode: params.mode, subject: subject.slug },
+      });
+    }
     await context.queryClient.ensureQueryData(questionsQuery);
     return { mode, subject };
   },
   component: SetupPage,
+  notFoundComponent: () => <NotFoundShell />,
+  errorComponent: ({ error }) => (
+    <NotFoundShell title="This setup didn't load" message={error.message} />
+  ),
 });
 
 function SetupPage() {
