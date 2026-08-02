@@ -115,9 +115,8 @@ export function computeStreaks(
   }
 
   // Time until the rolling 24h window collapses the streak.
-  const resetsInMs = lastActivityAt > 0
-    ? Math.max(0, lastActivityAt + 24 * 60 * 60 * 1000 - now)
-    : 0;
+  const resetsInMs =
+    lastActivityAt > 0 ? Math.max(0, lastActivityAt + 24 * 60 * 60 * 1000 - now) : 0;
   return { current, longest, total: days.size, resetsInMs };
 }
 

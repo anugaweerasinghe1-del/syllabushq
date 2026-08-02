@@ -22,9 +22,17 @@ export const Route = createFileRoute("/")({
         content:
           "AI-graded Sri Lankan G.C.E. O/L practice papers. Original questions, instant feedback, real marking schemes. Mathematics, Science, Business & Accounting — English medium. Free.",
       },
-      { name: "keywords", content: "O/L past papers, Sri Lanka O/L, G.C.E. Ordinary Level, O/L Mathematics, O/L Science, O/L Business Studies, O/L Accounting, English medium, MCQ practice, structured questions, model answers" },
+      {
+        name: "keywords",
+        content:
+          "O/L past papers, Sri Lanka O/L, G.C.E. Ordinary Level, O/L Mathematics, O/L Science, O/L Business Studies, O/L Accounting, English medium, MCQ practice, structured questions, model answers",
+      },
       { property: "og:title", content: "SyllabusHQ — Mastery, measured." },
-      { property: "og:description", content: "AI-graded O/L practice papers. Original questions. Instant feedback. Built for Sri Lanka's sharpest." },
+      {
+        property: "og:description",
+        content:
+          "AI-graded O/L practice papers. Original questions. Instant feedback. Built for Sri Lanka's sharpest.",
+      },
       { property: "og:url", content: SITE + "/" },
     ],
     links: [{ rel: "canonical", href: SITE + "/" }],
@@ -36,7 +44,8 @@ export const Route = createFileRoute("/")({
           "@type": "EducationalOrganization",
           name: "SyllabusHQ",
           url: SITE,
-          description: "Free practice platform for the Sri Lankan G.C.E. O/L exam in English medium.",
+          description:
+            "Free practice platform for the Sri Lankan G.C.E. O/L exam in English medium.",
           areaServed: "LK",
           educationalCredentialAwarded: "G.C.E. Ordinary Level",
         }),
@@ -47,10 +56,38 @@ export const Route = createFileRoute("/")({
           "@context": "https://schema.org",
           "@type": "FAQPage",
           mainEntity: [
-            { "@type": "Question", name: "Is SyllabusHQ free for Sri Lankan O/L students?", acceptedAnswer: { "@type": "Answer", text: "Yes. Every quiz, structured paper, and short-answer drill is free with no login required." } },
-            { "@type": "Question", name: "Which O/L subjects are covered?", acceptedAnswer: { "@type": "Answer", text: "Mathematics, Science, and Business & Accounting Studies — all in English medium and aligned to the official syllabus." } },
-            { "@type": "Question", name: "Are the questions taken from past papers?", acceptedAnswer: { "@type": "Answer", text: "No. Every question is original and written in the style of real O/L papers to avoid copyright while keeping difficulty and phrasing realistic." } },
-            { "@type": "Question", name: "How does the study streak work?", acceptedAnswer: { "@type": "Answer", text: "Complete any practice and today lights up. If 24 hours pass without practice, the streak resets to zero." } },
+            {
+              "@type": "Question",
+              name: "Is SyllabusHQ free for Sri Lankan O/L students?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Yes. Every quiz, structured paper, and short-answer drill is free with no login required.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Which O/L subjects are covered?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Mathematics, Science, and Business & Accounting Studies — all in English medium and aligned to the official syllabus.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Are the questions taken from past papers?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "No. Every question is original and written in the style of real O/L papers to avoid copyright while keeping difficulty and phrasing realistic.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "How does the study streak work?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Complete any practice and today lights up. If 24 hours pass without practice, the streak resets to zero.",
+              },
+            },
           ],
         }),
       },
@@ -84,9 +121,9 @@ function Home() {
           </h1>
 
           <p className="rise-3 mt-7 max-w-2xl text-[15px] leading-relaxed text-muted-foreground sm:text-[18px]">
-            An exam simulator engineered like an Apple product. AI-graded
-            papers, real marking schemes, and questions that never repeat —
-            built for the sharpest O/L students in the country.
+            An exam simulator engineered like an Apple product. AI-graded papers, real marking
+            schemes, and questions that never repeat — built for the sharpest O/L students in the
+            country.
           </p>
 
           <div className="rise-4 mt-10 flex flex-wrap items-center gap-3 text-sm">
@@ -104,7 +141,9 @@ function Home() {
               className="group inline-flex items-center gap-2 rounded-xl border border-hairline-strong bg-surface px-6 py-3.5 font-medium text-foreground backdrop-blur-md transition hover:bg-surface-2"
             >
               Full exam simulation
-              <span className="text-muted-foreground transition group-hover:text-foreground">↗</span>
+              <span className="text-muted-foreground transition group-hover:text-foreground">
+                ↗
+              </span>
             </Link>
           </div>
 
@@ -205,7 +244,11 @@ function Home() {
 
         {/* CTA */}
         <section className="mt-24">
-          <PremiumCard className="overflow-hidden p-10 text-center sm:p-16" variant="deep" hover={false}>
+          <PremiumCard
+            className="overflow-hidden p-10 text-center sm:p-16"
+            variant="deep"
+            hover={false}
+          >
             <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-muted-foreground">
               Open. Free. Unlimited.
             </p>
@@ -237,8 +280,12 @@ function Home() {
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-10 text-xs text-muted-foreground sm:px-6">
           <p>© {new Date().getFullYear()} SyllabusHQ — Built for Sri Lankan O/L students.</p>
           <div className="flex items-center gap-4">
-            <Link to="/reviews" className="hover:text-foreground">Reviews</Link>
-            <Link to="/suggest" className="hover:text-foreground">Suggest a feature</Link>
+            <Link to="/reviews" className="hover:text-foreground">
+              Reviews
+            </Link>
+            <Link to="/suggest" className="hover:text-foreground">
+              Suggest a feature
+            </Link>
           </div>
         </div>
       </footer>
@@ -292,7 +339,9 @@ function ProgressSection() {
     try {
       const raw = localStorage.getItem("shq:accuracy");
       if (raw) accuracy = Math.max(0, Math.min(1, Number(JSON.parse(raw))));
-    } catch {}
+    } catch {
+      /* storage unavailable */
+    }
     setData({
       daily,
       accuracy,
@@ -308,7 +357,9 @@ function ProgressSection() {
             <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-muted-foreground">
               Today
             </p>
-            <h2 className="mt-2 font-display text-3xl text-foreground">Three rings. One discipline.</h2>
+            <h2 className="mt-2 font-display text-3xl text-foreground">
+              Three rings. One discipline.
+            </h2>
             <p className="mt-1 max-w-md text-sm text-muted-foreground">
               Close the rings every day. Daily question, rolling accuracy, weekly streak.
             </p>
@@ -329,9 +380,7 @@ function ProgressSection() {
 function Feature({ n, title, body }: { n?: string; title: string; body: string }) {
   return (
     <PremiumCard className="p-6 h-full">
-      {n && (
-        <p className="font-num text-[10px] tracking-widest text-muted-foreground">{n}</p>
-      )}
+      {n && <p className="font-num text-[10px] tracking-widest text-muted-foreground">{n}</p>}
       <h3 className="mt-4 font-display text-xl text-foreground">{title}</h3>
       <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{body}</p>
     </PremiumCard>
@@ -354,7 +403,9 @@ function SubjectGrid() {
             params={{ mode: "mcq", subject: s.slug }}
           >
             <PremiumCard className="p-6 h-full">
-              <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-muted-foreground">{meta[i % 3]}</p>
+              <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-muted-foreground">
+                {meta[i % 3]}
+              </p>
               <h3 className="mt-3 font-display text-2xl text-foreground">{s.name}</h3>
               <p className="mt-1 text-sm text-muted-foreground">{s.topics.length} topics</p>
               <div className="mt-8 flex items-baseline justify-between">

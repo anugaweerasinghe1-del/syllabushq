@@ -21,7 +21,11 @@ function read(): HintState {
 
 function write(state: HintState) {
   if (typeof window === "undefined") return;
-  try { window.localStorage.setItem(KEY, JSON.stringify(state)); } catch { /* quota */ }
+  try {
+    window.localStorage.setItem(KEY, JSON.stringify(state));
+  } catch {
+    /* quota */
+  }
 }
 
 function pruneUses(uses: number[]): number[] {

@@ -25,12 +25,7 @@ function write(data: ScoreEntry[]) {
   window.localStorage.setItem(KEY, JSON.stringify(data.slice(-200)));
 }
 
-export function recordScore(
-  subject: string,
-  topic: string,
-  score: number,
-  total: number,
-) {
+export function recordScore(subject: string, topic: string, score: number, total: number) {
   const data = read();
   data.push({ subject, topic, score, total, date: new Date().toISOString() });
   write(data);

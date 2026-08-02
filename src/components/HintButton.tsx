@@ -46,7 +46,10 @@ export function HintButton({ subject, topic, question, options }: Props) {
   async function reveal() {
     setError(null);
     const cached = getCachedHint(id);
-    if (cached) { setHint(cached); return; }
+    if (cached) {
+      setHint(cached);
+      return;
+    }
     const q = getQuota();
     if (q.remaining <= 0) {
       setQuota(q);

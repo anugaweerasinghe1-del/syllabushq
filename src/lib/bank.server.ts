@@ -55,7 +55,10 @@ const StructuredSchema = z.object({
 
 export function hashOf(mode: BankMode, subject: string, text: string) {
   let h = 2166136261;
-  const s = `${mode}|${subject}|${text.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim()}`;
+  const s = `${mode}|${subject}|${text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim()}`;
   for (let i = 0; i < s.length; i++) {
     h ^= s.charCodeAt(i);
     h = Math.imul(h, 16777619);
@@ -64,7 +67,12 @@ export function hashOf(mode: BankMode, subject: string, text: string) {
 }
 
 function itemText(mode: BankMode, item: BankItem) {
-  if (mode === "structured") return (item as StructuredItem).context + " " + (item as StructuredItem).parts.map((p) => p.prompt).join(" ");
+  if (mode === "structured")
+    return (
+      (item as StructuredItem).context +
+      " " +
+      (item as StructuredItem).parts.map((p) => p.prompt).join(" ")
+    );
   return (item as McqItem).question;
 }
 
@@ -158,7 +166,10 @@ function header(subject: SubjectJSON, topics: string[], difficulty: string, avoi
     `Use plain-text maths notation (x^2, sqrt(5), 3/4, log_2(8)). Never use LaTeX delimiters.`,
     `Use Sri Lankan context where natural (rupees, local place names, local businesses).`,
     avoid.length
-      ? `Do NOT repeat or paraphrase any of these existing questions:\n${avoid.slice(0, 20).map((q) => `- ${q.slice(0, 160)}`).join("\n")}`
+      ? `Do NOT repeat or paraphrase any of these existing questions:\n${avoid
+          .slice(0, 20)
+          .map((q) => `- ${q.slice(0, 160)}`)
+          .join("\n")}`
       : "",
   ]
     .filter(Boolean)

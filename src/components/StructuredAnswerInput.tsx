@@ -30,7 +30,9 @@ export function StructuredAnswerInput({
     if (typeof window === "undefined") return "";
     return window.localStorage.getItem(storageKey) ?? "";
   });
-  const [imageData, setImageData] = useState<{ b64: string; mime: string; name: string } | null>(null);
+  const [imageData, setImageData] = useState<{ b64: string; mime: string; name: string } | null>(
+    null,
+  );
   const [grading, setGrading] = useState(false);
   const [compressing, setCompressing] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -39,7 +41,11 @@ export function StructuredAnswerInput({
 
   function persist(v: string) {
     setDraft(v);
-    try { window.localStorage.setItem(storageKey, v); } catch { /* quota */ }
+    try {
+      window.localStorage.setItem(storageKey, v);
+    } catch {
+      /* quota */
+    }
   }
 
   async function handleFile(file: File) {
@@ -62,7 +68,8 @@ export function StructuredAnswerInput({
       setError("Write your answer or upload your working before marking.");
       return;
     }
-    setGrading(true); setError(null);
+    setGrading(true);
+    setError(null);
     try {
       const res = await gradeAnswer({
         data: {
@@ -122,7 +129,11 @@ export function StructuredAnswerInput({
           className="inline-flex items-center gap-1.5 rounded-md border border-hairline px-2.5 py-1 text-muted-foreground hover:text-foreground disabled:opacity-50"
         >
           <Camera className="h-3 w-3" />
-          {compressing ? "Processing photo…" : imageData ? "Replace photo" : "Attach handwritten working"}
+          {compressing
+            ? "Processing photo…"
+            : imageData
+              ? "Replace photo"
+              : "Attach handwritten working"}
         </button>
       </div>
 
@@ -135,7 +146,9 @@ export function StructuredAnswerInput({
           />
           <div className="min-w-0 flex-1">
             <p className="truncate text-foreground">{imageData.name}</p>
-            <p className="mt-0.5">Attached — the examiner will read this alongside your typed answer.</p>
+            <p className="mt-0.5">
+              Attached — the examiner will read this alongside your typed answer.
+            </p>
           </div>
           <button
             onClick={() => setImageData(null)}
@@ -148,9 +161,7 @@ export function StructuredAnswerInput({
         </div>
       )}
 
-      {error && (
-        <p className="mt-3 text-xs text-coral">{error}</p>
-      )}
+      {error && <p className="mt-3 text-xs text-coral">{error}</p>}
 
       {!result && (
         <div className="mt-4 flex justify-end">

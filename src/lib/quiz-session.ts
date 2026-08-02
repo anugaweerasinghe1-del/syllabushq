@@ -15,7 +15,11 @@ function poolKey(subject: string, topic: string) {
 
 export function savePickedPool(subject: string, topic: string, pool: Question[]) {
   if (typeof window === "undefined") return;
-  try { window.sessionStorage.setItem(poolKey(subject, topic), JSON.stringify(pool)); } catch { /* quota */ }
+  try {
+    window.sessionStorage.setItem(poolKey(subject, topic), JSON.stringify(pool));
+  } catch {
+    /* quota */
+  }
 }
 
 export function loadPickedPool(subject: string, topic: string): Question[] | null {
@@ -25,11 +29,13 @@ export function loadPickedPool(subject: string, topic: string): Question[] | nul
     if (!raw) return null;
     const parsed = JSON.parse(raw) as Question[];
     return Array.isArray(parsed) && parsed.length ? parsed : null;
-  } catch { return null; }
+  } catch {
+    return null;
+  }
 }
 
 export type QuizConfig = {
-  count: number;       // number of questions
+  count: number; // number of questions
   timeLimitSec: number; // 0 = untimed
   difficulty: "all" | "easy" | "medium" | "hard";
   mode: "mcq" | "exam"; // "exam" = full simulation
@@ -39,9 +45,9 @@ export type Session = {
   attemptId: string;
   subject: string;
   topic: string;
-  order: number[];       // indexes into the pool (stable)
+  order: number[]; // indexes into the pool (stable)
   answers: (number | null)[]; // chosen option per index (null = unanswered)
-  current: number;       // current question index within `order`
+  current: number; // current question index within `order`
   startedAt: number;
   config: QuizConfig;
 };
@@ -83,7 +89,9 @@ export function loadOrCreate(
           }
           return s;
         }
-      } catch { /* fall through */ }
+      } catch {
+        /* fall through */
+      }
     }
   }
   return startNew(subject, topic, pool, config);

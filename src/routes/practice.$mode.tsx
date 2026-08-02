@@ -1,12 +1,13 @@
 import { createFileRoute, notFound, Outlet } from "@tanstack/react-router";
-import { MODE_BY_SLUG, type Mode } from "@/lib/modes";
+import { resolveMode, MODE_BY_SLUG } from "@/lib/modes";
 import { subjectsQuery } from "@/lib/content";
 import { NotFoundShell } from "@/components/NotFoundShell";
 
 export const Route = createFileRoute("/practice/$mode")({
   loader: ({ params, context }) => {
-    const m = MODE_BY_SLUG[params.mode as Mode];
-    if (!m) throw notFound();
+    const slug = resolveMode(params.mode);
+    if (!slug) throw notFound();
+    const m = MODE_BY_SLUG[slug];
     context.queryClient.ensureQueryData(subjectsQuery);
     return { mode: m };
   },

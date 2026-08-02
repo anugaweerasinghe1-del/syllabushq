@@ -14,7 +14,11 @@ export const Route = createFileRoute("/reviews")({
   head: () => ({
     meta: [
       { title: "Reviews — what students say about SyllabusHQ" },
-      { name: "description", content: "Read what Sri Lankan O/L students say about SyllabusHQ practice. Leave your own review — one per browser." },
+      {
+        name: "description",
+        content:
+          "Read what Sri Lankan O/L students say about SyllabusHQ practice. Leave your own review — one per browser.",
+      },
       { property: "og:title", content: "Reviews — SyllabusHQ" },
       { property: "og:url", content: SITE + "/reviews" },
     ],
@@ -48,18 +52,25 @@ function ReviewsPage() {
     setMsg(null);
     try {
       const visitorToken = getVisitorToken();
-      const res = await submit({ data: { name: name.trim(), rating, comment: comment.trim(), visitorToken } });
+      const res = await submit({
+        data: { name: name.trim(), rating, comment: comment.trim(), visitorToken },
+      });
       if (res.ok) {
         localStorage.setItem("ol-review-submitted-" + visitorToken, "1");
         setMsg({ ok: true, text: "Thanks for the review!" });
-        setName(""); setComment(""); setRating(5); setAlready(true);
+        setName("");
+        setComment("");
+        setRating(5);
+        setAlready(true);
         const fresh = await listReviews();
         setItems(fresh.items as Review[]);
       } else {
         setMsg({ ok: false, text: res.error ?? "Could not submit." });
         if (res.error?.includes("already")) setAlready(true);
       }
-    } finally { setBusy(false); }
+    } finally {
+      setBusy(false);
+    }
   }
 
   async function onDelete(id: string) {
@@ -81,49 +92,80 @@ function ReviewsPage() {
       <SiteHeader />
       <main className="mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-14">
         <header className="mb-10 rise">
-          <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-amber">Community</p>
+          <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-amber">
+            Community
+          </p>
           <h1 className="mt-2 font-display text-5xl text-foreground sm:text-6xl">Reviews</h1>
           <p className="mt-3 text-muted-foreground">
-            {items.length > 0
-              ? <>Averaging <span className="font-num text-foreground">{avg.toFixed(1)}</span> / 5 across <span className="font-num text-foreground">{items.length}</span> reviews.</>
-              : "Be the first to leave a review."}
+            {items.length > 0 ? (
+              <>
+                Averaging <span className="font-num text-foreground">{avg.toFixed(1)}</span> / 5
+                across <span className="font-num text-foreground">{items.length}</span> reviews.
+              </>
+            ) : (
+              "Be the first to leave a review."
+            )}
           </p>
         </header>
 
         <section className="glass-panel rounded-2xl p-5 sm:p-7">
           <h2 className="font-display text-2xl text-foreground">Leave a review</h2>
           {already ? (
-            <p className="mt-3 text-sm text-muted-foreground">You've already left a review from this browser. Thanks for the feedback!</p>
+            <p className="mt-3 text-sm text-muted-foreground">
+              You've already left a review from this browser. Thanks for the feedback!
+            </p>
           ) : (
             <form onSubmit={onSubmit} className="mt-4 space-y-4">
               <div className="grid gap-3 sm:grid-cols-[1fr_auto]">
                 <input
-                  required minLength={1} maxLength={60} value={name} onChange={(e) => setName(e.target.value)}
+                  required
+                  minLength={1}
+                  maxLength={60}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   placeholder="Your name (or initials)"
                   className="rounded-lg border border-hairline bg-surface px-3 py-2.5 text-sm text-foreground outline-none focus:border-amber"
                 />
                 <div className="flex items-center gap-1">
-                  {[1,2,3,4,5].map((n) => (
-                    <button key={n} type="button" onClick={() => setRating(n)} className="text-2xl leading-none transition" aria-label={`${n} stars`}>
-                      <span style={{ color: n <= rating ? "var(--amber)" : "var(--hairline)" }}>★</span>
+                  {[1, 2, 3, 4, 5].map((n) => (
+                    <button
+                      key={n}
+                      type="button"
+                      onClick={() => setRating(n)}
+                      className="text-2xl leading-none transition"
+                      aria-label={`${n} stars`}
+                    >
+                      <span style={{ color: n <= rating ? "var(--amber)" : "var(--hairline)" }}>
+                        ★
+                      </span>
                     </button>
                   ))}
                 </div>
               </div>
               <textarea
-                required minLength={4} maxLength={800} value={comment} onChange={(e) => setComment(e.target.value)}
+                required
+                minLength={4}
+                maxLength={800}
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
                 placeholder="What worked, what didn't, what should we add?"
                 rows={4}
                 className="w-full rounded-lg border border-hairline bg-surface px-3 py-2.5 text-sm text-foreground outline-none focus:border-amber"
               />
               <div className="flex items-center justify-between">
                 <span className="text-xs text-muted-foreground">One review per browser.</span>
-                <button type="submit" disabled={busy} className="inline-flex items-center justify-center rounded-lg bg-amber px-5 py-2.5 text-sm font-semibold text-[color:var(--bg)] transition hover:brightness-110 disabled:opacity-50">
+                <button
+                  type="submit"
+                  disabled={busy}
+                  className="inline-flex items-center justify-center rounded-lg bg-amber px-5 py-2.5 text-sm font-semibold text-[color:var(--bg)] transition hover:brightness-110 disabled:opacity-50"
+                >
                   {busy ? "Sending…" : "Post review"}
                 </button>
               </div>
               {msg && (
-                <p className="text-sm" style={{ color: msg.ok ? "var(--mint)" : "var(--coral)" }}>{msg.text}</p>
+                <p className="text-sm" style={{ color: msg.ok ? "var(--mint)" : "var(--coral)" }}>
+                  {msg.text}
+                </p>
               )}
             </form>
           )}
@@ -141,12 +183,21 @@ function ReviewsPage() {
                     <div className="min-w-0">
                       <div className="flex items-center gap-2">
                         <span className="font-medium text-foreground">{r.name}</span>
-                        <span className="text-amber text-sm">{"★".repeat(r.rating)}<span className="text-hairline">{"★".repeat(5-r.rating)}</span></span>
+                        <span className="text-amber text-sm">
+                          {"★".repeat(r.rating)}
+                          <span className="text-hairline">{"★".repeat(5 - r.rating)}</span>
+                        </span>
                       </div>
                       <p className="mt-2 text-sm text-charcoal whitespace-pre-wrap">{r.comment}</p>
-                      <p className="mt-2 text-[11px] text-muted-foreground">{new Date(r.created_at).toLocaleDateString()}</p>
+                      <p className="mt-2 text-[11px] text-muted-foreground">
+                        {new Date(r.created_at).toLocaleDateString()}
+                      </p>
                     </div>
-                    <button onClick={() => onDelete(r.id)} className="shrink-0 rounded-md border border-hairline px-2 py-1 text-[11px] text-muted-foreground transition hover:border-coral hover:text-coral" title="Delete with admin password">
+                    <button
+                      onClick={() => onDelete(r.id)}
+                      className="shrink-0 rounded-md border border-hairline px-2 py-1 text-[11px] text-muted-foreground transition hover:border-coral hover:text-coral"
+                      title="Delete with admin password"
+                    >
                       Delete
                     </button>
                   </div>

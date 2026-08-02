@@ -25,17 +25,19 @@ export type TopUpQuestion = {
  */
 export const topUpQuestions = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => Input.parse(input))
-  .handler(async ({ data }): Promise<{ questions: TopUpQuestion[]; source: "ai" | "cache" | "none" }> => {
-    const mod = await import("./selectQuestions.server");
-    const key = mod.cacheKey(data);
-    const cached = mod.readCache(key);
-    if (cached) {
-      return { questions: cached.map((q) => ({ ...q, subject: data.subject })), source: "cache" };
-    }
-    if (mod.throttled(data.subject)) return { questions: [], source: "none" };
+  .handler(
+    async ({ data }): Promise<{ questions: TopUpQuestion[]; source: "ai" | "cache" | "none" }> => {
+      const mod = await import("./selectQuestions.server");
+      const key = mod.cacheKey(data);
+      const cached = mod.readCache(key);
+      if (cached) {
+        return { questions: cached.map((q) => ({ ...q, subject: data.subject })), source: "cache" };
+      }
+      if (mod.throttled(data.subject)) return { questions: [], source: "none" };
 
-    const items = await mod.generateTopUp(data);
-    if (!items.length) return { questions: [], source: "none" };
-    mod.writeCache(key, items);
-    return { questions: items.map((q) => ({ ...q, subject: data.subject })), source: "ai" };
-  });
+      const items = await mod.generateTopUp(data);
+      if (!items.length) return { questions: [], source: "none" };
+      mod.writeCache(key, items);
+      return { questions: items.map((q) => ({ ...q, subject: data.subject })), source: "ai" };
+    },
+  );

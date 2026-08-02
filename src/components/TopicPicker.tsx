@@ -1,9 +1,5 @@
 import { useState, useMemo } from "react";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { ChevronDown, Check, Layers, Search } from "lucide-react";
 import type { Topic } from "@/lib/content";
 
@@ -50,13 +46,11 @@ export function TopicPicker({
   const summary = isMix
     ? `Mix of everything · ${totalQs} questions`
     : value.length === 1
-      ? topics.find((t) => t.slug === value[0])?.name ?? "1 topic"
+      ? (topics.find((t) => t.slug === value[0])?.name ?? "1 topic")
       : `${value.length} topics selected`;
 
   function toggle(slug: string) {
-    const next = value.includes(slug)
-      ? value.filter((s) => s !== slug)
-      : [...value, slug];
+    const next = value.includes(slug) ? value.filter((s) => s !== slug) : [...value, slug];
     onChange(next);
   }
 
@@ -140,9 +134,7 @@ export function TopicPicker({
 
       <label className="flex cursor-pointer items-center justify-between rounded-xl border border-hairline bg-white/[0.02] px-4 py-3">
         <span>
-          <span className="block text-sm font-medium text-foreground">
-            Balanced sampling
-          </span>
+          <span className="block text-sm font-medium text-foreground">Balanced sampling</span>
           <span className="block text-[11px] text-muted-foreground">
             Spread questions evenly across the chosen topics.
           </span>
@@ -191,9 +183,7 @@ function Row({
         </span>
         <span className={accent ? "font-medium" : ""}>{label}</span>
       </span>
-      <span className="font-mono text-[11px] tabular-nums text-muted-foreground">
-        {count}
-      </span>
+      <span className="font-mono text-[11px] tabular-nums text-muted-foreground">{count}</span>
     </button>
   );
 }

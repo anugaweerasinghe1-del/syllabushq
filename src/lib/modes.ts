@@ -1,6 +1,12 @@
 export type Mode = "mcq" | "structured" | "short" | "exam";
 
-export const MODES: { slug: Mode; name: string; tagline: string; bullets: string[]; defaults: { count: number; time: number } }[] = [
+export const MODES: {
+  slug: Mode;
+  name: string;
+  tagline: string;
+  bullets: string[];
+  defaults: { count: number; time: number };
+}[] = [
   {
     slug: "mcq",
     name: "MCQ",
@@ -31,4 +37,27 @@ export const MODES: { slug: Mode; name: string; tagline: string; bullets: string
   },
 ];
 
-export const MODE_BY_SLUG = Object.fromEntries(MODES.map((m) => [m.slug, m])) as Record<Mode, (typeof MODES)[number]>;
+export const MODE_BY_SLUG = Object.fromEntries(MODES.map((m) => [m.slug, m])) as Record<
+  Mode,
+  (typeof MODES)[number]
+>;
+
+// Slugs people actually type or that appear in older links.
+const MODE_ALIASES: Record<string, Mode> = {
+  full: "exam",
+  "full-exam": "exam",
+  simulation: "exam",
+  paper: "structured",
+  "structured-paper": "structured",
+  "short-answer": "short",
+  written: "short",
+  "multiple-choice": "mcq",
+};
+
+/** Resolve a URL mode slug to a canonical mode, tolerating common aliases. */
+export function resolveMode(raw: string | undefined): Mode | null {
+  if (!raw) return null;
+  const want = raw.toLowerCase().trim();
+  if (want in MODE_BY_SLUG) return want as Mode;
+  return MODE_ALIASES[want] ?? null;
+}

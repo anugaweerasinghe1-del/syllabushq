@@ -6,7 +6,14 @@ import subjectsData from "@/data/subjects.json";
 import questionsData from "@/data/questions.json";
 
 type SubjectJSON = { slug: string; name: string; topics: { slug: string; name: string }[] };
-type QuestionJSON = { subject: string; topic: string; question: string; options: string[]; correct: number; explanation: string };
+type QuestionJSON = {
+  subject: string;
+  topic: string;
+  question: string;
+  options: string[];
+  correct: number;
+  explanation: string;
+};
 
 const SUBJECTS = subjectsData as SubjectJSON[];
 const QUESTIONS = questionsData as QuestionJSON[];

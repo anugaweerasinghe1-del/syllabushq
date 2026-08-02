@@ -95,10 +95,8 @@ function DailyCard({ data }: { data: DailyOut }) {
                   "group relative flex w-full items-center gap-3 rounded-xl border px-4 py-3.5 text-left text-sm transition-all duration-300",
                   state === "idle" &&
                     "border-white/8 bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.05]",
-                  state === "correct" &&
-                    "border-emerald-400/40 bg-emerald-400/10 text-emerald-100",
-                  state === "wrong" &&
-                    "border-rose-400/40 bg-rose-400/10 text-rose-100",
+                  state === "correct" && "border-emerald-400/40 bg-emerald-400/10 text-emerald-100",
+                  state === "wrong" && "border-rose-400/40 bg-rose-400/10 text-rose-100",
                   state === "dim" && "border-white/5 opacity-40",
                 ]
                   .filter(Boolean)
@@ -107,7 +105,8 @@ function DailyCard({ data }: { data: DailyOut }) {
                 <span
                   className={[
                     "grid h-6 w-6 shrink-0 place-items-center rounded-md font-num text-[11px] transition",
-                    state === "idle" && "border border-white/10 text-muted-foreground group-hover:text-foreground",
+                    state === "idle" &&
+                      "border border-white/10 text-muted-foreground group-hover:text-foreground",
                     state === "correct" && "bg-emerald-400/30 text-emerald-50",
                     state === "wrong" && "bg-rose-400/30 text-rose-50",
                     state === "dim" && "border border-white/5 text-muted-foreground",

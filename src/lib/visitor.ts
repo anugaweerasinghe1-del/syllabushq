@@ -5,7 +5,7 @@ export function getVisitorToken(): string {
   if (typeof window === "undefined") return "";
   let v = window.localStorage.getItem(KEY);
   if (v && v.length >= 12) return v;
-  v = (crypto.randomUUID?.() ?? Math.random().toString(36).slice(2) + Date.now().toString(36));
+  v = crypto.randomUUID?.() ?? Math.random().toString(36).slice(2) + Date.now().toString(36);
   window.localStorage.setItem(KEY, v);
   return v;
 }

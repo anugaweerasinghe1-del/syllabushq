@@ -1,9 +1,10 @@
-import { createFileRoute, Link, notFound, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound, redirect, useNavigate } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
-import { MODE_BY_SLUG, type Mode } from "@/lib/modes";
-import { subjectsQuery, questionsQuery, type Subject } from "@/lib/content";
+import { resolveMode, MODE_BY_SLUG } from "@/lib/modes";
+import { subjectsQuery, questionsQuery, resolveSubject } from "@/lib/content";
+import { NotFoundShell } from "@/components/NotFoundShell";
 import { PremiumCard } from "@/components/PremiumCard";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { startNew } from "@/lib/quiz-session";
@@ -18,15 +19,45 @@ import type { McqItem } from "@/lib/bank-types";
 
 export const Route = createFileRoute("/practice/$mode/$subject")({
   loader: async ({ params, context }) => {
-    const mode = MODE_BY_SLUG[params.mode as Mode];
-    if (!mode) throw notFound();
+    const modeSlug = resolveMode(params.mode);
+    if (!modeSlug) throw notFound();
+    const mode = MODE_BY_SLUG[modeSlug];
     const subjects = await context.queryClient.ensureQueryData(subjectsQuery);
-    const subject = subjects.find((s: Subject) => s.slug === params.subject);
+    const subject = resolveSubject(subjects, params.subject);
     if (!subject) throw notFound();
+    if (subject.slug !== params.subject || modeSlug !== params.mode) {
+      throw redirect({
+        to: "/practice/$mode/$subject",
+        params: { mode: modeSlug, subject: subject.slug },
+      });
+    }
     await context.queryClient.ensureQueryData(questionsQuery);
     return { mode, subject };
   },
   component: SetupPage,
+  head: ({ loaderData }) => {
+    if (!loaderData) {
+      return {
+        meta: [{ title: "Unavailable — SyllabusHQ" }, { name: "robots", content: "noindex" }],
+      };
+    }
+    const title = `${loaderData.mode.name} practice — ${loaderData.subject.name} O/L | SyllabusHQ`;
+    const description = `Build a custom Sri Lankan O/L ${loaderData.subject.name} ${loaderData.mode.name.toLowerCase()} paper: choose topics, difficulty, question count and timer.`;
+    return {
+      meta: [
+        { title },
+        { name: "description", content: description },
+        { property: "og:title", content: title },
+        { property: "og:description", content: description },
+        { property: "og:type", content: "website" },
+        { name: "twitter:card", content: "summary_large_image" },
+      ],
+    };
+  },
+  notFoundComponent: () => <NotFoundShell />,
+  errorComponent: ({ error }) => (
+    <NotFoundShell title="This setup didn't load" message={error.message} />
+  ),
 });
 
 function SetupPage() {
@@ -86,7 +117,11 @@ function SetupPage() {
             /* local paper is still valid */
           }
         }
-        if (picked.length === 0) { setLoading(false); alert("No questions available for that selection yet."); return; }
+        if (picked.length === 0) {
+          setLoading(false);
+          alert("No questions available for that selection yet.");
+          return;
+        }
         const topicSlug = selectedTopics.length === 1 ? selectedTopics[0] : "mix";
         // Stash the picked pool so the practice route can rebuild the exact set
         // even when topic === "mix" (which has no natural pool of its own).
@@ -102,10 +137,18 @@ function SetupPage() {
           params: { subject: subject.slug, topic: topicSlug },
         });
       } else if (mode.slug === "short") {
-        saveExamConfig("short", subject.slug, { count, timeLimitSec: time, topics: selectedTopics });
+        saveExamConfig("short", subject.slug, {
+          count,
+          timeLimitSec: time,
+          topics: selectedTopics,
+        });
         navigate({ to: "/exam/short/$subject", params: { subject: subject.slug } });
       } else if (mode.slug === "structured") {
-        saveExamConfig("structured", subject.slug, { count, timeLimitSec: time, topics: selectedTopics });
+        saveExamConfig("structured", subject.slug, {
+          count,
+          timeLimitSec: time,
+          topics: selectedTopics,
+        });
         navigate({ to: "/exam/structured/$subject", params: { subject: subject.slug } });
       }
     } catch {
@@ -120,8 +163,16 @@ function SetupPage() {
       <SiteHeader />
       <main className="mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-14">
         <div className="mb-8 rise">
-          <Link to="/practice/$mode" params={{ mode: mode.slug }} className="text-xs text-muted-foreground hover:text-foreground">← Subject</Link>
-          <p className="mt-3 text-[11px] uppercase tracking-[0.28em] text-muted-foreground">Step 3 of 3 · {mode.name} · {subject.name}</p>
+          <Link
+            to="/practice/$mode"
+            params={{ mode: mode.slug }}
+            className="text-xs text-muted-foreground hover:text-foreground"
+          >
+            ← Subject
+          </Link>
+          <p className="mt-3 text-[11px] uppercase tracking-[0.28em] text-muted-foreground">
+            Step 3 of 3 · {mode.name} · {subject.name}
+          </p>
           <h1 className="mt-2 font-display text-[36px] leading-[1.05] text-foreground sm:text-[48px] text-balance">
             Tune your <span className="italic text-muted-foreground">paper</span>.
           </h1>
@@ -143,7 +194,9 @@ function SetupPage() {
             <Field label="Difficulty">
               <div className="flex flex-wrap gap-2">
                 {(["all", "easy", "medium", "hard"] as const).map((d) => (
-                  <Chip key={d} active={difficulty === d} onClick={() => setDifficulty(d)}>{d}</Chip>
+                  <Chip key={d} active={difficulty === d} onClick={() => setDifficulty(d)}>
+                    {d}
+                  </Chip>
                 ))}
               </div>
               <p className="mt-2 text-[11px] text-muted-foreground">
@@ -162,7 +215,11 @@ function SetupPage() {
               className="mt-1"
             />
             <div className="mt-2 flex justify-between text-[10px] tabular-nums text-muted-foreground">
-              <span>5</span><span>15</span><span>25</span><span>35</span><span>50</span>
+              <span>5</span>
+              <span>15</span>
+              <span>25</span>
+              <span>35</span>
+              <span>50</span>
             </div>
           </Field>
 
@@ -176,7 +233,9 @@ function SetupPage() {
                 { v: 90 * 60, l: "90 min" },
                 { v: 120 * 60, l: "2 h" },
               ].map((o) => (
-                <Chip key={o.v} active={time === o.v} onClick={() => setTime(o.v)}>{o.l}</Chip>
+                <Chip key={o.v} active={time === o.v} onClick={() => setTime(o.v)}>
+                  {o.l}
+                </Chip>
               ))}
             </div>
             <p className="mt-2 text-[11px] text-muted-foreground">
@@ -186,7 +245,9 @@ function SetupPage() {
 
           <div className="mt-8 flex items-center justify-between">
             <p className="text-xs text-muted-foreground">
-              {mode.slug === "exam" ? "Feedback hidden until submission." : "Resume anytime — session is saved."}
+              {mode.slug === "exam"
+                ? "Feedback hidden until submission."
+                : "Resume anytime — session is saved."}
             </p>
             <button
               onClick={begin}
@@ -210,7 +271,15 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
   );
 }
 
-function Chip({ active, children, onClick }: { active: boolean; children: React.ReactNode; onClick: () => void }) {
+function Chip({
+  active,
+  children,
+  onClick,
+}: {
+  active: boolean;
+  children: React.ReactNode;
+  onClick: () => void;
+}) {
   return (
     <button
       onClick={onClick}

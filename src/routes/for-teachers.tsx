@@ -19,7 +19,11 @@ export const Route = createFileRoute("/for-teachers")({
           "Free classroom resources for Sri Lankan G.C.E. O/L teachers: printable question packs with marking schemes, past-paper analyses, lesson-plan templates, and topic worksheets. No login required.",
       },
       { property: "og:title", content: "For Teachers — SyllabusHQ" },
-      { property: "og:description", content: "Printable O/L question packs, marking schemes and lesson-plan templates — free for every Sri Lankan classroom." },
+      {
+        property: "og:description",
+        content:
+          "Printable O/L question packs, marking schemes and lesson-plan templates — free for every Sri Lankan classroom.",
+      },
       { property: "og:url", content: `${SITE_URL}/for-teachers` },
       { property: "og:type", content: "article" },
     ],
@@ -80,14 +84,16 @@ function TeachersPage() {
       <SiteHeader />
       <main className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-20">
         <header className="rise">
-          <p className="text-[10px] font-medium uppercase tracking-[0.28em] text-amber">For teachers</p>
+          <p className="text-[10px] font-medium uppercase tracking-[0.28em] text-amber">
+            For teachers
+          </p>
           <h1 className="mt-3 font-display text-5xl leading-[1.05] text-foreground sm:text-6xl text-balance">
             Ready-to-print papers, marked in the way your students will be marked.
           </h1>
           <p className="mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
-            Choose a subject, a topic and a length — SyllabusHQ prints an O/L-style question paper on page 1
-            and the marking scheme on page 2. Free, no login, no watermarks. Perfect for class quizzes, cover
-            lessons and homework packs.
+            Choose a subject, a topic and a length — SyllabusHQ prints an O/L-style question paper
+            on page 1 and the marking scheme on page 2. Free, no login, no watermarks. Perfect for
+            class quizzes, cover lessons and homework packs.
           </p>
         </header>
 
@@ -97,38 +103,61 @@ function TeachersPage() {
           <PremiumCard hover={false} className="mt-5 p-6 sm:p-7">
             <div className="grid gap-5 sm:grid-cols-2">
               <div>
-                <label className="block text-[10px] uppercase tracking-[0.22em] text-muted-foreground">Subject</label>
+                <label className="block text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+                  Subject
+                </label>
                 <select
                   value={subject}
-                  onChange={(e) => { setSubject(e.target.value); setTopic("mix"); }}
+                  onChange={(e) => {
+                    setSubject(e.target.value);
+                    setTopic("mix");
+                  }}
                   className="mt-2 w-full rounded-lg border border-hairline bg-transparent px-3 py-2 text-sm text-foreground focus:border-foreground/40 focus:outline-none"
                 >
-                  {subjects.map((s) => <option key={s.slug} value={s.slug} className="bg-background">{s.name}</option>)}
+                  {subjects.map((s) => (
+                    <option key={s.slug} value={s.slug} className="bg-background">
+                      {s.name}
+                    </option>
+                  ))}
                 </select>
               </div>
               <div>
-                <label className="block text-[10px] uppercase tracking-[0.22em] text-muted-foreground">Topic</label>
+                <label className="block text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+                  Topic
+                </label>
                 <select
                   value={topic}
                   onChange={(e) => setTopic(e.target.value)}
                   className="mt-2 w-full rounded-lg border border-hairline bg-transparent px-3 py-2 text-sm text-foreground focus:border-foreground/40 focus:outline-none"
                 >
-                  <option value="mix" className="bg-background">Mixed (all topics)</option>
-                  {topics.map((t) => <option key={t.slug} value={t.slug} className="bg-background">{t.name}</option>)}
+                  <option value="mix" className="bg-background">
+                    Mixed (all topics)
+                  </option>
+                  {topics.map((t) => (
+                    <option key={t.slug} value={t.slug} className="bg-background">
+                      {t.name}
+                    </option>
+                  ))}
                 </select>
               </div>
               <div>
-                <label className="block text-[10px] uppercase tracking-[0.22em] text-muted-foreground">Number of questions ({count})</label>
+                <label className="block text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+                  Number of questions ({count})
+                </label>
                 <input
                   type="range"
-                  min={5} max={40} step={5}
+                  min={5}
+                  max={40}
+                  step={5}
                   value={count}
                   onChange={(e) => setCount(Number(e.target.value))}
                   className="mt-3 w-full accent-amber"
                 />
               </div>
               <div>
-                <label className="block text-[10px] uppercase tracking-[0.22em] text-muted-foreground">Difficulty</label>
+                <label className="block text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+                  Difficulty
+                </label>
                 <div className="mt-2 flex flex-wrap gap-2">
                   {(["all", "easy", "medium", "hard"] as const).map((d) => (
                     <button
@@ -139,13 +168,17 @@ function TeachersPage() {
                           ? "border-foreground bg-foreground/10 text-foreground"
                           : "border-hairline text-muted-foreground hover:border-hairline-strong hover:text-foreground"
                       }`}
-                    >{d}</button>
+                    >
+                      {d}
+                    </button>
                   ))}
                 </div>
               </div>
             </div>
             <div className="mt-6 flex items-center justify-between gap-3">
-              <p className="text-xs text-muted-foreground">Opens in a printable view — hit Ctrl/⌘ + P to save as PDF.</p>
+              <p className="text-xs text-muted-foreground">
+                Opens in a printable view — hit Ctrl/⌘ + P to save as PDF.
+              </p>
               <button
                 onClick={buildPack}
                 className="rounded-lg bg-foreground px-5 py-2.5 text-sm font-semibold text-background transition hover:brightness-110"
@@ -214,8 +247,8 @@ function TeachersPage() {
         <section className="mt-14 rounded-2xl border border-hairline p-6 sm:p-8">
           <h2 className="font-display text-2xl text-foreground">Get in touch</h2>
           <p className="mt-2 text-sm text-muted-foreground">
-            Want a bespoke pack (e.g. mixed 2-mark + structured section, with marking scheme in your school's format)?
-            Email us — we'll build and send within 48 hours, free.
+            Want a bespoke pack (e.g. mixed 2-mark + structured section, with marking scheme in your
+            school's format)? Email us — we'll build and send within 48 hours, free.
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <a
@@ -237,28 +270,51 @@ function TeachersPage() {
   );
 }
 
-function ResRow({ title, note, href, internal }: { title: string; note: string; href?: string; internal?: string }) {
+function ResRow({
+  title,
+  note,
+  href,
+  internal,
+}: {
+  title: string;
+  note: string;
+  href?: string;
+  internal?: string;
+}) {
   if (internal) {
     return (
       <li className="py-4 first:pt-0 last:pb-0">
         <Link to={internal} className="group flex items-baseline justify-between gap-4">
           <div className="min-w-0">
-            <p className="text-[15px] font-medium text-foreground group-hover:text-amber transition-colors">{title}</p>
+            <p className="text-[15px] font-medium text-foreground group-hover:text-amber transition-colors">
+              {title}
+            </p>
             <p className="mt-1 text-[13px] text-muted-foreground">{note}</p>
           </div>
-          <span className="shrink-0 text-xs text-muted-foreground group-hover:text-amber transition-colors">→</span>
+          <span className="shrink-0 text-xs text-muted-foreground group-hover:text-amber transition-colors">
+            →
+          </span>
         </Link>
       </li>
     );
   }
   return (
     <li className="py-4 first:pt-0 last:pb-0">
-      <a href={href} target="_blank" rel="noopener" className="group flex items-baseline justify-between gap-4">
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener"
+        className="group flex items-baseline justify-between gap-4"
+      >
         <div className="min-w-0">
-          <p className="text-[15px] font-medium text-foreground group-hover:text-amber transition-colors">{title}</p>
+          <p className="text-[15px] font-medium text-foreground group-hover:text-amber transition-colors">
+            {title}
+          </p>
           <p className="mt-1 text-[13px] text-muted-foreground">{note}</p>
         </div>
-        <span className="shrink-0 text-xs text-muted-foreground group-hover:text-amber transition-colors">↗</span>
+        <span className="shrink-0 text-xs text-muted-foreground group-hover:text-amber transition-colors">
+          ↗
+        </span>
       </a>
     </li>
   );

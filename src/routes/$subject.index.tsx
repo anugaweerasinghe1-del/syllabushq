@@ -70,15 +70,11 @@ function SubjectPage() {
           </Link>
         </nav>
         <header className="mb-8">
-          <p className="text-xs font-medium uppercase tracking-wider text-marigold">
-            Subject
-          </p>
-          <h1 className="mt-1 text-3xl font-semibold text-ink sm:text-4xl">
-            {subject.name}
-          </h1>
+          <p className="text-xs font-medium uppercase tracking-wider text-marigold">Subject</p>
+          <h1 className="mt-1 text-3xl font-semibold text-ink sm:text-4xl">{subject.name}</h1>
           <p className="mt-2 text-charcoal">
-            <span className="font-num">{subject.topics.length}</span> topics. Pick one
-            to start a 10-question practice set.
+            <span className="font-num">{subject.topics.length}</span> topics. Pick one to start a
+            10-question practice set.
           </p>
         </header>
 
@@ -94,9 +90,7 @@ function SubjectPage() {
                     className="flex items-center justify-between rounded-xl border border-border bg-card p-4 opacity-50"
                   >
                     <span className="font-medium text-ink">{t.name}</span>
-                    <span className="font-num text-xs text-muted-foreground">
-                      Coming soon
-                    </span>
+                    <span className="font-num text-xs text-muted-foreground">Coming soon</span>
                   </div>
                 ) : (
                   <Link

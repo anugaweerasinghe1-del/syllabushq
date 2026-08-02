@@ -31,7 +31,12 @@ const TTL = 10 * 60 * 1000;
 const MIN_GAP = 3000;
 const MAX_ENTRIES = 200;
 
-export function cacheKey(o: { subject: string; topics: string[]; difficulty: string; need: number }) {
+export function cacheKey(o: {
+  subject: string;
+  topics: string[];
+  difficulty: string;
+  need: number;
+}) {
   return `${o.subject}|${[...o.topics].sort().join(",")}|${o.difficulty}|${o.need}`;
 }
 
@@ -80,11 +85,16 @@ export async function generateTopUp(opts: {
     `You are a Sri Lankan G.C.E. Ordinary Level examiner writing ${subject.name} MCQs in English medium.`,
     `Write exactly ${opts.need} ORIGINAL multiple-choice questions strictly within the Sri Lankan NIE O/L syllabus.`,
     `Allowed topics (use the slug verbatim in the "topic" field): ${topicList}.`,
-    opts.difficulty !== "all" ? `Target difficulty: ${opts.difficulty}.` : `Mix easy, medium and hard fairly.`,
+    opts.difficulty !== "all"
+      ? `Target difficulty: ${opts.difficulty}.`
+      : `Mix easy, medium and hard fairly.`,
     `Each question must have 4 plausible options, exactly one correct, and a one-to-three sentence explanation.`,
     `Use plain text maths notation (e.g. x^2, sqrt(5), 3/4). Do not use LaTeX delimiters.`,
     opts.avoid.length
-      ? `Do NOT repeat or paraphrase any of these existing questions:\n${opts.avoid.slice(0, 25).map((q) => `- ${q}`).join("\n")}`
+      ? `Do NOT repeat or paraphrase any of these existing questions:\n${opts.avoid
+          .slice(0, 25)
+          .map((q) => `- ${q}`)
+          .join("\n")}`
       : "",
   ]
     .filter(Boolean)
@@ -98,9 +108,7 @@ export async function generateTopUp(opts: {
         schema: GenSchema,
         prompt,
       });
-      const valid = object.questions.filter((q) =>
-        subject.topics.some((t) => t.slug === q.topic),
-      );
+      const valid = object.questions.filter((q) => subject.topics.some((t) => t.slug === q.topic));
       if (valid.length) return valid.slice(0, opts.need);
     } catch {
       // try next model, then give up silently (caller falls back to local bank)

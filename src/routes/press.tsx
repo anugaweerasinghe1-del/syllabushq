@@ -49,13 +49,15 @@ function PressPage() {
       <SiteHeader />
       <main className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-20">
         <header className="rise">
-          <p className="text-[10px] font-medium uppercase tracking-[0.28em] text-amber">Press kit</p>
+          <p className="text-[10px] font-medium uppercase tracking-[0.28em] text-amber">
+            Press kit
+          </p>
           <h1 className="mt-3 font-display text-5xl leading-[1.05] text-foreground sm:text-6xl text-balance">
             SyllabusHQ, in one page.
           </h1>
           <p className="mt-4 max-w-2xl text-base text-muted-foreground sm:text-lg">
-            Everything a journalist, blogger, or partner needs to write about SyllabusHQ
-            without asking us a single question first.
+            Everything a journalist, blogger, or partner needs to write about SyllabusHQ without
+            asking us a single question first.
           </p>
         </header>
 
@@ -63,11 +65,11 @@ function PressPage() {
           <h2 className="font-display text-2xl text-foreground">The one-paragraph story</h2>
           <PremiumCard hover={false} className="mt-4 p-6 sm:p-7">
             <p className="text-[15px] leading-relaxed text-foreground/90">
-              SyllabusHQ is a free G.C.E. Ordinary Level practice tool for Sri Lankan
-              students, in English medium. It replaces the usual PDF dumps and paywalled
-              tuition upsells with original, syllabus-aligned questions in the exact
-              format of the NIE papers — and an AI chief examiner that marks written
-              answers point-by-point against a real scheme. No login, no ads, no fee. Ever.
+              SyllabusHQ is a free G.C.E. Ordinary Level practice tool for Sri Lankan students, in
+              English medium. It replaces the usual PDF dumps and paywalled tuition upsells with
+              original, syllabus-aligned questions in the exact format of the NIE papers — and an AI
+              chief examiner that marks written answers point-by-point against a real scheme. No
+              login, no ads, no fee. Ever.
             </p>
           </PremiumCard>
         </section>
@@ -78,7 +80,9 @@ function PressPage() {
             <dl className="grid gap-4 sm:grid-cols-2">
               {FACTS.map((f) => (
                 <div key={f.k}>
-                  <dt className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground">{f.k}</dt>
+                  <dt className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
+                    {f.k}
+                  </dt>
                   <dd className="mt-1 text-sm text-foreground">{f.v}</dd>
                 </div>
               ))}
@@ -89,10 +93,10 @@ function PressPage() {
         <section className="mt-12">
           <h2 className="font-display text-2xl text-foreground">Founder quote (for use)</h2>
           <blockquote className="mt-4 border-l-2 border-amber pl-5 text-[15px] italic text-foreground/85">
-            "Every past-paper site I could find for Sri Lankan O/Ls was either a PDF dump,
-            riddled with ads, or a paywalled coaching upsell. The kids who need it most —
-            students in rural areas without tuition access — got nothing. SyllabusHQ is
-            what I wished had existed when I was sitting these exams."
+            "Every past-paper site I could find for Sri Lankan O/Ls was either a PDF dump, riddled
+            with ads, or a paywalled coaching upsell. The kids who need it most — students in rural
+            areas without tuition access — got nothing. SyllabusHQ is what I wished had existed when
+            I was sitting these exams."
             <footer className="mt-3 text-xs uppercase tracking-[0.22em] not-italic text-muted-foreground">
               — Founder, SyllabusHQ
             </footer>
@@ -106,19 +110,28 @@ function PressPage() {
               <li className="flex items-baseline justify-between gap-4 border-b border-hairline pb-3">
                 <div>
                   <p className="text-foreground">Wordmark — light on dark</p>
-                  <p className="text-[12px] text-muted-foreground">SyllabusHQ, set in Instrument Serif</p>
+                  <p className="text-[12px] text-muted-foreground">
+                    SyllabusHQ, set in Instrument Serif
+                  </p>
                 </div>
-                <a href="/" className="text-xs text-amber hover:underline">Preview ↗</a>
+                <a href="/" className="text-xs text-amber hover:underline">
+                  Preview ↗
+                </a>
               </li>
               <li className="flex items-baseline justify-between gap-4 border-b border-hairline pb-3">
                 <div>
                   <p className="text-foreground">Primary palette</p>
                   <p className="text-[12px] text-muted-foreground">
-                    bg <code className="text-foreground">#0a0a0a</code> · fg <code className="text-foreground">#f5f5f4</code> · accent <code className="text-foreground">#c9a961</code>
+                    bg <code className="text-foreground">#0a0a0a</code> · fg{" "}
+                    <code className="text-foreground">#f5f5f4</code> · accent{" "}
+                    <code className="text-foreground">#c9a961</code>
                   </p>
                 </div>
                 <span className="inline-flex gap-1">
-                  <span className="h-4 w-4 rounded" style={{ background: "#0a0a0a", border: "1px solid #333" }} />
+                  <span
+                    className="h-4 w-4 rounded"
+                    style={{ background: "#0a0a0a", border: "1px solid #333" }}
+                  />
                   <span className="h-4 w-4 rounded" style={{ background: "#f5f5f4" }} />
                   <span className="h-4 w-4 rounded" style={{ background: "#c9a961" }} />
                 </span>
@@ -126,7 +139,9 @@ function PressPage() {
               <li className="flex items-baseline justify-between gap-4">
                 <div>
                   <p className="text-foreground">Typography</p>
-                  <p className="text-[12px] text-muted-foreground">Instrument Serif (display) · Inter (body) · JetBrains Mono (numerals)</p>
+                  <p className="text-[12px] text-muted-foreground">
+                    Instrument Serif (display) · Inter (body) · JetBrains Mono (numerals)
+                  </p>
                 </div>
               </li>
             </ul>
@@ -136,8 +151,8 @@ function PressPage() {
         <section className="mt-14 rounded-2xl border border-hairline p-6 sm:p-8">
           <h2 className="font-display text-2xl text-foreground">Get in touch</h2>
           <p className="mt-2 text-sm text-muted-foreground">
-            Interviews, quotes, screenshots at custom resolutions — email us and we'll
-            reply within 48 hours. Time-sensitive? Say so in the subject line.
+            Interviews, quotes, screenshots at custom resolutions — email us and we'll reply within
+            48 hours. Time-sensitive? Say so in the subject line.
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <a

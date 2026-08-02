@@ -17,11 +17,17 @@ export function AmbientBackground() {
       />
       <div
         className="absolute top-1/3 -right-32 h-[55vh] w-[55vw] rounded-full blur-[120px] animate-aurora"
-        style={{ background: "radial-gradient(circle, rgba(103,232,249,0.20), transparent 65%)", animationDelay: "-6s" }}
+        style={{
+          background: "radial-gradient(circle, rgba(103,232,249,0.20), transparent 65%)",
+          animationDelay: "-6s",
+        }}
       />
       <div
         className="absolute -bottom-32 -left-24 h-[50vh] w-[55vw] rounded-full blur-[120px] animate-float-orb"
-        style={{ background: "radial-gradient(circle, rgba(74,222,128,0.16), transparent 65%)", animationDelay: "-12s" }}
+        style={{
+          background: "radial-gradient(circle, rgba(74,222,128,0.16), transparent 65%)",
+          animationDelay: "-12s",
+        }}
       />
 
       {/* Grain overlay for texture on the deep base. */}
