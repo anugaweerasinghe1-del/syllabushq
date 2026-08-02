@@ -7,6 +7,21 @@ import { Route as ParentRoute } from "./practice.$mode";
 
 export const Route = createFileRoute("/practice/$mode/")({
   component: SubjectPicker,
+  head: ({ params }) => {
+    const label = params.mode.replace(/-/g, " ");
+    const title = `Choose a subject — ${label} practice | SyllabusHQ`;
+    const description = `Pick Mathematics, Science or Business & Accounting Studies and start a Sri Lankan O/L ${label} session in English medium.`;
+    return {
+      meta: [
+        { title },
+        { name: "description", content: description },
+        { property: "og:title", content: title },
+        { property: "og:description", content: description },
+        { property: "og:type", content: "website" },
+        { name: "twitter:card", content: "summary_large_image" },
+      ],
+    };
+  },
 });
 
 function SubjectPicker() {
