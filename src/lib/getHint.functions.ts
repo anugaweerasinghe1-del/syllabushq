@@ -9,12 +9,14 @@ import { googleAi, FAST_MODEL } from "./ai-gateway.server";
  */
 export const getHint = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) =>
-    z.object({
-      subject: z.string().max(64),
-      topic: z.string().max(64),
-      question: z.string().min(1).max(2000),
-      options: z.array(z.string()).max(8).optional(),
-    }).parse(input),
+    z
+      .object({
+        subject: z.string().max(64),
+        topic: z.string().max(64),
+        question: z.string().min(1).max(2000),
+        options: z.array(z.string()).max(8).optional(),
+      })
+      .parse(input),
   )
   .handler(async ({ data }) => {
     const provider = googleAi();
@@ -25,7 +27,9 @@ export const getHint = createServerFn({ method: "POST" })
       "Do NOT name the correct option. Do NOT solve the question. Use plain English.",
       "",
       `Question: ${data.question}`,
-      data.options?.length ? `Options: ${data.options.map((o, i) => `${String.fromCharCode(65 + i)}) ${o}`).join(" | ")}` : "",
+      data.options?.length
+        ? `Options: ${data.options.map((o, i) => `${String.fromCharCode(65 + i)}) ${o}`).join(" | ")}`
+        : "",
     ].join("\n");
 
     const { text } = await generateText({

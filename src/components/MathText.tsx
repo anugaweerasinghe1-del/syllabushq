@@ -42,12 +42,18 @@ function parse(src: string): Part[] {
   while (i < src.length) {
     if (src[i] === "$" && src[i + 1] === "$") {
       const end = src.indexOf("$$", i + 2);
-      if (end === -1) { out.push({ type: "text", value: src.slice(i) }); break; }
+      if (end === -1) {
+        out.push({ type: "text", value: src.slice(i) });
+        break;
+      }
       out.push({ type: "block", value: src.slice(i + 2, end) });
       i = end + 2;
     } else if (src[i] === "$") {
       const end = src.indexOf("$", i + 1);
-      if (end === -1) { out.push({ type: "text", value: src.slice(i) }); break; }
+      if (end === -1) {
+        out.push({ type: "text", value: src.slice(i) });
+        break;
+      }
       out.push({ type: "inline", value: src.slice(i + 1, end) });
       i = end + 1;
     } else {

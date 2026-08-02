@@ -18,9 +18,7 @@ export function pickQuestions(opts: {
   const { pool, count, balanced = true } = opts;
   if (pool.length === 0 || count <= 0) return [];
 
-  const topics = opts.topics.length
-    ? opts.topics
-    : Array.from(new Set(pool.map((q) => q.topic)));
+  const topics = opts.topics.length ? opts.topics : Array.from(new Set(pool.map((q) => q.topic)));
 
   const rng = mulberry32(opts.seed ?? Date.now());
 

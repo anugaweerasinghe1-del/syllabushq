@@ -26,12 +26,7 @@ function EmbedDaily() {
         <DailyQuestion />
         <p className="mt-3 text-center text-[11px] text-muted-foreground">
           Powered by{" "}
-          <a
-            href={SITE_URL}
-            target="_blank"
-            rel="noopener"
-            className="text-amber hover:underline"
-          >
+          <a href={SITE_URL} target="_blank" rel="noopener" className="text-amber hover:underline">
             SyllabusHQ
           </a>{" "}
           — free O/L practice for Sri Lankan students.

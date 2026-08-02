@@ -161,7 +161,8 @@ export const PAPER_STRUCTURES: PaperStructure[] = [
       {
         id: "business-p2-b",
         title: "Part B — Essay / Accounting Problem",
-        instruction: "Answer three questions including at least one accounting problem. 20 marks each.",
+        instruction:
+          "Answer three questions including at least one accounting problem. 20 marks each.",
         questionType: "essay",
         count: 6,
         answerAny: 3,

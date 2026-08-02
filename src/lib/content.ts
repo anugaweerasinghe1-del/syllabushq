@@ -45,11 +45,7 @@ export function countBySubject(questions: Question[]) {
   return map;
 }
 
-export function getQuestionsFor(
-  questions: Question[],
-  subjectSlug: string,
-  topicSlug: string,
-) {
+export function getQuestionsFor(questions: Question[], subjectSlug: string, topicSlug: string) {
   return questions.filter((q) => q.subject === subjectSlug && q.topic === topicSlug);
 }
 
@@ -68,7 +64,11 @@ export function pickRandom<T>(items: T[], n: number): T[] {
 // a branded NotFound state rather than crashing the route.
 
 function normaliseSlug(raw: string): string {
-  try { raw = decodeURIComponent(raw); } catch { /* ignore */ }
+  try {
+    raw = decodeURIComponent(raw);
+  } catch {
+    /* ignore */
+  }
   return raw
     .toLowerCase()
     .trim()
@@ -83,48 +83,48 @@ function normaliseSlug(raw: string): string {
 const TOPIC_ALIASES: Record<string, string> = {
   "real-number": "real-numbers",
   "indices-and-logarithms": "indices-logarithms",
-  "indices": "indices-logarithms",
-  "logarithms": "indices-logarithms",
-  "percentage": "percentages",
-  "ratio": "ratio-proportion",
-  "proportion": "ratio-proportion",
-  "algebra": "algebraic-expressions",
-  "factorisation": "factors",
-  "factorization": "factors",
-  "equation": "equations",
-  "quadratic": "quadratic-equations",
-  "simultaneous": "simultaneous-equations",
-  "sets": "sets-probability",
-  "probability": "sets-probability",
-  "area": "perimeter-area",
-  "perimeter": "perimeter-area",
-  "volume": "volume-surface-area",
+  indices: "indices-logarithms",
+  logarithms: "indices-logarithms",
+  percentage: "percentages",
+  ratio: "ratio-proportion",
+  proportion: "ratio-proportion",
+  algebra: "algebraic-expressions",
+  factorisation: "factors",
+  factorization: "factors",
+  equation: "equations",
+  quadratic: "quadratic-equations",
+  simultaneous: "simultaneous-equations",
+  sets: "sets-probability",
+  probability: "sets-probability",
+  area: "perimeter-area",
+  perimeter: "perimeter-area",
+  volume: "volume-surface-area",
   "surface-area": "volume-surface-area",
-  "triangle": "triangles",
-  "circle": "circle-theorems",
-  "trig": "trigonometry",
-  "graphs": "graphs-functions",
-  "functions": "graphs-functions",
-  "matrix": "matrices",
-  "vector": "vectors",
-  "atom": "atomic-structure",
-  "bonding": "chemical-bonding",
-  "acids": "acids-bases-salts",
-  "metals": "metals-non-metals",
-  "organic": "organic-chemistry",
-  "motion": "motion-forces",
-  "forces": "motion-forces",
-  "energy": "work-energy-power",
-  "cells": "cells-tissues",
-  "digestion": "nutrition-digestion",
-  "respiration": "respiration-circulation",
-  "ecosystem": "ecosystems",
-  "microbes": "microorganisms",
+  triangle: "triangles",
+  circle: "circle-theorems",
+  trig: "trigonometry",
+  graphs: "graphs-functions",
+  functions: "graphs-functions",
+  matrix: "matrices",
+  vector: "vectors",
+  atom: "atomic-structure",
+  bonding: "chemical-bonding",
+  acids: "acids-bases-salts",
+  metals: "metals-non-metals",
+  organic: "organic-chemistry",
+  motion: "motion-forces",
+  forces: "motion-forces",
+  energy: "work-energy-power",
+  cells: "cells-tissues",
+  digestion: "nutrition-digestion",
+  respiration: "respiration-circulation",
+  ecosystem: "ecosystems",
+  microbes: "microorganisms",
   "marketing-mix": "marketing",
-  "bank": "money-banking",
-  "transport": "transport-communication",
-  "accounting": "intro-accounting",
-  "ledger": "double-entry",
+  bank: "money-banking",
+  transport: "transport-communication",
+  accounting: "intro-accounting",
+  ledger: "double-entry",
   "trial-balances": "trial-balance",
 };
 
@@ -132,28 +132,25 @@ const TOPIC_ALIASES: Record<string, string> = {
 // that appear in old links. Without these, /business-studies is a hard 404.
 const SUBJECT_ALIASES: Record<string, string> = {
   "business-studies": "business-accounting",
-  "business": "business-accounting",
+  business: "business-accounting",
   "business-and-accounting": "business-accounting",
   "business-accounting-studies": "business-accounting",
   "business-studies-and-accounting": "business-accounting",
-  "accounting": "business-accounting",
-  "commerce": "business-accounting",
-  "maths": "mathematics",
-  "math": "mathematics",
-  "mathematic": "mathematics",
+  accounting: "business-accounting",
+  commerce: "business-accounting",
+  maths: "mathematics",
+  math: "mathematics",
+  mathematic: "mathematics",
   "add-maths": "mathematics",
-  "sci": "science",
-  "sciences": "science",
-  "physics": "science",
-  "chemistry": "science",
-  "biology": "science",
-  "bio": "science",
+  sci: "science",
+  sciences: "science",
+  physics: "science",
+  chemistry: "science",
+  biology: "science",
+  bio: "science",
 };
 
-export function resolveSubject(
-  subjects: Subject[],
-  raw: string | undefined,
-): Subject | null {
+export function resolveSubject(subjects: Subject[], raw: string | undefined): Subject | null {
   if (!raw) return null;
   const want = normaliseSlug(raw);
   const aliased = SUBJECT_ALIASES[want] ?? want;
@@ -167,10 +164,7 @@ export function resolveSubject(
   );
 }
 
-export function resolveTopic(
-  subject: Subject,
-  raw: string | undefined,
-): Topic | null {
+export function resolveTopic(subject: Subject, raw: string | undefined): Topic | null {
   if (!raw) return null;
   const want = normaliseSlug(raw);
   const aliased = TOPIC_ALIASES[want] ?? want;
@@ -178,7 +172,9 @@ export function resolveTopic(
     subject.topics.find((t) => t.slug === want) ??
     subject.topics.find((t) => t.slug === aliased) ??
     subject.topics.find((t) => normaliseSlug(t.name) === want) ??
-    subject.topics.find((t) => normaliseSlug(t.slug).includes(want) || want.includes(normaliseSlug(t.slug))) ??
+    subject.topics.find(
+      (t) => normaliseSlug(t.slug).includes(want) || want.includes(normaliseSlug(t.slug)),
+    ) ??
     // Last-resort: fuzzy word-overlap match so a URL like "circles" resolves
     // to "circle-theorems". Prevents dead "we couldn't find that topic"
     // screens on legitimate but drifted slugs.

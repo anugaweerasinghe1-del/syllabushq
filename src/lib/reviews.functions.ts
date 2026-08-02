@@ -3,11 +3,9 @@ import { z } from "zod";
 import { createClient } from "@supabase/supabase-js";
 
 function publicClient() {
-  return createClient(
-    process.env.SUPABASE_URL!,
-    process.env.SUPABASE_PUBLISHABLE_KEY!,
-    { auth: { storage: undefined, persistSession: false, autoRefreshToken: false } },
-  );
+  return createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_PUBLISHABLE_KEY!, {
+    auth: { storage: undefined, persistSession: false, autoRefreshToken: false },
+  });
 }
 
 export const listReviews = createServerFn({ method: "GET" }).handler(async () => {
@@ -40,7 +38,12 @@ export const submitReview = createServerFn({ method: "POST" })
     });
     if (error) {
       const dup = (error as { code?: string }).code === "23505";
-      return { ok: false, error: dup ? "You've already left a review from this browser. Thanks!" : "Could not save your review." };
+      return {
+        ok: false,
+        error: dup
+          ? "You've already left a review from this browser. Thanks!"
+          : "Could not save your review.",
+      };
     }
     return { ok: true, error: null as string | null };
   });

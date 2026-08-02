@@ -41,9 +41,13 @@ export function ModelAnswerToggle({ answer, explanation, label = "Model answer" 
         <div className="min-h-0">
           <div className="border-t border-hairline px-4 py-4 text-sm leading-relaxed text-foreground">
             <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">{label}</p>
-            <div className="mt-2 text-foreground"><MathText>{answer}</MathText></div>
+            <div className="mt-2 text-foreground">
+              <MathText>{answer}</MathText>
+            </div>
             {explanation && (
-              <div className="mt-3 text-[13px] text-muted-foreground"><MathText>{explanation}</MathText></div>
+              <div className="mt-3 text-[13px] text-muted-foreground">
+                <MathText>{explanation}</MathText>
+              </div>
             )}
           </div>
         </div>

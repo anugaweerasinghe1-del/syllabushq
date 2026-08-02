@@ -21,9 +21,7 @@ export function SiteHeader() {
         className={[
           "mx-auto flex max-w-5xl items-center justify-between gap-3 rounded-2xl px-3 py-2.5 sm:px-4 sm:py-3",
           "transition-all duration-500",
-          scrolled
-            ? "glass-deep shadow-[0_20px_60px_-20px_rgba(0,0,0,0.7)]"
-            : "glass-panel",
+          scrolled ? "glass-deep shadow-[0_20px_60px_-20px_rgba(0,0,0,0.7)]" : "glass-panel",
         ].join(" ")}
       >
         <BrandMark />

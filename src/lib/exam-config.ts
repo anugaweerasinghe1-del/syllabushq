@@ -14,10 +14,18 @@ function key(mode: string, subject: string) {
 
 export function saveExamConfig(mode: string, subject: string, cfg: ExamRunnerConfig) {
   if (typeof window === "undefined") return;
-  try { window.sessionStorage.setItem(key(mode, subject), JSON.stringify(cfg)); } catch { /* quota */ }
+  try {
+    window.sessionStorage.setItem(key(mode, subject), JSON.stringify(cfg));
+  } catch {
+    /* quota */
+  }
 }
 
-export function loadExamConfig(mode: string, subject: string, fallback: ExamRunnerConfig): ExamRunnerConfig {
+export function loadExamConfig(
+  mode: string,
+  subject: string,
+  fallback: ExamRunnerConfig,
+): ExamRunnerConfig {
   if (typeof window === "undefined") return fallback;
   try {
     const raw = window.sessionStorage.getItem(key(mode, subject));
@@ -25,8 +33,11 @@ export function loadExamConfig(mode: string, subject: string, fallback: ExamRunn
     const parsed = JSON.parse(raw) as ExamRunnerConfig;
     return {
       count: typeof parsed.count === "number" && parsed.count > 0 ? parsed.count : fallback.count,
-      timeLimitSec: typeof parsed.timeLimitSec === "number" ? parsed.timeLimitSec : fallback.timeLimitSec,
+      timeLimitSec:
+        typeof parsed.timeLimitSec === "number" ? parsed.timeLimitSec : fallback.timeLimitSec,
       topics: Array.isArray(parsed.topics) ? parsed.topics : fallback.topics,
     };
-  } catch { return fallback; }
+  } catch {
+    return fallback;
+  }
 }

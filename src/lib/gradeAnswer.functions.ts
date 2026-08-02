@@ -51,7 +51,9 @@ export const gradeAnswer = createServerFn({ method: "POST" })
       `QUESTION:\n${data.question}\n\n` +
       `MARKING SCHEME (one bullet = one mark):\n${data.markingScheme}\n\n` +
       `STUDENT ANSWER (typed):\n${data.studentAnswer || "(blank)"}\n` +
-      (data.imageBase64 ? `\nSTUDENT ALSO SUBMITTED A HANDWRITTEN / DIAGRAM IMAGE. Inspect it carefully.\n` : "");
+      (data.imageBase64
+        ? `\nSTUDENT ALSO SUBMITTED A HANDWRITTEN / DIAGRAM IMAGE. Inspect it carefully.\n`
+        : "");
 
     const userContent: Array<
       { type: "text"; text: string } | { type: "image"; image: string; mediaType?: string }

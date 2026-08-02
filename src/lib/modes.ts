@@ -1,6 +1,12 @@
 export type Mode = "mcq" | "structured" | "short" | "exam";
 
-export const MODES: { slug: Mode; name: string; tagline: string; bullets: string[]; defaults: { count: number; time: number } }[] = [
+export const MODES: {
+  slug: Mode;
+  name: string;
+  tagline: string;
+  bullets: string[];
+  defaults: { count: number; time: number };
+}[] = [
   {
     slug: "mcq",
     name: "MCQ",
@@ -31,4 +37,7 @@ export const MODES: { slug: Mode; name: string; tagline: string; bullets: string
   },
 ];
 
-export const MODE_BY_SLUG = Object.fromEntries(MODES.map((m) => [m.slug, m])) as Record<Mode, (typeof MODES)[number]>;
+export const MODE_BY_SLUG = Object.fromEntries(MODES.map((m) => [m.slug, m])) as Record<
+  Mode,
+  (typeof MODES)[number]
+>;

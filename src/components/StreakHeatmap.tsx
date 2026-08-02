@@ -77,9 +77,7 @@ export function StreakHeatmap() {
                       : cell.studied
                         ? "var(--amber)"
                         : "var(--surface-2)",
-                    boxShadow: cell.studied
-                      ? "0 0 8px rgba(245,165,36,0.45)"
-                      : undefined,
+                    boxShadow: cell.studied ? "0 0 8px rgba(245,165,36,0.45)" : undefined,
                   }}
                 />
               ))}
@@ -89,8 +87,8 @@ export function StreakHeatmap() {
       </div>
 
       <p className="mt-4 text-xs text-muted-foreground">
-        Each square is a day. Finish any practice to light up today. Streak
-        rolls over automatically every 24 hours.
+        Each square is a day. Finish any practice to light up today. Streak rolls over automatically
+        every 24 hours.
       </p>
     </section>
   );
@@ -99,9 +97,7 @@ export function StreakHeatmap() {
 function Stat({ label, value }: { label: string; value: string | number }) {
   return (
     <div>
-      <dt className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
-        {label}
-      </dt>
+      <dt className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground">{label}</dt>
       <dd className="font-display text-2xl text-foreground">{value}</dd>
     </div>
   );

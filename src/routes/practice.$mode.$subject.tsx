@@ -97,7 +97,11 @@ function SetupPage() {
             /* local paper is still valid */
           }
         }
-        if (picked.length === 0) { setLoading(false); alert("No questions available for that selection yet."); return; }
+        if (picked.length === 0) {
+          setLoading(false);
+          alert("No questions available for that selection yet.");
+          return;
+        }
         const topicSlug = selectedTopics.length === 1 ? selectedTopics[0] : "mix";
         // Stash the picked pool so the practice route can rebuild the exact set
         // even when topic === "mix" (which has no natural pool of its own).
@@ -113,10 +117,18 @@ function SetupPage() {
           params: { subject: subject.slug, topic: topicSlug },
         });
       } else if (mode.slug === "short") {
-        saveExamConfig("short", subject.slug, { count, timeLimitSec: time, topics: selectedTopics });
+        saveExamConfig("short", subject.slug, {
+          count,
+          timeLimitSec: time,
+          topics: selectedTopics,
+        });
         navigate({ to: "/exam/short/$subject", params: { subject: subject.slug } });
       } else if (mode.slug === "structured") {
-        saveExamConfig("structured", subject.slug, { count, timeLimitSec: time, topics: selectedTopics });
+        saveExamConfig("structured", subject.slug, {
+          count,
+          timeLimitSec: time,
+          topics: selectedTopics,
+        });
         navigate({ to: "/exam/structured/$subject", params: { subject: subject.slug } });
       }
     } catch {
@@ -131,8 +143,16 @@ function SetupPage() {
       <SiteHeader />
       <main className="mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-14">
         <div className="mb-8 rise">
-          <Link to="/practice/$mode" params={{ mode: mode.slug }} className="text-xs text-muted-foreground hover:text-foreground">← Subject</Link>
-          <p className="mt-3 text-[11px] uppercase tracking-[0.28em] text-muted-foreground">Step 3 of 3 · {mode.name} · {subject.name}</p>
+          <Link
+            to="/practice/$mode"
+            params={{ mode: mode.slug }}
+            className="text-xs text-muted-foreground hover:text-foreground"
+          >
+            ← Subject
+          </Link>
+          <p className="mt-3 text-[11px] uppercase tracking-[0.28em] text-muted-foreground">
+            Step 3 of 3 · {mode.name} · {subject.name}
+          </p>
           <h1 className="mt-2 font-display text-[36px] leading-[1.05] text-foreground sm:text-[48px] text-balance">
             Tune your <span className="italic text-muted-foreground">paper</span>.
           </h1>
@@ -154,7 +174,9 @@ function SetupPage() {
             <Field label="Difficulty">
               <div className="flex flex-wrap gap-2">
                 {(["all", "easy", "medium", "hard"] as const).map((d) => (
-                  <Chip key={d} active={difficulty === d} onClick={() => setDifficulty(d)}>{d}</Chip>
+                  <Chip key={d} active={difficulty === d} onClick={() => setDifficulty(d)}>
+                    {d}
+                  </Chip>
                 ))}
               </div>
               <p className="mt-2 text-[11px] text-muted-foreground">
@@ -173,7 +195,11 @@ function SetupPage() {
               className="mt-1"
             />
             <div className="mt-2 flex justify-between text-[10px] tabular-nums text-muted-foreground">
-              <span>5</span><span>15</span><span>25</span><span>35</span><span>50</span>
+              <span>5</span>
+              <span>15</span>
+              <span>25</span>
+              <span>35</span>
+              <span>50</span>
             </div>
           </Field>
 
@@ -187,7 +213,9 @@ function SetupPage() {
                 { v: 90 * 60, l: "90 min" },
                 { v: 120 * 60, l: "2 h" },
               ].map((o) => (
-                <Chip key={o.v} active={time === o.v} onClick={() => setTime(o.v)}>{o.l}</Chip>
+                <Chip key={o.v} active={time === o.v} onClick={() => setTime(o.v)}>
+                  {o.l}
+                </Chip>
               ))}
             </div>
             <p className="mt-2 text-[11px] text-muted-foreground">
@@ -197,7 +225,9 @@ function SetupPage() {
 
           <div className="mt-8 flex items-center justify-between">
             <p className="text-xs text-muted-foreground">
-              {mode.slug === "exam" ? "Feedback hidden until submission." : "Resume anytime — session is saved."}
+              {mode.slug === "exam"
+                ? "Feedback hidden until submission."
+                : "Resume anytime — session is saved."}
             </p>
             <button
               onClick={begin}
@@ -221,7 +251,15 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
   );
 }
 
-function Chip({ active, children, onClick }: { active: boolean; children: React.ReactNode; onClick: () => void }) {
+function Chip({
+  active,
+  children,
+  onClick,
+}: {
+  active: boolean;
+  children: React.ReactNode;
+  onClick: () => void;
+}) {
   return (
     <button
       onClick={onClick}

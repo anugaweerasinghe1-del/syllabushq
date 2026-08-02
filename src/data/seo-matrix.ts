@@ -57,9 +57,7 @@ export const SEO_PAGES: SeoPage[] = subjects.flatMap((s) =>
 
 export function findSeoPage(subject: string, topic: string, slug: string): SeoPage | null {
   return (
-    SEO_PAGES.find(
-      (p) => p.subject === subject && p.topic === topic && p.slug === slug,
-    ) ?? null
+    SEO_PAGES.find((p) => p.subject === subject && p.topic === topic && p.slug === slug) ?? null
   );
 }
 

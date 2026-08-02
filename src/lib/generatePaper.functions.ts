@@ -29,24 +29,35 @@ function hashPaperKey(input: object) {
   return `pap_${(h >>> 0).toString(36)}`;
 }
 
-const PAPER_TEMPLATES: Record<string, { kind: "mcq" | "structured" | "short"; perItemMarks: number; commands: string[]; description: string }> = {
+const PAPER_TEMPLATES: Record<
+  string,
+  {
+    kind: "mcq" | "structured" | "short";
+    perItemMarks: number;
+    commands: string[];
+    description: string;
+  }
+> = {
   "business-p1": {
     kind: "mcq",
     perItemMarks: 1,
     commands: ["State", "Identify", "Define", "Select"],
-    description: "Sri Lankan O/L Business & Accounting Studies Paper 1 — multiple choice with 4 options.",
+    description:
+      "Sri Lankan O/L Business & Accounting Studies Paper 1 — multiple choice with 4 options.",
   },
   "business-p2": {
     kind: "structured",
     perItemMarks: 6,
     commands: ["Explain", "Describe", "Calculate", "Analyse", "Justify"],
-    description: "Sri Lankan O/L Business & Accounting Studies Paper 2 — structured questions with sub-parts (a), (b), (c). Include marking scheme bullets per mark.",
+    description:
+      "Sri Lankan O/L Business & Accounting Studies Paper 2 — structured questions with sub-parts (a), (b), (c). Include marking scheme bullets per mark.",
   },
   "science-p1": {
     kind: "mcq",
     perItemMarks: 1,
     commands: ["Which", "What", "Identify", "Select"],
-    description: "Sri Lankan O/L Science Paper 1 — multiple choice with 4 options. Mix of Physics, Chemistry, Biology.",
+    description:
+      "Sri Lankan O/L Science Paper 1 — multiple choice with 4 options. Mix of Physics, Chemistry, Biology.",
   },
   "science-p2": {
     kind: "structured",

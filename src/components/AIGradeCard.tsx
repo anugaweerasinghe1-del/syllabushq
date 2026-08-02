@@ -3,7 +3,8 @@ import { MathText } from "@/components/MathText";
 import { Check, X, Lightbulb, BookOpen } from "lucide-react";
 
 export function AIGradeCard({ result }: { result: GradeResult }) {
-  const pct = result.totalMarks > 0 ? Math.round((result.marksAwarded / result.totalMarks) * 100) : 0;
+  const pct =
+    result.totalMarks > 0 ? Math.round((result.marksAwarded / result.totalMarks) * 100) : 0;
   const tone =
     result.verdict === "correct"
       ? "border-mint/40 bg-mint/[0.06]"
@@ -63,7 +64,9 @@ export function AIGradeCard({ result }: { result: GradeResult }) {
             </p>
             <ul className="space-y-1 text-sm text-coral/90">
               {result.misconceptions.map((m, i) => (
-                <li key={i}>· <MathText>{m}</MathText></li>
+                <li key={i}>
+                  · <MathText>{m}</MathText>
+                </li>
               ))}
             </ul>
           </section>

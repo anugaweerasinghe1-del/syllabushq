@@ -51,7 +51,9 @@ function FullExam() {
   const { subject } = Route.useLoaderData();
   const { data: allQuestions } = useSuspenseQuery(questionsQuery);
 
-  const [cfg, setCfg] = useState<{ count: number; timeLimitSec: number; topics: string[] } | null>(null);
+  const [cfg, setCfg] = useState<{ count: number; timeLimitSec: number; topics: string[] } | null>(
+    null,
+  );
   useEffect(() => {
     setCfg(loadExamConfig("exam", subject.slug, { count: 30, timeLimitSec: 120 * 60, topics: [] }));
   }, [subject.slug]);
@@ -108,7 +110,10 @@ function FullExam() {
   });
 
   const paper2 = useMemo<StructuredQ[]>(
-    () => [...localStructured, ...(strExtra as StructuredItem[]).map((q) => ({ ...q, subject: subject.slug }))],
+    () => [
+      ...localStructured,
+      ...(strExtra as StructuredItem[]).map((q) => ({ ...q, subject: subject.slug })),
+    ],
     [localStructured, strExtra, subject.slug],
   );
 
@@ -160,8 +165,8 @@ function FullExam() {
           </p>
           <h1 className="mt-3 font-display text-3xl text-foreground sm:text-4xl">{subject.name}</h1>
           <p className="mt-2 text-sm text-muted-foreground">
-            {structure[0]?.name ?? "Paper I"} + {structure[1]?.name ?? "Paper II"} · English Medium ·{" "}
-            {durationMin} minutes
+            {structure[0]?.name ?? "Paper I"} + {structure[1]?.name ?? "Paper II"} · English Medium
+            · {durationMin} minutes
           </p>
         </PremiumCard>
 
@@ -172,8 +177,8 @@ function FullExam() {
               Paper I: <span className="font-num">{score}</span> / {paper1.length}
             </p>
             <p className="mt-2 text-sm text-muted-foreground">
-              Paper II is marked per part by the AI examiner — open Section II and press “Mark my answer”
-              on each part for feedback ({p2Marks} marks available).
+              Paper II is marked per part by the AI examiner — open Section II and press “Mark my
+              answer” on each part for feedback ({p2Marks} marks available).
             </p>
           </PremiumCard>
         )}
@@ -189,7 +194,9 @@ function FullExam() {
                   : "border-hairline text-muted-foreground hover:text-foreground"
               }`}
             >
-              {s === 1 ? `Paper I · MCQ (${paper1.length})` : `Paper II · Structured (${paper2.length})`}
+              {s === 1
+                ? `Paper I · MCQ (${paper1.length})`
+                : `Paper II · Structured (${paper2.length})`}
             </button>
           ))}
         </div>
@@ -241,7 +248,8 @@ function FullExam() {
           (paper2.length === 0 ? (
             <PremiumCard className="p-8 text-center" hover={false}>
               <p className="text-muted-foreground">
-                Structured questions for this selection are still being written. Paper I is fully available.
+                Structured questions for this selection are still being written. Paper I is fully
+                available.
               </p>
             </PremiumCard>
           ) : (

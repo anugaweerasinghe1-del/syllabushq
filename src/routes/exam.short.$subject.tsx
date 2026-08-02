@@ -15,9 +15,12 @@ import { useBankTopUp } from "@/hooks/useBankTopUp";
 import type { ShortItem } from "@/lib/bank-types";
 
 type ShortQ = {
-  subject: string; topic: string;
-  question: string; modelAnswer: string;
-  markingPoints: string[]; marks: number;
+  subject: string;
+  topic: string;
+  question: string;
+  modelAnswer: string;
+  markingPoints: string[];
+  marks: number;
 };
 
 const ALL = shortData as ShortQ[];
@@ -33,10 +36,12 @@ export const Route = createFileRoute("/exam/short/$subject")({
     return { subject };
   },
   head: ({ loaderData }) => ({
-    meta: loaderData ? [
-      { title: `Short Answer Drill — ${loaderData.subject.name} · SyllabusHQ` },
-      { name: "robots", content: "noindex" },
-    ] : [],
+    meta: loaderData
+      ? [
+          { title: `Short Answer Drill — ${loaderData.subject.name} · SyllabusHQ` },
+          { name: "robots", content: "noindex" },
+        ]
+      : [],
   }),
   component: ShortAnswerRunner,
   notFoundComponent: () => <NotFoundShell />,
@@ -47,7 +52,9 @@ export const Route = createFileRoute("/exam/short/$subject")({
 
 function ShortAnswerRunner() {
   const { subject } = Route.useLoaderData();
-  const [cfg, setCfg] = useState<{ count: number; timeLimitSec: number; topics: string[] } | null>(null);
+  const [cfg, setCfg] = useState<{ count: number; timeLimitSec: number; topics: string[] } | null>(
+    null,
+  );
   useEffect(() => {
     setCfg(loadExamConfig("short", subject.slug, { count: 15, timeLimitSec: 0, topics: [] }));
   }, [subject.slug]);
@@ -99,8 +106,15 @@ function ShortAnswerRunner() {
         <SiteHeader />
         <main className="mx-auto max-w-2xl px-4 py-20 text-center">
           <h1 className="font-display text-3xl text-foreground">Coming soon</h1>
-          <p className="mt-3 text-muted-foreground">Short-answer questions for {subject.name} are still being written.</p>
-          <Link to="/practice" className="mt-6 inline-block rounded-lg border border-hairline px-4 py-2 text-sm text-foreground">← Back to modes</Link>
+          <p className="mt-3 text-muted-foreground">
+            Short-answer questions for {subject.name} are still being written.
+          </p>
+          <Link
+            to="/practice"
+            className="mt-6 inline-block rounded-lg border border-hairline px-4 py-2 text-sm text-foreground"
+          >
+            ← Back to modes
+          </Link>
         </main>
       </div>
     );
@@ -120,7 +134,13 @@ function ShortAnswerRunner() {
       <SiteHeader />
       <main className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12">
         <div className="mb-5 flex flex-wrap items-center justify-between gap-3 text-sm">
-          <Link to="/practice/$mode/$subject" params={{ mode: "short", subject: subject.slug }} className="text-muted-foreground hover:text-foreground">← Exit</Link>
+          <Link
+            to="/practice/$mode/$subject"
+            params={{ mode: "short", subject: subject.slug }}
+            className="text-muted-foreground hover:text-foreground"
+          >
+            ← Exit
+          </Link>
           <div className="flex items-center gap-3">
             {cfg.timeLimitSec > 0 && (
               <ExamTimer
@@ -129,12 +149,17 @@ function ShortAnswerRunner() {
                 onExpire={() => setSubmitted(true)}
               />
             )}
-            <span className="text-muted-foreground font-num">{i + 1} / {total}</span>
+            <span className="text-muted-foreground font-num">
+              {i + 1} / {total}
+            </span>
           </div>
         </div>
 
         <div className="mb-6 h-1 w-full overflow-hidden rounded-full bg-[var(--hairline)]">
-          <div className="h-full bg-foreground transition-all" style={{ width: `${((i + 1) / total) * 100}%` }} />
+          <div
+            className="h-full bg-foreground transition-all"
+            style={{ width: `${((i + 1) / total) * 100}%` }}
+          />
         </div>
 
         {submitted && (
@@ -145,7 +170,9 @@ function ShortAnswerRunner() {
 
         <PremiumCard className="p-6 sm:p-8 rise" hover={false}>
           <div className="flex items-center justify-between">
-            <p className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground">Short answer · {subject.name}</p>
+            <p className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
+              Short answer · {subject.name}
+            </p>
             <span className="font-num text-xs text-muted-foreground">[{q.marks} marks]</span>
           </div>
           <h1 className="mt-3 font-display text-2xl text-foreground sm:text-3xl">
@@ -155,7 +182,10 @@ function ShortAnswerRunner() {
           <StructuredAnswerInput
             key={`${subject.slug}-${i}`}
             question={q.question}
-            markingScheme={q.markingPoints.map((p) => `- ${p}`).join("\n") + `\n\nReference model answer:\n${q.modelAnswer}`}
+            markingScheme={
+              q.markingPoints.map((p) => `- ${p}`).join("\n") +
+              `\n\nReference model answer:\n${q.modelAnswer}`
+            }
             totalMarks={q.marks}
             subject={subject.name}
             storageKey={`ol-short-${subject.slug}-${i}`}

@@ -17,7 +17,9 @@ export const Route = createFileRoute("/learn/$subject/$topic/$slug")({
       <main className="mx-auto max-w-3xl px-6 py-24 text-center">
         <h1 className="font-display text-4xl">Page not found</h1>
         <p className="mt-3 text-muted-foreground">This study guide doesn't exist.</p>
-        <Link to="/" className="mt-6 inline-block underline">Back home</Link>
+        <Link to="/" className="mt-6 inline-block underline">
+          Back home
+        </Link>
       </main>
     </div>
   ),
@@ -65,7 +67,12 @@ export const Route = createFileRoute("/learn/$subject/$topic/$slug")({
             "@type": "BreadcrumbList",
             itemListElement: [
               { "@type": "ListItem", position: 1, name: "Home", item: SITE },
-              { "@type": "ListItem", position: 2, name: loaderData.subjectName, item: `${SITE}/practice/mcq/${loaderData.subject}` },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: loaderData.subjectName,
+                item: `${SITE}/practice/mcq/${loaderData.subject}`,
+              },
               { "@type": "ListItem", position: 3, name: loaderData.topicName, item: url },
             ],
           }),
@@ -79,12 +86,18 @@ export const Route = createFileRoute("/learn/$subject/$topic/$slug")({
               {
                 "@type": "Question",
                 name: `Is this ${loaderData.topicName} practice free for O/L students in ${loaderData.city}?`,
-                acceptedAnswer: { "@type": "Answer", text: "Yes. Every question, marking scheme, and worked solution is free with no login required." },
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes. Every question, marking scheme, and worked solution is free with no login required.",
+                },
               },
               {
                 "@type": "Question",
                 name: `Are these ${loaderData.topicName} questions from real past papers?`,
-                acceptedAnswer: { "@type": "Answer", text: "No. Every question is original and AI-written in the style of the Sri Lankan O/L English-medium papers." },
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "No. Every question is original and AI-written in the style of the Sri Lankan O/L English-medium papers.",
+                },
               },
             ],
           }),
@@ -109,9 +122,9 @@ function SeoLandingPage() {
         </h1>
         <p className="mt-5 max-w-2xl text-base text-muted-foreground sm:text-lg">
           Free, original {p.difficulty}-difficulty practice questions on{" "}
-          <strong className="text-foreground">{p.topicName}</strong>, written in the style
-          of the Sri Lankan G.C.E. Ordinary Level English-medium papers and AI-graded
-          against a real marking scheme.
+          <strong className="text-foreground">{p.topicName}</strong>, written in the style of the
+          Sri Lankan G.C.E. Ordinary Level English-medium papers and AI-graded against a real
+          marking scheme.
         </p>
 
         <div className="mt-8 flex flex-wrap gap-3">
@@ -135,15 +148,21 @@ function SeoLandingPage() {
           <div className="mt-5 grid gap-4 sm:grid-cols-3">
             <PremiumCard className="p-5" hover={false}>
               <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Original</p>
-              <p className="mt-2 text-sm text-foreground">Every question is AI-written for SyllabusHQ — never lifted from any past paper.</p>
+              <p className="mt-2 text-sm text-foreground">
+                Every question is AI-written for SyllabusHQ — never lifted from any past paper.
+              </p>
             </PremiumCard>
             <PremiumCard className="p-5" hover={false}>
               <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Marked</p>
-              <p className="mt-2 text-sm text-foreground">An AI chief examiner grades your answer against a real scheme, point by point.</p>
+              <p className="mt-2 text-sm text-foreground">
+                An AI chief examiner grades your answer against a real scheme, point by point.
+              </p>
             </PremiumCard>
             <PremiumCard className="p-5" hover={false}>
               <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Free</p>
-              <p className="mt-2 text-sm text-foreground">No login, no payment. Built for Sri Lanka's sharpest O/L students.</p>
+              <p className="mt-2 text-sm text-foreground">
+                No login, no payment. Built for Sri Lanka's sharpest O/L students.
+              </p>
             </PremiumCard>
           </div>
         </section>
@@ -152,9 +171,9 @@ function SeoLandingPage() {
           <h2 className="font-display text-2xl">What {p.topicName} covers</h2>
           <p className="mt-3 text-sm text-muted-foreground">
             {p.topicName} is a core unit in the Sri Lankan O/L {p.subjectName} syllabus. In a
-            typical Paper 1, expect multiple-choice items worth 1 mark each. In Paper 2,
-            expect structured questions with marking schemes that award marks per
-            correct point — exactly how SyllabusHQ grades you.
+            typical Paper 1, expect multiple-choice items worth 1 mark each. In Paper 2, expect
+            structured questions with marking schemes that award marks per correct point — exactly
+            how SyllabusHQ grades you.
           </p>
         </section>
 
