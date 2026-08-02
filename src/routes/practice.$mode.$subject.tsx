@@ -35,6 +35,23 @@ export const Route = createFileRoute("/practice/$mode/$subject")({
     return { mode, subject };
   },
   component: SetupPage,
+  head: ({ loaderData }) => {
+    if (!loaderData) {
+      return { meta: [{ title: "Unavailable — SyllabusHQ" }, { name: "robots", content: "noindex" }] };
+    }
+    const title = `${loaderData.mode.name} practice — ${loaderData.subject.name} O/L | SyllabusHQ`;
+    const description = `Build a custom Sri Lankan O/L ${loaderData.subject.name} ${loaderData.mode.name.toLowerCase()} paper: choose topics, difficulty, question count and timer.`;
+    return {
+      meta: [
+        { title },
+        { name: "description", content: description },
+        { property: "og:title", content: title },
+        { property: "og:description", content: description },
+        { property: "og:type", content: "website" },
+        { name: "twitter:card", content: "summary_large_image" },
+      ],
+    };
+  },
   notFoundComponent: () => <NotFoundShell />,
   errorComponent: ({ error }) => (
     <NotFoundShell title="This setup didn't load" message={error.message} />
