@@ -51,7 +51,7 @@ const MODE_ALIASES: Record<string, Mode> = {
   "structured-paper": "structured",
   "short-answer": "short",
   written: "short",
-  multiple-choice: "mcq",
+  "multiple-choice": "mcq",
 };
 
 /** Resolve a URL mode slug to a canonical mode, tolerating common aliases. */
