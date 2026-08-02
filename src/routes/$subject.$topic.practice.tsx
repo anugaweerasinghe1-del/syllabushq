@@ -88,6 +88,7 @@ function PracticePage() {
   // Hydrate the session deterministically (no Math.random in render).
   const [session, setSession] = useState<Session | null>(null);
   const [confirmSubmit, setConfirmSubmit] = useState(false);
+  const [confirmReset, setConfirmReset] = useState(false);
   useEffect(() => {
     if (pool.length === 0) return;
     setSession(loadOrCreate(subject.slug, topic.slug, pool));
@@ -435,7 +436,11 @@ function PracticePage() {
             </div>
             <button
               onClick={() => {
-                if (!confirm("Reset this attempt with a new shuffle?")) return;
+                if (!confirmReset) {
+                  setConfirmReset(true);
+                  return;
+                }
+                setConfirmReset(false);
                 const s = startNew(
                   subject.slug,
                   topic.slug,
@@ -444,9 +449,10 @@ function PracticePage() {
                 );
                 setSession(s);
               }}
+              onBlur={() => setConfirmReset(false)}
               className="mt-4 w-full rounded-md border border-hairline px-3 py-1.5 text-[11px] text-muted-foreground hover:text-foreground"
             >
-              Reshuffle attempt
+              {confirmReset ? "Tap again to discard this attempt" : "Reshuffle attempt"}
             </button>
           </aside>
         </div>
