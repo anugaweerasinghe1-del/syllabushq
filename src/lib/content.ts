@@ -128,16 +128,41 @@ const TOPIC_ALIASES: Record<string, string> = {
   "trial-balances": "trial-balance",
 };
 
+// Subject-level aliases: the slugs a student or teacher is likely to type or
+// that appear in old links. Without these, /business-studies is a hard 404.
+const SUBJECT_ALIASES: Record<string, string> = {
+  "business-studies": "business-accounting",
+  "business": "business-accounting",
+  "business-and-accounting": "business-accounting",
+  "business-accounting-studies": "business-accounting",
+  "business-studies-and-accounting": "business-accounting",
+  "accounting": "business-accounting",
+  "commerce": "business-accounting",
+  "maths": "mathematics",
+  "math": "mathematics",
+  "mathematic": "mathematics",
+  "add-maths": "mathematics",
+  "sci": "science",
+  "sciences": "science",
+  "physics": "science",
+  "chemistry": "science",
+  "biology": "science",
+  "bio": "science",
+};
+
 export function resolveSubject(
   subjects: Subject[],
   raw: string | undefined,
 ): Subject | null {
   if (!raw) return null;
   const want = normaliseSlug(raw);
+  const aliased = SUBJECT_ALIASES[want] ?? want;
   return (
     subjects.find((s) => s.slug === want) ??
+    subjects.find((s) => s.slug === aliased) ??
     subjects.find((s) => normaliseSlug(s.slug) === want) ??
     subjects.find((s) => normaliseSlug(s.name) === want) ??
+    subjects.find((s) => normaliseSlug(s.name).includes(want) && want.length >= 4) ??
     null
   );
 }
