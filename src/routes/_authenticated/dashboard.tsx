@@ -31,8 +31,8 @@ export const Route = createFileRoute("/_authenticated/dashboard")({
 });
 
 function Dashboard() {
-  const me = useQuery({ queryKey: ["me"], queryFn: () => useMeFn() });
-  const useMeFn = useServerFn(getMe);
+  const fetchMe = useServerFn(getMe);
+  const me = useQuery({ queryKey: ["me"], queryFn: () => fetchMe() });
   const navigate = useNavigate();
   const qc = useQueryClient();
 
