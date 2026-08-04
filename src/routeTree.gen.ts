@@ -18,13 +18,16 @@ import { Route as PressRouteImport } from './routes/press'
 import { Route as PracticeRouteImport } from './routes/practice'
 import { Route as ForTeachersRouteImport } from './routes/for-teachers'
 import { Route as ExamRouteImport } from './routes/exam'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as SubjectRouteImport } from './routes/$subject'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PracticeIndexRouteImport } from './routes/practice.index'
 import { Route as SubjectIndexRouteImport } from './routes/$subject.index'
 import { Route as PracticeModeRouteImport } from './routes/practice.$mode'
 import { Route as ForTeachersPackRouteImport } from './routes/for-teachers.pack'
 import { Route as EmbedDailyRouteImport } from './routes/embed.daily'
+import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as SubjectTopicRouteImport } from './routes/$subject.$topic'
 import { Route as PracticeModeIndexRouteImport } from './routes/practice.$mode.index'
 import { Route as SubjectTopicIndexRouteImport } from './routes/$subject.$topic.index'
@@ -32,6 +35,7 @@ import { Route as PracticeModeSubjectRouteImport } from './routes/practice.$mode
 import { Route as ExamStructuredSubjectRouteImport } from './routes/exam.structured.$subject'
 import { Route as ExamShortSubjectRouteImport } from './routes/exam.short.$subject'
 import { Route as ExamFullSubjectRouteImport } from './routes/exam.full.$subject'
+import { Route as AuthenticatedClassesClassIdRouteImport } from './routes/_authenticated/classes.$classId'
 import { Route as SubjectTopicResultsRouteImport } from './routes/$subject.$topic.results'
 import { Route as SubjectTopicPracticeRouteImport } from './routes/$subject.$topic.practice'
 import { Route as LearnSubjectTopicSlugRouteImport } from './routes/learn.$subject.$topic.$slug'
@@ -81,9 +85,18 @@ const ExamRoute = ExamRouteImport.update({
   path: '/exam',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SubjectRoute = SubjectRouteImport.update({
   id: '/$subject',
   path: '/$subject',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -115,6 +128,11 @@ const EmbedDailyRoute = EmbedDailyRouteImport.update({
   id: '/embed/daily',
   path: '/embed/daily',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const SubjectTopicRoute = SubjectTopicRouteImport.update({
   id: '/$topic',
@@ -151,6 +169,12 @@ const ExamFullSubjectRoute = ExamFullSubjectRouteImport.update({
   path: '/full/$subject',
   getParentRoute: () => ExamRoute,
 } as any)
+const AuthenticatedClassesClassIdRoute =
+  AuthenticatedClassesClassIdRouteImport.update({
+    id: '/classes/$classId',
+    path: '/classes/$classId',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const SubjectTopicResultsRoute = SubjectTopicResultsRouteImport.update({
   id: '/results',
   path: '/results',
@@ -170,6 +194,7 @@ const LearnSubjectTopicSlugRoute = LearnSubjectTopicSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$subject': typeof SubjectRouteWithChildren
+  '/auth': typeof AuthRoute
   '/exam': typeof ExamRouteWithChildren
   '/for-teachers': typeof ForTeachersRouteWithChildren
   '/practice': typeof PracticeRouteWithChildren
@@ -180,6 +205,7 @@ export interface FileRoutesByFullPath {
   '/structured': typeof StructuredRoute
   '/suggest': typeof SuggestRoute
   '/$subject/$topic': typeof SubjectTopicRouteWithChildren
+  '/dashboard': typeof AuthenticatedDashboardRoute
   '/embed/daily': typeof EmbedDailyRoute
   '/for-teachers/pack': typeof ForTeachersPackRoute
   '/practice/$mode': typeof PracticeModeRouteWithChildren
@@ -187,6 +213,7 @@ export interface FileRoutesByFullPath {
   '/practice/': typeof PracticeIndexRoute
   '/$subject/$topic/practice': typeof SubjectTopicPracticeRoute
   '/$subject/$topic/results': typeof SubjectTopicResultsRoute
+  '/classes/$classId': typeof AuthenticatedClassesClassIdRoute
   '/exam/full/$subject': typeof ExamFullSubjectRoute
   '/exam/short/$subject': typeof ExamShortSubjectRoute
   '/exam/structured/$subject': typeof ExamStructuredSubjectRoute
@@ -197,6 +224,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/exam': typeof ExamRouteWithChildren
   '/for-teachers': typeof ForTeachersRouteWithChildren
   '/press': typeof PressRoute
@@ -205,12 +233,14 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/structured': typeof StructuredRoute
   '/suggest': typeof SuggestRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
   '/embed/daily': typeof EmbedDailyRoute
   '/for-teachers/pack': typeof ForTeachersPackRoute
   '/$subject': typeof SubjectIndexRoute
   '/practice': typeof PracticeIndexRoute
   '/$subject/$topic/practice': typeof SubjectTopicPracticeRoute
   '/$subject/$topic/results': typeof SubjectTopicResultsRoute
+  '/classes/$classId': typeof AuthenticatedClassesClassIdRoute
   '/exam/full/$subject': typeof ExamFullSubjectRoute
   '/exam/short/$subject': typeof ExamShortSubjectRoute
   '/exam/structured/$subject': typeof ExamStructuredSubjectRoute
@@ -222,7 +252,9 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/$subject': typeof SubjectRouteWithChildren
+  '/auth': typeof AuthRoute
   '/exam': typeof ExamRouteWithChildren
   '/for-teachers': typeof ForTeachersRouteWithChildren
   '/practice': typeof PracticeRouteWithChildren
@@ -233,6 +265,7 @@ export interface FileRoutesById {
   '/structured': typeof StructuredRoute
   '/suggest': typeof SuggestRoute
   '/$subject/$topic': typeof SubjectTopicRouteWithChildren
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/embed/daily': typeof EmbedDailyRoute
   '/for-teachers/pack': typeof ForTeachersPackRoute
   '/practice/$mode': typeof PracticeModeRouteWithChildren
@@ -240,6 +273,7 @@ export interface FileRoutesById {
   '/practice/': typeof PracticeIndexRoute
   '/$subject/$topic/practice': typeof SubjectTopicPracticeRoute
   '/$subject/$topic/results': typeof SubjectTopicResultsRoute
+  '/_authenticated/classes/$classId': typeof AuthenticatedClassesClassIdRoute
   '/exam/full/$subject': typeof ExamFullSubjectRoute
   '/exam/short/$subject': typeof ExamShortSubjectRoute
   '/exam/structured/$subject': typeof ExamStructuredSubjectRoute
@@ -253,6 +287,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/$subject'
+    | '/auth'
     | '/exam'
     | '/for-teachers'
     | '/practice'
@@ -263,6 +298,7 @@ export interface FileRouteTypes {
     | '/structured'
     | '/suggest'
     | '/$subject/$topic'
+    | '/dashboard'
     | '/embed/daily'
     | '/for-teachers/pack'
     | '/practice/$mode'
@@ -270,6 +306,7 @@ export interface FileRouteTypes {
     | '/practice/'
     | '/$subject/$topic/practice'
     | '/$subject/$topic/results'
+    | '/classes/$classId'
     | '/exam/full/$subject'
     | '/exam/short/$subject'
     | '/exam/structured/$subject'
@@ -280,6 +317,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/auth'
     | '/exam'
     | '/for-teachers'
     | '/press'
@@ -288,12 +326,14 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/structured'
     | '/suggest'
+    | '/dashboard'
     | '/embed/daily'
     | '/for-teachers/pack'
     | '/$subject'
     | '/practice'
     | '/$subject/$topic/practice'
     | '/$subject/$topic/results'
+    | '/classes/$classId'
     | '/exam/full/$subject'
     | '/exam/short/$subject'
     | '/exam/structured/$subject'
@@ -304,7 +344,9 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
     | '/$subject'
+    | '/auth'
     | '/exam'
     | '/for-teachers'
     | '/practice'
@@ -315,6 +357,7 @@ export interface FileRouteTypes {
     | '/structured'
     | '/suggest'
     | '/$subject/$topic'
+    | '/_authenticated/dashboard'
     | '/embed/daily'
     | '/for-teachers/pack'
     | '/practice/$mode'
@@ -322,6 +365,7 @@ export interface FileRouteTypes {
     | '/practice/'
     | '/$subject/$topic/practice'
     | '/$subject/$topic/results'
+    | '/_authenticated/classes/$classId'
     | '/exam/full/$subject'
     | '/exam/short/$subject'
     | '/exam/structured/$subject'
@@ -333,7 +377,9 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   SubjectRoute: typeof SubjectRouteWithChildren
+  AuthRoute: typeof AuthRoute
   ExamRoute: typeof ExamRouteWithChildren
   ForTeachersRoute: typeof ForTeachersRouteWithChildren
   PracticeRoute: typeof PracticeRouteWithChildren
@@ -412,11 +458,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ExamRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/$subject': {
       id: '/$subject'
       path: '/$subject'
       fullPath: '/$subject'
       preLoaderRoute: typeof SubjectRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -460,6 +520,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/embed/daily'
       preLoaderRoute: typeof EmbedDailyRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/$subject/$topic': {
       id: '/$subject/$topic'
@@ -510,6 +577,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ExamFullSubjectRouteImport
       parentRoute: typeof ExamRoute
     }
+    '/_authenticated/classes/$classId': {
+      id: '/_authenticated/classes/$classId'
+      path: '/classes/$classId'
+      fullPath: '/classes/$classId'
+      preLoaderRoute: typeof AuthenticatedClassesClassIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/$subject/$topic/results': {
       id: '/$subject/$topic/results'
       path: '/results'
@@ -533,6 +607,19 @@ declare module '@tanstack/react-router' {
     }
   }
 }
+
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedClassesClassIdRoute: typeof AuthenticatedClassesClassIdRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedClassesClassIdRoute: AuthenticatedClassesClassIdRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
 
 interface SubjectTopicRouteChildren {
   SubjectTopicPracticeRoute: typeof SubjectTopicPracticeRoute
@@ -619,7 +706,9 @@ const PracticeRouteWithChildren = PracticeRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   SubjectRoute: SubjectRouteWithChildren,
+  AuthRoute: AuthRoute,
   ExamRoute: ExamRouteWithChildren,
   ForTeachersRoute: ForTeachersRouteWithChildren,
   PracticeRoute: PracticeRouteWithChildren,

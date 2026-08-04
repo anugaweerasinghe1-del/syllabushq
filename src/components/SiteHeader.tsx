@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { BrandMark } from "@/components/BrandMark";
+import { useSession } from "@/hooks/useSession";
 
 /**
  * Floating glass pill header. Scroll-aware shrinks slightly and
@@ -8,6 +9,7 @@ import { BrandMark } from "@/components/BrandMark";
  */
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
+  const { signedIn, ready } = useSession();
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
@@ -31,14 +33,24 @@ export function SiteHeader() {
           <NavLink to="/for-teachers">Teachers</NavLink>
           <NavLink to="/reviews">Reviews</NavLink>
         </nav>
-        <Link
-          to="/practice"
-          className="group relative inline-flex items-center gap-1.5 rounded-xl bg-foreground px-3.5 py-2 text-[12px] font-semibold text-background transition hover:brightness-110"
-        >
-          <span className="absolute inset-0 -z-10 rounded-xl bg-foreground blur-md opacity-25 transition group-hover:opacity-50" />
-          Begin
-          <span className="transition group-hover:translate-x-0.5">→</span>
-        </Link>
+        <div className="flex items-center gap-1.5">
+          {ready && (
+            <Link
+              to={signedIn ? "/dashboard" : "/auth"}
+              className="rounded-lg px-3 py-1.5 text-[12px] text-muted-foreground transition-colors hover:bg-surface-2 hover:text-foreground"
+            >
+              {signedIn ? "Dashboard" : "Sign in"}
+            </Link>
+          )}
+          <Link
+            to="/practice"
+            className="group relative inline-flex items-center gap-1.5 rounded-xl bg-foreground px-3.5 py-2 text-[12px] font-semibold text-background transition hover:brightness-110"
+          >
+            <span className="absolute inset-0 -z-10 rounded-xl bg-foreground blur-md opacity-25 transition group-hover:opacity-50" />
+            Begin
+            <span className="transition group-hover:translate-x-0.5">→</span>
+          </Link>
+        </div>
       </header>
     </div>
   );
