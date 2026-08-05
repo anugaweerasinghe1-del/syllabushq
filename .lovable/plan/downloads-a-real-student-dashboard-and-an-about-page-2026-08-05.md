@@ -36,7 +36,7 @@ New `/about` route, added to the nav bar beside Practice, Resources, Teachers, R
 - **Founder: Anuga Weerasinghe** — student and independent developer; 2,000,000+ total views and 10,000+ combined followers across social platforms.
 - Mission statement.
 - **Live platform statistics** — questions in the bank, topics covered, subjects, papers practised, drawn from the real question bank and attempt counts rather than invented numbers.
-- Contact: anugaweerasinghe1@gmail.com, WhatsApp +94 71 489 7346.
+- Contact: [anugaweerasinghe1@gmail.com](mailto:anugaweerasinghe1@gmail.com), WhatsApp +94 71 489 7346.
 - Full SEO head tags plus `Person` and `Organization` structured data, which also helps Google tie the site to a real author.
 
 ## 4. AI usage limits — the honest answer
@@ -60,4 +60,6 @@ After the above, sweep every clickable path automatically: three subjects x four
 - New browser-side dependencies for PDF and Word export; no server or AI cost.
 - New `practice_sessions` table (user_id, subject, topic, mode, marks, total, detail) with row-level security scoped to the signed-in user plus grants. Existing anonymous attempt and mastery rows are attached to the account on first sign-in so nothing earned is lost.
 - Class and assignment screens (`/dashboard` class panels, `/classes/$classId`) are removed from the UI; their tables, policies and server functions stay for a later school release.
-- `src/routes/about.tsx` with its own `head()` metadata; `SiteHeader` nav gains the About link.
+- `src/routes/about.tsx` with its own `head()` metadata; `SiteHeader` nav gains the About link.  
+  
+can we add another model ai free tier model api key to handle some parts of the site instead of giving everything to gemini so we can get about 500-1000 requests a day completely fine?
