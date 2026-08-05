@@ -50,7 +50,7 @@ export function modelChain(kind: "fast" | "smart" = "fast"): LanguageModel[] {
   }
   if (process.env.LOVABLE_API_KEY) {
     const l = lovableAi();
-    out.push(l(kind === "fast" ? GATEWAY_FAST : GATEWAY_SMART));
+    out.push(l(kind === "fast" ? GATEWAY_FAST : GATEWAY_SMART) as unknown as LanguageModel);
   }
   return out;
 }
