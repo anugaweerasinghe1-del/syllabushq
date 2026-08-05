@@ -263,6 +263,45 @@ export type Database = {
         }
         Relationships: []
       }
+      practice_sessions: {
+        Row: {
+          created_at: string
+          detail: Json
+          id: string
+          marks_awarded: number
+          mode: string
+          subject: string
+          topic: string | null
+          total_marks: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          detail?: Json
+          id?: string
+          marks_awarded?: number
+          mode: string
+          subject: string
+          topic?: string | null
+          total_marks?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          detail?: Json
+          id?: string
+          marks_awarded?: number
+          mode?: string
+          subject?: string
+          topic?: string | null
+          total_marks?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           created_at: string
