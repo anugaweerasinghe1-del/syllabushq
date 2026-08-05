@@ -31,6 +31,7 @@ export function SiteHeader() {
           <NavLink to="/practice">Practice</NavLink>
           <NavLink to="/resources">Resources</NavLink>
           <NavLink to="/for-teachers">Teachers</NavLink>
+          <NavLink to="/about">About</NavLink>
           <NavLink to="/reviews">Reviews</NavLink>
         </nav>
         <div className="flex items-center gap-1.5">

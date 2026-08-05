@@ -280,6 +280,9 @@ function Home() {
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-10 text-xs text-muted-foreground sm:px-6">
           <p>© {new Date().getFullYear()} SyllabusHQ — Built for Sri Lankan O/L students.</p>
           <div className="flex items-center gap-4">
+            <Link to="/about" className="hover:text-foreground">
+              About
+            </Link>
             <Link to="/reviews" className="hover:text-foreground">
               Reviews
             </Link>
