@@ -8,6 +8,7 @@ import { subjectsQuery, questionsQuery, resolveSubject, type Question } from "@/
 import { NotFoundShell } from "@/components/NotFoundShell";
 import structuredData from "@/data/structured.json";
 import { markStudiedToday } from "@/lib/streak";
+import { logSession } from "@/lib/logSession";
 import { StructuredAnswerInput } from "@/components/StructuredAnswerInput";
 import { ExamTimer } from "@/components/ExamTimer";
 import { loadExamConfig } from "@/lib/exam-config";
@@ -137,6 +138,14 @@ function FullExam() {
   function submit() {
     setSubmitted(true);
     markStudiedToday();
+    void logSession({
+      subject: subject.slug,
+      topic: null,
+      mode: "exam",
+      marksAwarded: score,
+      totalMarks: paper1.length,
+      detail: { paper2Marks: p2Marks },
+    });
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 

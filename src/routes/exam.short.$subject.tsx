@@ -7,6 +7,7 @@ import { subjectsQuery, resolveSubject } from "@/lib/content";
 import { NotFoundShell } from "@/components/NotFoundShell";
 import shortData from "@/data/short-answer.json";
 import { markStudiedToday } from "@/lib/streak";
+import { logSession } from "@/lib/logSession";
 import { StructuredAnswerInput } from "@/components/StructuredAnswerInput";
 import { ExamTimer } from "@/components/ExamTimer";
 import { loadExamConfig } from "@/lib/exam-config";
@@ -125,7 +126,17 @@ function ShortAnswerRunner() {
 
   function next() {
     if (i + 1 < total) setI(i + 1);
-    else setSubmitted(true);
+    else {
+      setSubmitted(true);
+      void logSession({
+        subject: subject.slug,
+        topic: null,
+        mode: "short",
+        marksAwarded: 0,
+        totalMarks: 0,
+        detail: { questions: total, scored: "ai-marked" },
+      });
+    }
     markStudiedToday();
   }
 

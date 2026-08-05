@@ -7,6 +7,7 @@ import { subjectsQuery, resolveSubject } from "@/lib/content";
 import { NotFoundShell } from "@/components/NotFoundShell";
 import structuredData from "@/data/structured.json";
 import { markStudiedToday } from "@/lib/streak";
+import { logSession } from "@/lib/logSession";
 import { StructuredAnswerInput } from "@/components/StructuredAnswerInput";
 import { ExamTimer } from "@/components/ExamTimer";
 import { getStructuresFor } from "@/lib/paper-structures";
@@ -237,6 +238,14 @@ function StructuredRunner() {
             onClick={() => {
               setSubmitted(true);
               markStudiedToday();
+              void logSession({
+                subject: subject.slug,
+                topic: null,
+                mode: "structured",
+                marksAwarded: 0,
+                totalMarks: 0,
+                detail: { paperMarks: totalMarks, scored: "ai-marked" },
+              });
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
             className="rounded-lg bg-foreground px-6 py-3 text-sm font-semibold text-background hover:brightness-110"
