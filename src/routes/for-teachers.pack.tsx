@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { subjectsQuery, questionsQuery } from "@/lib/content";
 import { MathText } from "@/components/MathText";
 import { pickQuestions } from "@/lib/pickQuestions";
+import { downloadPackDocx, downloadPackPdf } from "@/lib/exportPack";
 
 type PackSearch = { subject: string; topic: string; count: number; difficulty: string };
 
@@ -60,6 +61,29 @@ function PackPage() {
     );
   }, []);
 
+  const [includeScheme, setIncludeScheme] = useState(true);
+  const [busy, setBusy] = useState<"pdf" | "docx" | null>(null);
+
+  const meta = {
+    subjectName: subject.name,
+    topicName,
+    items,
+    includeScheme,
+  };
+
+  async function download(kind: "pdf" | "docx") {
+    setBusy(kind);
+    try {
+      if (kind === "pdf") await downloadPackPdf(meta);
+      else await downloadPackDocx(meta);
+    } catch (err) {
+      console.error("[pack] export failed", err);
+      window.alert("That export failed. Try the Print option instead.");
+    } finally {
+      setBusy(null);
+    }
+  }
+
   return (
     <div className="pack-root min-h-screen bg-white text-neutral-900">
       {/* Print styles */}
@@ -74,16 +98,39 @@ function PackPage() {
       `}</style>
 
       <div className="no-print sticky top-0 z-10 border-b border-neutral-200 bg-white/95 backdrop-blur">
-        <div className="mx-auto flex max-w-3xl items-center justify-between gap-3 px-4 py-3 text-sm">
+        <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-3 px-4 py-3 text-sm">
           <Link to="/for-teachers" className="text-neutral-500 hover:text-neutral-900">
             ← Back to teacher tools
           </Link>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
+            <label className="flex items-center gap-2 text-[13px] text-neutral-600">
+              <input
+                type="checkbox"
+                checked={includeScheme}
+                onChange={(e) => setIncludeScheme(e.target.checked)}
+                className="h-4 w-4 accent-neutral-900"
+              />
+              Include marking scheme
+            </label>
+            <button
+              onClick={() => download("pdf")}
+              disabled={busy !== null}
+              className="rounded-lg border border-neutral-300 px-4 py-2 text-sm font-semibold text-neutral-900 transition hover:bg-neutral-100 disabled:opacity-60"
+            >
+              {busy === "pdf" ? "Preparing…" : "Download PDF"}
+            </button>
+            <button
+              onClick={() => download("docx")}
+              disabled={busy !== null}
+              className="rounded-lg border border-neutral-300 px-4 py-2 text-sm font-semibold text-neutral-900 transition hover:bg-neutral-100 disabled:opacity-60"
+            >
+              {busy === "docx" ? "Preparing…" : "Download Word"}
+            </button>
             <button
               onClick={() => window.print()}
               className="rounded-lg bg-neutral-900 px-4 py-2 text-sm font-semibold text-white hover:bg-neutral-700"
             >
-              Print / Save as PDF
+              Print
             </button>
           </div>
         </div>
@@ -143,7 +190,7 @@ function PackPage() {
         </section>
 
         {/* Marking scheme starts on a new page when printed */}
-        <section className="page-break mt-14">
+        <section className={`page-break mt-14 ${includeScheme ? "" : "hidden"}`}>
           <header className="border-b border-neutral-300 pb-4 text-center">
             <p className="text-[10px] uppercase tracking-[0.28em] text-neutral-500">
               Marking Scheme
