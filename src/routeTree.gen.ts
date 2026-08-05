@@ -19,6 +19,7 @@ import { Route as PracticeRouteImport } from './routes/practice'
 import { Route as ForTeachersRouteImport } from './routes/for-teachers'
 import { Route as ExamRouteImport } from './routes/exam'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as SubjectRouteImport } from './routes/$subject'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
@@ -35,7 +36,6 @@ import { Route as PracticeModeSubjectRouteImport } from './routes/practice.$mode
 import { Route as ExamStructuredSubjectRouteImport } from './routes/exam.structured.$subject'
 import { Route as ExamShortSubjectRouteImport } from './routes/exam.short.$subject'
 import { Route as ExamFullSubjectRouteImport } from './routes/exam.full.$subject'
-import { Route as AuthenticatedClassesClassIdRouteImport } from './routes/_authenticated/classes.$classId'
 import { Route as SubjectTopicResultsRouteImport } from './routes/$subject.$topic.results'
 import { Route as SubjectTopicPracticeRouteImport } from './routes/$subject.$topic.practice'
 import { Route as LearnSubjectTopicSlugRouteImport } from './routes/learn.$subject.$topic.$slug'
@@ -88,6 +88,11 @@ const ExamRoute = ExamRouteImport.update({
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SubjectRoute = SubjectRouteImport.update({
@@ -169,12 +174,6 @@ const ExamFullSubjectRoute = ExamFullSubjectRouteImport.update({
   path: '/full/$subject',
   getParentRoute: () => ExamRoute,
 } as any)
-const AuthenticatedClassesClassIdRoute =
-  AuthenticatedClassesClassIdRouteImport.update({
-    id: '/classes/$classId',
-    path: '/classes/$classId',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
 const SubjectTopicResultsRoute = SubjectTopicResultsRouteImport.update({
   id: '/results',
   path: '/results',
@@ -194,6 +193,7 @@ const LearnSubjectTopicSlugRoute = LearnSubjectTopicSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$subject': typeof SubjectRouteWithChildren
+  '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/exam': typeof ExamRouteWithChildren
   '/for-teachers': typeof ForTeachersRouteWithChildren
@@ -213,7 +213,6 @@ export interface FileRoutesByFullPath {
   '/practice/': typeof PracticeIndexRoute
   '/$subject/$topic/practice': typeof SubjectTopicPracticeRoute
   '/$subject/$topic/results': typeof SubjectTopicResultsRoute
-  '/classes/$classId': typeof AuthenticatedClassesClassIdRoute
   '/exam/full/$subject': typeof ExamFullSubjectRoute
   '/exam/short/$subject': typeof ExamShortSubjectRoute
   '/exam/structured/$subject': typeof ExamStructuredSubjectRoute
@@ -224,6 +223,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/exam': typeof ExamRouteWithChildren
   '/for-teachers': typeof ForTeachersRouteWithChildren
@@ -240,7 +240,6 @@ export interface FileRoutesByTo {
   '/practice': typeof PracticeIndexRoute
   '/$subject/$topic/practice': typeof SubjectTopicPracticeRoute
   '/$subject/$topic/results': typeof SubjectTopicResultsRoute
-  '/classes/$classId': typeof AuthenticatedClassesClassIdRoute
   '/exam/full/$subject': typeof ExamFullSubjectRoute
   '/exam/short/$subject': typeof ExamShortSubjectRoute
   '/exam/structured/$subject': typeof ExamStructuredSubjectRoute
@@ -254,6 +253,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/$subject': typeof SubjectRouteWithChildren
+  '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/exam': typeof ExamRouteWithChildren
   '/for-teachers': typeof ForTeachersRouteWithChildren
@@ -273,7 +273,6 @@ export interface FileRoutesById {
   '/practice/': typeof PracticeIndexRoute
   '/$subject/$topic/practice': typeof SubjectTopicPracticeRoute
   '/$subject/$topic/results': typeof SubjectTopicResultsRoute
-  '/_authenticated/classes/$classId': typeof AuthenticatedClassesClassIdRoute
   '/exam/full/$subject': typeof ExamFullSubjectRoute
   '/exam/short/$subject': typeof ExamShortSubjectRoute
   '/exam/structured/$subject': typeof ExamStructuredSubjectRoute
@@ -287,6 +286,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/$subject'
+    | '/about'
     | '/auth'
     | '/exam'
     | '/for-teachers'
@@ -306,7 +306,6 @@ export interface FileRouteTypes {
     | '/practice/'
     | '/$subject/$topic/practice'
     | '/$subject/$topic/results'
-    | '/classes/$classId'
     | '/exam/full/$subject'
     | '/exam/short/$subject'
     | '/exam/structured/$subject'
@@ -317,6 +316,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
     | '/auth'
     | '/exam'
     | '/for-teachers'
@@ -333,7 +333,6 @@ export interface FileRouteTypes {
     | '/practice'
     | '/$subject/$topic/practice'
     | '/$subject/$topic/results'
-    | '/classes/$classId'
     | '/exam/full/$subject'
     | '/exam/short/$subject'
     | '/exam/structured/$subject'
@@ -346,6 +345,7 @@ export interface FileRouteTypes {
     | '/'
     | '/_authenticated'
     | '/$subject'
+    | '/about'
     | '/auth'
     | '/exam'
     | '/for-teachers'
@@ -365,7 +365,6 @@ export interface FileRouteTypes {
     | '/practice/'
     | '/$subject/$topic/practice'
     | '/$subject/$topic/results'
-    | '/_authenticated/classes/$classId'
     | '/exam/full/$subject'
     | '/exam/short/$subject'
     | '/exam/structured/$subject'
@@ -379,6 +378,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   SubjectRoute: typeof SubjectRouteWithChildren
+  AboutRoute: typeof AboutRoute
   AuthRoute: typeof AuthRoute
   ExamRoute: typeof ExamRouteWithChildren
   ForTeachersRoute: typeof ForTeachersRouteWithChildren
@@ -463,6 +463,13 @@ declare module '@tanstack/react-router' {
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/$subject': {
@@ -577,13 +584,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ExamFullSubjectRouteImport
       parentRoute: typeof ExamRoute
     }
-    '/_authenticated/classes/$classId': {
-      id: '/_authenticated/classes/$classId'
-      path: '/classes/$classId'
-      fullPath: '/classes/$classId'
-      preLoaderRoute: typeof AuthenticatedClassesClassIdRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
     '/$subject/$topic/results': {
       id: '/$subject/$topic/results'
       path: '/results'
@@ -610,12 +610,10 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
-  AuthenticatedClassesClassIdRoute: typeof AuthenticatedClassesClassIdRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
-  AuthenticatedClassesClassIdRoute: AuthenticatedClassesClassIdRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
@@ -708,6 +706,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   SubjectRoute: SubjectRouteWithChildren,
+  AboutRoute: AboutRoute,
   AuthRoute: AuthRoute,
   ExamRoute: ExamRouteWithChildren,
   ForTeachersRoute: ForTeachersRouteWithChildren,
@@ -724,13 +723,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

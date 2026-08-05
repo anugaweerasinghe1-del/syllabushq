@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { generateObject } from "ai";
 import { z } from "zod";
-import { googleAi, FAST_MODEL } from "./ai-gateway.server";
+import { withModels } from "./ai-gateway.server";
 import subjectsData from "@/data/subjects.json";
 import questionsData from "@/data/questions.json";
 
@@ -77,12 +77,7 @@ export const getDailyQuestion = createServerFn({ method: "GET" }).handler(
     const topic = subject.topics[dayIdx % subject.topics.length];
 
     try {
-      if (!process.env.GOOGLE_AI_API_KEY) throw new Error("no key");
-      const model = googleAi()(FAST_MODEL);
-      const { object } = await generateObject({
-        model,
-        schema: Schema,
-        prompt: [
+      const prompt = [
           `Today is ${date}. You are crafting the SyllabusHQ Daily Question for Sri Lankan G.C.E. O/L students (English medium).`,
           `Subject: ${subject.name} (${subject.slug})`,
           `Topic: ${topic.name} (${topic.slug})`,
@@ -92,8 +87,10 @@ export const getDailyQuestion = createServerFn({ method: "GET" }).handler(
           `- "hook" = one tight, motivating line (<= 18 words) that introduces today's question.`,
           `- Keep "question" concise (<= 60 words). Use plain text or LaTeX inside $...$ for math.`,
           `Set "subject" to "${subject.slug}" and "topic" to "${topic.slug}".`,
-        ].join("\n"),
-      });
+      ].join("\n");
+      const { object } = await withModels("fast", (model) =>
+        generateObject({ model, schema: Schema, prompt }),
+      );
       const out: DailyOut = {
         ...object,
         date,

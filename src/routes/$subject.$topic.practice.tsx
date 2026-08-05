@@ -13,6 +13,7 @@ import {
 } from "@/lib/content";
 import { markStudiedToday } from "@/lib/streak";
 import { recordScore } from "@/lib/scores";
+import { logSession } from "@/lib/logSession";
 import { SiteHeader } from "@/components/SiteHeader";
 import { NotFoundShell } from "@/components/NotFoundShell";
 import {
@@ -199,6 +200,13 @@ function PracticePage() {
     );
     markStudiedToday();
     recordScore(subject.slug, topic.slug, final, set.length);
+    void logSession({
+      subject: subject.slug,
+      topic: topic.slug,
+      mode: session.config?.mode ?? "mcq",
+      marksAwarded: final,
+      totalMarks: set.length,
+    });
     sessionStorage.setItem(
       "ol-last-results",
       JSON.stringify({

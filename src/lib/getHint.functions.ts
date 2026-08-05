@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { generateText } from "ai";
 import { z } from "zod";
-import { googleAi, FAST_MODEL } from "./ai-gateway.server";
+import { withModels } from "./ai-gateway.server";
 
 /**
  * Returns ONE short Socratic hint for a question — never the answer.
@@ -15,11 +15,11 @@ export const getHint = createServerFn({ method: "POST" })
         topic: z.string().max(64),
         question: z.string().min(1).max(2000),
         options: z.array(z.string()).max(8).optional(),
+        explanation: z.string().max(2000).optional(),
       })
       .parse(input),
   )
   .handler(async ({ data }) => {
-    const provider = googleAi();
     const prompt = [
       "You are a Sri Lankan G.C.E. O/L tutor.",
       `Subject: ${data.subject}. Topic: ${data.topic}.`,
@@ -32,10 +32,26 @@ export const getHint = createServerFn({ method: "POST" })
         : "",
     ].join("\n");
 
-    const { text } = await generateText({
-      model: provider(FAST_MODEL),
-      prompt,
-      temperature: 0.4,
-    });
-    return { hint: text.trim().slice(0, 240) };
+    try {
+      const { text } = await withModels("fast", (model) =>
+        generateText({ model, prompt, temperature: 0.4 }),
+      );
+      return { hint: text.trim().slice(0, 240), source: "ai" as const };
+    } catch (err) {
+      console.warn("[getHint] all providers failed, using written fallback:", err);
+      return { hint: writtenHint(data.explanation, data.topic), source: "fallback" as const };
+    }
   });
+
+/**
+ * Quota-proof fallback: build a nudge from the question's own explanation
+ * without revealing the answer.
+ */
+function writtenHint(explanation: string | undefined, topic: string): string {
+  const clean = (explanation ?? "").replace(/\s+/g, " ").trim();
+  if (!clean) return `Re-read the question and write down what ${topic} formula or rule applies first.`;
+  const first = clean.split(/(?<=[.!?])\s/)[0] ?? clean;
+  const words = first.split(" ");
+  const nudge = words.slice(0, Math.max(6, Math.ceil(words.length * 0.45))).join(" ");
+  return `Start here: ${nudge}…`;
+}

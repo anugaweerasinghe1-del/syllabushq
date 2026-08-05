@@ -3,13 +3,15 @@ import { buildHeatmap, computeStreaks, getStudyDays, getLastActivityAt } from "@
 
 type Stats = { current: number; longest: number; total: number; resetsInMs: number };
 
-export function StreakHeatmap() {
+export function StreakHeatmap({ extraDays }: { extraDays?: string[] } = {}) {
   const [ready, setReady] = useState(false);
   const [days, setDays] = useState<Set<string>>(() => new Set());
   const [stats, setStats] = useState<Stats>({ current: 0, longest: 0, total: 0, resetsInMs: 0 });
 
   function refresh() {
     const d = getStudyDays();
+    // Account-side study days (from saved papers) merge with this browser's.
+    for (const day of extraDays ?? []) d.add(day);
     const last = getLastActivityAt();
     setDays(d);
     setStats(computeStreaks(d, last));
@@ -29,7 +31,8 @@ export function StreakHeatmap() {
       window.removeEventListener("focus", onUpdate);
       window.clearInterval(id);
     };
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [(extraDays ?? []).join(",")]);
 
   const grid = buildHeatmap(days, 22);
 
