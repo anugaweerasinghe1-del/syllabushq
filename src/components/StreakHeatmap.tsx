@@ -78,7 +78,7 @@ export function StreakHeatmap({ extraDays }: { extraDays?: string[] } = {}) {
                     backgroundColor: cell.future
                       ? "transparent"
                       : cell.studied
-                        ? "var(--amber)"
+                        ? "var(--primary)"
                         : "var(--surface-2)",
                     boxShadow: cell.studied ? "0 0 8px rgba(245,165,36,0.45)" : undefined,
                   }}

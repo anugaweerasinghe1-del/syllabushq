@@ -225,7 +225,7 @@ function TopicPage() {
                   type="button"
                   onClick={() => setMode(m.id)}
                   className={`group text-left rounded-2xl p-5 transition hairline ${active ? "bg-primary/[0.06] border-primary/60" : "hover:border-primary/30"}`}
-                  style={active ? { borderColor: "var(--amber)" } : undefined}
+                  style={active ? { borderColor: "var(--primary)" } : undefined}
                 >
                   <div className="flex items-center justify-between">
                     <p className="text-xs font-medium uppercase tracking-wider text-orange">
@@ -235,7 +235,7 @@ function TopicPage() {
                       className={`h-3 w-3 rounded-full border ${active ? "border-primary bg-primary" : "border-hairline"}`}
                       style={
                         active
-                          ? { background: "var(--amber)", borderColor: "var(--amber)" }
+                          ? { background: "var(--primary)", borderColor: "var(--primary)" }
                           : undefined
                       }
                     />
@@ -285,7 +285,7 @@ function TopicPage() {
                   step={5}
                   value={count}
                   onChange={(e) => setCount(Number(e.target.value))}
-                  className="w-full accent-amber"
+                  className="w-full accent-[color:var(--primary)]"
                 />
                 <div className="flex flex-wrap gap-2 pt-2">
                   {[5, 10, 20, 30]
@@ -343,7 +343,7 @@ function TopicPage() {
                   cx="50"
                   cy="50"
                   r="44"
-                  stroke="var(--amber)"
+                  stroke="var(--primary)"
                   strokeWidth="6"
                   fill="none"
                   strokeDasharray={2 * Math.PI * 44}

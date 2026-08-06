@@ -135,7 +135,7 @@ function ReviewsPage() {
                       className="text-2xl leading-none transition"
                       aria-label={`${n} stars`}
                     >
-                      <span style={{ color: n <= rating ? "var(--amber)" : "var(--hairline)" }}>
+                      <span style={{ color: n <= rating ? "var(--primary)" : "var(--hairline)" }}>
                         ★
                       </span>
                     </button>

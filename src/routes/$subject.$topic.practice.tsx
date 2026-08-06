@@ -315,7 +315,7 @@ function PracticePage() {
         >
           <div
             className="h-full rounded-full transition-all"
-            style={{ width: `${completion}%`, background: "var(--amber)" }}
+            style={{ width: `${completion}%`, background: "var(--primary)" }}
           />
         </div>
 

@@ -45,7 +45,7 @@
   --color-charcoal: var(--charcoal);
   --color-sage: var(--sage);
   --color-clay: var(--clay);
-  --color-amber: var(--amber);
+  --color-amber: var(--primary);
   --color-mint: var(--mint);
   --color-coral: var(--coral);
   --color-orange: var(--orange);
@@ -89,7 +89,7 @@
   --ink: #14211a;
   --paper: #f2f5ef;
   --charcoal: #22302a;
-  --marigold: var(--amber);
+  --marigold: var(--primary);
   --sage: var(--green);
   --clay: var(--coral);
 

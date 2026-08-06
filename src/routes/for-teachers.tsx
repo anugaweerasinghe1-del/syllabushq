@@ -151,7 +151,7 @@ function TeachersPage() {
                   step={5}
                   value={count}
                   onChange={(e) => setCount(Number(e.target.value))}
-                  className="mt-3 w-full accent-amber"
+                  className="mt-3 w-full accent-[color:var(--primary)]"
                 />
               </div>
               <div>

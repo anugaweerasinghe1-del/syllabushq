@@ -26,7 +26,7 @@ export function ModelAnswerToggle({ answer, explanation, label = "Model answer" 
           <span
             aria-hidden
             className="inline-block h-1.5 w-1.5 rounded-full"
-            style={{ background: open ? "var(--mint)" : "var(--amber)" }}
+            style={{ background: open ? "var(--mint)" : "var(--primary)" }}
           />
           {open ? `Hide ${label.toLowerCase()}` : `Toggle ${label.toLowerCase()}`}
         </span>
