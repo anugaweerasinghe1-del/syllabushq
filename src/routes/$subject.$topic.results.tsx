@@ -154,7 +154,7 @@ function ResultsPage() {
       <SiteHeader />
       <main className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-12">
         <section className="glass-panel rounded-2xl p-6 sm:p-8 rise">
-          <p className="text-xs font-medium uppercase tracking-wider text-marigold">
+          <p className="text-xs font-medium uppercase tracking-wider text-orange">
             {subject.name} · {topic.name}
           </p>
           <div className="mt-2 flex items-end gap-6 flex-wrap">
@@ -163,7 +163,7 @@ function ResultsPage() {
               <span className="text-muted-foreground">/{results.total}</span>
             </h1>
             <div className="pb-1">
-              <p className="text-2xl font-num text-amber">{pct}%</p>
+              <p className="text-2xl font-num text-orange">{pct}%</p>
               <p className="text-sm text-muted-foreground">{tone}</p>
             </div>
           </div>
@@ -180,7 +180,7 @@ function ResultsPage() {
             <Link
               to="/$subject/$topic/practice"
               params={{ subject: subject.slug, topic: topic.slug }}
-              className="inline-flex items-center justify-center rounded-lg bg-amber text-background px-5 py-3 text-sm font-semibold hover:opacity-90"
+              className="inline-flex items-center justify-center rounded-lg bg-primary text-primary-foreground px-5 py-3 text-sm font-semibold hover:opacity-90"
             >
               Retry
             </Link>

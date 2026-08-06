@@ -248,7 +248,7 @@ function StructuredRunner() {
               });
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
-            className="rounded-lg bg-foreground px-6 py-3 text-sm font-semibold text-background hover:brightness-110"
+            className="rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground hover:brightness-110"
           >
             {submitted ? "Submitted ✓" : "Submit paper"}
           </button>

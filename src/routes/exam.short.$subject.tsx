@@ -168,7 +168,7 @@ function ShortAnswerRunner() {
 
         <div className="mb-6 h-1 w-full overflow-hidden rounded-full bg-[var(--hairline)]">
           <div
-            className="h-full bg-foreground transition-all"
+            className="h-full bg-primary transition-all"
             style={{ width: `${((i + 1) / total) * 100}%` }}
           />
         </div>

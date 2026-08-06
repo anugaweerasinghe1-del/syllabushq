@@ -199,7 +199,7 @@ function FullExam() {
               onClick={() => setSection(s)}
               className={`rounded-full border px-4 py-1.5 text-xs transition ${
                 section === s
-                  ? "border-foreground bg-foreground/10 text-foreground"
+                  ? "border-primary bg-primary/10 text-foreground"
                   : "border-hairline text-muted-foreground hover:text-foreground"
               }`}
             >
@@ -233,7 +233,7 @@ function FullExam() {
                         reveal
                           ? "border-mint/60 bg-mint/10 text-foreground"
                           : chosen
-                            ? "border-foreground bg-foreground/10 text-foreground"
+                            ? "border-primary bg-primary/10 text-foreground"
                             : "border-hairline text-muted-foreground hover:text-foreground"
                       }`}
                     >
@@ -307,7 +307,7 @@ function FullExam() {
           <button
             onClick={submit}
             disabled={submitted}
-            className="rounded-lg bg-foreground px-6 py-3 text-sm font-semibold text-background transition hover:brightness-110 disabled:opacity-60"
+            className="rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition hover:brightness-110 disabled:opacity-60"
           >
             {submitted ? "Submitted ✓" : "Submit full paper"}
           </button>

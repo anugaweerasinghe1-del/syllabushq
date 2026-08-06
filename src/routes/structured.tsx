@@ -64,7 +64,7 @@ function StructuredPage() {
       <SiteHeader />
       <main className="mx-auto max-w-4xl px-4 py-10 sm:px-6 sm:py-14">
         <header className="mb-8 rise">
-          <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-amber">
+          <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-orange">
             Past-paper style · original
           </p>
           <h1 className="mt-2 font-display text-5xl text-foreground sm:text-6xl text-balance">
@@ -111,7 +111,7 @@ function StructuredPage() {
             <p className="text-sm text-muted-foreground">
               Generating fresh questions… check back in a minute.
             </p>
-            <Link to="/" className="mt-4 inline-block text-amber hover:underline">
+            <Link to="/" className="mt-4 inline-block text-orange hover:underline">
               ← Back home
             </Link>
           </div>
@@ -133,7 +133,7 @@ function TabBtn({
   return (
     <button
       onClick={onClick}
-      className={`rounded-lg px-4 py-2 text-sm font-medium transition ${active ? "bg-amber text-[color:var(--bg)]" : "border border-hairline text-foreground hover:bg-secondary"}`}
+      className={`rounded-lg px-4 py-2 text-sm font-medium transition ${active ? "bg-primary text-primary-foreground" : "border border-hairline text-foreground hover:bg-secondary"}`}
     >
       {children}
     </button>
@@ -151,7 +151,7 @@ function FilterChip({
   return (
     <button
       onClick={onClick}
-      className={`rounded-full px-3 py-1 transition ${active ? "border border-amber text-amber" : "border border-hairline text-muted-foreground hover:text-foreground"}`}
+      className={`rounded-full px-3 py-1 transition ${active ? "border border-primary text-orange" : "border border-hairline text-muted-foreground hover:text-foreground"}`}
     >
       {children}
     </button>
@@ -164,7 +164,7 @@ function Reveal({ children }: { children: React.ReactNode }) {
     <div className="mt-2">
       <button
         onClick={() => setOpen((o) => !o)}
-        className="text-xs uppercase tracking-wider text-amber hover:underline"
+        className="text-xs uppercase tracking-wider text-orange hover:underline"
       >
         {open ? "Hide model answer" : "Show model answer"}
       </button>
@@ -186,7 +186,7 @@ function StructuredList({ items }: { items: StructuredQ[] }) {
     <ol className="space-y-4">
       {items.map((q, i) => (
         <li key={i} className="glass-panel rounded-xl p-5">
-          <p className="text-[10px] uppercase tracking-[0.22em] text-amber">
+          <p className="text-[10px] uppercase tracking-[0.22em] text-orange">
             {subjectName(q.subject)}
           </p>
           <p className="mt-2 text-sm text-charcoal italic">{q.context}</p>
@@ -223,7 +223,7 @@ function ShortItem({ q }: { q: ShortQ }) {
   const [show, setShow] = useState(false);
   return (
     <li className="glass-panel rounded-xl p-5">
-      <p className="text-[10px] uppercase tracking-[0.22em] text-amber">
+      <p className="text-[10px] uppercase tracking-[0.22em] text-orange">
         {subjectName(q.subject)} · {q.marks} marks
       </p>
       <p className="mt-2 text-sm text-foreground">{q.question}</p>
@@ -232,13 +232,13 @@ function ShortItem({ q }: { q: ShortQ }) {
         onChange={(e) => setVal(e.target.value)}
         placeholder="Write your answer here…"
         rows={3}
-        className="mt-3 w-full rounded-lg border border-hairline bg-surface px-3 py-2.5 text-sm text-foreground outline-none focus:border-amber"
+        className="mt-3 w-full rounded-lg border border-hairline bg-surface px-3 py-2.5 text-sm text-foreground outline-none focus:border-primary"
       />
       <div className="mt-2 flex items-center justify-between">
         <span className="text-[11px] text-muted-foreground">{val.length} chars</span>
         <button
           onClick={() => setShow((s) => !s)}
-          className="text-xs uppercase tracking-wider text-amber hover:underline"
+          className="text-xs uppercase tracking-wider text-orange hover:underline"
         >
           {show ? "Hide" : "Reveal"} model answer
         </button>
@@ -264,7 +264,7 @@ function CaseList({ items }: { items: CaseQ[] }) {
     <ol className="space-y-4">
       {items.map((c, i) => (
         <li key={i} className="glass-panel rounded-xl p-5">
-          <p className="text-[10px] uppercase tracking-[0.22em] text-amber">
+          <p className="text-[10px] uppercase tracking-[0.22em] text-orange">
             {subjectName(c.subject)} · Case study
           </p>
           <h3 className="mt-2 font-display text-xl text-foreground">{c.title}</h3>

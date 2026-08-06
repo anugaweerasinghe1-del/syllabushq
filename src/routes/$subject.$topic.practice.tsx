@@ -132,7 +132,7 @@ function PracticePage() {
           <Link
             to="/$subject"
             params={{ subject: subject.slug }}
-            className="mt-4 inline-block text-amber hover:underline"
+            className="mt-4 inline-block text-orange hover:underline"
           >
             ← Back to {subject.name}
           </Link>
@@ -264,7 +264,7 @@ function PracticePage() {
             </span>
             <button
               onClick={() => setConfirmSubmit(true)}
-              className="rounded-md bg-amber text-background px-3 py-1.5 text-xs font-semibold"
+              className="rounded-md bg-primary text-primary-foreground px-3 py-1.5 text-xs font-semibold"
             >
               Submit
             </button>
@@ -299,7 +299,7 @@ function PracticePage() {
                     setConfirmSubmit(false);
                     finish();
                   }}
-                  className="rounded-lg bg-foreground px-4 py-2 text-sm font-semibold text-background hover:brightness-110"
+                  className="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:brightness-110"
                 >
                   Submit now
                 </button>
@@ -315,14 +315,14 @@ function PracticePage() {
         >
           <div
             className="h-full rounded-full transition-all"
-            style={{ width: `${completion}%`, background: "var(--amber)" }}
+            style={{ width: `${completion}%`, background: "var(--primary)" }}
           />
         </div>
 
         <div className="grid gap-6 lg:grid-cols-[1fr_220px]">
           <article className="glass-panel rounded-2xl p-6 sm:p-8 rise">
             <div className="flex items-center justify-between">
-              <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-amber">
+              <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-orange">
                 Question {i + 1} of {set.length}
               </p>
               <span className="text-[11px] text-muted-foreground">1 mark</span>
@@ -345,14 +345,14 @@ function PracticePage() {
                   else cls += " border-hairline opacity-60";
                 } else {
                   cls += chosen
-                    ? " border-amber bg-amber/[0.08]"
-                    : " border-hairline hover:border-foreground/40";
+                    ? " border-primary bg-primary/[0.08]"
+                    : " border-hairline hover:border-primary/40";
                 }
                 return (
                   <li key={idx}>
                     <button type="button" onClick={() => choose(idx)} className={cls}>
                       <span
-                        className={`font-num text-xs ${chosen ? "text-amber" : "text-muted-foreground"} pt-0.5`}
+                        className={`font-num text-xs ${chosen ? "text-orange" : "text-muted-foreground"} pt-0.5`}
                       >
                         {String.fromCharCode(65 + idx)}
                       </span>
@@ -410,7 +410,7 @@ function PracticePage() {
               <button
                 onClick={next}
                 disabled={!isExam && picked === null}
-                className="rounded-lg bg-foreground text-background px-5 py-2 text-sm font-semibold disabled:opacity-40"
+                className="rounded-lg bg-primary text-primary-foreground px-5 py-2 text-sm font-semibold disabled:opacity-40"
               >
                 {i + 1 >= set.length ? "Finish" : "Next →"}
               </button>
@@ -427,9 +427,9 @@ function PracticePage() {
                 const a = session.answers[n];
                 const isCur = n === i;
                 let cls = "h-8 w-full rounded-md border text-xs font-num transition ";
-                if (isCur) cls += "border-amber bg-amber text-background";
+                if (isCur) cls += "border-primary bg-primary text-primary-foreground";
                 else if (a !== null) cls += "border-mint/50 bg-mint/15 text-foreground";
-                else cls += "border-hairline text-muted-foreground hover:border-foreground/40";
+                else cls += "border-hairline text-muted-foreground hover:border-primary/40";
                 return (
                   <button key={n} onClick={() => jumpTo(n)} className={cls}>
                     {n + 1}
@@ -438,7 +438,7 @@ function PracticePage() {
               })}
             </div>
             <div className="mt-4 space-y-1.5 text-[11px] text-muted-foreground">
-              <Legend swatch="bg-amber" label="Current" />
+              <Legend swatch="bg-primary" label="Current" />
               <Legend swatch="bg-mint/40" label="Answered" />
               <Legend swatch="bg-transparent border border-hairline" label="Unanswered" />
             </div>

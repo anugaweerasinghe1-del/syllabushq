@@ -131,7 +131,7 @@ function SeoLandingPage() {
           <Link
             to="/practice/$mode/$subject"
             params={{ mode: "mcq", subject: p.subject }}
-            className="inline-flex items-center justify-center rounded-lg bg-foreground px-6 py-3 text-sm font-semibold text-background"
+            className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground"
           >
             Begin a {p.subjectName} paper →
           </Link>
@@ -185,7 +185,7 @@ function SeoLandingPage() {
           <Link
             to="/practice/$mode/$subject"
             params={{ mode: "mcq", subject: p.subject }}
-            className="mt-5 inline-flex items-center justify-center rounded-lg bg-foreground px-6 py-3 text-sm font-semibold text-background"
+            className="mt-5 inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground"
           >
             Start {p.topicName} practice →
           </Link>

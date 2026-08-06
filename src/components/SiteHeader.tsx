@@ -45,9 +45,9 @@ export function SiteHeader() {
           )}
           <Link
             to="/practice"
-            className="group relative inline-flex items-center gap-1.5 rounded-xl bg-foreground px-3.5 py-2 text-[12px] font-semibold text-background transition hover:brightness-110"
+            className="group relative inline-flex items-center gap-1.5 rounded-xl bg-primary px-3.5 py-2 text-[12px] font-semibold text-primary-foreground transition hover:brightness-110"
           >
-            <span className="absolute inset-0 -z-10 rounded-xl bg-foreground blur-md opacity-25 transition group-hover:opacity-50" />
+            <span className="absolute inset-0 -z-10 rounded-xl bg-primary blur-md opacity-25 transition group-hover:opacity-50" />
             Begin
             <span className="transition group-hover:translate-x-0.5">→</span>
           </Link>

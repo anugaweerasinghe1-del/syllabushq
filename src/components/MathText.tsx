@@ -1,111 +1,40 @@
-import { Fragment, useMemo } from "react";
-import reactKatex from "react-katex";
-import "katex/dist/katex.min.css";
-
-// react-katex ships as CommonJS; named exports aren't reliable under Vite SSR/ESM.
-const { InlineMath, BlockMath } = reactKatex as unknown as {
-  InlineMath: React.ComponentType<{ math: string }>;
-  BlockMath: React.ComponentType<{ math: string }>;
-};
+import { useMemo } from "react";
+import { mathToPlain } from "@/lib/mathPlain";
 
 /**
- * Renders text that may contain LaTeX delimited by $...$ (inline) or $$...$$ (block).
- * Also normalizes legacy ASCII math written by older question banks:
- *   sqrt(x)  -> $\sqrt{x}$
- *   x^2 / x^{n+1} -> $x^{...}$
- *   *  -> \times  (only inside $...$)
- *   /  -> \div    (only inside $...$)
- * Plain text is rendered verbatim.
+ * Renders question text with real Unicode maths symbols (√ × ÷ ² ½ π …).
+ * Accepts legacy LaTeX ($...$, \sqrt{}, \frac{}{}) and legacy ASCII
+ * (sqrt(x), x^2, log_2) and converts both to plain readable Unicode.
+ * No KaTeX, no web fonts, no layout shift.
  */
 export function MathText({ children, className }: { children: string; className?: string }) {
-  const parts = useMemo(() => parse(normalize(children ?? "")), [children]);
-  return (
-    <span className={className}>
-      {parts.map((p, i) =>
-        p.type === "text" ? (
-          <Fragment key={i}>{p.value}</Fragment>
-        ) : p.type === "inline" ? (
-          <InlineMath key={i} math={p.value} />
-        ) : (
-          <BlockMath key={i} math={p.value} />
-        ),
-      )}
-    </span>
-  );
+  const text = useMemo(() => render(children ?? ""), [children]);
+  return <span className={className}>{text}</span>;
 }
 
-type Part = { type: "text" | "inline" | "block"; value: string };
+const ASCII_FRACTIONS: Array<[RegExp, string]> = [
+  [/\b1\/2\b/g, "½"],
+  [/\b1\/3\b/g, "⅓"],
+  [/\b2\/3\b/g, "⅔"],
+  [/\b1\/4\b/g, "¼"],
+  [/\b3\/4\b/g, "¾"],
+  [/\b1\/8\b/g, "⅛"],
+];
 
-function parse(src: string): Part[] {
-  const out: Part[] = [];
-  let i = 0;
-  while (i < src.length) {
-    if (src[i] === "$" && src[i + 1] === "$") {
-      const end = src.indexOf("$$", i + 2);
-      if (end === -1) {
-        out.push({ type: "text", value: src.slice(i) });
-        break;
-      }
-      out.push({ type: "block", value: src.slice(i + 2, end) });
-      i = end + 2;
-    } else if (src[i] === "$") {
-      const end = src.indexOf("$", i + 1);
-      if (end === -1) {
-        out.push({ type: "text", value: src.slice(i) });
-        break;
-      }
-      out.push({ type: "inline", value: src.slice(i + 1, end) });
-      i = end + 1;
-    } else {
-      let j = i;
-      while (j < src.length && src[j] !== "$") j++;
-      out.push({ type: "text", value: src.slice(i, j) });
-      i = j;
-    }
-  }
-  return out;
-}
-
-/** Normalize common ASCII math to LaTeX wrapped in $...$ if not already wrapped. */
-function normalize(src: string): string {
-  // Already contains $...$ -> only normalize inside $...$ ranges, leave plain text alone.
-  if (src.includes("$")) return normalizeInsideMath(src);
-
+export function render(src: string): string {
+  if (!src) return "";
   let s = src;
-  // log_N(x) / log_N x  ->  $\log_{N}$ (must run BEFORE the generic _ rule
-  // which otherwise splits "log_2" as "lo" + subscript, rendering as "lo").
-  s = s.replace(/\blog_(\{[^}]+\}|\d+|[A-Za-z])/g, (_m, n) => {
-    const sub = n.startsWith("{") ? n.slice(1, -1) : n;
-    return `$\\log_{${sub}}$`;
-  });
-  // ln(x)  ->  $\ln(x)$   (leave plain "ln x" alone to avoid over-eating)
-  s = s.replace(/\bln\(([^()]+)\)/g, "$\\ln($1)$");
-  // 1/2 style bare fractions in obviously-math contexts: leave alone in prose.
-  // sqrt(...)
-  s = s.replace(/sqrt\(([^()]+)\)/g, "$$\\sqrt{$1}$$");
-  // a^{...} or a^b (single token b)
-  s = s.replace(/([A-Za-z0-9)\]])\^(\{[^{}]+\}|-?\d+|-?[A-Za-z])/g, (_m, base, exp) => {
-    const e = exp.startsWith("{") ? exp.slice(1, -1) : exp;
-    return `$${base}^{${e}}$`;
-  });
-  // a_{...} or a_b
-  // Only wrap when the base is a single letter/digit — avoids eating the last
-  // letter of a longer word (e.g. "log_2" -> "lo" + "$g_{2}$").
-  s = s.replace(/(?<![A-Za-z])([A-Za-z0-9])_(\{[^{}]+\}|\d+|[A-Za-z])/g, (_m, base, sub) => {
-    const x = sub.startsWith("{") ? sub.slice(1, -1) : sub;
-    return `$${base}_{${x}}$`;
-  });
-  // Simple inline fractions like 22 / 7 -> leave; but in obvious math contexts also map * -> ×, / -> ÷
-  // We DON'T globally rewrite * and / because they appear in prose.
+  // Legacy ASCII helpers the old banks used.
+  s = s.replace(/\bsqrt\s*\(([^()]*)\)/gi, "√($1)");
+  s = s.replace(/\bsqrt\s*(\d+)/gi, "√$1");
+  s = s.replace(/\bpi\b/g, "π");
+  s = s.replace(/\bdegrees?\b/g, "°");
+  s = s.replace(/<=/g, "≤").replace(/>=/g, "≥").replace(/!=/g, "≠");
+  s = s.replace(/\+\/-/g, "±");
+  // LaTeX + ^ / _ handling lives in mathToPlain (shared with exports).
+  s = mathToPlain(s);
+  // Tidy redundant brackets: √(9) -> √9 for single tokens.
+  s = s.replace(/√\(([A-Za-z0-9.]+)\)/g, "√$1");
+  for (const [re, to] of ASCII_FRACTIONS) s = s.replace(re, to);
   return s;
-}
-
-function normalizeInsideMath(src: string): string {
-  return src.replace(/\$([^$]+)\$/g, (m, inner) => {
-    let v = inner as string;
-    v = v.replace(/\bsqrt\(([^()]+)\)/g, "\\sqrt{$1}");
-    v = v.replace(/\*/g, "\\times ");
-    v = v.replace(/(^|[^\\])\//g, "$1\\div ");
-    return `$${v}$`;
-  });
 }
