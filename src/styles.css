@@ -1,6 +1,8 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
+@import "@fontsource/carlito/400.css";
+@import "@fontsource/carlito/700.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -49,65 +51,68 @@
   --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
   --color-hairline: var(--hairline);
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Instrument Serif", "Times New Roman", ui-serif, serif;
+  --font-sans: "Carlito", Calibri, ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Carlito", Calibri, ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 :root {
   --radius: 0.75rem;
 
-  /* Deep premium dark. Obsidian base, platinum type, restrained
-     indigo+cyan+jade aurora. AA-tuned. */
-  --bg: #07080b;
-  --surface: #0d0f14;
-  --surface-2: #12151c;
-  --surface-3: #181c25;
-  --hairline: rgba(232, 236, 243, 0.08);
-  --hairline-strong: rgba(232, 236, 243, 0.16);
+  /* Light study palette. Off-white paper, green primary, blue support,
+     gold for attention, orange for action, red only for errors. */
+  --bg: #f2f5ef;
+  --surface: #ffffff;
+  --surface-2: #f7f9f4;
+  --surface-3: #eef2ea;
+  --hairline: rgba(20, 34, 24, 0.1);
+  --hairline-strong: rgba(20, 34, 24, 0.2);
 
-  --accent-1: #e8ecf3;
-  --accent-2: #a78bfa;
-  --aurora-1: #a78bfa;
-  --aurora-2: #67e8f9;
-  --aurora-3: #4ade80;
-  --glow: rgba(167, 139, 250, 0.22);
+  --accent-1: #1e7a3c;
+  --accent-2: #3b72e8;
+  --aurora-1: #1e7a3c;
+  --aurora-2: #3b72e8;
+  --aurora-3: #e8b10a;
+  --glow: rgba(30, 122, 60, 0.18);
 
-  --mint: #6ee7b7;
-  --coral: #fb7185;
-  --amber: #fbbf24;
-  --amber-soft: #fcd34d;
+  --mint: #1e7a3c;
+  --coral: #d1341f;
+  --amber: #e8b10a;
+  --amber-soft: #f5cf5c;
+  --orange: #e2711d;
+  --blue: #3b72e8;
+  --green: #1e7a3c;
 
-  --ink: #e8ecf3;
-  --paper: #07080b;
-  --charcoal: #0d0f14;
+  --ink: #14211a;
+  --paper: #f2f5ef;
+  --charcoal: #22302a;
   --marigold: var(--amber);
-  --sage: var(--mint);
+  --sage: var(--green);
   --clay: var(--coral);
 
-  --background: #07080b;
-  --foreground: #e8ecf3;
-  --card: #0d0f14;
-  --card-foreground: #e8ecf3;
-  --popover: #0d0f14;
-  --popover-foreground: #e8ecf3;
-  --primary: #e8ecf3;
-  --primary-foreground: #07080b;
-  --secondary: #12151c;
-  --secondary-foreground: #e8ecf3;
-  --muted: #12151c;
-  --muted-foreground: #8b93a7;
-  --accent: #a78bfa;
-  --accent-foreground: #07080b;
-  --destructive: #fb7185;
-  --destructive-foreground: #07080b;
-  --border: rgba(232, 236, 243, 0.08);
-  --input: rgba(232, 236, 243, 0.12);
-  --ring: rgba(167, 139, 250, 0.5);
+  --background: #f2f5ef;
+  --foreground: #14211a;
+  --card: #ffffff;
+  --card-foreground: #14211a;
+  --popover: #ffffff;
+  --popover-foreground: #14211a;
+  --primary: #1e7a3c;
+  --primary-foreground: #ffffff;
+  --secondary: #eef2ea;
+  --secondary-foreground: #14211a;
+  --muted: #eef2ea;
+  --muted-foreground: #5b6b61;
+  --accent: #3b72e8;
+  --accent-foreground: #ffffff;
+  --destructive: #d1341f;
+  --destructive-foreground: #ffffff;
+  --border: rgba(20, 34, 24, 0.1);
+  --input: rgba(20, 34, 24, 0.16);
+  --ring: rgba(59, 114, 232, 0.45);
 
   --shadow-cinematic:
-    0 20px 60px -30px rgba(0, 0, 0, 0.85), 0 1px 0 0 rgba(255, 255, 255, 0.05) inset;
-  --shadow-lift: 0 40px 100px -40px rgba(0, 0, 0, 0.9), 0 1px 0 0 rgba(255, 255, 255, 0.06) inset;
+    0 1px 2px rgba(20, 34, 24, 0.05), 0 12px 32px -20px rgba(20, 34, 24, 0.25);
+  --shadow-lift: 0 2px 4px rgba(20, 34, 24, 0.05), 0 28px 60px -32px rgba(20, 34, 24, 0.3);
 }
 
 @layer base {
@@ -126,9 +131,9 @@
     -webkit-font-smoothing: antialiased;
     background-color: var(--bg);
     background-image:
-      radial-gradient(ellipse 80% 55% at 50% -10%, rgba(167, 139, 250, 0.14), transparent 60%),
-      radial-gradient(ellipse 60% 45% at 90% 20%, rgba(103, 232, 249, 0.08), transparent 60%),
-      radial-gradient(ellipse 70% 50% at 10% 90%, rgba(74, 222, 128, 0.06), transparent 60%);
+      radial-gradient(ellipse 80% 55% at 50% -10%, rgba(30, 122, 60, 0.07), transparent 60%),
+      radial-gradient(ellipse 60% 45% at 90% 20%, rgba(59, 114, 232, 0.06), transparent 60%),
+      radial-gradient(ellipse 70% 50% at 10% 95%, rgba(232, 177, 10, 0.06), transparent 60%);
     background-attachment: fixed;
     overflow-x: hidden;
   }
@@ -140,9 +145,9 @@
   h5,
   h6 {
     font-family: var(--font-display);
-    letter-spacing: -0.015em;
+    letter-spacing: -0.02em;
     color: var(--foreground);
-    font-weight: 400;
+    font-weight: 700;
   }
 
   .font-num {
