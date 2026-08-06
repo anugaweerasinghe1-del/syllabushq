@@ -81,7 +81,17 @@ export function HintButton({ subject, topic, question, options }: Props) {
           disabled={disabled}
           className="inline-flex items-center gap-2 rounded-full border border-hairline px-3.5 py-1.5 text-[12px] font-medium text-foreground transition hover:border-primary/70 hover:text-orange disabled:opacity-40"
         >
-          <span aria-hidden>💡</span>
+          <svg
+            aria-hidden
+            viewBox="0 0 24 24"
+            className="h-3.5 w-3.5"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+          >
+            <path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.5.4.8 1 .8 1.6V16h5.4v-.5c0-.6.3-1.2.8-1.6A6 6 0 0 0 12 3Z" />
+          </svg>
           {loading ? "Thinking…" : hint ? "Hint shown" : "Reveal hint"}
         </button>
         <span className="text-[11px] text-muted-foreground tabular-nums">
