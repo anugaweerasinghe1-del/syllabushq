@@ -143,7 +143,7 @@ function DailyCard({ data }: { data: DailyOut }) {
         <Link
           to="/$subject/$topic"
           params={{ subject: data.subject, topic: data.topic }}
-          className="group inline-flex items-center gap-2 rounded-xl bg-foreground px-5 py-2.5 text-sm font-semibold text-background transition hover:brightness-110"
+          className="group inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition hover:brightness-110"
         >
           Drill this topic
           <span className="transition group-hover:translate-x-0.5">→</span>

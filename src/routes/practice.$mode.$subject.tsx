@@ -251,7 +251,7 @@ function SetupPage() {
             </p>
             <button
               onClick={begin}
-              className="rounded-lg bg-foreground px-6 py-3 text-sm font-semibold text-background transition hover:brightness-110"
+              className="rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition hover:brightness-110"
             >
               Begin Exam →
             </button>
@@ -285,7 +285,7 @@ function Chip({
       onClick={onClick}
       className={`rounded-full border px-3 py-1.5 text-xs transition ${
         active
-          ? "border-foreground bg-foreground/10 text-foreground"
+          ? "border-primary bg-primary/10 text-foreground"
           : "border-hairline text-muted-foreground hover:border-hairline-strong hover:text-foreground"
       }`}
     >

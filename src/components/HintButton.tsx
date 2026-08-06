@@ -79,7 +79,7 @@ export function HintButton({ subject, topic, question, options }: Props) {
           type="button"
           onClick={reveal}
           disabled={disabled}
-          className="inline-flex items-center gap-2 rounded-full border border-hairline px-3.5 py-1.5 text-[12px] font-medium text-foreground transition hover:border-amber/70 hover:text-amber disabled:opacity-40"
+          className="inline-flex items-center gap-2 rounded-full border border-hairline px-3.5 py-1.5 text-[12px] font-medium text-foreground transition hover:border-primary/70 hover:text-orange disabled:opacity-40"
         >
           <span aria-hidden>💡</span>
           {loading ? "Thinking…" : hint ? "Hint shown" : "Reveal hint"}
@@ -93,7 +93,7 @@ export function HintButton({ subject, topic, question, options }: Props) {
         </span>
       </div>
       {hint && (
-        <p className="mt-2 rounded-xl border border-amber/40 bg-amber/[0.06] px-4 py-3 text-sm text-foreground rise">
+        <p className="mt-2 rounded-xl border border-primary/40 bg-primary/[0.06] px-4 py-3 text-sm text-foreground rise">
           {hint}
         </p>
       )}

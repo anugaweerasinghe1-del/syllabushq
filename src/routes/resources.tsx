@@ -121,12 +121,12 @@ function LinkRow({ r }: { r: Row }) {
           className="group flex items-baseline justify-between gap-4"
         >
           <div className="min-w-0">
-            <p className="text-[15px] font-medium text-foreground group-hover:text-amber transition-colors">
+            <p className="text-[15px] font-medium text-foreground group-hover:text-orange transition-colors">
               {r.title}
             </p>
             <p className="mt-1 text-[13px] text-muted-foreground">{r.note}</p>
           </div>
-          <span className="shrink-0 text-xs text-muted-foreground group-hover:text-amber transition-colors">
+          <span className="shrink-0 text-xs text-muted-foreground group-hover:text-orange transition-colors">
             ↗
           </span>
         </a>
@@ -146,7 +146,7 @@ function ResourcesPage() {
       <SiteHeader />
       <main className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-20">
         <header className="rise">
-          <p className="text-[10px] font-medium uppercase tracking-[0.28em] text-amber">
+          <p className="text-[10px] font-medium uppercase tracking-[0.28em] text-orange">
             Resource hub
           </p>
           <h1 className="mt-3 font-display text-5xl leading-[1.05] text-foreground sm:text-6xl text-balance">
@@ -198,7 +198,7 @@ function ResourcesPage() {
           </p>
           <Link
             to="/practice"
-            className="mt-5 inline-flex items-center justify-center rounded-lg bg-foreground px-6 py-3 text-sm font-semibold text-background transition hover:brightness-110"
+            className="mt-5 inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition hover:brightness-110"
           >
             Choose a mode →
           </Link>

@@ -19,7 +19,7 @@ export function ExamTimer({
   const tone = isCritical
     ? "border-coral/60 text-coral animate-pulse"
     : isLow
-      ? "border-amber/60 text-amber"
+      ? "border-primary/60 text-orange"
       : "border-hairline text-foreground";
   return (
     <div

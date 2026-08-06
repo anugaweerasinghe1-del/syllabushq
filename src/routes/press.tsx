@@ -49,7 +49,7 @@ function PressPage() {
       <SiteHeader />
       <main className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-20">
         <header className="rise">
-          <p className="text-[10px] font-medium uppercase tracking-[0.28em] text-amber">
+          <p className="text-[10px] font-medium uppercase tracking-[0.28em] text-orange">
             Press kit
           </p>
           <h1 className="mt-3 font-display text-5xl leading-[1.05] text-foreground sm:text-6xl text-balance">
@@ -92,7 +92,7 @@ function PressPage() {
 
         <section className="mt-12">
           <h2 className="font-display text-2xl text-foreground">Founder quote (for use)</h2>
-          <blockquote className="mt-4 border-l-2 border-amber pl-5 text-[15px] italic text-foreground/85">
+          <blockquote className="mt-4 border-l-2 border-primary pl-5 text-[15px] italic text-foreground/85">
             "Every past-paper site I could find for Sri Lankan O/Ls was either a PDF dump, riddled
             with ads, or a paywalled coaching upsell. The kids who need it most — students in rural
             areas without tuition access — got nothing. SyllabusHQ is what I wished had existed when
@@ -114,7 +114,7 @@ function PressPage() {
                     SyllabusHQ, set in Instrument Serif
                   </p>
                 </div>
-                <a href="/" className="text-xs text-amber hover:underline">
+                <a href="/" className="text-xs text-orange hover:underline">
                   Preview ↗
                 </a>
               </li>
@@ -157,7 +157,7 @@ function PressPage() {
           <div className="mt-5 flex flex-wrap gap-3">
             <a
               href="mailto:anugaweerasinghe1@gmail.com"
-              className="inline-flex items-center justify-center rounded-lg bg-foreground px-6 py-3 text-sm font-semibold text-background"
+              className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground"
             >
               anugaweerasinghe1@gmail.com
             </a>

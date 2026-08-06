@@ -84,7 +84,7 @@ function TeachersPage() {
       <SiteHeader />
       <main className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-20">
         <header className="rise">
-          <p className="text-[10px] font-medium uppercase tracking-[0.28em] text-amber">
+          <p className="text-[10px] font-medium uppercase tracking-[0.28em] text-orange">
             For teachers
           </p>
           <h1 className="mt-3 font-display text-5xl leading-[1.05] text-foreground sm:text-6xl text-balance">
@@ -112,7 +112,7 @@ function TeachersPage() {
                     setSubject(e.target.value);
                     setTopic("mix");
                   }}
-                  className="mt-2 w-full rounded-lg border border-hairline bg-transparent px-3 py-2 text-sm text-foreground focus:border-foreground/40 focus:outline-none"
+                  className="mt-2 w-full rounded-lg border border-hairline bg-transparent px-3 py-2 text-sm text-foreground focus:border-primary/40 focus:outline-none"
                 >
                   {subjects.map((s) => (
                     <option key={s.slug} value={s.slug} className="bg-background">
@@ -128,7 +128,7 @@ function TeachersPage() {
                 <select
                   value={topic}
                   onChange={(e) => setTopic(e.target.value)}
-                  className="mt-2 w-full rounded-lg border border-hairline bg-transparent px-3 py-2 text-sm text-foreground focus:border-foreground/40 focus:outline-none"
+                  className="mt-2 w-full rounded-lg border border-hairline bg-transparent px-3 py-2 text-sm text-foreground focus:border-primary/40 focus:outline-none"
                 >
                   <option value="mix" className="bg-background">
                     Mixed (all topics)
@@ -165,7 +165,7 @@ function TeachersPage() {
                       onClick={() => setDifficulty(d)}
                       className={`rounded-full border px-3 py-1.5 text-xs capitalize transition ${
                         difficulty === d
-                          ? "border-foreground bg-foreground/10 text-foreground"
+                          ? "border-primary bg-primary/10 text-foreground"
                           : "border-hairline text-muted-foreground hover:border-hairline-strong hover:text-foreground"
                       }`}
                     >
@@ -181,7 +181,7 @@ function TeachersPage() {
               </p>
               <button
                 onClick={buildPack}
-                className="rounded-lg bg-foreground px-5 py-2.5 text-sm font-semibold text-background transition hover:brightness-110"
+                className="rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition hover:brightness-110"
               >
                 Build & preview pack →
               </button>
@@ -253,7 +253,7 @@ function TeachersPage() {
           <div className="mt-5 flex flex-wrap gap-3">
             <a
               href="mailto:anugaweerasinghe1@gmail.com?subject=Custom%20O%2FL%20question%20pack"
-              className="inline-flex items-center justify-center rounded-lg bg-foreground px-6 py-3 text-sm font-semibold text-background"
+              className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground"
             >
               Email us
             </a>
@@ -286,12 +286,12 @@ function ResRow({
       <li className="py-4 first:pt-0 last:pb-0">
         <Link to={internal} className="group flex items-baseline justify-between gap-4">
           <div className="min-w-0">
-            <p className="text-[15px] font-medium text-foreground group-hover:text-amber transition-colors">
+            <p className="text-[15px] font-medium text-foreground group-hover:text-orange transition-colors">
               {title}
             </p>
             <p className="mt-1 text-[13px] text-muted-foreground">{note}</p>
           </div>
-          <span className="shrink-0 text-xs text-muted-foreground group-hover:text-amber transition-colors">
+          <span className="shrink-0 text-xs text-muted-foreground group-hover:text-orange transition-colors">
             →
           </span>
         </Link>
@@ -307,12 +307,12 @@ function ResRow({
         className="group flex items-baseline justify-between gap-4"
       >
         <div className="min-w-0">
-          <p className="text-[15px] font-medium text-foreground group-hover:text-amber transition-colors">
+          <p className="text-[15px] font-medium text-foreground group-hover:text-orange transition-colors">
             {title}
           </p>
           <p className="mt-1 text-[13px] text-muted-foreground">{note}</p>
         </div>
-        <span className="shrink-0 text-xs text-muted-foreground group-hover:text-amber transition-colors">
+        <span className="shrink-0 text-xs text-muted-foreground group-hover:text-orange transition-colors">
           ↗
         </span>
       </a>
@@ -323,7 +323,7 @@ function ResRow({
 function IdeaCard({ title, body }: { title: string; body: string }) {
   return (
     <div className="rounded-2xl border border-hairline p-5">
-      <p className="text-[10px] uppercase tracking-[0.22em] text-amber">{title}</p>
+      <p className="text-[10px] uppercase tracking-[0.22em] text-orange">{title}</p>
       <p className="mt-2 text-sm leading-relaxed text-foreground/85">{body}</p>
     </div>
   );

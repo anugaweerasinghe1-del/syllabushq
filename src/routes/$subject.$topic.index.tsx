@@ -174,7 +174,7 @@ function TopicPage() {
         </nav>
 
         <header className="mb-8 rise">
-          <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-amber">
+          <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-orange">
             {subject.name}
           </p>
           <h1 className="mt-2 text-4xl font-semibold sm:text-5xl">{topic.name}</h1>
@@ -206,7 +206,7 @@ function TopicPage() {
             {[1, 2].map((n) => (
               <li
                 key={n}
-                className={`flex items-center gap-2 rounded-full px-3 py-1.5 ${step === n ? "bg-amber/15 text-amber" : "text-muted-foreground"}`}
+                className={`flex items-center gap-2 rounded-full px-3 py-1.5 ${step === n ? "bg-primary/15 text-orange" : "text-muted-foreground"}`}
               >
                 <span className="font-num">{n}</span>
                 <span>{n === 1 ? "Mode" : "Customize"}</span>
@@ -224,15 +224,15 @@ function TopicPage() {
                   key={m.id}
                   type="button"
                   onClick={() => setMode(m.id)}
-                  className={`group text-left rounded-2xl p-5 transition hairline ${active ? "bg-amber/[0.06] border-amber/60" : "hover:border-foreground/30"}`}
+                  className={`group text-left rounded-2xl p-5 transition hairline ${active ? "bg-primary/[0.06] border-primary/60" : "hover:border-primary/30"}`}
                   style={active ? { borderColor: "var(--amber)" } : undefined}
                 >
                   <div className="flex items-center justify-between">
-                    <p className="text-xs font-medium uppercase tracking-wider text-amber">
+                    <p className="text-xs font-medium uppercase tracking-wider text-orange">
                       {m.tag}
                     </p>
                     <span
-                      className={`h-3 w-3 rounded-full border ${active ? "border-amber bg-amber" : "border-hairline"}`}
+                      className={`h-3 w-3 rounded-full border ${active ? "border-primary bg-primary" : "border-hairline"}`}
                       style={
                         active
                           ? { background: "var(--amber)", borderColor: "var(--amber)" }
@@ -249,7 +249,7 @@ function TopicPage() {
             <div className="sm:col-span-2 mt-2 flex justify-end gap-3">
               <button
                 onClick={() => setStep(2)}
-                className="rounded-lg bg-foreground text-background px-5 py-2.5 text-sm font-semibold transition hover:opacity-90"
+                className="rounded-lg bg-primary text-primary-foreground px-5 py-2.5 text-sm font-semibold transition hover:opacity-90"
               >
                 Continue →
               </button>
@@ -319,7 +319,7 @@ function TopicPage() {
               <button
                 onClick={() => setStep(3)}
                 disabled={pool.length === 0}
-                className="rounded-lg bg-amber text-background px-5 py-2.5 text-sm font-semibold disabled:opacity-40"
+                className="rounded-lg bg-primary text-primary-foreground px-5 py-2.5 text-sm font-semibold disabled:opacity-40"
               >
                 Start exam →
               </button>
@@ -393,7 +393,7 @@ function Chip({
     <button
       type="button"
       onClick={onClick}
-      className={`rounded-full px-3.5 py-1.5 text-xs font-medium capitalize transition border ${active ? "bg-amber text-background border-amber" : "border-hairline text-charcoal hover:text-foreground"}`}
+      className={`rounded-full px-3.5 py-1.5 text-xs font-medium capitalize transition border ${active ? "bg-primary text-primary-foreground border-primary" : "border-hairline text-charcoal hover:text-foreground"}`}
     >
       {children}
     </button>

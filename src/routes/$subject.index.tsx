@@ -70,7 +70,7 @@ function SubjectPage() {
           </Link>
         </nav>
         <header className="mb-8">
-          <p className="text-xs font-medium uppercase tracking-wider text-marigold">Subject</p>
+          <p className="text-xs font-medium uppercase tracking-wider text-orange">Subject</p>
           <h1 className="mt-1 text-3xl font-semibold text-ink sm:text-4xl">{subject.name}</h1>
           <p className="mt-2 text-charcoal">
             <span className="font-num">{subject.topics.length}</span> topics. Pick one to start a

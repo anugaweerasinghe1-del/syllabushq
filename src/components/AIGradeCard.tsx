@@ -9,7 +9,7 @@ export function AIGradeCard({ result }: { result: GradeResult }) {
     result.verdict === "correct"
       ? "border-mint/40 bg-mint/[0.06]"
       : result.verdict === "partial"
-        ? "border-amber/40 bg-amber/[0.05]"
+        ? "border-primary/40 bg-primary/[0.05]"
         : "border-coral/40 bg-coral/[0.05]";
   return (
     <div className={`mt-5 overflow-hidden rounded-2xl border ${tone}`}>
@@ -81,7 +81,7 @@ export function AIGradeCard({ result }: { result: GradeResult }) {
           </p>
         </section>
 
-        <section className="flex items-start gap-2 text-sm text-amber/90">
+        <section className="flex items-start gap-2 text-sm text-orange/90">
           <Lightbulb className="mt-0.5 h-4 w-4 shrink-0" />
           <span>{result.nextStepHint}</span>
         </section>

@@ -102,7 +102,7 @@ export function StructuredAnswerInput({
             ? "Type your method, or describe the graph (axes, intercepts, gradient, shape). Full marks are awarded for an accurate description."
             : "Show your working step by step…"
         }
-        className="w-full min-h-[140px] resize-y rounded-xl border border-hairline bg-white/[0.02] p-4 text-[15px] leading-relaxed text-foreground placeholder:text-muted-foreground/60 focus:border-foreground/40 focus:outline-none disabled:opacity-60"
+        className="w-full min-h-[140px] resize-y rounded-xl border border-hairline bg-white/[0.02] p-4 text-[15px] leading-relaxed text-foreground placeholder:text-muted-foreground/60 focus:border-primary/40 focus:outline-none disabled:opacity-60"
       />
 
       <div className="mt-2 flex flex-wrap items-center justify-between gap-2 text-[11px]">
@@ -168,7 +168,7 @@ export function StructuredAnswerInput({
           <button
             onClick={mark}
             disabled={grading}
-            className="inline-flex items-center gap-2 rounded-lg bg-foreground px-5 py-2.5 text-sm font-semibold text-background transition hover:brightness-110 disabled:opacity-60"
+            className="inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition hover:brightness-110 disabled:opacity-60"
           >
             {grading ? (
               <>

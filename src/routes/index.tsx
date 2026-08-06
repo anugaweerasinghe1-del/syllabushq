@@ -129,9 +129,9 @@ function Home() {
           <div className="rise-4 mt-10 flex flex-wrap items-center gap-3 text-sm">
             <Link
               to="/practice"
-              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-foreground px-7 py-3.5 font-semibold text-background transition hover:brightness-110"
+              className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-primary px-7 py-3.5 font-semibold text-primary-foreground transition hover:brightness-110"
             >
-              <span className="absolute inset-0 -z-10 bg-foreground blur-xl opacity-40 transition group-hover:opacity-70" />
+              <span className="absolute inset-0 -z-10 bg-primary blur-xl opacity-40 transition group-hover:opacity-70" />
               Begin a paper
               <span className="transition group-hover:translate-x-0.5">→</span>
             </Link>
@@ -261,7 +261,7 @@ function Home() {
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <Link
                 to="/practice"
-                className="inline-flex items-center gap-2 rounded-xl bg-foreground px-6 py-3 text-sm font-semibold text-background transition hover:brightness-110 animate-pulse-glow"
+                className="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition hover:brightness-110 animate-pulse-glow"
               >
                 Begin →
               </Link>

@@ -149,7 +149,7 @@ function AuthPage() {
                         className={[
                           "rounded-xl border px-3 py-2.5 text-sm capitalize transition",
                           role === r
-                            ? "border-foreground/40 bg-surface-2 text-foreground"
+                            ? "border-primary/40 bg-surface-2 text-foreground"
                             : "border-border text-muted-foreground hover:text-foreground",
                         ].join(" ")}
                       >
@@ -188,7 +188,7 @@ function AuthPage() {
             <button
               type="submit"
               disabled={busy}
-              className="w-full rounded-xl bg-foreground px-4 py-3 text-sm font-semibold text-background transition hover:brightness-110 disabled:opacity-60"
+              className="w-full rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground transition hover:brightness-110 disabled:opacity-60"
             >
               {busy ? "Working…" : mode === "signin" ? "Sign in" : "Create account"}
             </button>

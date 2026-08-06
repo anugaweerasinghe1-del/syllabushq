@@ -114,7 +114,7 @@ function Dashboard() {
             <Link
               to="/practice/$mode/$subject"
               params={{ mode: p.lastSession.mode, subject: p.lastSession.subject }}
-              className="rounded-xl bg-foreground px-4 py-2 text-[13px] font-semibold text-background transition hover:brightness-110"
+              className="rounded-xl bg-primary px-4 py-2 text-[13px] font-semibold text-primary-foreground transition hover:brightness-110"
             >
               Continue
             </Link>
@@ -266,7 +266,7 @@ function ProfileCard({
       <button
         onClick={() => m.mutate()}
         disabled={m.isPending || !full_name.trim()}
-        className="mt-3 rounded-xl bg-foreground px-4 py-2 text-[13px] font-semibold text-background transition hover:brightness-110 disabled:opacity-60"
+        className="mt-3 rounded-xl bg-primary px-4 py-2 text-[13px] font-semibold text-primary-foreground transition hover:brightness-110 disabled:opacity-60"
       >
         {m.isPending ? "Saving…" : "Save"}
       </button>

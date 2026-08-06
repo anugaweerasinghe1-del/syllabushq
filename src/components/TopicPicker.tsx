@@ -124,7 +124,7 @@ export function TopicPicker({
             </p>
             <button
               onClick={() => setOpen(false)}
-              className="rounded-md bg-foreground px-3 py-1.5 text-[11px] font-semibold text-background"
+              className="rounded-md bg-primary px-3 py-1.5 text-[11px] font-semibold text-primary-foreground"
             >
               Done
             </button>
@@ -176,7 +176,7 @@ function Row({
       <span className="flex items-center gap-3">
         <span
           className={`inline-flex h-4 w-4 items-center justify-center rounded-[5px] border ${
-            active ? "border-foreground bg-foreground text-background" : "border-hairline-strong"
+            active ? "border-primary bg-primary text-primary-foreground" : "border-hairline-strong"
           }`}
         >
           {active && <Check className="h-3 w-3" />}
