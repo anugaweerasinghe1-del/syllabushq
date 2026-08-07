@@ -61,6 +61,7 @@
 
 :root {
   --radius: 0.75rem;
+  color-scheme: light only;
 
   /* Light study palette. Off-white paper, green primary, blue support,
      gold for attention, orange for action, red only for errors. */
@@ -104,7 +105,7 @@
   --secondary: #eef2ea;
   --secondary-foreground: #14211a;
   --muted: #eef2ea;
-  --muted-foreground: #5b6b61;
+  --muted-foreground: #45564c;
   --accent: #3b72e8;
   --accent-foreground: #ffffff;
   --destructive: #d1341f;
@@ -236,17 +237,11 @@
 }
 
 @utility text-gradient {
-  background: linear-gradient(180deg, #14211a 0%, #22302a 55%, #3d4f45 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--ink);
 }
 
 @utility text-aurora {
-  background: linear-gradient(110deg, #1e7a3c 0%, #3b72e8 55%, #e2711d 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--green);
 }
 
 @keyframes shimmer {

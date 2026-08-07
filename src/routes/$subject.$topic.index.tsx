@@ -15,6 +15,10 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { NotFoundShell } from "@/components/NotFoundShell";
 import { startNew, type QuizConfig } from "@/lib/quiz-session";
 import { getQuestionsFor } from "@/lib/content";
+import { Slider } from "@/components/ui/slider";
+import { useServerFn } from "@tanstack/react-start";
+import { ensureQuestions } from "@/lib/bank.functions";
+import { savePickedPool } from "@/lib/quiz-session";
 
 export const Route = createFileRoute("/$subject/$topic/")({
   loader: async ({ context, params }) => {
@@ -100,6 +104,7 @@ function TopicPage() {
   const { subject, topic } = Route.useLoaderData();
   const { data: questions } = useSuspenseQuery(questionsQuery);
   const navigate = useNavigate();
+  const topUp = useServerFn(ensureQuestions);
   const counts = countByTopic(questions);
   const available = counts.get(`${subject.slug}::${topic.slug}`) ?? 0;
   const pool = useMemo(
@@ -134,30 +139,60 @@ function TopicPage() {
       setProgress(p);
       if (p >= 1) clearInterval(tick);
     }, 50);
-    const launch = setTimeout(() => {
+    let cancelled = false;
+    const launch = setTimeout(async () => {
       if (mode === "structured" || mode === "short") {
         navigate({ to: "/structured" });
         return;
       }
-      // mcq or exam — start a fresh session with config
+      // mcq or exam — start a fresh session with config. If the local bank is
+      // short of the requested count, top it up with fresh AI questions.
+      let picked = pool;
+      if (picked.length < count) {
+        try {
+          const res = await topUp({
+            data: {
+              mode: "mcq",
+              subject: subject.slug,
+              topics: topic.slug === "mix" ? [] : [topic.slug],
+              difficulty,
+              need: Math.min(30, count - picked.length),
+              avoid: picked.slice(0, 25).map((q) => q.question),
+            },
+          });
+          const fresh = (res.items as typeof pool).map((q) => ({
+            ...q,
+            subject: subject.slug,
+            topic: topic.slug,
+          }));
+          if (fresh.length) picked = [...picked, ...fresh];
+        } catch {
+          /* keep the local-only paper */
+        }
+      }
+      if (cancelled) return;
       const cfg: QuizConfig = {
-        count: Math.min(count, Math.max(1, pool.length)),
+        count: Math.min(count, Math.max(1, picked.length)),
         timeLimitSec: timeMin * 60,
         difficulty,
         mode: mode === "exam" ? "exam" : "mcq",
       };
-      if (pool.length > 0) startNew(subject.slug, topic.slug, pool, cfg);
+      if (picked.length > 0) {
+        savePickedPool(subject.slug, topic.slug, picked);
+        startNew(subject.slug, topic.slug, picked, cfg);
+      }
       navigate({
         to: "/$subject/$topic/practice",
         params: { subject: subject.slug, topic: topic.slug },
       });
     }, DURATION + 200);
     return () => {
+      cancelled = true;
       clearInterval(tipTimer);
       clearInterval(tick);
       clearTimeout(launch);
     };
-  }, [step, mode, count, timeMin, difficulty, pool, subject.slug, topic.slug, navigate]);
+  }, [step, mode, count, timeMin, difficulty, pool, subject.slug, topic.slug, navigate, topUp]);
 
   return (
     <div className="min-h-screen">
@@ -278,24 +313,32 @@ function TopicPage() {
               </Field>
 
               <Field label={`Number of questions (${count})`}>
-                <input
-                  type="range"
+                <Slider
+                  value={[count]}
                   min={5}
-                  max={Math.max(10, Math.min(50, available || 10))}
+                  max={50}
                   step={5}
-                  value={count}
-                  onChange={(e) => setCount(Number(e.target.value))}
-                  className="w-full accent-[color:var(--primary)]"
+                  onValueChange={(v) => setCount(v[0] ?? count)}
+                  className="mt-1"
                 />
-                <div className="flex flex-wrap gap-2 pt-2">
-                  {[5, 10, 20, 30]
-                    .filter((n) => n <= (available || 10))
-                    .map((n) => (
-                      <Chip key={n} active={count === n} onClick={() => setCount(n)}>
-                        {n}
-                      </Chip>
-                    ))}
+                <div className="mt-2 flex justify-between text-[10px] font-num text-muted-foreground">
+                  <span>5</span>
+                  <span>20</span>
+                  <span>35</span>
+                  <span>50</span>
                 </div>
+                <div className="flex flex-wrap gap-2 pt-3">
+                  {[5, 10, 20, 30, 50].map((n) => (
+                    <Chip key={n} active={count === n} onClick={() => setCount(n)}>
+                      {n}
+                    </Chip>
+                  ))}
+                </div>
+                {count > available && (
+                  <p className="mt-2 text-[11px] text-muted-foreground">
+                    {available} in the bank — the rest are generated fresh for you at start.
+                  </p>
+                )}
               </Field>
 
               <Field label={`Time limit (${timeMin === 0 ? "untimed" : timeMin + " min"})`}>
@@ -318,8 +361,7 @@ function TopicPage() {
               </button>
               <button
                 onClick={() => setStep(3)}
-                disabled={pool.length === 0}
-                className="rounded-lg bg-primary text-primary-foreground px-5 py-2.5 text-sm font-semibold disabled:opacity-40"
+                className="rounded-lg bg-primary text-primary-foreground px-5 py-2.5 text-sm font-semibold transition hover:brightness-110"
               >
                 Start exam →
               </button>
