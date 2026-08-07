@@ -29,27 +29,40 @@ export async function downloadPackPdf(meta: PackMeta) {
   const W = doc.internal.pageSize.getWidth();
   const H = doc.internal.pageSize.getHeight();
   const maxW = W - M * 2;
+  const BOTTOM = H - M - 18;
   let y = M;
 
   const nl = (n = 14) => {
     y += n;
-    if (y > H - M) {
+    if (y > BOTTOM) {
       doc.addPage();
       y = M;
     }
   };
-  const write = (text: string, size = 11, style: "normal" | "bold" = "normal", indent = 0) => {
+  const wrap = (text: string, size: number, style: "normal" | "bold", indent: number) => {
     doc.setFont("helvetica", style);
     doc.setFontSize(size);
-    const lines = doc.splitTextToSize(mathToPlain(text), maxW - indent) as string[];
+    return doc.splitTextToSize(mathToPlain(text), maxW - indent) as string[];
+  };
+  const write = (text: string, size = 11, style: "normal" | "bold" = "normal", indent = 0) => {
+    const lines = wrap(text, size, style, indent);
+    const lead = size * 1.35;
     for (const line of lines) {
-      if (y > H - M) {
+      if (y > BOTTOM) {
         doc.addPage();
         y = M;
+        doc.setFont("helvetica", style);
+        doc.setFontSize(size);
       }
       doc.text(line, M + indent, y);
-      y += size + 4;
+      y += lead;
     }
+  };
+  /** Height a question block needs, so it is never split across pages. */
+  const blockHeight = (q: PackQuestion) => {
+    let h = wrap(`Q1. ${q.question}`, 11, "bold", 0).length * 11 * 1.35;
+    for (const o of q.options) h += wrap(`A. ${o}`, 10, "normal", 22).length * 10 * 1.35;
+    return h + 14;
   };
 
   doc.setFont("helvetica", "normal");
@@ -78,9 +91,14 @@ export async function downloadPackPdf(meta: PackMeta) {
   nl(20);
 
   meta.items.forEach((q, i) => {
+    if (y + blockHeight(q) > BOTTOM) {
+      doc.addPage();
+      y = M;
+    }
     write(`Q${i + 1}. ${q.question}`, 11, "bold");
-    q.options.forEach((o, j) => write(`${LETTER(j)}. ${o}`, 10, "normal", 16));
-    nl(8);
+    y += 3;
+    q.options.forEach((o, j) => write(`${LETTER(j)}. ${o}`, 10, "normal", 22));
+    nl(16);
   });
 
   if (meta.includeScheme) {
@@ -92,9 +110,21 @@ export async function downloadPackPdf(meta: PackMeta) {
     nl(24);
     meta.items.forEach((q, i) => {
       write(`Q${i + 1}. Answer: ${LETTER(q.correct)} — ${q.options[q.correct] ?? ""}`, 10, "bold");
-      write(q.explanation, 9, "normal", 16);
-      nl(6);
+      write(q.explanation, 9, "normal", 22);
+      nl(10);
     });
+  }
+
+  // Page numbers
+  const pages = doc.getNumberOfPages();
+  for (let p = 1; p <= pages; p++) {
+    doc.setPage(p);
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(8);
+    doc.setTextColor(120);
+    doc.text(`${meta.subjectName} · ${meta.topicName}`, M, H - 28);
+    doc.text(`Page ${p} of ${pages}`, W - M, H - 28, { align: "right" });
+    doc.setTextColor(0);
   }
 
   doc.save(packFileName(meta, "pdf"));
