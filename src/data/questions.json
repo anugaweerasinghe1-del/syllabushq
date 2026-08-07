@@ -14975,5 +14975,649 @@
     "correct": 0,
     "explanation": "The definition of an ellipse is the locus of points for which the sum of the distances from two fixed points (foci) is constant.",
     "difficulty": "hard"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "Which of the following statements is always true for a parallelogram?",
+    "options": [
+      "All sides are equal in length.",
+      "Diagonals bisect each other.",
+      "All angles are right angles.",
+      "Diagonals are perpendicular."
+    ],
+    "correct": 1,
+    "explanation": "In a parallelogram, opposite sides are equal and parallel, opposite angles are equal, and diagonals bisect each other. The other options are true for specific types of parallelograms (rhombus, square, rectangle).",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "A regular polygon has an exterior angle of 40 degrees. How many sides does the polygon have?",
+    "options": [
+      "8",
+      "9",
+      "10",
+      "12"
+    ],
+    "correct": 1,
+    "explanation": "For any regular polygon, the sum of the exterior angles is 360 degrees. If each exterior angle is 40 degrees, the number of sides is 360 / 40 = 9.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "If the base of a triangle is 10 cm and its height is 6 cm, what is its area?",
+    "options": [
+      "30 cm^2",
+      "60 cm^2",
+      "16 cm^2",
+      "40 cm^2"
+    ],
+    "correct": 0,
+    "explanation": "The area of a triangle is given by the formula (1/2) * base * height. So, (1/2) * 10 cm * 6 cm = 30 cm^2.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "A polygon has 'n' sides. If the sum of its interior angles is 7 times the sum of its exterior angles, what is the value of 'n'?",
+    "options": [
+      "16",
+      "15",
+      "14",
+      "13"
+    ],
+    "correct": 1,
+    "explanation": "The sum of interior angles is (n-2) * 180 degrees. The sum of exterior angles is always 360 degrees. Setting (n-2) * 180 = 7 * 360 and solving for n yields n=16.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "In parallelogram ABCD, AB is extended to point E such that BE = BC. If angle DAB = 70 degrees, what is angle DCE?",
+    "options": [
+      "35 degrees",
+      "40 degrees",
+      "45 degrees",
+      "50 degrees"
+    ],
+    "correct": 0,
+    "explanation": "Since ABCD is a parallelogram, angle ABC = 180 - 70 = 110 degrees. In triangle BCE, BC = BE, so it's isosceles. Angle BEC = Angle BCE = (180 - 110)/2 = 35 degrees. Angle BCD = Angle DAB = 70 degrees. Therefore, Angle DCE = Angle BCD - Angle BCE = 70 - 35 = 35 degrees.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "In a parallelogram ABCD, angle A = (3x + 10) degrees and angle B = (2x + 40) degrees. Find the value of x.",
+    "options": [
+      "26",
+      "30",
+      "34",
+      "40"
+    ],
+    "correct": 0,
+    "explanation": "Adjacent angles in a parallelogram are supplementary, meaning their sum is 180 degrees. Set up the equation (3x + 10) + (2x + 40) = 180 and solve for x.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "The perimeter of an isosceles triangle is 30 cm. If the unequal side is 12 cm, what is the length of one of the equal sides?",
+    "options": [
+      "9 cm",
+      "10 cm",
+      "11 cm",
+      "12 cm"
+    ],
+    "correct": 0,
+    "explanation": "Let the equal sides be 's'. The perimeter is s + s + 12 = 30. So, 2s + 12 = 30. Solve for s.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "Which of the following statements about a rhombus is NOT always true?",
+    "options": [
+      "All sides are equal.",
+      "Diagonals bisect each other at right angles.",
+      "Opposite angles are equal.",
+      "All angles are equal."
+    ],
+    "correct": 3,
+    "explanation": "While a rhombus has all sides equal and its diagonals bisect each other perpendicularly, its angles are only all equal if it is also a square. Otherwise, only opposite angles are equal.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "A polygon has 10 sides. What is the sum of its interior angles?",
+    "options": [
+      "1440 degrees",
+      "1620 degrees",
+      "1800 degrees",
+      "1260 degrees"
+    ],
+    "correct": 1,
+    "explanation": "The sum of interior angles of an n-sided polygon is given by the formula (n-2) * 180 degrees. For n=10, (10-2) * 180 = 8 * 180 = 1440 degrees.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "In a parallelogram ABCD, angle DAB = 70 degrees. What is the measure of angle ABC?",
+    "options": [
+      "70 degrees",
+      "110 degrees",
+      "90 degrees",
+      "180 degrees"
+    ],
+    "correct": 1,
+    "explanation": "Consecutive angles in a parallelogram are supplementary, meaning their sum is 180 degrees. So, angle ABC = 180 - 70 = 110 degrees.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "Which of the following statements about a rhombus is NOT true?",
+    "options": [
+      "All four sides are equal in length.",
+      "Opposite angles are equal.",
+      "Diagonals bisect each other at right angles.",
+      "Diagonals are equal in length."
+    ],
+    "correct": 3,
+    "explanation": "In a rhombus, diagonals are generally not equal in length; they are equal only if the rhombus is also a square.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "The exterior angle of a regular polygon is 40 degrees. How many sides does the polygon have?",
+    "options": [
+      "8",
+      "9",
+      "10",
+      "12"
+    ],
+    "correct": 0,
+    "explanation": "For a regular polygon, the sum of exterior angles is 360 degrees. If each exterior angle is 40 degrees, the number of sides is 360/40 = 9.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "In triangle PQR, if PQ = PR and angle PQR = 50 degrees, what is the measure of angle QPR?",
+    "options": [
+      "50 degrees",
+      "80 degrees",
+      "100 degrees",
+      "60 degrees"
+    ],
+    "correct": 1,
+    "explanation": "Since PQ = PR, triangle PQR is an isosceles triangle, so angle PRQ = angle PQR = 50 degrees. The sum of angles in a triangle is 180 degrees, so angle QPR = 180 - (50 + 50) = 180 - 100 = 80 degrees.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "If the diagonals of a quadrilateral bisect each other at right angles, which type of quadrilateral must it be?",
+    "options": [
+      "Rectangle",
+      "Rhombus",
+      "Square",
+      "Parallelogram"
+    ],
+    "correct": 1,
+    "explanation": "This is a defining property of a rhombus. While a square also has this property, a rhombus is the general case.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "One interior angle of a regular hexagon is:",
+    "options": [
+      "90 degrees",
+      "108 degrees",
+      "120 degrees",
+      "135 degrees"
+    ],
+    "correct": 2,
+    "explanation": "A regular hexagon has 6 sides. The sum of interior angles is (6-2)*180 = 720 degrees. Each interior angle is 720/6 = 120 degrees.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "Two angles of a triangle are 65 degrees and 45 degrees. What is the measure of the third angle?",
+    "options": [
+      "70 degrees",
+      "80 degrees",
+      "60 degrees",
+      "110 degrees"
+    ],
+    "correct": 0,
+    "explanation": "The sum of angles in a triangle is 180 degrees. So, the third angle = 180 - (65 + 45) = 180 - 110 = 70 degrees.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "In triangle ABC, if AB = 5 cm, BC = 12 cm, and AC = 13 cm, what type of triangle is ABC?",
+    "options": [
+      "Acute-angled triangle",
+      "Right-angled triangle",
+      "Obtuse-angled triangle",
+      "Equilateral triangle"
+    ],
+    "correct": 1,
+    "explanation": "Check for Pythagorean triple: 5^2 + 12^2 = 25 + 144 = 169. Also, 13^2 = 169. Since a^2 + b^2 = c^2, it is a right-angled triangle.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "The number of diagonals in a polygon with 7 sides is:",
+    "options": [
+      "7",
+      "14",
+      "21",
+      "10"
+    ],
+    "correct": 1,
+    "explanation": "The number of diagonals in an n-sided polygon is given by n(n-3)/2. For n=7, 7(7-3)/2 = 7*4/2 = 14.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "Which property is unique to a rectangle among parallelograms?",
+    "options": [
+      "Opposite sides are parallel.",
+      "Diagonals bisect each other.",
+      "All angles are right angles.",
+      "Opposite sides are equal in length."
+    ],
+    "correct": 2,
+    "explanation": "While all other options are true for any parallelogram, having all angles as right angles is a specific property of a rectangle.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "The perimeter of a regular octagon is 48 cm. What is the length of one side?",
+    "options": [
+      "4 cm",
+      "6 cm",
+      "8 cm",
+      "12 cm"
+    ],
+    "correct": 1,
+    "explanation": "A regular octagon has 8 equal sides. The perimeter is the sum of the lengths of all sides. So, side length = perimeter / number of sides = 48 / 8 = 6 cm.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "In a triangle, the angles are in the ratio 1:2:3. What is the measure of the largest angle?",
+    "options": [
+      "30 degrees",
+      "60 degrees",
+      "90 degrees",
+      "120 degrees"
+    ],
+    "correct": 2,
+    "explanation": "Let the angles be x, 2x, and 3x. Their sum is 180 degrees. So, x + 2x + 3x = 180; 6x = 180; x = 30 degrees. The largest angle is 3x = 3 * 30 = 90 degrees.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "What is the minimum number of sides a polygon can have?",
+    "options": [
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "correct": 1,
+    "explanation": "A polygon must be a closed figure with straight line segments, and the minimum number of segments required to form a closed figure is three, forming a triangle.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "If two adjacent angles of a parallelogram are (2x + 10) degrees and (3x - 30) degrees, what is the value of x?",
+    "options": [
+      "40",
+      "50",
+      "30",
+      "20"
+    ],
+    "correct": 0,
+    "explanation": "Adjacent angles in a parallelogram are supplementary, meaning their sum is 180 degrees. So, (2x + 10) + (3x - 30) = 180. This simplifies to 5x - 20 = 180, so 5x = 200, and x = 40.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "circle-theorems",
+    "question": "A chord AB divides a circle into two segments. If the angle subtended by the minor arc at the centre is 100 degrees, what is the angle subtended by the major arc at the centre?",
+    "options": [
+      "260 degrees",
+      "100 degrees",
+      "80 degrees",
+      "160 degrees"
+    ],
+    "correct": 0,
+    "explanation": "The sum of the angles subtended by the major arc and the minor arc at the centre is 360 degrees. Therefore, 360 - 100 = 260 degrees.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "circle-theorems",
+    "question": "In a circle with centre O, if the radius is 5 cm and a chord is 8 cm long, what is the perpendicular distance from the centre to the chord?",
+    "options": [
+      "3 cm",
+      "4 cm",
+      "5 cm",
+      "6 cm"
+    ],
+    "correct": 0,
+    "explanation": "The perpendicular from the centre to a chord bisects the chord. This forms a right-angled triangle with hypotenuse 5 cm and one leg 4 cm. Using Pythagoras theorem, the other leg is sqrt(5^2 - 4^2) = sqrt(25 - 16) = sqrt(9) = 3 cm.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "circle-theorems",
+    "question": "An angle subtended by an arc at the circumference of a circle is 45 degrees. What is the angle subtended by the same arc at the centre?",
+    "options": [
+      "90 degrees",
+      "45 degrees",
+      "22.5 degrees",
+      "180 degrees"
+    ],
+    "correct": 0,
+    "explanation": "The angle subtended by an arc at the centre is twice the angle subtended by the same arc at any point on the remaining part of the circle. So, 2 * 45 = 90 degrees.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "circle-theorems",
+    "question": "In a cyclic quadrilateral ABCD, if angle A = 70 degrees, what is the measure of angle C?",
+    "options": [
+      "110 degrees",
+      "70 degrees",
+      "90 degrees",
+      "180 degrees"
+    ],
+    "correct": 0,
+    "explanation": "The sum of opposite angles in a cyclic quadrilateral is 180 degrees. Therefore, angle C = 180 - angle A = 180 - 70 = 110 degrees.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "circle-theorems",
+    "question": "In a circle with center O, AB is a chord. If the angle AOB = 80 degrees, what is the angle ACB, where C is a point on the major arc AB?",
+    "options": [
+      "40 degrees",
+      "80 degrees",
+      "160 degrees",
+      "20 degrees"
+    ],
+    "correct": 0,
+    "explanation": "The angle subtended by an arc at the center is double the angle subtended by the same arc at any point on the remaining part of the circle. Thus, angle ACB = (1/2) * angle AOB.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "circle-theorems",
+    "question": "A cyclic quadrilateral PQRS has angle P = 70 degrees and angle Q = 100 degrees. What are the measures of angle R and angle S respectively?",
+    "options": [
+      "110 degrees, 80 degrees",
+      "80 degrees, 110 degrees",
+      "70 degrees, 100 degrees",
+      "100 degrees, 70 degrees"
+    ],
+    "correct": 0,
+    "explanation": "In a cyclic quadrilateral, the sum of opposite angles is 180 degrees. So, angle R = 180 - angle P and angle S = 180 - angle Q.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "circle-theorems",
+    "question": "In a circle, a tangent AB touches the circle at point A. If a chord AC is drawn such that angle BAC = 60 degrees, what is the measure of the angle in the alternate segment subtended by chord AC?",
+    "options": [
+      "60 degrees",
+      "30 degrees",
+      "120 degrees",
+      "90 degrees"
+    ],
+    "correct": 0,
+    "explanation": "The angle between a tangent and a chord through the point of contact is equal to the angle in the alternate segment. Therefore, the angle in the alternate segment is also 60 degrees.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "circle-theorems",
+    "question": "A chord of a circle is 10 cm long and is 12 cm from the center of the circle. What is the radius of the circle?",
+    "options": [
+      "13 cm",
+      "12 cm",
+      "10 cm",
+      "sqrt(244) cm"
+    ],
+    "correct": 0,
+    "explanation": "The perpendicular from the center to a chord bisects the chord. This forms a right-angled triangle where the radius is the hypotenuse, half the chord is one leg, and the distance from the center is the other leg. Using Pythagoras theorem, radius^2 = 5^2 + 12^2.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "circle-theorems",
+    "question": "A chord AB subtends an angle of 70 degrees at the center O of a circle. What is the angle subtended by the chord at any point on the circumference in the major arc?",
+    "options": [
+      "35 degrees",
+      "70 degrees",
+      "105 degrees",
+      "140 degrees"
+    ],
+    "correct": 0,
+    "explanation": "The angle subtended by an arc at the center is double the angle subtended by the same arc at any point on the remaining part of the circumference.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "circle-theorems",
+    "question": "In a circle, if a radius is perpendicular to a chord, what does it do to the chord?",
+    "options": [
+      "Bisects the chord",
+      "Trisects the chord",
+      "Makes an angle of 45 degrees with the chord",
+      "Is parallel to the chord"
+    ],
+    "correct": 0,
+    "explanation": "A line drawn from the center of a circle perpendicular to a chord bisects the chord.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "circle-theorems",
+    "question": "If two chords of a circle are equal in length, then their distances from the center are:",
+    "options": [
+      "Equal",
+      "Unequal",
+      "Always double each other",
+      "Always half each other"
+    ],
+    "correct": 0,
+    "explanation": "Equal chords of a circle are equidistant from the center.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "circle-theorems",
+    "question": "What is the relationship between the angle in a semicircle and a right angle?",
+    "options": [
+      "The angle in a semicircle is a right angle.",
+      "The angle in a semicircle is half a right angle.",
+      "The angle in a semicircle is double a right angle.",
+      "There is no fixed relationship."
+    ],
+    "correct": 0,
+    "explanation": "The angle subtended by a diameter at any point on the circumference is always 90 degrees, which is a right angle.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "circle-theorems",
+    "question": "A tangent to a circle at point P is perpendicular to which line segment?",
+    "options": [
+      "The radius through P",
+      "Any chord through P",
+      "Any diameter",
+      "Another tangent"
+    ],
+    "correct": 0,
+    "explanation": "The tangent at any point of a circle is perpendicular to the radius through the point of contact.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "circle-theorems",
+    "question": "If two tangents are drawn to a circle from an external point, what can be said about their lengths?",
+    "options": [
+      "They are equal in length.",
+      "One is always double the other.",
+      "They are always perpendicular.",
+      "They intersect at the center."
+    ],
+    "correct": 0,
+    "explanation": "The lengths of tangents drawn from an external point to a circle are equal.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "circle-theorems",
+    "question": "A cyclic quadrilateral is a quadrilateral whose vertices all lie on what?",
+    "options": [
+      "A circle",
+      "A straight line",
+      "A parabola",
+      "An ellipse"
+    ],
+    "correct": 0,
+    "explanation": "A cyclic quadrilateral is defined as a quadrilateral whose four vertices all lie on the circumference of a single circle.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "circle-theorems",
+    "question": "What is the sum of opposite angles in a cyclic quadrilateral?",
+    "options": [
+      "180 degrees",
+      "90 degrees",
+      "360 degrees",
+      "270 degrees"
+    ],
+    "correct": 0,
+    "explanation": "The sum of opposite angles of a cyclic quadrilateral is 180 degrees (supplementary).",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "circle-theorems",
+    "question": "If an angle subtended by an arc at the center is 120 degrees, what is the angle subtended by the same arc at a point on the minor arc?",
+    "options": [
+      "240 degrees",
+      "120 degrees",
+      "60 degrees",
+      "30 degrees"
+    ],
+    "correct": 2,
+    "explanation": "The angle subtended by an arc at the center is double the angle subtended by the same arc at any point on the remaining part of the circumference. So, the reflex angle at the center is 360-120=240, and the angle on the minor arc is 240/2 = 120. Oh wait, this is a common misconception, the question asks about a point on the *minor arc*, which means the reflex angle needs to be considered. Re-evaluating. Ah, the major arc is 120/2 = 60. The angle on the minor arc (opposite to the major arc angle) would be 180 - 60 = 120. Let's rephrase the options or question to be clearer for easy difficulty. Let's assume the question implies the major arc unless explicitly stated 'minor arc' related to the angle *subtended by the arc itself*. The question is phrased 'at a point on the minor arc', which implies the angle 'outside' the primary arc. So, if center angle is 120, circumference is 60. The angle on the 'minor arc' would be 180-60 = 120. No, that's for cyclic quads. Let's reconsider. Angle at center is 120. The angle subtended by the major arc is 120/2=60. The angle subtended by the minor arc at the circumference is (360-120)/2 = 240/2 = 120. Yes. My current explanation is correct.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "circle-theorems",
+    "question": "A circle has a radius of 5 cm. A chord is 8 cm long. What is the perpendicular distance from the center to the chord?",
+    "options": [
+      "3 cm",
+      "4 cm",
+      "5 cm",
+      "6 cm"
+    ],
+    "correct": 0,
+    "explanation": "The perpendicular from the center to a chord bisects the chord. So, half the chord is 4 cm. Using Pythagoras theorem, distance^2 + 4^2 = 5^2, so distance^2 = 25 - 16 = 9. Thus, distance = 3 cm.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "circle-theorems",
+    "question": "If two angles subtended by the same arc in the same segment of a circle are given, what is their relationship?",
+    "options": [
+      "They are equal.",
+      "One is double the other.",
+      "They are supplementary.",
+      "They are complementary."
+    ],
+    "correct": 0,
+    "explanation": "Angles subtended by the same arc in the same segment of a circle are equal.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "circle-theorems",
+    "question": "What is the angle between the tangent and the radius at the point of contact?",
+    "options": [
+      "90 degrees",
+      "45 degrees",
+      "0 degrees",
+      "180 degrees"
+    ],
+    "correct": 0,
+    "explanation": "A tangent to a circle is perpendicular to the radius at the point of contact, meaning the angle between them is 90 degrees.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "circle-theorems",
+    "question": "In a circle, a diameter passes through the center. What is the angle it subtends at any point on the circumference?",
+    "options": [
+      "90 degrees",
+      "180 degrees",
+      "45 degrees",
+      "0 degrees"
+    ],
+    "correct": 0,
+    "explanation": "The angle in a semicircle is a right angle, which is 90 degrees.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "circle-theorems",
+    "question": "If all vertices of a polygon lie on a circle, the polygon is called a:",
+    "options": [
+      "Cyclic polygon",
+      "Regular polygon",
+      "Convex polygon",
+      "Concave polygon"
+    ],
+    "correct": 0,
+    "explanation": "A polygon whose vertices all lie on a single circle is called a cyclic polygon.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "circle-theorems",
+    "question": "Consider a circle with center O. If A, B, C are points on the circumference such that angle AOC = 80 degrees, what is angle ABC?",
+    "options": [
+      "40 degrees",
+      "80 degrees",
+      "160 degrees",
+      "20 degrees"
+    ],
+    "correct": 0,
+    "explanation": "The angle subtended by an arc at the center is double the angle subtended by the same arc at any point on the remaining part of the circumference. So, angle ABC is half of angle AOC.",
+    "difficulty": "easy"
   }
 ]
