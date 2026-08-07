@@ -13407,5 +13407,1573 @@
     "correct": 1,
     "explanation": "The complement of a set A in a universal set U includes all elements in U that are not in A.",
     "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "algebraic-expressions",
+    "question": "Simplify the algebraic expression: 3x + 2y - x + 4y",
+    "options": [
+      "2x + 6y",
+      "4x + 6y",
+      "2x + 2y",
+      "2x - 2y"
+    ],
+    "correct": 0,
+    "explanation": "To simplify, combine the like terms. (3x - x) becomes 2x, and (2y + 4y) becomes 6y.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "ratio-proportion",
+    "question": "A sum of money is divided between Amal and Bimal in the ratio 3:5. If Amal receives Rs. 600, how much does Bimal receive?",
+    "options": [
+      "Rs. 1000",
+      "Rs. 800",
+      "Rs. 1200",
+      "Rs. 900"
+    ],
+    "correct": 0,
+    "explanation": "The ratio 3:5 means for every 3 parts Amal gets, Bimal gets 5 parts. If Amal's 3 parts equal Rs. 600, then one part is Rs. 200. Therefore, Bimal's 5 parts would be 5 * 200 = Rs. 1000.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "quadratic-equations",
+    "question": "What is the highest power of the variable in a quadratic equation?",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "correct": 1,
+    "explanation": "By definition, a quadratic equation is a polynomial equation of degree 2. This means the highest power of the variable is 2.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "quadratic-equations",
+    "question": "If x=2 is a solution to the equation x^2 + kx - 10 = 0, what is the value of k?",
+    "options": [
+      "3",
+      "2",
+      "-3",
+      "-2"
+    ],
+    "correct": 3,
+    "explanation": "Substitute x=2 into the equation: (2)^2 + k(2) - 10 = 0. This simplifies to 4 + 2k - 10 = 0, which means 2k - 6 = 0, so 2k = 6 and k = 3.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "quadratic-equations",
+    "question": "The sum of the roots of a quadratic equation 3x^2 + 6x - 9 = 0 is:",
+    "options": [
+      "-2",
+      "2",
+      "-3",
+      "3"
+    ],
+    "correct": 0,
+    "explanation": "For a quadratic equation ax^2 + bx + c = 0, the sum of the roots is given by -b/a. Here, a=3 and b=6, so the sum of roots is -(6)/3 = -2.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "quadratic-equations",
+    "question": "Which of the following equations has roots 2 and -5?",
+    "options": [
+      "x^2 + 3x - 10 = 0",
+      "x^2 - 3x - 10 = 0",
+      "x^2 - 3x + 10 = 0",
+      "x^2 + 3x + 10 = 0"
+    ],
+    "correct": 0,
+    "explanation": "If the roots are p and q, the quadratic equation is x^2 - (p+q)x + pq = 0. Here, p=2 and q=-5. So, p+q = 2 + (-5) = -3, and pq = 2 * (-5) = -10. Thus, the equation is x^2 - (-3)x + (-10) = 0, which simplifies to x^2 + 3x - 10 = 0.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "quadratic-equations",
+    "question": "If the roots of the quadratic equation x^2 - (2k + 3)x + k^2 + 3k + 2 = 0 are real and equal, what is the value of k?",
+    "options": [
+      "1",
+      "-1",
+      "0",
+      "2"
+    ],
+    "correct": 0,
+    "explanation": "For real and equal roots, the discriminant (b^2 - 4ac) must be equal to zero. Substituting the coefficients into the discriminant and solving for k yields k = 1.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "quadratic-equations",
+    "question": "A rectangular plot of land has an area of 240 m^2. If the length is 8m more than its width, find the perimeter of the plot.",
+    "options": [
+      "68 m",
+      "64 m",
+      "76 m",
+      "80 m"
+    ],
+    "correct": 1,
+    "explanation": "Let the width be w. Then the length is w+8. The area is w(w+8) = 240. Solving the quadratic equation w^2 + 8w - 240 = 0 gives w=12 (since width cannot be negative). The length is 20m, and the perimeter is 2(12+20) = 64m.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "perimeter-area",
+    "question": "A square has a side length of 5 cm. What is its perimeter?",
+    "options": [
+      "20 cm",
+      "25 cm",
+      "10 cm",
+      "15 cm"
+    ],
+    "correct": 0,
+    "explanation": "The perimeter of a square is calculated by adding the lengths of all four sides. Since all sides are equal, it's 4 times the side length (4 * 5 cm = 20 cm).",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "sets-probability",
+    "question": "If A = {2, 4, 6, 8, 10} and B = {4, 8, 12, 16}, what is A ∩ B?",
+    "options": [
+      "{4, 8}",
+      "{2, 4, 6, 8, 10, 12, 16}",
+      "{2, 6, 10}",
+      "{}"
+    ],
+    "correct": 0,
+    "explanation": "The intersection of two sets A and B (A ∩ B) contains all elements that are common to both sets.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "sets-probability",
+    "question": "A bag contains 5 red balls and 3 blue balls. If a ball is chosen at random, what is the probability of choosing a blue ball?",
+    "options": [
+      "3/8",
+      "5/8",
+      "3/5",
+      "1/3"
+    ],
+    "correct": 0,
+    "explanation": "Probability is calculated as the number of favourable outcomes divided by the total number of possible outcomes.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "sets-probability",
+    "question": "Which of the following is an empty set?",
+    "options": [
+      "{x : x is an even prime number greater than 2}",
+      "{x : x is a whole number less than 1}",
+      "{x : x is an integer between 1 and 3}",
+      "{x : x is a letter in the word 'apple'}"
+    ],
+    "correct": 0,
+    "explanation": "An empty set is a set containing no elements. An even prime number must be 2, so there is no even prime number greater than 2.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "sets-probability",
+    "question": "In a Venn diagram, the region representing (A U B)' is the area:",
+    "options": [
+      "Outside both circles A and B",
+      "Inside circle A only",
+      "Inside circle B only",
+      "Common to both circles A and B"
+    ],
+    "correct": 0,
+    "explanation": "(A U B)' represents the complement of the union of A and B, which includes all elements in the universal set that are not in A or B.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "sets-probability",
+    "question": "In a survey of 100 students, 60 passed Mathematics (M), 50 passed Science (S), and 30 passed both subjects. What is the probability that a randomly selected student failed both subjects?",
+    "options": [
+      "0.20",
+      "0.10",
+      "0.40",
+      "0.80"
+    ],
+    "correct": 0,
+    "explanation": "Number of students who passed at least one subject is n(M U S) = n(M) + n(S) - n(M intersection S) = 60 + 50 - 30 = 80. The number of students who failed both is Total - n(M U S) = 100 - 80 = 20. So, the probability is 20/100 = 0.20.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "sets-probability",
+    "question": "A bag contains 5 red balls and 3 blue balls. If two balls are drawn randomly without replacement, what is the probability that both balls are of different colours?",
+    "options": [
+      "15/28",
+      "1/2",
+      "5/14",
+      "3/8"
+    ],
+    "correct": 0,
+    "explanation": "The probability of drawing a red then a blue is (5/8) * (3/7) = 15/56. The probability of drawing a blue then a red is (3/8) * (5/7) = 15/56. Adding these mutually exclusive probabilities gives 15/56 + 15/56 = 30/56 = 15/28.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "sets-probability",
+    "question": "A fair six-sided die is rolled. What is the probability of obtaining an even number or a number greater than 4?",
+    "options": [
+      "2/3",
+      "1/2",
+      "5/6",
+      "1/3"
+    ],
+    "correct": 0,
+    "explanation": "The sample space is {1, 2, 3, 4, 5, 6}. Even numbers are {2, 4, 6}. Numbers greater than 4 are {5, 6}. The union is {2, 4, 5, 6}, which has 4 elements. So the probability is 4/6 = 2/3.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "sets-probability",
+    "question": "If set P = {x | x is an even number, 1 < x <= 9} and set Q = {x | x is a prime number, x < 10}, find P intersection Q.",
+    "options": [
+      "{2}",
+      "{2, 4, 6, 8}",
+      "{2, 3, 5, 7}",
+      "{}"
+    ],
+    "correct": 0,
+    "explanation": "P = {2, 4, 6, 8} and Q = {2, 3, 5, 7}. The intersection P intersection Q contains elements common to both sets, which is only {2}.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "sets-probability",
+    "question": "In a class of 30 students, 18 study Mathematics, 15 study Science, and 7 study both. How many students study neither Mathematics nor Science?",
+    "options": [
+      "4",
+      "7",
+      "11",
+      "26"
+    ],
+    "correct": 0,
+    "explanation": "Let M be Mathematics and S be Science. n(M)=18, n(S)=15, n(M intersection S)=7. n(M union S) = n(M) + n(S) - n(M intersection S) = 18 + 15 - 7 = 26. Total students = 30. So, students studying neither = 30 - 26 = 4.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "sets-probability",
+    "question": "A bag contains 5 red pens and 3 blue pens. If two pens are drawn at random without replacement, what is the probability that both are red?",
+    "options": [
+      "5/14",
+      "25/64",
+      "15/64",
+      "5/8"
+    ],
+    "correct": 0,
+    "explanation": "The probability of drawing the first red pen is 5/8. After one red pen is drawn, there are 4 red pens left and 7 total pens. The probability of drawing a second red pen is 4/7. The combined probability is (5/8) * (4/7) = 20/56 = 5/14.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "Which of the following describes the locus of points equidistant from two fixed points A and B?",
+    "options": [
+      "The perpendicular bisector of the line segment AB.",
+      "The line segment AB itself.",
+      "A circle with AB as its diameter.",
+      "A line parallel to AB."
+    ],
+    "correct": 0,
+    "explanation": "The perpendicular bisector of a line segment is defined as the locus of all points that are equidistant from the two endpoints of the segment.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "What is the locus of a point that moves such that its distance from a fixed point O is always 5 cm?",
+    "options": [
+      "A circle with center O and radius 5 cm.",
+      "A straight line passing through O.",
+      "A square with side length 5 cm.",
+      "Two parallel lines 5 cm from O."
+    ],
+    "correct": 0,
+    "explanation": "By definition, a circle is the locus of all points in a plane that are at a fixed distance (the radius) from a fixed point (the center).",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "To construct the bisector of an angle PQR using a compass and straightedge, what is the first step?",
+    "options": [
+      "Place the compass needle at Q and draw an arc intersecting QP and QR.",
+      "Draw a line segment connecting P and R.",
+      "Place the compass needle at P and draw an arc.",
+      "Measure the angle PQR with a protractor."
+    ],
+    "correct": 0,
+    "explanation": "The first step in bisecting an angle is to place the compass needle at the vertex and draw an arc that intersects both arms of the angle.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "The locus of points equidistant from two intersecting straight lines is:",
+    "options": [
+      "The angle bisectors of the angles formed by the lines.",
+      "A circle centered at the intersection point.",
+      "A single straight line perpendicular to both.",
+      "A pair of parallel lines."
+    ],
+    "correct": 0,
+    "explanation": "The angle bisectors of two intersecting lines contain all points that are equidistant from those two lines.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "A cuboid has length 5 cm, width 3 cm, and height 2 cm. What is its volume?",
+    "options": [
+      "30 cm^3",
+      "15 cm^3",
+      "25 cm^3",
+      "31 cm^3"
+    ],
+    "correct": 0,
+    "explanation": "The volume of a cuboid is calculated by multiplying its length, width, and height. So, Volume = 5 cm * 3 cm * 2 cm = 30 cm^3.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "What is the total surface area of a cube with side length 1 cm?",
+    "options": [
+      "6 cm^2",
+      "1 cm^2",
+      "4 cm^2",
+      "8 cm^2"
+    ],
+    "correct": 0,
+    "explanation": "A cube has 6 identical square faces. The area of one face is 1 cm * 1 cm = 1 cm^2. Therefore, the total surface area is 6 * 1 cm^2 = 6 cm^2.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "If the volume of a cube is 27 cm^3, what is the length of one of its sides?",
+    "options": [
+      "3 cm",
+      "9 cm",
+      "sqrt(27) cm",
+      "6 cm"
+    ],
+    "correct": 0,
+    "explanation": "The volume of a cube is side^3. To find the side length, we take the cube root of the volume. The cube root of 27 is 3, so the side length is 3 cm.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "A cylinder has a radius 'r' and height 'h'. What is the formula for its volume?",
+    "options": [
+      "pi * r^2 * h",
+      "2 * pi * r * h",
+      "2 * pi * r^2 * h",
+      "pi * r * h"
+    ],
+    "correct": 0,
+    "explanation": "The volume of a cylinder is found by multiplying the area of its circular base (pi * r^2) by its height (h).",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "A solid right circular cone has radius 'r' and height 'h'. What is the formula for its volume?",
+    "options": [
+      "(1/3) * pi * r^2 * h",
+      "pi * r^2 * h",
+      "2 * pi * r * h",
+      "(1/3) * pi * r * h"
+    ],
+    "correct": 0,
+    "explanation": "The volume of a cone is one-third the volume of a cylinder with the same base radius and height. Thus, Volume = (1/3) * pi * r^2 * h.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "What is the volume of a sphere with radius 'r'?",
+    "options": [
+      "(4/3) * pi * r^3",
+      "4 * pi * r^2",
+      "(2/3) * pi * r^3",
+      "pi * r^3"
+    ],
+    "correct": 0,
+    "explanation": "The formula for the volume of a sphere is (4/3) multiplied by pi and the cube of the radius.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "A cylindrical tank has a base area of 20 m^2 and a height of 5 m. What is its volume?",
+    "options": [
+      "100 m^3",
+      "25 m^3",
+      "50 m^3",
+      "1000 m^3"
+    ],
+    "correct": 0,
+    "explanation": "The volume of a cylinder is the base area multiplied by its height. So, Volume = 20 m^2 * 5 m = 100 m^3.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "The surface area of a sphere is given by the formula:",
+    "options": [
+      "4 * pi * r^2",
+      "(4/3) * pi * r^3",
+      "2 * pi * r^2",
+      "pi * r^2"
+    ],
+    "correct": 0,
+    "explanation": "The formula for the surface area of a sphere is 4 multiplied by pi and the square of the radius.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "A rectangular prism (cuboid) has dimensions 4 cm, 3 cm, and 2 cm. What is its total surface area?",
+    "options": [
+      "52 cm^2",
+      "24 cm^2",
+      "26 cm^2",
+      "48 cm^2"
+    ],
+    "correct": 0,
+    "explanation": "The total surface area of a cuboid is 2(lw + lh + wh). Here, 2(4*3 + 4*2 + 3*2) = 2(12 + 8 + 6) = 2(26) = 52 cm^2.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "How many liters are there in 1 m^3?",
+    "options": [
+      "1000",
+      "100",
+      "10",
+      "1"
+    ],
+    "correct": 0,
+    "explanation": "1 cubic meter is equivalent to 1000 liters. This is a common conversion factor for volume.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "The volume of a right circular cylinder is 924 cm^3. If its height is 6 cm, what is the radius of its base? (Use pi = 22/7)",
+    "options": [
+      "7 cm",
+      "14 cm",
+      "21 cm",
+      "28 cm"
+    ],
+    "correct": 0,
+    "explanation": "The formula for the volume of a cylinder is V = pi * r^2 * h. Substituting the given values, 924 = (22/7) * r^2 * 6. Solving for r gives r = 7 cm.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "A solid metal cube of side 8 cm is melted and recast into a sphere. What is the approximate radius of the sphere? (Use pi = 22/7)",
+    "options": [
+      "4.96 cm",
+      "5.32 cm",
+      "6.28 cm",
+      "7.14 cm"
+    ],
+    "correct": 0,
+    "explanation": "The volume of the cube is 8^3 = 512 cm^3. The volume of a sphere is (4/3) * pi * r^3. Equating the volumes, 512 = (4/3) * (22/7) * r^3. Solving for r gives approximately 4.96 cm.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "The total surface area of a cube is 294 cm^2. What is the length of one side of the cube?",
+    "options": [
+      "6 cm",
+      "7 cm",
+      "8 cm",
+      "9 cm"
+    ],
+    "correct": 1,
+    "explanation": "The total surface area of a cube is given by 6a^2, where 'a' is the side length. So, 6a^2 = 294, which means a^2 = 49. Therefore, a = 7 cm.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "A cone has a radius of 3 cm and a slant height of 5 cm. What is its curved surface area? (Use pi = 22/7)",
+    "options": [
+      "33 cm^2",
+      "44 cm^2",
+      "47.14 cm^2",
+      "66 cm^2"
+    ],
+    "correct": 2,
+    "explanation": "The curved surface area of a cone is given by pi * r * l, where r is the radius and l is the slant height. So, CSA = (22/7) * 3 * 5 = 330/7 which is approximately 47.14 cm^2.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "If the radius of a sphere is doubled, how many times does its volume increase?",
+    "options": [
+      "2 times",
+      "4 times",
+      "6 times",
+      "8 times"
+    ],
+    "correct": 3,
+    "explanation": "The volume of a sphere is (4/3) * pi * r^3. If the radius is doubled to 2r, the new volume becomes (4/3) * pi * (2r)^3 = (4/3) * pi * 8r^3, which is 8 times the original volume.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "The base area of a right prism is 50 cm^2 and its height is 12 cm. What is the volume of the prism?",
+    "options": [
+      "300 cm^3",
+      "450 cm^3",
+      "600 cm^3",
+      "750 cm^3"
+    ],
+    "correct": 2,
+    "explanation": "The volume of any prism is calculated by multiplying its base area by its height. So, Volume = 50 cm^2 * 12 cm = 600 cm^3.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "A rectangular tank is 50 cm long, 30 cm wide, and 20 cm high. If it is filled with water up to 3/4 of its height, what is the volume of water in the tank?",
+    "options": [
+      "22500 cm^3",
+      "30000 cm^3",
+      "15000 cm^3",
+      "11250 cm^3"
+    ],
+    "correct": 1,
+    "explanation": "The total volume of the tank is 50 * 30 * 20 = 30000 cm^3. If it's filled to 3/4 of its height, the volume of water is (3/4) * 30000 = 22500 cm^3.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "The ratio of the radii of two spheres is 1:2. What is the ratio of their surface areas?",
+    "options": [
+      "1:2",
+      "1:4",
+      "1:8",
+      "1:16"
+    ],
+    "correct": 1,
+    "explanation": "The surface area of a sphere is 4 * pi * r^2. If the radii are r and 2r, their surface areas will be 4 * pi * r^2 and 4 * pi * (2r)^2 = 4 * pi * 4r^2. The ratio is 1:4.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "A cylindrical pencil has a diameter of 7 mm and a length of 10 cm. What is its volume in cm^3? (Use pi = 22/7)",
+    "options": [
+      "3.85 cm^3",
+      "38.5 cm^3",
+      "385 cm^3",
+      "3850 cm^3"
+    ],
+    "correct": 0,
+    "explanation": "First, convert all units to cm. Radius = 7 mm / 2 = 0.35 cm. Height = 10 cm. Volume = pi * r^2 * h = (22/7) * (0.35)^2 * 10 = 3.85 cm^3.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "The total surface area of a solid hemisphere is 147pi cm^2. What is the radius of the hemisphere?",
+    "options": [
+      "5 cm",
+      "7 cm",
+      "9 cm",
+      "11 cm"
+    ],
+    "correct": 1,
+    "explanation": "The total surface area of a solid hemisphere is given by 3 * pi * r^2 (curved surface + circular base). So, 3 * pi * r^2 = 147 * pi. Dividing by pi, 3r^2 = 147. r^2 = 49, so r = 7 cm.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "What is the relationship between the volume of a cone, a sphere, and a cylinder if they all have the same radius 'r' and the cone and cylinder have height '2r'?",
+    "options": [
+      "V_cone : V_sphere : V_cylinder = 1:2:3",
+      "V_cone : V_sphere : V_cylinder = 1:2:4",
+      "V_cone : V_sphere : V_cylinder = 1:3:2",
+      "V_cone : V_sphere : V_cylinder = 2:3:1"
+    ],
+    "correct": 0,
+    "explanation": "Volume of cone = (1/3) * pi * r^2 * (2r) = (2/3) * pi * r^3. Volume of sphere = (4/3) * pi * r^3. Volume of cylinder = pi * r^2 * (2r) = 2 * pi * r^3. The ratio is (2/3) : (4/3) : 2, which simplifies to 2:4:6 or 1:2:3.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "A metal block with dimensions 10 cm x 8 cm x 5 cm is melted and recast into smaller cubes of side 2 cm. How many such cubes can be formed?",
+    "options": [
+      "25",
+      "50",
+      "75",
+      "100"
+    ],
+    "correct": 1,
+    "explanation": "The volume of the metal block is 10 * 8 * 5 = 400 cm^3. The volume of one small cube is 2^3 = 8 cm^3. The number of cubes formed is 400 / 8 = 50.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "The lateral surface area of a right circular cylinder is 176 cm^2. If the radius of its base is 7 cm, what is its height? (Use pi = 22/7)",
+    "options": [
+      "2 cm",
+      "4 cm",
+      "6 cm",
+      "8 cm"
+    ],
+    "correct": 1,
+    "explanation": "The lateral (curved) surface area of a cylinder is given by 2 * pi * r * h. So, 176 = 2 * (22/7) * 7 * h. This simplifies to 176 = 44 * h. Therefore, h = 176 / 44 = 4 cm.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "Which of the following points is equidistant from two intersecting straight lines?",
+    "options": [
+      "Any point on the bisector of the angle formed by the lines.",
+      "Any point on the perpendicular bisector of the segment connecting the intersection point to another point on one line.",
+      "Any point on the circle passing through the intersection point and two other points on the lines.",
+      "Any point on a line parallel to one of the given lines."
+    ],
+    "correct": 0,
+    "explanation": "The locus of points equidistant from two intersecting straight lines is the pair of angle bisectors formed by the lines.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "To construct a point that is 5 cm from point A and 3 cm from point B, what geometrical constructions are primarily used?",
+    "options": [
+      "Drawing two circles.",
+      "Drawing a circle and a perpendicular bisector.",
+      "Drawing two angle bisectors.",
+      "Drawing a line parallel to AB and a circle."
+    ],
+    "correct": 0,
+    "explanation": "Points at a fixed distance from a given point lie on a circle. Therefore, two circles are needed to find a point satisfying both conditions.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "A point P moves such that its distance from a fixed point O is always less than 4 cm. Which of the following describes the region where P can be found?",
+    "options": [
+      "The interior of a circle with center O and radius 4 cm.",
+      "The circumference of a circle with center O and radius 4 cm.",
+      "The exterior of a circle with center O and radius 4 cm.",
+      "A line segment passing through O with length 8 cm."
+    ],
+    "correct": 0,
+    "explanation": "If the distance is 'less than' a value, it defines the interior of a circle. If it were 'equal to', it would be the circumference.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "If you are asked to construct the locus of points equidistant from two given parallel lines, what would be your construction?",
+    "options": [
+      "A line parallel to and exactly midway between the two given lines.",
+      "A circle whose diameter is the distance between the two lines.",
+      "Two lines perpendicular to the given lines.",
+      "A single point at the center of the segment connecting the lines."
+    ],
+    "correct": 0,
+    "explanation": "The locus of points equidistant from two parallel lines is another parallel line situated exactly in the middle of the two given lines.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "What is the locus of a point that is equidistant from two fixed points A and B?",
+    "options": [
+      "The perpendicular bisector of the line segment AB.",
+      "The line segment AB itself.",
+      "A circle with AB as diameter.",
+      "A line parallel to AB."
+    ],
+    "correct": 0,
+    "explanation": "The perpendicular bisector contains all points that are equidistant from the two endpoints of a line segment.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "To construct an angle bisector of an angle XYZ, what is the first step after placing the compass point at Y?",
+    "options": [
+      "Draw an arc that intersects both YX and YZ.",
+      "Draw a line from Y to a point on XZ.",
+      "Measure the angle XYZ with a protractor.",
+      "Draw a circle centered at X."
+    ],
+    "correct": 0,
+    "explanation": "The first step in bisecting an angle with a compass is to draw an arc from the vertex that intersects both arms of the angle.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "Which of the following describes the locus of a point that moves at a constant distance 'r' from a fixed point O?",
+    "options": [
+      "A circle with center O and radius r.",
+      "A straight line passing through O.",
+      "A parabola.",
+      "A perpendicular bisector."
+    ],
+    "correct": 0,
+    "explanation": "By definition, a circle is the set of all points equidistant from a central point.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "When constructing a perpendicular to a line segment AB from a point P outside the line, what is drawn first from point P?",
+    "options": [
+      "An arc intersecting the line segment AB at two points.",
+      "A line parallel to AB.",
+      "An arc centered at A.",
+      "A circle with P as the center and radius equal to AP."
+    ],
+    "correct": 0,
+    "explanation": "To construct a perpendicular from an external point, an arc is drawn from the external point to intersect the line at two distinct points.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "The locus of points equidistant from two parallel lines L1 and L2 is:",
+    "options": [
+      "A line parallel to and midway between L1 and L2.",
+      "A circle.",
+      "A line perpendicular to L1 and L2.",
+      "Two lines, one coincident with L1 and one with L2."
+    ],
+    "correct": 0,
+    "explanation": "All points lying on the line exactly halfway between two parallel lines are equidistant from them.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "Which tool is primarily used for drawing arcs and circles in geometric constructions?",
+    "options": [
+      "Compass",
+      "Ruler (straight edge)",
+      "Protractor",
+      "Set square"
+    ],
+    "correct": 0,
+    "explanation": "A compass is specifically designed for drawing arcs and circles with a given radius and center.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "To construct a line segment of length 5 cm, what is the most appropriate first step after drawing a starting point?",
+    "options": [
+      "Open the compass to 5 cm and draw an arc from the starting point.",
+      "Use a ruler to draw a line segment 5 cm long directly.",
+      "Draw a random line and then measure 5 cm.",
+      "Estimate the length and draw it."
+    ],
+    "correct": 0,
+    "explanation": "To accurately construct a line segment of a specific length using compass and ruler, the compass is set to that length and an arc is drawn.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "The locus of points that are a fixed distance 'd' from a given straight line 'l' consists of:",
+    "options": [
+      "Two lines parallel to 'l' and at a distance 'd' from it.",
+      "A circle with the line 'l' as its diameter.",
+      "A single line perpendicular to 'l'.",
+      "A single line parallel to 'l' but only on one side."
+    ],
+    "correct": 0,
+    "explanation": "Points at a fixed distance from a line lie on two parallel lines, one on each side of the given line.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "When constructing a 60-degree angle using only a compass and straight edge, what shape is essentially created?",
+    "options": [
+      "An equilateral triangle.",
+      "A square.",
+      "A right-angled triangle.",
+      "An isosceles triangle."
+    ],
+    "correct": 0,
+    "explanation": "Constructing a 60-degree angle involves drawing two arcs of the same radius from two points, forming an equilateral triangle.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "Which of these is NOT a basic construction using only a compass and straight edge?",
+    "options": [
+      "Trisecting an angle into three equal parts.",
+      "Bisecting an angle.",
+      "Constructing a perpendicular bisector.",
+      "Constructing a line parallel to a given line."
+    ],
+    "correct": 0,
+    "explanation": "Trisecting an arbitrary angle using only a compass and straightedge is a famous unsolved problem and is generally not possible.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "What is the locus of the center of a circle that touches a given straight line at a fixed point P?",
+    "options": [
+      "A line perpendicular to the given line at point P.",
+      "A line parallel to the given line.",
+      "A circle passing through P.",
+      "The given straight line itself."
+    ],
+    "correct": 0,
+    "explanation": "The radius of a circle is perpendicular to the tangent at the point of contact. Thus, the center must lie on the line perpendicular to the given line at P.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "To construct a parallel line to a given line L passing through a point P not on L, one common method involves constructing:",
+    "options": [
+      "Corresponding angles or alternate interior angles.",
+      "A right angle at point P.",
+      "An equilateral triangle.",
+      "A circle centered at P."
+    ],
+    "correct": 0,
+    "explanation": "Constructing parallel lines often relies on the properties of corresponding or alternate interior angles formed by a transversal.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "If a point P moves such that its distance from a point A is always equal to its distance from a point B, what path does P trace?",
+    "options": [
+      "The perpendicular bisector of the line segment AB.",
+      "A circle passing through A and B.",
+      "A straight line passing through A.",
+      "The line segment AB."
+    ],
+    "correct": 0,
+    "explanation": "The perpendicular bisector is defined as the locus of points equidistant from the two endpoints of a segment.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "Which of the following cannot be precisely constructed using only a compass and straightedge?",
+    "options": [
+      "An angle of 10 degrees.",
+      "An angle of 45 degrees.",
+      "An angle of 90 degrees.",
+      "An angle of 60 degrees."
+    ],
+    "correct": 0,
+    "explanation": "Angles that are multiples of 3 degrees, like 15, 30, 45, 60, 75, 90, can be constructed. 10 degrees cannot be precisely constructed.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "What is the locus of a point that is equidistant from three non-collinear points A, B, and C?",
+    "options": [
+      "The circumcenter of the triangle ABC.",
+      "The incenter of the triangle ABC.",
+      "The centroid of the triangle ABC.",
+      "A line segment."
+    ],
+    "correct": 0,
+    "explanation": "The circumcenter is the point where the perpendicular bisectors of the sides of a triangle intersect, and it is equidistant from all three vertices.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "A point P moves such that its distance from point A(2, 3) is always twice its distance from point B(5, 0). Which of the following equations represents the locus of P?",
+    "options": [
+      "3x^2 + 3y^2 - 36x + 6y + 87 = 0",
+      "x^2 + y^2 - 12x + 2y + 29 = 0",
+      "x^2 + y^2 - 4x + 6y + 13 = 0",
+      "3x^2 + 3y^2 + 36x - 6y - 87 = 0"
+    ],
+    "correct": 0,
+    "explanation": "Let P be (x, y). The condition is PA = 2PB. Squaring both sides gives PA^2 = 4PB^2. Expanding the distance formula and simplifying leads to the equation 3x^2 + 3y^2 - 36x + 6y + 87 = 0.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "Consider a square ABCD with side length 'a'. A point P moves such that it is always equidistant from the lines AB and BC, and also equidistant from the points A and D. Which of the following statements is true regarding the locus of P?",
+    "options": [
+      "The locus of P is a single point at the intersection of the angle bisector of angle B and the perpendicular bisector of AD.",
+      "The locus of P is a line segment, part of the angle bisector of angle B.",
+      "The locus of P is a single point, which is the center of the square.",
+      "The locus of P is a line segment, part of the perpendicular bisector of AD."
+    ],
+    "correct": 0,
+    "explanation": "The locus of points equidistant from lines AB and BC is the angle bisector of angle B. The locus of points equidistant from points A and D is the perpendicular bisector of AD. The intersection of these two loci is a single point satisfying both conditions.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "The locus of a point equidistant from two intersecting straight lines is:",
+    "options": [
+      "The angle bisector of the angle formed by the lines.",
+      "A line parallel to both lines.",
+      "A circle tangent to both lines.",
+      "The perpendicular bisector of the segment joining any two points on the lines."
+    ],
+    "correct": 0,
+    "explanation": "The angle bisector contains all points that are equidistant from the two intersecting lines.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "To construct a tangent to a circle at a given point P on the circle, the first step is to:",
+    "options": [
+      "Draw a chord through P.",
+      "Draw a line from the center of the circle to P.",
+      "Draw an arc centered at P.",
+      "Draw a line perpendicular to the radius at P through the center."
+    ],
+    "correct": 1,
+    "explanation": "A tangent to a circle is perpendicular to the radius at the point of tangency. Thus, drawing the radius is the initial step.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "Which of the following describes the locus of the center of a coin rolling along a straight line?",
+    "options": [
+      "A straight line parallel to the given line.",
+      "A circle.",
+      "An arc.",
+      "A parabola."
+    ],
+    "correct": 0,
+    "explanation": "The center of the coin maintains a constant distance (its radius) from the straight line it is rolling on, forming a parallel line.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "If you are asked to construct a triangle ABC where AB=6cm, BC=8cm, and AC=10cm, what tool is most essential after drawing the base AB?",
+    "options": [
+      "Protractor.",
+      "Set square.",
+      "Compass.",
+      "Ruler (straight edge) only."
+    ],
+    "correct": 2,
+    "explanation": "A compass is essential for drawing arcs of specific radii (BC and AC) to locate the third vertex C.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "The locus of a point P such that its distance from a fixed point O is always 5 cm is:",
+    "options": [
+      "A straight line.",
+      "A circle with radius 5 cm centered at O.",
+      "A square with side length 5 cm.",
+      "Two parallel lines."
+    ],
+    "correct": 1,
+    "explanation": "A circle is defined as the set of all points equidistant from a fixed central point.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "To construct the perpendicular bisector of a line segment AB, you would place the compass point at A and B, and draw arcs with a radius that is:",
+    "options": [
+      "Equal to the length of AB.",
+      "Less than half the length of AB.",
+      "Greater than half the length of AB.",
+      "Exactly half the length of AB."
+    ],
+    "correct": 2,
+    "explanation": "To ensure the arcs intersect at two distinct points, the radius must be greater than half the segment length.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "A point moves such that it is always equidistant from two parallel lines L1 and L2. The locus of this point is:",
+    "options": [
+      "A circle.",
+      "A line parallel to L1 and L2, midway between them.",
+      "Two lines perpendicular to L1 and L2.",
+      "A single point."
+    ],
+    "correct": 1,
+    "explanation": "Any point equidistant from two parallel lines must lie on a line that is parallel to and exactly in the middle of them.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "When constructing an angle of 60 degrees using a compass and straight edge, which fundamental construction principle is primarily used?",
+    "options": [
+      "Perpendicular bisector.",
+      "Angle bisector.",
+      "Equilateral triangle construction.",
+      "Parallel lines construction."
+    ],
+    "correct": 2,
+    "explanation": "An equilateral triangle has all angles equal to 60 degrees. This is the basis for constructing a 60-degree angle.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "The locus of the vertices of all right-angled triangles that can be drawn with a fixed hypotenuse AB is:",
+    "options": [
+      "A straight line passing through the midpoint of AB.",
+      "A circle with AB as diameter.",
+      "An ellipse with foci at A and B.",
+      "A pair of intersecting lines."
+    ],
+    "correct": 1,
+    "explanation": "Thales' Theorem states that if A, B, and C are distinct points on a circle where the line segment AC is a diameter, then the angle ABC is a right angle.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "To construct an angle of 45 degrees, you would typically start by constructing:",
+    "options": [
+      "A 30-degree angle.",
+      "A 60-degree angle.",
+      "A 90-degree angle.",
+      "A 120-degree angle."
+    ],
+    "correct": 2,
+    "explanation": "A 45-degree angle is half of a 90-degree angle. Therefore, constructing a right angle and then bisecting it is the standard method.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "Consider a square ABCD. The locus of points inside the square that are equidistant from side AB and side BC is:",
+    "options": [
+      "The diagonal AC.",
+      "The diagonal BD.",
+      "A line parallel to AB and BC.",
+      "The line segment connecting the midpoints of AB and BC."
+    ],
+    "correct": 0,
+    "explanation": "The diagonal AC is the angle bisector of angle B, and all points on an angle bisector are equidistant from the two arms (sides).",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "What is the maximum number of points of intersection between the locus of points 3cm from point P and the locus of points 5cm from point Q, if P and Q are 7cm apart?",
+    "options": [
+      "0",
+      "1",
+      "2",
+      "4"
+    ],
+    "correct": 2,
+    "explanation": "These are two circles. The sum of radii (3+5=8cm) is greater than the distance between centers (7cm), and the difference (5-3=2cm) is less than the distance between centers. Thus, they intersect at two points.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "To construct the circumcircle of a triangle, what lines are constructed first?",
+    "options": [
+      "Angle bisectors of the angles.",
+      "Altitudes to the sides.",
+      "Medians to the sides.",
+      "Perpendicular bisectors of the sides."
+    ],
+    "correct": 3,
+    "explanation": "The circumcenter, which is the center of the circumcircle, is the intersection point of the perpendicular bisectors of the triangle's sides.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "A point moves such that its distance from a fixed line L is always constant. What is the locus of this point?",
+    "options": [
+      "A circle.",
+      "A single point.",
+      "Two parallel lines.",
+      "A perpendicular line to L."
+    ],
+    "correct": 2,
+    "explanation": "For any constant non-zero distance, there are two lines, one on each side of L, that are parallel to L and at that constant distance.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "If you need to divide a line segment AB into 5 equal parts using a compass and ruler, which of the following angle construction is typically involved?",
+    "options": [
+      "Constructing a 45-degree angle at A.",
+      "Constructing a 60-degree angle at A.",
+      "Drawing an arbitrary acute angle at A.",
+      "Constructing a 90-degree angle at A."
+    ],
+    "correct": 2,
+    "explanation": "To divide a line segment into n equal parts, an arbitrary acute angle is drawn from one endpoint, and equal segments are marked along this new line.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "Which of the following describes a polygon with three sides?",
+    "options": [
+      "Triangle",
+      "Quadrilateral",
+      "Pentagon",
+      "Hexagon"
+    ],
+    "correct": 0,
+    "explanation": "A triangle is defined as a polygon with exactly three sides and three angles.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "If two sides of a triangle are equal in length, what type of triangle is it?",
+    "options": [
+      "Isosceles triangle",
+      "Scalene triangle",
+      "Equilateral triangle",
+      "Right-angled triangle"
+    ],
+    "correct": 0,
+    "explanation": "An isosceles triangle is characterized by having at least two sides of equal length and two equal base angles.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "What is the sum of the interior angles of any triangle?",
+    "options": [
+      "90 degrees",
+      "180 degrees",
+      "270 degrees",
+      "360 degrees"
+    ],
+    "correct": 1,
+    "explanation": "A fundamental property of Euclidean geometry states that the sum of the interior angles of any triangle is always 180 degrees.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "Which statement is always true for a parallelogram?",
+    "options": [
+      "All sides are equal.",
+      "Diagonals are perpendicular.",
+      "Opposite sides are parallel and equal.",
+      "All angles are 90 degrees."
+    ],
+    "correct": 2,
+    "explanation": "A parallelogram is a quadrilateral where both pairs of opposite sides are parallel and equal in length.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "A regular polygon has each interior angle equal to 90 degrees. How many sides does it have?",
+    "options": [
+      "3",
+      "4",
+      "5",
+      "6"
+    ],
+    "correct": 1,
+    "explanation": "A regular polygon with all interior angles equal to 90 degrees is a square, which has 4 sides.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "In a right-angled triangle, what is the side opposite the right angle called?",
+    "options": [
+      "Adjacent side",
+      "Opposite side",
+      "Hypotenuse",
+      "Leg"
+    ],
+    "correct": 2,
+    "explanation": "The hypotenuse is the longest side of a right-angled triangle, always located opposite the 90-degree angle.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "How many diagonals can be drawn from one vertex of a pentagon?",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "correct": 2,
+    "explanation": "From one vertex of an n-sided polygon, n-3 diagonals can be drawn. For a pentagon (n=5), 5-3 = 2 diagonals.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "If the exterior angle of a triangle is 70 degrees, and one of the interior opposite angles is 30 degrees, what is the other interior opposite angle?",
+    "options": [
+      "40 degrees",
+      "50 degrees",
+      "60 degrees",
+      "70 degrees"
+    ],
+    "correct": 0,
+    "explanation": "The exterior angle of a triangle is equal to the sum of the two interior opposite angles. So, 70 = 30 + x, which means x = 40 degrees.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "Which of the following is NOT a property of a parallelogram?",
+    "options": [
+      "Opposite angles are equal.",
+      "Diagonals bisect each other.",
+      "Adjacent angles sum to 180 degrees.",
+      "All sides are equal in length."
+    ],
+    "correct": 3,
+    "explanation": "While opposite sides are equal, it's not a requirement for all sides of a parallelogram to be equal; this is a property of a rhombus or square.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "What is the name of a polygon with 6 sides?",
+    "options": [
+      "Pentagon",
+      "Hexagon",
+      "Heptagon",
+      "Octagon"
+    ],
+    "correct": 1,
+    "explanation": "A polygon with six sides is specifically called a hexagon.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "If all three sides of a triangle are equal in length, what type of triangle is it?",
+    "options": [
+      "Scalene triangle",
+      "Isosceles triangle",
+      "Equilateral triangle",
+      "Acute-angled triangle"
+    ],
+    "correct": 2,
+    "explanation": "An equilateral triangle is defined as a triangle where all three sides are of equal length, and all three angles are 60 degrees.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "In a triangle, if two angles are 50 degrees and 60 degrees, what is the measure of the third angle?",
+    "options": [
+      "50 degrees",
+      "60 degrees",
+      "70 degrees",
+      "80 degrees"
+    ],
+    "correct": 2,
+    "explanation": "The sum of angles in a triangle is 180 degrees. So, 180 - (50 + 60) = 180 - 110 = 70 degrees.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "Which shape is a quadrilateral with exactly one pair of parallel sides?",
+    "options": [
+      "Rhombus",
+      "Trapezium",
+      "Rectangle",
+      "Square"
+    ],
+    "correct": 1,
+    "explanation": "A trapezium (or trapezoid) is a quadrilateral with at least one pair of parallel sides.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "What is the sum of the exterior angles of any convex polygon?",
+    "options": [
+      "180 degrees",
+      "270 degrees",
+      "360 degrees",
+      "n * 180 degrees"
+    ],
+    "correct": 2,
+    "explanation": "Regardless of the number of sides, the sum of the exterior angles of any convex polygon is always 360 degrees.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "If a triangle has angles measuring 30 degrees, 60 degrees, and 90 degrees, what type of triangle is it?",
+    "options": [
+      "Acute-angled triangle",
+      "Obtuse-angled triangle",
+      "Right-angled triangle",
+      "Isosceles triangle"
+    ],
+    "correct": 2,
+    "explanation": "A triangle with one angle exactly 90 degrees is classified as a right-angled triangle.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "A point moves such that its distance from two fixed points A and B are in the ratio 2:1. Which of the following best describes the locus of this point?",
+    "options": [
+      "A circle",
+      "A straight line segment",
+      "An ellipse",
+      "A parabola"
+    ],
+    "correct": 0,
+    "explanation": "The locus of a point whose distances from two fixed points are in a constant ratio (not equal to 1) is a circle, known as the Circle of Apollonius.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "Constructing the angle bisector of an angle requires which fundamental construction tool besides a straight edge?",
+    "options": [
+      "A compass",
+      "A protractor",
+      "A set square",
+      "A ruler with markings"
+    ],
+    "correct": 0,
+    "explanation": "Angle bisectors are constructed using a compass to draw arcs that intersect and define the bisector line, along with a straight edge for drawing.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "If point P moves such that it is equidistant from two intersecting lines, what is its locus?",
+    "options": [
+      "The angle bisectors of the angles formed by the lines",
+      "A circle passing through the intersection point",
+      "A line parallel to one of the given lines",
+      "A perpendicular bisector to the segment joining two points on the lines"
+    ],
+    "correct": 0,
+    "explanation": "The locus of points equidistant from two intersecting lines is the pair of lines that bisect the angles formed by the intersection, thus two angle bisectors.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "To construct a line perpendicular to a given line L and passing through a point P not on L, what is the initial step?",
+    "options": [
+      "Place the compass needle on P and draw an arc intersecting L at two points.",
+      "Place the compass needle on any point on L and draw an arc through P.",
+      "Draw a line segment from P to any point on L.",
+      "Measure the shortest distance from P to L with a ruler."
+    ],
+    "correct": 0,
+    "explanation": "The first step is to place the compass on P and draw an arc that cuts the line L at two distinct points, creating a segment whose perpendicular bisector will pass through P.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "A point P is outside a given circle. What is the locus of the midpoints of all chords of the circle that pass through P?",
+    "options": [
+      "A circle with diameter OP (where O is the center of the given circle)",
+      "A straight line segment",
+      "A point",
+      "The entire circle itself"
+    ],
+    "correct": 0,
+    "explanation": "The locus of the midpoints of chords passing through an external point P is a circle with diameter OP, where O is the center of the original circle.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "Which construction best represents the method for finding the circumcenter of a triangle?",
+    "options": [
+      "Intersection of perpendicular bisectors of the sides",
+      "Intersection of angle bisectors of the vertices",
+      "Intersection of altitudes from the vertices to the opposite sides",
+      "Intersection of medians from the vertices to the midpoints of opposite sides"
+    ],
+    "correct": 0,
+    "explanation": "The circumcenter of a triangle is the point of concurrency of the perpendicular bisectors of its sides, which is equidistant from the vertices.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "To construct a tangent to a circle from an external point P, one must first find the midpoint of which segment?",
+    "options": [
+      "The segment connecting the external point P to the center of the circle (let's say O)",
+      "Any radius of the circle",
+      "Any chord of the circle",
+      "The segment connecting P to any point on the circle"
+    ],
+    "correct": 0,
+    "explanation": "To construct a tangent from an external point P, first find the midpoint of the segment PO (where O is the center of the circle) to construct a new circle that helps locate the tangent points.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "The locus of a point equidistant from two parallel lines is:",
+    "options": [
+      "A straight line parallel to and midway between them",
+      "A straight line perpendicular to both lines",
+      "Two straight lines, one on each side",
+      "A circle tangent to both lines"
+    ],
+    "correct": 0,
+    "explanation": "A point equidistant from two parallel lines will always lie on a straight line that is parallel to both original lines and positioned exactly midway between them.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "What is the locus of the center of a circle that rolls along the inside of a larger circle?",
+    "options": [
+      "A smaller circle concentric with the larger circle",
+      "A straight line",
+      "An ellipse",
+      "A cycloid"
+    ],
+    "correct": 0,
+    "explanation": "If a smaller circle rolls along the inside of a larger circle, its center will always remain at a constant distance from the center of the larger circle, thus tracing a smaller concentric circle.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "Given a line segment AB, what is the locus of a point P such that triangle APB has a constant area?",
+    "options": [
+      "Two lines parallel to AB, on opposite sides of AB",
+      "A circle with AB as diameter",
+      "A perpendicular bisector of AB",
+      "A single straight line parallel to AB"
+    ],
+    "correct": 0,
+    "explanation": "For the area of triangle APB to be constant with a fixed base AB, the height from P to AB must be constant. This implies P lies on two lines parallel to AB, equidistant from it.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "If you are constructing an equilateral triangle given one side, what is the minimum number of compass arcs required to locate the third vertex?",
+    "options": [
+      "2",
+      "1",
+      "3",
+      "4"
+    ],
+    "correct": 0,
+    "explanation": "From each endpoint of the given side, draw an arc with radius equal to the side length. The intersection of these two arcs gives the third vertex, requiring two arcs.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "A point P moves such that it is equidistant from a fixed point F and a fixed line L. This locus describes which conic section?",
+    "options": [
+      "A parabola",
+      "A circle",
+      "An ellipse",
+      "A hyperbola"
+    ],
+    "correct": 0,
+    "explanation": "The definition of a parabola is the locus of points equidistant from a fixed point (focus) and a fixed line (directrix).",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "To construct a line parallel to a given line and passing through a given external point, which construction principle is primarily used?",
+    "options": [
+      "Construction of alternate interior angles",
+      "Construction of a perpendicular bisector",
+      "Construction of an angle bisector",
+      "Construction of a perpendicular from a point to a line"
+    ],
+    "correct": 0,
+    "explanation": "A common method involves constructing a transversal through the external point and copying an alternate interior angle to create a parallel line.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "The locus of the vertices of all right-angled triangles that can be drawn on a fixed hypotenuse is:",
+    "options": [
+      "A circle with the hypotenuse as diameter",
+      "A straight line perpendicular to the hypotenuse",
+      "An arc of a circle passing through the endpoints of the hypotenuse",
+      "Two parallel lines to the hypotenuse"
+    ],
+    "correct": 0,
+    "explanation": "Thales' Theorem states that if A, B, and C are distinct points on a circle where the line segment AC is a diameter, then the angle ABC is a right angle. Thus, the locus is a circle.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "loci-constructions",
+    "question": "If a point moves such that the sum of its distances from two fixed points is constant, its locus is a(n):",
+    "options": [
+      "Ellipse",
+      "Circle",
+      "Parabola",
+      "Hyperbola"
+    ],
+    "correct": 0,
+    "explanation": "The definition of an ellipse is the locus of points for which the sum of the distances from two fixed points (foci) is constant.",
+    "difficulty": "hard"
   }
 ]
