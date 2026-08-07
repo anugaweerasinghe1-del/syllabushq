@@ -8,7 +8,7 @@ const MODEL = "google/gemini-2.5-flash";
 const GATEWAY = "https://ai.gateway.lovable.dev/v1/chat/completions";
 const TARGET = 60;
 const BATCH = 15;
-const CONCURRENCY = 2;
+const CONCURRENCY = 5;
 const PATH = "src/data/questions.json";
 
 const subjects = JSON.parse(readFileSync("src/data/subjects.json", "utf8"));
