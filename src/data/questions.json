@@ -15619,5 +15619,159 @@
     "correct": 0,
     "explanation": "The angle subtended by an arc at the center is double the angle subtended by the same arc at any point on the remaining part of the circumference. So, angle ABC is half of angle AOC.",
     "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "A solid right circular cylinder has a total surface area of 192 pi cm^2 and a curved surface area of 128 pi cm^2. What is the volume of the cylinder?",
+    "options": [
+      "256 pi cm^3",
+      "384 pi cm^3",
+      "512 pi cm^3",
+      "768 pi cm^3"
+    ],
+    "correct": 0,
+    "explanation": "Total surface area = Curved surface area + 2 * Base area. From this, find the base radius. Then, using curved surface area, find the height to calculate the volume.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "A hollow sphere has an external diameter of 10 cm and is made of material 1 cm thick. What is the volume of the material used to make the sphere?",
+    "options": [
+      "108 pi / 3 cm^3",
+      "252 pi / 3 cm^3",
+      "288 pi / 3 cm^3",
+      "500 pi / 3 cm^3"
+    ],
+    "correct": 1,
+    "explanation": "Calculate the volume of the outer sphere and the inner sphere separately using the external and internal radii, then find the difference.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "A solid metallic sphere of radius 6 cm is melted and recast into 8 identical smaller solid spheres. What is the surface area of one of the smaller spheres?",
+    "options": [
+      "9 pi cm^2",
+      "18 pi cm^2",
+      "36 pi cm^2",
+      "72 pi cm^2"
+    ],
+    "correct": 2,
+    "explanation": "First, find the volume of the large sphere. Divide by 8 to get the volume of a small sphere, then calculate its radius. Finally, find the surface area of one small sphere.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "The ratio of the radii of two cones is 2:3 and the ratio of their heights is 3:4. What is the ratio of their volumes?",
+    "options": [
+      "1:3",
+      "2:3",
+      "3:4",
+      "4:9"
+    ],
+    "correct": 0,
+    "explanation": "The volume of a cone is (1/3)pi*r^2*h. Substitute the given ratios for radius and height to find the ratio of the volumes.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "A right circular cone has a height of 12 cm and a slant height of 13 cm. What is the curved surface area of the cone?",
+    "options": [
+      "30 pi cm^2",
+      "60 pi cm^2",
+      "65 pi cm^2",
+      "78 pi cm^2"
+    ],
+    "correct": 2,
+    "explanation": "Use Pythagoras theorem to find the base radius from the height and slant height. Then apply the formula for the curved surface area of a cone (pi*r*l).",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "A water tank in the shape of a hemisphere is filled with water. The radius of the hemisphere is 3 m. If the water is to be transferred to a cylindrical tank of radius 3 m, what will be the height of the water in the cylindrical tank?",
+    "options": [
+      "1 m",
+      "1.5 m",
+      "2 m",
+      "3 m"
+    ],
+    "correct": 1,
+    "explanation": "Calculate the volume of the hemispherical tank. Equate this volume to the volume of water in the cylindrical tank to find the height.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "A solid metal block is in the form of a cube with side length 'a'. It is melted and recast into 'n' identical small cubes, each with side length 'b'. Which of the following relationships is correct?",
+    "options": [
+      "a = n*b",
+      "a^2 = n*b^2",
+      "a^3 = n*b^3",
+      "n*a = b"
+    ],
+    "correct": 2,
+    "explanation": "The total volume remains constant during melting and recasting. The volume of the large cube equals the sum of the volumes of the 'n' small cubes.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "The volume of a right circular cylinder is 96 pi cm^3 and its height is 6 cm. What is the total surface area of the cylinder?",
+    "options": [
+      "32 pi cm^2",
+      "48 pi cm^2",
+      "64 pi cm^2",
+      "80 pi cm^2"
+    ],
+    "correct": 3,
+    "explanation": "Use the given volume and height to find the base radius. Then, use the radius and height to calculate the total surface area.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "A rectangular swimming pool is 25 m long, 10 m wide, and 2 m deep. If it is to be filled at a rate of 5 m^3 per minute, how long will it take to fill the pool?",
+    "options": [
+      "50 minutes",
+      "100 minutes",
+      "150 minutes",
+      "200 minutes"
+    ],
+    "correct": 1,
+    "explanation": "First, calculate the volume of the swimming pool. Then, divide the total volume by the filling rate to find the time taken.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "If the radius of a sphere is doubled, what happens to its surface area?",
+    "options": [
+      "It doubles.",
+      "It quadruples.",
+      "It becomes 8 times.",
+      "It becomes 16 times."
+    ],
+    "correct": 1,
+    "explanation": "The surface area of a sphere is given by 4*pi*r^2. If 'r' is doubled to '2r', the new surface area will be 4*pi*(2r)^2 = 4*pi*4r^2 = 16*pi*r^2, which is 4 times the original.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "volume-surface-area",
+    "question": "A frustum of a cone is formed by cutting off the top part of a cone with a plane parallel to its base. If the original cone had height H and base radius R, and the cut-off cone had height H/2, what is the ratio of the volume of the frustum to the volume of the original cone?",
+    "options": [
+      "1:8",
+      "3:4",
+      "7:8",
+      "15:16"
+    ],
+    "correct": 2,
+    "explanation": "The radius of the cut-off cone will be R/2. Calculate the volume of the original cone and the cut-off cone. The volume of the frustum is the difference, then find the ratio.",
+    "difficulty": "hard"
   }
 ]
