@@ -1,16 +1,13 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
-@import "@fontsource/carlito/400.css";
-@import "@fontsource/carlito/700.css";
 
 @custom-variant dark (&:is(.dark *));
 
 /*
- * SyllabusHQ — light editorial design system.
- * Warm off-white paper, deep ink type (Instrument Serif + Inter).
- * Single warm brass accent. Mint = correct, coral = incorrect.
- * Fonts loaded via <link> in src/routes/__root.tsx.
+ * SyllabusHQ — focused dark learning system.
+ * Obsidian study surfaces with evidence-led green, blue, and amber cues.
+ * Fonts are loaded in src/routes/__root.tsx.
  */
 
 @theme inline {
@@ -54,69 +51,68 @@
   --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
   --color-hairline: var(--hairline);
-  --font-sans: "Carlito", Calibri, ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Carlito", Calibri, ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 :root {
   --radius: 0.75rem;
-  color-scheme: light only;
+  color-scheme: dark;
 
-  /* Light study palette. Off-white paper, green primary, blue support,
-     gold for attention, orange for action, red only for errors. */
-  --bg: #f2f5ef;
-  --surface: #ffffff;
-  --surface-2: #f7f9f4;
-  --surface-3: #eef2ea;
-  --hairline: rgba(20, 34, 24, 0.1);
-  --hairline-strong: rgba(20, 34, 24, 0.2);
+  /* Focus Garden after dark: green = progress, blue = focus, amber = recall. */
+  --bg: oklch(0.125 0.012 155);
+  --surface: oklch(0.17 0.014 155);
+  --surface-2: oklch(0.205 0.018 155);
+  --surface-3: oklch(0.24 0.022 155);
+  --hairline: color-mix(in oklab, white 9%, transparent);
+  --hairline-strong: color-mix(in oklab, white 17%, transparent);
 
-  --accent-1: #1e7a3c;
-  --accent-2: #3b72e8;
-  --aurora-1: #1e7a3c;
-  --aurora-2: #3b72e8;
-  --aurora-3: #e8b10a;
-  --glow: rgba(30, 122, 60, 0.18);
+  --accent-1: oklch(0.53 0.14 150);
+  --accent-2: oklch(0.57 0.17 257);
+  --aurora-1: oklch(0.53 0.14 150);
+  --aurora-2: oklch(0.57 0.17 257);
+  --aurora-3: oklch(0.79 0.16 85);
+  --glow: color-mix(in oklab, var(--accent-2) 25%, transparent);
 
-  --mint: #1e7a3c;
-  --coral: #d1341f;
-  --amber: #e8b10a;
-  --amber-soft: #f5cf5c;
-  --orange: #e2711d;
-  --blue: #3b72e8;
-  --green: #1e7a3c;
+  --mint: oklch(0.72 0.15 155);
+  --coral: oklch(0.66 0.2 28);
+  --amber: oklch(0.79 0.16 85);
+  --amber-soft: oklch(0.86 0.12 88);
+  --orange: oklch(0.72 0.17 55);
+  --blue: oklch(0.66 0.16 255);
+  --green: oklch(0.69 0.15 150);
 
-  --ink: #14211a;
-  --paper: #f2f5ef;
-  --charcoal: #22302a;
+  --ink: oklch(0.96 0.01 150);
+  --paper: oklch(0.125 0.012 155);
+  --charcoal: oklch(0.23 0.02 155);
   --marigold: var(--amber);
   --sage: var(--green);
   --clay: var(--coral);
 
-  --background: #f2f5ef;
-  --foreground: #14211a;
-  --card: #ffffff;
-  --card-foreground: #14211a;
-  --popover: #ffffff;
-  --popover-foreground: #14211a;
-  --primary: #1e7a3c;
-  --primary-foreground: #ffffff;
-  --secondary: #eef2ea;
-  --secondary-foreground: #14211a;
-  --muted: #eef2ea;
-  --muted-foreground: #45564c;
-  --accent: #3b72e8;
-  --accent-foreground: #ffffff;
-  --destructive: #d1341f;
-  --destructive-foreground: #ffffff;
-  --border: rgba(20, 34, 24, 0.1);
-  --input: rgba(20, 34, 24, 0.16);
-  --ring: rgba(59, 114, 232, 0.45);
+  --background: var(--bg);
+  --foreground: oklch(0.96 0.01 150);
+  --card: var(--surface);
+  --card-foreground: var(--foreground);
+  --popover: var(--surface-2);
+  --popover-foreground: var(--foreground);
+  --primary: oklch(0.58 0.15 150);
+  --primary-foreground: oklch(0.98 0.01 150);
+  --secondary: var(--surface-2);
+  --secondary-foreground: var(--foreground);
+  --muted: var(--surface-2);
+  --muted-foreground: oklch(0.72 0.025 155);
+  --accent: oklch(0.59 0.17 257);
+  --accent-foreground: oklch(0.98 0.01 255);
+  --destructive: oklch(0.62 0.2 28);
+  --destructive-foreground: oklch(0.98 0.01 28);
+  --border: var(--hairline);
+  --input: var(--hairline-strong);
+  --ring: oklch(0.66 0.16 255 / 0.65);
 
   --shadow-cinematic:
-    0 1px 2px rgba(20, 34, 24, 0.05), 0 12px 32px -20px rgba(20, 34, 24, 0.25);
-  --shadow-lift: 0 2px 4px rgba(20, 34, 24, 0.05), 0 28px 60px -32px rgba(20, 34, 24, 0.3);
+    0 1px 0 color-mix(in oklab, white 5%, transparent), 0 20px 60px -28px oklch(0 0 0 / 0.8);
+  --shadow-lift: 0 1px 0 color-mix(in oklab, white 7%, transparent), 0 32px 80px -34px oklch(0 0 0 / 0.9);
 }
 
 @layer base {
@@ -134,10 +130,7 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     background-color: var(--bg);
-    background-image:
-      radial-gradient(ellipse 80% 55% at 50% -10%, rgba(30, 122, 60, 0.07), transparent 60%),
-      radial-gradient(ellipse 60% 45% at 90% 20%, rgba(59, 114, 232, 0.06), transparent 60%),
-      radial-gradient(ellipse 70% 50% at 10% 95%, rgba(232, 177, 10, 0.06), transparent 60%);
+    background-image: linear-gradient(180deg, color-mix(in oklab, var(--blue) 4%, transparent), transparent 45%);
     background-attachment: fixed;
     overflow-x: hidden;
   }
@@ -149,7 +142,7 @@
   h5,
   h6 {
     font-family: var(--font-display);
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
     color: var(--foreground);
     font-weight: 700;
   }
@@ -161,14 +154,14 @@
 }
 
 @utility glass-panel {
-  background: rgba(255, 255, 255, 0.85);
+  background: color-mix(in oklab, var(--surface) 84%, transparent);
   border: 1px solid var(--hairline);
-  backdrop-filter: blur(14px) saturate(115%);
+  backdrop-filter: blur(18px) saturate(120%);
   box-shadow: var(--shadow-cinematic);
 }
 
 @utility glass-deep {
-  background: #ffffff;
+  background: var(--surface-2);
   border: 1px solid var(--hairline);
   box-shadow: var(--shadow-lift);
 }
@@ -182,7 +175,7 @@
   inset: 0;
   pointer-events: none;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.03 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-  mix-blend-mode: multiply;
+  mix-blend-mode: soft-light;
   opacity: 0.35;
   border-radius: inherit;
 }
@@ -237,7 +230,7 @@
 }
 
 @utility text-gradient {
-  color: var(--ink);
+  color: var(--foreground);
 }
 
 @utility text-aurora {
@@ -376,6 +369,6 @@
 
 /* Selection */
 ::selection {
-  background: rgba(232, 177, 10, 0.35);
-  color: #14211a;
+  background: color-mix(in oklab, var(--amber) 45%, transparent);
+  color: var(--foreground);
 }

@@ -4,8 +4,7 @@ import { BrandMark } from "@/components/BrandMark";
 import { useSession } from "@/hooks/useSession";
 
 /**
- * Floating glass pill header. Scroll-aware shrinks slightly and
- * deepens its blur. Pure CSS transitions, no scroll-jank.
+ * Stable, compact navigation for the dark learning dashboard.
  */
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
@@ -29,10 +28,10 @@ export function SiteHeader() {
   }, []);
 
   return (
-    <div className="sticky top-0 z-40 px-3 pt-3 sm:px-6 sm:pt-5">
+    <div className="sticky top-0 z-40 px-3 pt-3 sm:px-6 sm:pt-4">
       <header
         className={[
-          "mx-auto flex max-w-5xl items-center justify-between gap-3 rounded-2xl px-3 py-2.5 sm:px-4 sm:py-3",
+          "mx-auto flex max-w-6xl items-center justify-between gap-3 rounded-xl px-3 py-2.5 sm:px-4 sm:py-3",
           "transition-[background-color,box-shadow,border-color] duration-300 ease-out",
           scrolled ? "glass-deep" : "glass-panel",
         ].join(" ")}
@@ -60,9 +59,8 @@ export function SiteHeader() {
           </Link>
           <Link
             to="/practice"
-            className="group relative inline-flex items-center gap-1.5 rounded-xl bg-primary px-3.5 py-2 text-[12px] font-semibold text-primary-foreground transition hover:brightness-110"
+            className="group relative inline-flex items-center gap-1.5 rounded-lg bg-primary px-3.5 py-2 text-[12px] font-semibold text-primary-foreground transition hover:bg-primary/90"
           >
-            <span className="absolute inset-0 -z-10 rounded-xl bg-primary blur-md opacity-25 transition group-hover:opacity-50" />
             Begin
             <span className="transition group-hover:translate-x-0.5">→</span>
           </Link>
