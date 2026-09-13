@@ -96,7 +96,7 @@ export const Route = createRootRouteWithContext<{
         content:
           "Master the syllabus. Own the exam. Original Sri Lankan G.C.E. O/L practice — MCQs, structured papers, and short-answer drills in English medium.",
       },
-      { name: "theme-color", content: "#08090c" },
+      { name: "theme-color", content: "#101712" },
       { property: "og:site_name", content: "SyllabusHQ" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -117,7 +117,7 @@ export const Route = createRootRouteWithContext<{
       },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap",
       },
     ],
   }),

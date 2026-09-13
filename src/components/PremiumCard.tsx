@@ -1,8 +1,7 @@
 import { useRef, type ReactNode, type MouseEvent } from "react";
 
 /**
- * Glass card with hairline top highlight, ambient shadow, and a
- * cursor-tracking spotlight on hover. Pure CSS — no JS animation loop.
+ * Obsidian study card with a quiet border, depth, and cursor-tracking focus cue.
  */
 export function PremiumCard({
   children,
@@ -37,10 +36,10 @@ export function PremiumCard({
       ref={ref}
       onMouseMove={hover ? onMove : undefined}
       className={[
-        "relative overflow-hidden rounded-2xl",
+        "relative overflow-hidden rounded-xl",
         base,
         hover
-          ? "spotlight transition duration-500 will-change-transform hover:-translate-y-1 hover:shadow-lg"
+          ? "spotlight transition duration-300 will-change-transform hover:-translate-y-0.5 hover:border-hairline-strong hover:shadow-lg"
           : "",
         className,
       ].join(" ")}
