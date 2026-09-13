@@ -22,12 +22,12 @@ export function DailyQuestion() {
   if (!mounted || isLoading || !data) {
     return (
       <PremiumCard className="p-8" hover={false} variant="deep">
-        <div className="h-4 w-32 animate-pulse rounded bg-white/5" />
-        <div className="mt-6 h-8 w-3/4 animate-pulse rounded bg-white/5" />
-        <div className="mt-3 h-8 w-2/3 animate-pulse rounded bg-white/5" />
+        <div className="h-4 w-32 animate-pulse rounded bg-surface-3" />
+        <div className="mt-6 h-8 w-3/4 animate-pulse rounded bg-surface-3" />
+        <div className="mt-3 h-8 w-2/3 animate-pulse rounded bg-surface-3" />
         <div className="mt-6 grid gap-2 sm:grid-cols-2">
           {[0, 1, 2, 3].map((i) => (
-            <div key={i} className="h-12 animate-pulse rounded-xl bg-white/5" />
+            <div key={i} className="h-12 animate-pulse rounded-xl bg-surface-3" />
           ))}
         </div>
       </PremiumCard>
@@ -46,19 +46,19 @@ function DailyCard({ data }: { data: DailyOut }) {
   });
 
   return (
-    <PremiumCard className="p-6 sm:p-10" hover={false} variant="deep">
+    <PremiumCard className="border-accent/20 bg-surface p-6 sm:p-10" hover={false} variant="deep">
       {/* Top meta row */}
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2">
           <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-70" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green opacity-70" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-green" />
           </span>
           <p className="text-[11px] font-semibold uppercase tracking-[0.32em] text-foreground/70">
             Daily Question
           </p>
           {data.source === "ai" && (
-            <span className="ml-1 inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] uppercase tracking-[0.18em] text-aurora">
+            <span className="ml-1 inline-flex items-center gap-1 rounded-md border border-blue/25 bg-blue/10 px-2 py-0.5 text-[10px] uppercase tracking-[0.18em] text-blue">
               AI curated
             </span>
           )}
@@ -94,10 +94,10 @@ function DailyCard({ data }: { data: DailyOut }) {
                 className={[
                   "group relative flex w-full items-center gap-3 rounded-xl border px-4 py-3.5 text-left text-sm transition-all duration-300",
                   state === "idle" &&
-                    "border-white/8 bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.05]",
-                  state === "correct" && "border-emerald-400/40 bg-emerald-400/10 text-emerald-100",
-                  state === "wrong" && "border-rose-400/40 bg-rose-400/10 text-rose-100",
-                  state === "dim" && "border-white/5 opacity-40",
+                    "border-hairline bg-surface-2 hover:border-blue/50 hover:bg-blue/10",
+                  state === "correct" && "border-green/50 bg-green/15 text-foreground",
+                  state === "wrong" && "border-coral/50 bg-coral/15 text-foreground",
+                  state === "dim" && "border-hairline opacity-40",
                 ]
                   .filter(Boolean)
                   .join(" ")}
@@ -106,10 +106,10 @@ function DailyCard({ data }: { data: DailyOut }) {
                   className={[
                     "grid h-6 w-6 shrink-0 place-items-center rounded-md font-num text-[11px] transition",
                     state === "idle" &&
-                      "border border-white/10 text-muted-foreground group-hover:text-foreground",
-                    state === "correct" && "bg-emerald-400/30 text-emerald-50",
-                    state === "wrong" && "bg-rose-400/30 text-rose-50",
-                    state === "dim" && "border border-white/5 text-muted-foreground",
+                      "border border-hairline-strong text-muted-foreground group-hover:border-blue/50 group-hover:text-blue",
+                    state === "correct" && "bg-green/30 text-foreground",
+                    state === "wrong" && "bg-coral/30 text-foreground",
+                    state === "dim" && "border border-hairline text-muted-foreground",
                   ]
                     .filter(Boolean)
                     .join(" ")}
@@ -126,7 +126,7 @@ function DailyCard({ data }: { data: DailyOut }) {
       </ul>
 
       {picked != null && (
-        <div className="mt-5 rounded-xl border border-white/8 bg-white/[0.03] p-4 text-sm text-foreground/85 rise">
+        <div className="mt-5 rounded-xl border border-amber/25 bg-amber/10 p-4 text-sm text-foreground/85 rise">
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
             {picked === data.correct ? "Correct" : "Not quite"}
           </p>

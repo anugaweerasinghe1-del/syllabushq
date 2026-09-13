@@ -105,9 +105,9 @@ function Home() {
   return (
     <div className="min-h-screen">
       <SiteHeader />
-      <main className="mx-auto max-w-6xl px-4 pb-24 pt-12 sm:px-6 sm:pt-20">
-        {/* HERO */}
-        <section className="relative mb-20 sm:mb-28">
+      <main className="mx-auto max-w-6xl px-4 pb-24 pt-10 sm:px-6 sm:pt-14">
+        <section className="relative mb-10 grid gap-6 lg:grid-cols-12">
+          <div className="lg:col-span-7">
           <div className="rise inline-flex items-center gap-2 rounded-full border border-hairline bg-surface px-3 py-1.5 backdrop-blur-md">
             <span className="h-1.5 w-1.5 rounded-full bg-mint shadow-[0_0_10px_2px_rgba(63,122,69,0.35)]" />
             <p className="text-[10.5px] font-medium uppercase tracking-[0.28em] text-foreground/70">
@@ -115,15 +115,14 @@ function Home() {
             </p>
           </div>
 
-          <h1 className="rise-2 mt-7 font-display text-[52px] leading-[0.98] sm:text-[112px] text-balance">
-            <span className="text-gradient">Mastery,</span>{" "}
-            <span className="italic text-aurora">measured.</span>
+          <h1 className="rise-2 mt-7 max-w-4xl font-display text-[48px] font-extrabold leading-[1.02] sm:text-[76px] text-balance">
+            <span className="text-gradient">Master your</span><br />
+            <span className="text-aurora">knowledge.</span>
           </h1>
 
           <p className="rise-3 mt-7 max-w-2xl text-[15px] leading-relaxed text-muted-foreground sm:text-[18px]">
-            An exam simulator engineered like an Apple product. AI-graded papers, real marking
-            schemes, and questions that never repeat — built for the sharpest O/L students in the
-            country.
+             Build exam-ready recall with focused daily challenges, original O/L questions, and
+             clear progress that keeps every study session moving forward.
           </p>
 
           <div className="rise-4 mt-10 flex flex-wrap items-center gap-3 text-sm">
@@ -131,7 +130,6 @@ function Home() {
               to="/practice"
               className="group relative inline-flex items-center gap-2 overflow-hidden rounded-xl bg-primary px-7 py-3.5 font-semibold text-primary-foreground transition hover:brightness-110"
             >
-              <span className="absolute inset-0 -z-10 bg-primary blur-xl opacity-40 transition group-hover:opacity-70" />
               Begin a paper
               <span className="transition group-hover:translate-x-0.5">→</span>
             </Link>
@@ -148,27 +146,30 @@ function Home() {
           </div>
 
           {/* Stat strip */}
-          <div className="rise-4 mt-14 grid max-w-2xl grid-cols-3 gap-px overflow-hidden rounded-2xl border border-hairline bg-surface backdrop-blur-md">
+          <div className="rise-4 mt-12 grid max-w-2xl grid-cols-3 gap-px overflow-hidden rounded-xl border border-hairline bg-surface backdrop-blur-md">
             <Stat n="900+" l="Original Qs" />
             <Stat n="3" l="O/L subjects" />
             <Stat n="AI" l="Grading engine" />
           </div>
 
           {/* Trust strip */}
-          <p className="rise-4 mt-6 max-w-2xl text-[11px] uppercase tracking-[0.24em] text-muted-foreground/80">
+          <p className="rise-4 mt-5 max-w-2xl text-[11px] uppercase tracking-[0.24em] text-muted-foreground/80">
             Aligned with NIE syllabi · Trusted by Sri Lankan O/L students · No account required
           </p>
+          </div>
+
+          <div className="lg:col-span-5">
+            <ProgressSection />
+          </div>
         </section>
 
         <div className="mb-10">
           <ZeigarnikResume />
         </div>
 
-        <section className="mb-14 rise-2">
+        <section className="mb-6 rise-2">
           <DailyQuestion />
         </section>
-
-        <ProgressSection />
 
         <Suspense fallback={<div className="h-44 animate-pulse rounded-2xl bg-surface-2" />}>
           <StreakHeatmap />
@@ -193,7 +194,7 @@ function Home() {
                     <p className="font-num text-[10px] tracking-widest text-muted-foreground">
                       0{i + 1} / 04
                     </p>
-                    <span className="h-1.5 w-1.5 rounded-full bg-white/30" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-accent/70" />
                   </div>
                   <h3 className="mt-6 font-display text-[22px] text-foreground">{m.name}</h3>
                   <p className="mt-1.5 text-[12.5px] leading-relaxed text-muted-foreground">
@@ -354,24 +355,25 @@ function ProgressSection() {
 
   return (
     <section className="mb-10">
-      <PremiumCard className="p-6 sm:p-8" hover={false}>
-        <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
+      <PremiumCard className="h-full bg-surface-2 p-6 sm:p-8" hover={false} variant="deep">
+        <div className="flex h-full flex-col items-start justify-between gap-7">
           <div>
             <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-muted-foreground">
               Today
             </p>
             <h2 className="mt-2 font-display text-3xl text-foreground">
-              Three rings. One discipline.
+              Your study pulse.
             </h2>
             <p className="mt-1 max-w-md text-sm text-muted-foreground">
               Close the rings every day. Daily question, rolling accuracy, weekly streak.
             </p>
           </div>
           <ActivityRings
+            className="w-full justify-between"
             rings={[
-              { label: "Daily", value: data.daily, color: "#6ee7b7" },
-              { label: "Accuracy", value: data.accuracy, color: "#fbbf24" },
-              { label: "Streak (week)", value: data.streak, color: "#e8ecf3" },
+              { label: "Daily", value: data.daily, color: "var(--green)" },
+              { label: "Accuracy", value: data.accuracy, color: "var(--amber)" },
+              { label: "Streak (week)", value: data.streak, color: "var(--blue)" },
             ]}
           />
         </div>

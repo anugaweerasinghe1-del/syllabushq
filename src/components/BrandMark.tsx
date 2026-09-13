@@ -22,8 +22,8 @@ export function BrandMark({ to = "/", compact = false }: { to?: string; compact?
       </span>
       {!compact && (
         <span className="flex flex-col leading-tight">
-          <span className="font-display text-[18px] tracking-tight text-foreground">
-            Syllabus<span className="text-muted-foreground italic">HQ</span>
+          <span className="font-display text-[18px] font-bold text-foreground">
+            Syllabus<span className="text-blue">HQ</span>
           </span>
           <span className="text-[9.5px] uppercase tracking-[0.24em] text-muted-foreground/80">
             Exam Intelligence

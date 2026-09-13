@@ -80,7 +80,7 @@ export function StreakHeatmap({ extraDays }: { extraDays?: string[] } = {}) {
                       : cell.studied
                         ? "var(--primary)"
                         : "var(--surface-2)",
-                    boxShadow: cell.studied ? "0 0 8px rgba(245,165,36,0.45)" : undefined,
+                    boxShadow: cell.studied ? "0 0 8px color-mix(in oklab, var(--primary) 45%, transparent)" : undefined,
                   }}
                 />
               ))}
