@@ -16,6 +16,7 @@ import { Route as ReviewsRouteImport } from './routes/reviews'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as PressRouteImport } from './routes/press'
 import { Route as PracticeRouteImport } from './routes/practice'
+import { Route as PastPapersRouteImport } from './routes/past-papers'
 import { Route as ForTeachersRouteImport } from './routes/for-teachers'
 import { Route as ExamRouteImport } from './routes/exam'
 import { Route as AuthRouteImport } from './routes/auth'
@@ -24,8 +25,10 @@ import { Route as SubjectRouteImport } from './routes/$subject'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PracticeIndexRouteImport } from './routes/practice.index'
+import { Route as PastPapersIndexRouteImport } from './routes/past-papers.index'
 import { Route as SubjectIndexRouteImport } from './routes/$subject.index'
 import { Route as PracticeModeRouteImport } from './routes/practice.$mode'
+import { Route as PastPapersPaperRouteImport } from './routes/past-papers.$paper'
 import { Route as ForTeachersPackRouteImport } from './routes/for-teachers.pack'
 import { Route as EmbedDailyRouteImport } from './routes/embed.daily'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
@@ -75,6 +78,11 @@ const PracticeRoute = PracticeRouteImport.update({
   path: '/practice',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PastPapersRoute = PastPapersRouteImport.update({
+  id: '/past-papers',
+  path: '/past-papers',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ForTeachersRoute = ForTeachersRouteImport.update({
   id: '/for-teachers',
   path: '/for-teachers',
@@ -114,6 +122,11 @@ const PracticeIndexRoute = PracticeIndexRouteImport.update({
   path: '/',
   getParentRoute: () => PracticeRoute,
 } as any)
+const PastPapersIndexRoute = PastPapersIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => PastPapersRoute,
+} as any)
 const SubjectIndexRoute = SubjectIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -123,6 +136,11 @@ const PracticeModeRoute = PracticeModeRouteImport.update({
   id: '/$mode',
   path: '/$mode',
   getParentRoute: () => PracticeRoute,
+} as any)
+const PastPapersPaperRoute = PastPapersPaperRouteImport.update({
+  id: '/$paper',
+  path: '/$paper',
+  getParentRoute: () => PastPapersRoute,
 } as any)
 const ForTeachersPackRoute = ForTeachersPackRouteImport.update({
   id: '/pack',
@@ -197,6 +215,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/exam': typeof ExamRouteWithChildren
   '/for-teachers': typeof ForTeachersRouteWithChildren
+  '/past-papers': typeof PastPapersRouteWithChildren
   '/practice': typeof PracticeRouteWithChildren
   '/press': typeof PressRoute
   '/resources': typeof ResourcesRoute
@@ -208,8 +227,10 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/embed/daily': typeof EmbedDailyRoute
   '/for-teachers/pack': typeof ForTeachersPackRoute
+  '/past-papers/$paper': typeof PastPapersPaperRoute
   '/practice/$mode': typeof PracticeModeRouteWithChildren
   '/$subject/': typeof SubjectIndexRoute
+  '/past-papers/': typeof PastPapersIndexRoute
   '/practice/': typeof PracticeIndexRoute
   '/$subject/$topic/practice': typeof SubjectTopicPracticeRoute
   '/$subject/$topic/results': typeof SubjectTopicResultsRoute
@@ -236,7 +257,9 @@ export interface FileRoutesByTo {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/embed/daily': typeof EmbedDailyRoute
   '/for-teachers/pack': typeof ForTeachersPackRoute
+  '/past-papers/$paper': typeof PastPapersPaperRoute
   '/$subject': typeof SubjectIndexRoute
+  '/past-papers': typeof PastPapersIndexRoute
   '/practice': typeof PracticeIndexRoute
   '/$subject/$topic/practice': typeof SubjectTopicPracticeRoute
   '/$subject/$topic/results': typeof SubjectTopicResultsRoute
@@ -257,6 +280,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/exam': typeof ExamRouteWithChildren
   '/for-teachers': typeof ForTeachersRouteWithChildren
+  '/past-papers': typeof PastPapersRouteWithChildren
   '/practice': typeof PracticeRouteWithChildren
   '/press': typeof PressRoute
   '/resources': typeof ResourcesRoute
@@ -268,8 +292,10 @@ export interface FileRoutesById {
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/embed/daily': typeof EmbedDailyRoute
   '/for-teachers/pack': typeof ForTeachersPackRoute
+  '/past-papers/$paper': typeof PastPapersPaperRoute
   '/practice/$mode': typeof PracticeModeRouteWithChildren
   '/$subject/': typeof SubjectIndexRoute
+  '/past-papers/': typeof PastPapersIndexRoute
   '/practice/': typeof PracticeIndexRoute
   '/$subject/$topic/practice': typeof SubjectTopicPracticeRoute
   '/$subject/$topic/results': typeof SubjectTopicResultsRoute
@@ -290,6 +316,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/exam'
     | '/for-teachers'
+    | '/past-papers'
     | '/practice'
     | '/press'
     | '/resources'
@@ -301,8 +328,10 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/embed/daily'
     | '/for-teachers/pack'
+    | '/past-papers/$paper'
     | '/practice/$mode'
     | '/$subject/'
+    | '/past-papers/'
     | '/practice/'
     | '/$subject/$topic/practice'
     | '/$subject/$topic/results'
@@ -329,7 +358,9 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/embed/daily'
     | '/for-teachers/pack'
+    | '/past-papers/$paper'
     | '/$subject'
+    | '/past-papers'
     | '/practice'
     | '/$subject/$topic/practice'
     | '/$subject/$topic/results'
@@ -349,6 +380,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/exam'
     | '/for-teachers'
+    | '/past-papers'
     | '/practice'
     | '/press'
     | '/resources'
@@ -360,8 +392,10 @@ export interface FileRouteTypes {
     | '/_authenticated/dashboard'
     | '/embed/daily'
     | '/for-teachers/pack'
+    | '/past-papers/$paper'
     | '/practice/$mode'
     | '/$subject/'
+    | '/past-papers/'
     | '/practice/'
     | '/$subject/$topic/practice'
     | '/$subject/$topic/results'
@@ -382,6 +416,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   ExamRoute: typeof ExamRouteWithChildren
   ForTeachersRoute: typeof ForTeachersRouteWithChildren
+  PastPapersRoute: typeof PastPapersRouteWithChildren
   PracticeRoute: typeof PracticeRouteWithChildren
   PressRoute: typeof PressRoute
   ResourcesRoute: typeof ResourcesRoute
@@ -444,6 +479,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PracticeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/past-papers': {
+      id: '/past-papers'
+      path: '/past-papers'
+      fullPath: '/past-papers'
+      preLoaderRoute: typeof PastPapersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/for-teachers': {
       id: '/for-teachers'
       path: '/for-teachers'
@@ -500,6 +542,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PracticeIndexRouteImport
       parentRoute: typeof PracticeRoute
     }
+    '/past-papers/': {
+      id: '/past-papers/'
+      path: '/'
+      fullPath: '/past-papers/'
+      preLoaderRoute: typeof PastPapersIndexRouteImport
+      parentRoute: typeof PastPapersRoute
+    }
     '/$subject/': {
       id: '/$subject/'
       path: '/'
@@ -513,6 +562,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/practice/$mode'
       preLoaderRoute: typeof PracticeModeRouteImport
       parentRoute: typeof PracticeRoute
+    }
+    '/past-papers/$paper': {
+      id: '/past-papers/$paper'
+      path: '/$paper'
+      fullPath: '/past-papers/$paper'
+      preLoaderRoute: typeof PastPapersPaperRouteImport
+      parentRoute: typeof PastPapersRoute
     }
     '/for-teachers/pack': {
       id: '/for-teachers/pack'
@@ -674,6 +730,20 @@ const ForTeachersRouteWithChildren = ForTeachersRoute._addFileChildren(
   ForTeachersRouteChildren,
 )
 
+interface PastPapersRouteChildren {
+  PastPapersPaperRoute: typeof PastPapersPaperRoute
+  PastPapersIndexRoute: typeof PastPapersIndexRoute
+}
+
+const PastPapersRouteChildren: PastPapersRouteChildren = {
+  PastPapersPaperRoute: PastPapersPaperRoute,
+  PastPapersIndexRoute: PastPapersIndexRoute,
+}
+
+const PastPapersRouteWithChildren = PastPapersRoute._addFileChildren(
+  PastPapersRouteChildren,
+)
+
 interface PracticeModeRouteChildren {
   PracticeModeSubjectRoute: typeof PracticeModeSubjectRoute
   PracticeModeIndexRoute: typeof PracticeModeIndexRoute
@@ -710,6 +780,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   ExamRoute: ExamRouteWithChildren,
   ForTeachersRoute: ForTeachersRouteWithChildren,
+  PastPapersRoute: PastPapersRouteWithChildren,
   PracticeRoute: PracticeRouteWithChildren,
   PressRoute: PressRoute,
   ResourcesRoute: ResourcesRoute,

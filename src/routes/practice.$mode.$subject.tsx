@@ -16,6 +16,7 @@ import { savePickedPool } from "@/lib/quiz-session";
 import { useServerFn } from "@tanstack/react-start";
 import { ensureQuestions } from "@/lib/bank.functions";
 import type { McqItem } from "@/lib/bank-types";
+import { PAST_PAPERS } from "@/lib/past-papers";
 
 export const Route = createFileRoute("/practice/$mode/$subject")({
   loader: async ({ params, context }) => {
@@ -88,8 +89,14 @@ function SetupPage() {
     await new Promise((r) => setTimeout(r, 900));
     try {
       if (mode.slug === "exam") {
-        saveExamConfig("exam", subject.slug, { count, timeLimitSec: time, topics: selectedTopics });
-        navigate({ to: "/exam/full/$subject", params: { subject: subject.slug } });
+        const officialPaper = PAST_PAPERS.filter((paper) => paper.subject === subject.slug).sort(
+          (a, b) => b.year.localeCompare(a.year),
+        )[0];
+        if (officialPaper) {
+          navigate({ to: "/past-papers/$paper", params: { paper: officialPaper.slug } });
+          return;
+        }
+        navigate({ to: "/past-papers" });
       } else if (mode.slug === "mcq") {
         let picked = pickQuestions({
           pool: subjectQs,
@@ -246,7 +253,7 @@ function SetupPage() {
           <div className="mt-8 flex items-center justify-between">
             <p className="text-xs text-muted-foreground">
               {mode.slug === "exam"
-                ? "Feedback hidden until submission."
+                ? "Opens the latest verified Department of Examinations paper."
                 : "Resume anytime — session is saved."}
             </p>
             <button

@@ -65,6 +65,11 @@ const SYLLABI: Row[] = [
 
 const PAST_PAPERS: Row[] = [
   {
+    title: "SyllabusHQ — live official paper library",
+    href: "/past-papers",
+    note: "Open the exact supplied paper with a timer and saved answer sheet, or download its original PDF.",
+  },
+  {
     title: "Department of Examinations — past papers",
     href: "https://doenets.lk/",
     note: "Official past papers and marking schemes released after each sitting. On the homepage open 'Examinations' → 'Past Papers'.",
@@ -111,9 +116,18 @@ const EXAM_DAY: Row[] = [
 
 function LinkRow({ r }: { r: Row }) {
   const isExternal = r.href.startsWith("http");
+  const isInternal = r.href.startsWith("/");
   return (
     <li className="border-t border-hairline py-4 first:border-t-0">
-      {isExternal ? (
+      {isInternal ? (
+        <Link to={r.href} className="group flex items-baseline justify-between gap-4">
+          <div className="min-w-0">
+            <p className="text-[15px] font-medium text-foreground transition-colors group-hover:text-orange">{r.title}</p>
+            <p className="mt-1 text-[13px] text-muted-foreground">{r.note}</p>
+          </div>
+          <span className="shrink-0 text-xs text-muted-foreground transition-colors group-hover:text-orange">→</span>
+        </Link>
+      ) : isExternal ? (
         <a
           href={r.href}
           target="_blank"
