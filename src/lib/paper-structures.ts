@@ -22,6 +22,8 @@ export type PaperStructure = {
   name: string;
   durationMinutes: number;
   totalMarks: number;
+  readingMinutes?: number;
+  verifiedFrom: string;
   sections: PaperSection[];
 };
 
@@ -33,6 +35,7 @@ export const PAPER_STRUCTURES: PaperStructure[] = [
     name: "Mathematics · Paper I",
     durationMinutes: 120,
     totalMarks: 100,
+    verifiedFrom: "Department of Examinations Mathematics 2020",
     sections: [
       {
         id: "maths-p1-a",
@@ -45,10 +48,9 @@ export const PAPER_STRUCTURES: PaperStructure[] = [
       {
         id: "maths-p1-b",
         title: "Part B",
-        instruction: "Answer five questions only. 10 marks each.",
+        instruction: "Answer all five questions. 10 marks each.",
         questionType: "structured",
-        count: 10,
-        answerAny: 5,
+        count: 5,
         perQuestionMarks: 10,
       },
     ],
@@ -59,11 +61,13 @@ export const PAPER_STRUCTURES: PaperStructure[] = [
     name: "Mathematics · Paper II",
     durationMinutes: 180,
     totalMarks: 100,
+    readingMinutes: 10,
+    verifiedFrom: "Department of Examinations Mathematics 2020",
     sections: [
       {
         id: "maths-p2-a",
         title: "Part A",
-        instruction: "Answer all five questions. 10 marks each.",
+        instruction: "Answer five questions from Part A.",
         questionType: "structured",
         count: 5,
         perQuestionMarks: 10,
@@ -71,9 +75,9 @@ export const PAPER_STRUCTURES: PaperStructure[] = [
       {
         id: "maths-p2-b",
         title: "Part B",
-        instruction: "Answer five questions only. 12 marks each.",
+        instruction: "Answer five questions from Part B.",
         questionType: "essay",
-        count: 7,
+        count: 6,
         answerAny: 5,
         perQuestionMarks: 12,
       },
@@ -87,11 +91,12 @@ export const PAPER_STRUCTURES: PaperStructure[] = [
     name: "Science · Paper I",
     durationMinutes: 60,
     totalMarks: 40,
+    verifiedFrom: "Department of Examinations Science 2021 (2022)",
     sections: [
       {
         id: "science-p1-a",
         title: "Section A — Multiple Choice",
-        instruction: "Underline the most appropriate answer. 1 mark each.",
+        instruction: "Answer all questions. Mark a cross for the correct or most appropriate alternative. 1 mark each.",
         questionType: "mcq",
         count: 40,
         perQuestionMarks: 1,
@@ -104,23 +109,24 @@ export const PAPER_STRUCTURES: PaperStructure[] = [
     name: "Science · Paper II",
     durationMinutes: 180,
     totalMarks: 100,
+    verifiedFrom: "Department of Examinations Science 2021 (2022)",
     sections: [
       {
         id: "science-p2-a",
         title: "Part A — Structured",
-        instruction: "Answer all questions. 7 marks each.",
+        instruction: "Answer all questions 1 to 4.",
         questionType: "structured",
-        count: 10,
-        perQuestionMarks: 7,
+        count: 4,
+        perQuestionMarks: 10,
       },
       {
         id: "science-p2-b",
         title: "Part B — Essay",
-        instruction: "Answer two questions only. 15 marks each.",
+        instruction: "Answer only three questions from questions 5 to 9. 20 marks each.",
         questionType: "essay",
-        count: 4,
-        answerAny: 2,
-        perQuestionMarks: 15,
+        count: 5,
+        answerAny: 3,
+        perQuestionMarks: 20,
       },
     ],
   },
@@ -132,11 +138,12 @@ export const PAPER_STRUCTURES: PaperStructure[] = [
     name: "Business & Accounting Studies · Paper I",
     durationMinutes: 60,
     totalMarks: 40,
+    verifiedFrom: "Department of Examinations Business & Accounting Studies 2023 and 2024",
     sections: [
       {
         id: "business-p1-a",
         title: "Section A — Multiple Choice",
-        instruction: "Underline the most appropriate answer. 1 mark each.",
+        instruction: "Answer all questions. Mark a cross for the correct or most appropriate alternative. 1 mark each.",
         questionType: "mcq",
         count: 40,
         perQuestionMarks: 1,
@@ -149,24 +156,34 @@ export const PAPER_STRUCTURES: PaperStructure[] = [
     name: "Business & Accounting Studies · Paper II",
     durationMinutes: 180,
     totalMarks: 100,
+    readingMinutes: 10,
+    verifiedFrom: "Department of Examinations Business & Accounting Studies 2023 and 2024",
     sections: [
       {
-        id: "business-p2-a",
-        title: "Part A — Structured",
-        instruction: "Answer all four questions. 10 marks each.",
+        id: "business-p2-compulsory",
+        title: "Compulsory integrated case",
+        instruction: "Answer question 1.",
         questionType: "structured",
-        count: 4,
-        perQuestionMarks: 10,
+        count: 1,
+        perQuestionMarks: 20,
       },
       {
-        id: "business-p2-b",
-        title: "Part B — Essay / Accounting Problem",
-        instruction:
-          "Answer three questions including at least one accounting problem. 20 marks each.",
+        id: "business-p2-business",
+        title: "Part I — Business Studies",
+        instruction: "Answer two questions from questions 2 to 4.",
         questionType: "essay",
-        count: 6,
-        answerAny: 3,
-        perQuestionMarks: 20,
+        count: 3,
+        answerAny: 2,
+        perQuestionMarks: 8,
+      },
+      {
+        id: "business-p2-accounting",
+        title: "Part II — Accounting",
+        instruction: "Answer two questions from questions 5 to 7.",
+        questionType: "structured",
+        count: 3,
+        answerAny: 2,
+        perQuestionMarks: 12,
       },
     ],
   },

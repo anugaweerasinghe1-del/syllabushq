@@ -3,6 +3,7 @@ import type {} from "@tanstack/react-start";
 import subjectsData from "@/data/subjects.json";
 import { SEO_PAGES } from "@/data/seo-matrix";
 import { MODES } from "@/lib/modes";
+import { PAST_PAPERS } from "@/lib/past-papers";
 
 const BASE_URL = "https://app.syllabushq.workers.dev";
 
@@ -22,11 +23,16 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/", changefreq: "weekly", priority: "1.0" },
           { path: "/practice", changefreq: "weekly", priority: "0.9" },
           { path: "/resources", changefreq: "monthly", priority: "0.8" },
+          { path: "/past-papers", changefreq: "monthly", priority: "0.9" },
           { path: "/for-teachers", changefreq: "monthly", priority: "0.7" },
           { path: "/press", changefreq: "monthly", priority: "0.5" },
           { path: "/reviews", changefreq: "weekly", priority: "0.4" },
           { path: "/suggest", changefreq: "monthly", priority: "0.3" },
         ];
+
+        for (const paper of PAST_PAPERS) {
+          entries.push({ path: `/past-papers/${paper.slug}`, changefreq: "monthly", priority: "0.8" });
+        }
 
         for (const m of MODES) {
           entries.push({ path: `/practice/${m.slug}`, changefreq: "weekly", priority: "0.8" });
