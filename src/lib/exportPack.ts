@@ -25,6 +25,22 @@ const LETTER = (i: number) => String.fromCharCode(65 + i);
 export async function downloadPackPdf(meta: PackMeta) {
   const { jsPDF } = await import("jspdf");
   const doc = new jsPDF({ unit: "pt", format: "a4" });
+  const loadFont = async (url: string, fileName: string, family: string, style: "normal" | "bold") => {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error("Unable to load the PDF font.");
+    const bytes = new Uint8Array(await response.arrayBuffer());
+    let binary = "";
+    const chunk = 0x8000;
+    for (let i = 0; i < bytes.length; i += chunk) {
+      binary += String.fromCharCode(...bytes.subarray(i, i + chunk));
+    }
+    doc.addFileToVFS(fileName, btoa(binary));
+    doc.addFont(fileName, family, style);
+  };
+  await Promise.all([
+    loadFont("/fonts/DejaVuSans.ttf", "DejaVuSans.ttf", "DejaVuSans", "normal"),
+    loadFont("/fonts/DejaVuSans-Bold.ttf", "DejaVuSans-Bold.ttf", "DejaVuSans", "bold"),
+  ]);
   const M = 56;
   const W = doc.internal.pageSize.getWidth();
   const H = doc.internal.pageSize.getHeight();
@@ -40,7 +56,7 @@ export async function downloadPackPdf(meta: PackMeta) {
     }
   };
   const wrap = (text: string, size: number, style: "normal" | "bold", indent: number) => {
-    doc.setFont("helvetica", style);
+    doc.setFont("DejaVuSans", style);
     doc.setFontSize(size);
     return doc.splitTextToSize(mathToPlain(text), maxW - indent) as string[];
   };
@@ -51,7 +67,7 @@ export async function downloadPackPdf(meta: PackMeta) {
       if (y > BOTTOM) {
         doc.addPage();
         y = M;
-        doc.setFont("helvetica", style);
+        doc.setFont("DejaVuSans", style);
         doc.setFontSize(size);
       }
       doc.text(line, M + indent, y);
@@ -65,15 +81,15 @@ export async function downloadPackPdf(meta: PackMeta) {
     return h + 14;
   };
 
-  doc.setFont("helvetica", "normal");
+  doc.setFont("DejaVuSans", "normal");
   doc.setFontSize(9);
   doc.text("Sri Lankan G.C.E. Ordinary Level · Practice Paper", W / 2, y, { align: "center" });
   nl(24);
-  doc.setFont("helvetica", "bold");
+  doc.setFont("DejaVuSans", "bold");
   doc.setFontSize(20);
   doc.text(meta.subjectName, W / 2, y, { align: "center" });
   nl(18);
-  doc.setFont("helvetica", "normal");
+  doc.setFont("DejaVuSans", "normal");
   doc.setFontSize(11);
   doc.text(meta.topicName, W / 2, y, { align: "center" });
   nl(22);
@@ -104,7 +120,7 @@ export async function downloadPackPdf(meta: PackMeta) {
   if (meta.includeScheme) {
     doc.addPage();
     y = M;
-    doc.setFont("helvetica", "bold");
+    doc.setFont("DejaVuSans", "bold");
     doc.setFontSize(15);
     doc.text(`Marking Scheme — ${meta.subjectName} · ${meta.topicName}`, M, y);
     nl(24);
@@ -119,7 +135,7 @@ export async function downloadPackPdf(meta: PackMeta) {
   const pages = doc.getNumberOfPages();
   for (let p = 1; p <= pages; p++) {
     doc.setPage(p);
-    doc.setFont("helvetica", "normal");
+    doc.setFont("DejaVuSans", "normal");
     doc.setFontSize(8);
     doc.setTextColor(120);
     doc.text(`${meta.subjectName} · ${meta.topicName}`, M, H - 28);

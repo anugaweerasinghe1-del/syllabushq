@@ -65,15 +65,15 @@ function StructuredPage() {
       <main className="mx-auto max-w-4xl px-4 py-10 sm:px-6 sm:py-14">
         <header className="mb-8 rise">
           <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-orange">
-            Past-paper style · original
+            Generated practice · not an official paper
           </p>
           <h1 className="mt-2 font-display text-5xl text-foreground sm:text-6xl text-balance">
             Structured papers
           </h1>
           <p className="mt-3 max-w-2xl text-muted-foreground">
-            Multi-part structured questions, short-answer drills, and Business case studies — all
-            written in the format and difficulty of real O/L papers, with model answers and mark
-            allocations.
+            Multi-part structured questions, short-answer drills, and Business case studies for
+            additional practice. For verified examination wording and structure, use the official
+            Past Papers library.
           </p>
         </header>
 

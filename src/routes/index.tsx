@@ -20,7 +20,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "AI-graded Sri Lankan G.C.E. O/L practice papers. Original questions, instant feedback, real marking schemes. Mathematics, Science, Business & Accounting — English medium. Free.",
+          "Official Sri Lankan G.C.E. O/L past papers with live timers, plus practice for Mathematics, Science and Business & Accounting Studies in English medium.",
       },
       {
         name: "keywords",
@@ -31,7 +31,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "AI-graded O/L practice papers. Original questions. Instant feedback. Built for Sri Lanka's sharpest.",
+          "Official O/L past papers, live timers and saved answer sheets for Sri Lankan students.",
       },
       { property: "og:url", content: SITE + "/" },
     ],
@@ -77,7 +77,7 @@ export const Route = createFileRoute("/")({
               name: "Are the questions taken from past papers?",
               acceptedAnswer: {
                 "@type": "Answer",
-                text: "No. Every question is original and written in the style of real O/L papers to avoid copyright while keeping difficulty and phrasing realistic.",
+                text: "The Past Papers library uses supplied Department of Examinations papers unchanged. Generated practice is clearly separated from official papers.",
               },
             },
             {
@@ -121,8 +121,8 @@ function Home() {
           </h1>
 
           <p className="rise-3 mt-7 max-w-2xl text-[15px] leading-relaxed text-muted-foreground sm:text-[18px]">
-             Build exam-ready recall with focused daily challenges, original O/L questions, and
-             clear progress that keeps every study session moving forward.
+             Train with real Department of Examinations papers, persistent timers, saved answer
+             sheets, and focused practice that keeps every study session moving forward.
           </p>
 
           <div className="rise-4 mt-10 flex flex-wrap items-center gap-3 text-sm">
@@ -134,11 +134,10 @@ function Home() {
               <span className="transition group-hover:translate-x-0.5">→</span>
             </Link>
             <Link
-              to="/practice/$mode"
-              params={{ mode: "exam" }}
+              to="/past-papers"
               className="group inline-flex items-center gap-2 rounded-xl border border-hairline-strong bg-surface px-6 py-3.5 font-medium text-foreground backdrop-blur-md transition hover:bg-surface-2"
             >
-              Full exam simulation
+              Official past papers
               <span className="text-muted-foreground transition group-hover:text-foreground">
                 ↗
               </span>
@@ -228,12 +227,12 @@ function Home() {
             <Feature
               n="A"
               title="Marked like a chief examiner."
-              body="Type your answer. AI grades against the real marking scheme, point by point, in seconds."
+              body="Type your answer. AI feedback is shown as guidance and never mislabelled as an official marking scheme."
             />
             <Feature
               n="B"
-              title="Papers that never repeat."
-              body="Every question generated fresh in the exact style of Sri Lankan O/L English-medium papers."
+              title="Official papers stay official."
+              body="Past papers retain their exact pages, diagrams, numbering and local examination wording."
             />
             <Feature
               n="C"

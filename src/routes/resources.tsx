@@ -120,7 +120,7 @@ function LinkRow({ r }: { r: Row }) {
   return (
     <li className="border-t border-hairline py-4 first:border-t-0">
       {isInternal ? (
-        <Link to={r.href} className="group flex items-baseline justify-between gap-4">
+        <Link to="/past-papers" className="group flex items-baseline justify-between gap-4">
           <div className="min-w-0">
             <p className="text-[15px] font-medium text-foreground transition-colors group-hover:text-orange">{r.title}</p>
             <p className="mt-1 text-[13px] text-muted-foreground">{r.note}</p>
