@@ -96,7 +96,7 @@ export const Route = createFileRoute("/learn/$subject/$topic/$slug")({
                 name: `Are these ${loaderData.topicName} questions from real past papers?`,
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "No. Every question is original and AI-written in the style of the Sri Lankan O/L English-medium papers.",
+                  text: "No. This is generated practice and is not an official past paper. Use the Past Papers library for verified Department of Examinations papers.",
                 },
               },
             ],

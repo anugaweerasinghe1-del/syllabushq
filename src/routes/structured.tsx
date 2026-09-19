@@ -40,9 +40,12 @@ export const Route = createFileRoute("/structured")({
       {
         name: "description",
         content:
-          "Original Sri Lankan O/L past-paper-style structured questions, short-answer drills, and Business case studies. All with model answers.",
+          "Generated structured questions, short-answer drills, and Business case studies for extra practice, clearly separated from official Sri Lankan O/L past papers.",
       },
       { property: "og:title", content: "O/L Structured Papers — SyllabusHQ" },
+      { property: "og:description", content: "Generated structured and short-answer practice, clearly separated from official Sri Lankan O/L past papers." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { property: "og:url", content: SITE + "/structured" },
     ],
     links: [{ rel: "canonical", href: SITE + "/structured" }],

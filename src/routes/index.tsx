@@ -34,6 +34,8 @@ export const Route = createFileRoute("/")({
           "Official O/L past papers, live timers and saved answer sheets for Sri Lankan students.",
       },
       { property: "og:url", content: SITE + "/" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: SITE + "/" }],
     scripts: [
@@ -146,7 +148,7 @@ function Home() {
 
           {/* Stat strip */}
           <div className="rise-4 mt-12 grid max-w-2xl grid-cols-3 gap-px overflow-hidden rounded-xl border border-hairline bg-surface backdrop-blur-md">
-            <Stat n="900+" l="Original Qs" />
+            <Stat n="4" l="Official papers" />
             <Stat n="3" l="O/L subjects" />
             <Stat n="AI" l="Grading engine" />
           </div>
