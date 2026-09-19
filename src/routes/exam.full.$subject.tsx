@@ -16,6 +16,7 @@ import { pickQuestions, shuffle, mulberry32 } from "@/lib/pickQuestions";
 import { getStructuresFor } from "@/lib/paper-structures";
 import { useBankTopUp } from "@/hooks/useBankTopUp";
 import type { McqItem, StructuredItem } from "@/lib/bank-types";
+import { PAST_PAPERS } from "@/lib/past-papers";
 
 type StructuredPart = { label: string; prompt: string; answer: string; marks: number };
 type StructuredQ = { subject: string; topic: string; context: string; parts: StructuredPart[] };
@@ -30,8 +31,13 @@ export const Route = createFileRoute("/exam/full/$subject")({
     if (subject.slug !== params.subject) {
       throw redirect({ to: "/exam/full/$subject", params: { subject: subject.slug } });
     }
-    await context.queryClient.ensureQueryData(questionsQuery);
-    return { subject };
+    const paper = PAST_PAPERS.filter((item) => item.subject === subject.slug).sort((a, b) =>
+      b.year.localeCompare(a.year),
+    )[0];
+    if (paper) {
+      throw redirect({ to: "/past-papers/$paper", params: { paper: paper.slug } });
+    }
+    throw redirect({ to: "/past-papers" });
   },
   head: ({ loaderData }) => ({
     meta: loaderData

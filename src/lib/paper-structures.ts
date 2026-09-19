@@ -1,7 +1,6 @@
 /**
- * Exact replicas of Sri Lankan G.C.E. O/L paper STRUCTURES (NIE / Department of
- * Examinations format). We mirror question counts, marks, and section flow —
- * never the wording of any real past paper.
+ * Structures transcribed from the supplied Department of Examinations papers.
+ * Generated practice must never be presented as an official paper.
  */
 
 export type PaperSection = {
@@ -69,7 +68,8 @@ export const PAPER_STRUCTURES: PaperStructure[] = [
         title: "Part A",
         instruction: "Answer five questions from Part A.",
         questionType: "structured",
-        count: 5,
+        count: 6,
+        answerAny: 5,
         perQuestionMarks: 10,
       },
       {
@@ -79,7 +79,7 @@ export const PAPER_STRUCTURES: PaperStructure[] = [
         questionType: "essay",
         count: 6,
         answerAny: 5,
-        perQuestionMarks: 12,
+        perQuestionMarks: 10,
       },
     ],
   },
@@ -108,7 +108,7 @@ export const PAPER_STRUCTURES: PaperStructure[] = [
     subjectSlug: "science",
     name: "Science · Paper II",
     durationMinutes: 180,
-    totalMarks: 100,
+    totalMarks: 60,
     verifiedFrom: "Department of Examinations Science 2021 (2022)",
     sections: [
       {
