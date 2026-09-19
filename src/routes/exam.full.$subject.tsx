@@ -37,7 +37,8 @@ export const Route = createFileRoute("/exam/full/$subject")({
     if (paper) {
       throw redirect({ to: "/past-papers/$paper", params: { paper: paper.slug } });
     }
-    throw redirect({ to: "/past-papers" });
+    await context.queryClient.ensureQueryData(questionsQuery);
+    return { subject };
   },
   head: ({ loaderData }) => ({
     meta: loaderData
