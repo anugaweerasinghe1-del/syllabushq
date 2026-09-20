@@ -70,7 +70,7 @@
     "context": "On 30 June 2025 the cash book of Nimal showed a debit balance of Rs. 18,400. The bank statement showed a credit balance of Rs. 21,200. The following items were identified: (i) Unpresented cheques Rs. 4,800; (ii) A direct deposit by a customer of Rs. 2,500 not recorded in the cash book; (iii) Bank charges of Rs. 300 not yet entered.",
     "parts": [
       { "label": "a", "prompt": "Update the cash book and find the adjusted cash book balance.", "answer": "Adjusted balance = 18,400 + 2,500 − 300 = 20,600.", "marks": 3 },
-      { "label": "b", "prompt": "Prepare a bank reconciliation statement starting from the adjusted cash book balance.", "answer": "Adjusted cash book 20,600 + Unpresented cheques 4,800 − (Outstanding deposits, none) = Bank statement balance 25,400. (If 21,200 is shown, additional unrecorded items would be reconciled.)", "marks": 4 },
+      { "label": "b", "prompt": "Prepare a bank reconciliation statement starting from the adjusted cash book balance.", "answer": "Adjusted cash book balance Rs. 20,600 + unpresented cheques Rs. 4,800 = bank statement balance Rs. 25,400.", "marks": 4 },
       { "label": "c", "prompt": "Explain one reason why differences arise between the cash book and the bank statement.", "answer": "Timing differences such as cheques issued by the firm but not yet presented for payment by the payee.", "marks": 2 }
     ]
   },
