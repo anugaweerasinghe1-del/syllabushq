@@ -108,7 +108,7 @@ export const PAPER_STRUCTURES: PaperStructure[] = [
     subjectSlug: "science",
     name: "Science · Paper II",
     durationMinutes: 180,
-    totalMarks: 60,
+    totalMarks: 100,
     verifiedFrom: "Department of Examinations Science 2021 (2022)",
     sections: [
       {
@@ -155,7 +155,7 @@ export const PAPER_STRUCTURES: PaperStructure[] = [
     subjectSlug: "business-accounting",
     name: "Business & Accounting Studies · Paper II",
     durationMinutes: 180,
-    totalMarks: 100,
+    totalMarks: 60,
     readingMinutes: 10,
     verifiedFrom: "Department of Examinations Business & Accounting Studies 2023 and 2024",
     sections: [

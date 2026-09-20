@@ -100,8 +100,12 @@ export const generatePaper = createServerFn({ method: "POST" })
       model: provider(FAST_MODEL),
       schema: PaperSchema,
       system:
-        "You write 100% ORIGINAL practice questions in the exact style of the Sri Lankan G.C.E. Ordinary Level English-medium papers. " +
-        "Never copy from any real past paper. Use Sri Lankan names, currency (Rs.), and contexts where appropriate. " +
+        "You write ORIGINAL practice questions strictly within the Sri Lankan G.C.E. Ordinary Level English-medium syllabus. " +
+        "These are supplementary practice, not official questions or replicas. Never copy wording from a real past paper. " +
+        "Use Sri Lankan names, currency (Rs.), familiar local contexts, and Department of Examinations command words where appropriate. " +
+        "Do not use Cambridge IGCSE, Edexcel, or foreign curriculum terminology. " +
+        "Before returning, solve every question independently and reject any item whose marked answer, options, marks, or explanation disagree. " +
+        "Never include drafting notes, self-corrections, apologies, or commentary about creating the question. " +
         "Math must use LaTeX between $...$ (e.g. $\\\\sqrt{16}\\\\div 2$). Never use ASCII like sqrt(x) or x^2. " +
         "Each question must include a precise markingScheme written as bullet points, one bullet per mark.",
       prompt:
