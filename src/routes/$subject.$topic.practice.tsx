@@ -356,7 +356,7 @@ function PracticePage() {
                       >
                         {String.fromCharCode(65 + idx)}
                       </span>
-                      <span className="text-charcoal">
+                      <span className="text-foreground/90">
                         <MathText>{opt}</MathText>
                       </span>
                     </button>
@@ -381,7 +381,7 @@ function PracticePage() {
                 >
                   {picked === q.correct ? "Correct" : "Not quite"}
                 </p>
-                <p className="mt-1 text-charcoal">
+                <p className="mt-1 leading-relaxed text-foreground/90">
                   <MathText>{q.explanation}</MathText>
                 </p>
               </div>

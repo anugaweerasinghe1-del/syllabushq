@@ -76,7 +76,7 @@ export function AIGradeCard({ result }: { result: GradeResult }) {
           <p className="flex items-center gap-2 text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
             <BookOpen className="h-3 w-3" /> Model answer
           </p>
-          <p className="mt-2 text-sm text-foreground/90">
+          <p className="mt-2 text-sm leading-relaxed text-foreground">
             <MathText>{result.modelAnswer}</MathText>
           </p>
         </section>

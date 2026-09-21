@@ -85,7 +85,8 @@
 
   --ink: oklch(0.96 0.01 150);
   --paper: oklch(0.125 0.012 155);
-  --charcoal: oklch(0.23 0.02 155);
+  /* Legacy reading-text role: intentionally light for dark learning surfaces. */
+  --charcoal: oklch(0.84 0.018 155);
   --marigold: var(--amber);
   --sage: var(--green);
   --clay: var(--coral);

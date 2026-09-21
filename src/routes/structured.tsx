@@ -172,7 +172,7 @@ function Reveal({ children }: { children: React.ReactNode }) {
         {open ? "Hide model answer" : "Show model answer"}
       </button>
       {open && (
-        <div className="mt-2 rounded-lg border border-hairline bg-secondary/40 p-3 text-sm text-charcoal whitespace-pre-wrap">
+        <div className="mt-2 rounded-lg border border-hairline bg-secondary/40 p-3 text-sm leading-relaxed text-foreground/90 whitespace-pre-wrap">
           {children}
         </div>
       )}
@@ -247,7 +247,7 @@ function ShortItem({ q }: { q: ShortQ }) {
         </button>
       </div>
       {show && (
-        <div className="mt-3 rounded-lg border border-hairline bg-secondary/40 p-3 text-sm text-charcoal">
+        <div className="mt-3 rounded-lg border border-hairline bg-secondary/40 p-3 text-sm leading-relaxed text-foreground/90">
           <p>{q.modelAnswer}</p>
           {q.markingPoints?.length > 0 && (
             <ul className="mt-2 list-disc pl-5 text-xs text-muted-foreground">

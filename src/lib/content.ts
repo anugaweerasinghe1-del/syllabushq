@@ -1,6 +1,7 @@
 import { queryOptions } from "@tanstack/react-query";
 import subjectsData from "@/data/subjects.json";
 import questionsData from "@/data/questions.json";
+import { isSriLankanOLContent } from "@/lib/question-quality";
 
 export type Topic = { slug: string; name: string };
 export type Subject = { slug: string; name: string; topics: Topic[] };
@@ -14,26 +15,16 @@ export type Question = {
 };
 
 const SUBJECTS: Subject[] = subjectsData as Subject[];
-const GENERATION_ARTIFACTS = [
-  /\blet me\b/i,
-  /\blet's (?:adjust|assume|change|fix|modify|re-?evaluate|re-?frame|recalculate|try)\b/i,
-  /\boptions? (?:are|is|were) (?:definitely )?(?:incorrect|inconsistent|off|wrong)\b/i,
-  /\boptions? (?:do|does) not match\b/i,
-  /\bnot matching the options\b/i,
-  /\bquestion is flawed\b/i,
-  /\bneed(?:s)? to (?:be )?(?:adjusted|changed|fixed|modified|reflect)\b/i,
-  /\bmy (?:calculation|option generation|options|question)\b/i,
-  /\bwork backwards\b/i,
-  /\bi (?:will|need to|cannot) (?:adjust|change|correct|create|fix|modify|recreate)\b/i,
-];
-
 export function isUsableQuestion(question: Question): boolean {
   if (!question.question.trim() || question.options.length !== 4) return false;
   if (!Number.isInteger(question.correct) || question.correct < 0 || question.correct > 3) return false;
   const normalizedOptions = question.options.map((option) => option.trim().toLowerCase());
   if (normalizedOptions.some((option) => !option) || new Set(normalizedOptions).size !== 4) return false;
-  const text = `${question.question}\n${question.explanation}`;
-  return !GENERATION_ARTIFACTS.some((pattern) => pattern.test(text));
+  return isSriLankanOLContent([
+    question.question,
+    ...question.options,
+    question.explanation,
+  ]);
 }
 
 const QUESTIONS: Question[] = (questionsData as Question[]).filter(isUsableQuestion);
