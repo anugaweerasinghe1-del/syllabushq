@@ -252,17 +252,17 @@ function ResultsPage() {
                       <p className="font-medium text-ink">
                         <MathText>{it.question}</MathText>
                       </p>
-                      <p className="mt-2 text-sm text-charcoal">
+                      <p className="mt-2 text-sm text-foreground/90">
                         <span className="text-muted-foreground">Correct:</span>{" "}
                         <MathText>{it.options[it.correct]}</MathText>
                       </p>
                       {!ok && it.chosen >= 0 && (
-                        <p className="mt-1 text-sm text-charcoal">
+                        <p className="mt-1 text-sm text-foreground/90">
                           <span className="text-muted-foreground">Your answer:</span>{" "}
                           <MathText>{it.options[it.chosen]}</MathText>
                         </p>
                       )}
-                      <p className="mt-2 text-sm text-muted-foreground">
+                      <p className="mt-2 text-sm leading-relaxed text-foreground/80">
                         <MathText>{it.explanation}</MathText>
                       </p>
                     </div>

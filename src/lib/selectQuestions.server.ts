@@ -2,6 +2,7 @@ import { generateObject } from "ai";
 import { z } from "zod";
 import { googleAi, FAST_MODEL, SMART_MODEL } from "./ai-gateway.server";
 import subjectsData from "@/data/subjects.json";
+import { isSriLankanOLContent } from "./question-quality";
 
 type SubjectJSON = { slug: string; name: string; topics: { slug: string; name: string }[] };
 const SUBJECTS = subjectsData as SubjectJSON[];
@@ -84,12 +85,15 @@ export async function generateTopUp(opts: {
   const prompt = [
     `You are a Sri Lankan G.C.E. Ordinary Level examiner writing ${subject.name} MCQs in English medium.`,
     `Write exactly ${opts.need} ORIGINAL multiple-choice questions strictly within the Sri Lankan NIE O/L syllabus.`,
+    `Use Sri Lankan Department of Examinations Paper I conventions only; never use Cambridge, Edexcel, IGCSE, GCSE, A-level, or other foreign-board formats.`,
     `Allowed topics (use the slug verbatim in the "topic" field): ${topicList}.`,
     opts.difficulty !== "all"
       ? `Target difficulty: ${opts.difficulty}.`
       : `Mix easy, medium and hard fairly.`,
     `Each question must have 4 plausible options, exactly one correct, and a one-to-three sentence explanation.`,
     `Use plain text maths notation (e.g. x^2, sqrt(5), 3/4). Do not use LaTeX delimiters.`,
+    `Use Grade 10/11 terminology, SI/metric units, Sri Lankan rupees (Rs.), and familiar local contexts. Never use Year 10/11, foreign currency, or imperial units.`,
+    `Solve each item first. Reject it if the correct index, options, or explanation disagree. Never include drafting notes or self-corrections.`,
     opts.avoid.length
       ? `Do NOT repeat or paraphrase any of these existing questions:\n${opts.avoid
           .slice(0, 25)
@@ -108,7 +112,12 @@ export async function generateTopUp(opts: {
         schema: GenSchema,
         prompt,
       });
-      const valid = object.questions.filter((q) => subject.topics.some((t) => t.slug === q.topic));
+      const valid = object.questions.filter(
+        (q) =>
+          subject.topics.some((t) => t.slug === q.topic) &&
+          new Set(q.options.map((option) => option.trim().toLowerCase())).size === 4 &&
+          isSriLankanOLContent([q.question, ...q.options, q.explanation]),
+      );
       if (valid.length) return valid.slice(0, opts.need);
     } catch {
       // try next model, then give up silently (caller falls back to local bank)

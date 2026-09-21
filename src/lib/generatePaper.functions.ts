@@ -2,6 +2,7 @@ import { createServerFn } from "@tanstack/react-start";
 import { generateObject } from "ai";
 import { z } from "zod";
 import { googleAi, FAST_MODEL } from "./ai-gateway.server";
+import { isSriLankanOLContent } from "./question-quality";
 
 const QuestionSchema = z.object({
   prompt: z.string(),
@@ -92,7 +93,16 @@ export const generatePaper = createServerFn({ method: "POST" })
       .eq("hash", key)
       .maybeSingle();
     if (cached?.payload) {
-      return { cached: true, key, paper: cached.payload as GeneratedPaper };
+      const paper = cached.payload as GeneratedPaper;
+      const questions = paper.questions.filter((question) =>
+        isSriLankanOLContent([
+          question.prompt,
+          ...(question.choices ?? []),
+          question.answer,
+          question.markingScheme,
+        ]),
+      );
+      if (questions.length) return { cached: true, key, paper: { ...paper, questions } };
     }
 
     const provider = googleAi();
@@ -104,6 +114,7 @@ export const generatePaper = createServerFn({ method: "POST" })
         "These are supplementary practice, not official questions or replicas. Never copy wording from a real past paper. " +
         "Use Sri Lankan names, currency (Rs.), familiar local contexts, and Department of Examinations command words where appropriate. " +
         "Do not use Cambridge IGCSE, Edexcel, or foreign curriculum terminology. " +
+        "Follow Sri Lankan Department of Examinations Paper I or Paper II conventions, use Grade 10/11 terminology, SI units and Rs.; never use Year 10/11, foreign currency or imperial units. " +
         "Before returning, solve every question independently and reject any item whose marked answer, options, marks, or explanation disagree. " +
         "Never include drafting notes, self-corrections, apologies, or commentary about creating the question. " +
         "Math must use LaTeX between $...$ (e.g. $\\\\sqrt{16}\\\\div 2$). Never use ASCII like sqrt(x) or x^2. " +
@@ -120,6 +131,18 @@ export const generatePaper = createServerFn({ method: "POST" })
           : "Produce structured questions. If multi-part, label parts (a), (b), (c) inside prompt and reflect marks per part in markingScheme."),
     });
 
+    const paper = {
+      ...object,
+      questions: object.questions.filter((question) =>
+        isSriLankanOLContent([
+          question.prompt,
+          ...(question.choices ?? []),
+          question.answer,
+          question.markingScheme,
+        ]),
+      ),
+    };
+
     await supabaseAdmin
       .from("generated_questions")
       .insert({
@@ -128,10 +151,10 @@ export const generatePaper = createServerFn({ method: "POST" })
         topic: data.topics.join(","),
         mode: data.templateId,
         difficulty: data.difficulty,
-        payload: object,
+        payload: paper,
       })
       .select()
       .maybeSingle();
 
-    return { cached: false, key, paper: object };
+    return { cached: false, key, paper };
   });

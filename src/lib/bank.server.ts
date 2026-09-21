@@ -4,6 +4,7 @@ import { googleAi, FAST_MODEL, SMART_MODEL } from "./ai-gateway.server";
 import subjectsData from "@/data/subjects.json";
 import type { Json } from "@/integrations/supabase/types";
 import type { BankMode, McqItem, ShortItem, StructuredItem, BankItem } from "./bank-types";
+import { isSriLankanOLContent } from "./question-quality";
 
 type SubjectJSON = { slug: string; name: string; topics: { slug: string; name: string }[] };
 const SUBJECTS = subjectsData as SubjectJSON[];
@@ -76,6 +77,22 @@ function itemText(mode: BankMode, item: BankItem) {
   return (item as McqItem).question;
 }
 
+function itemIsCompliant(mode: BankMode, item: BankItem) {
+  if (mode === "mcq") {
+    const q = item as McqItem;
+    return isSriLankanOLContent([q.question, ...q.options, q.explanation]);
+  }
+  if (mode === "short") {
+    const q = item as ShortItem;
+    return isSriLankanOLContent([q.question, q.modelAnswer, ...q.markingPoints]);
+  }
+  const q = item as StructuredItem;
+  return isSriLankanOLContent([
+    q.context,
+    ...q.parts.flatMap((part) => [part.prompt, part.answer]),
+  ]);
+}
+
 // ---------------------------------------------------------------- storage
 
 async function admin() {
@@ -101,7 +118,9 @@ export async function readBank(opts: {
     if (opts.topics.length) q = q.in("topic", opts.topics);
     const { data, error } = await q;
     if (error || !data) return [];
-    return data.map((r) => r.payload as BankItem);
+    return data
+      .map((r) => r.payload as BankItem)
+      .filter((item) => itemIsCompliant(opts.mode, item));
   } catch {
     return [];
   }
@@ -113,11 +132,12 @@ export async function writeBank(
   difficulty: string,
   items: BankItem[],
 ) {
-  if (!items.length) return;
+  const compliantItems = items.filter((item) => itemIsCompliant(mode, item));
+  if (!compliantItems.length) return;
   try {
     const db = await admin();
     await db.from("generated_questions").upsert(
-      items.map((it) => ({
+      compliantItems.map((it) => ({
         hash: hashOf(mode, subject, itemText(mode, it)),
         subject,
         topic: it.topic,
@@ -158,13 +178,16 @@ function topicList(subject: SubjectJSON, topics: string[]) {
 function header(subject: SubjectJSON, topics: string[], difficulty: string, avoid: string[]) {
   return [
     `You are a Sri Lankan G.C.E. Ordinary Level examiner writing ${subject.name} questions in English medium.`,
-    `Every question must be strictly inside the Sri Lankan NIE O/L syllabus for ${subject.name}. Never use Cambridge IGCSE or Edexcel content or terminology.`,
+    `Every question must be strictly inside the Sri Lankan NIE Grade 10-11 G.C.E. O/L syllabus for ${subject.name}.`,
+    `Use Sri Lankan Department of Examinations Paper I or Paper II conventions only. Do not imitate Cambridge, Edexcel, IGCSE, GCSE, A-level, American, Indian-board, or other foreign formats.`,
     `Allowed topics — use the slug VERBATIM in the "topic" field: ${topicList(subject, topics)}.`,
     difficulty && difficulty !== "all"
       ? `Target difficulty: ${difficulty}.`
       : `Mix easy, medium and hard fairly.`,
     `Use plain-text maths notation (x^2, sqrt(5), 3/4, log_2(8)). Never use LaTeX delimiters.`,
-    `Use Sri Lankan context where natural (rupees, local place names, local businesses).`,
+    `Use Grade 10 or Grade 11, never Year 10 or Year 11. Use SI/metric units and Sri Lankan rupees written as Rs.; never use foreign currency or imperial units.`,
+    `Use Sri Lankan context where natural (local place names, households, schools, farms, transport, and businesses).`,
+    `Solve every item before returning it. The marked answer, distractors, explanation, marks, and marking points must agree. Never include drafting notes or self-corrections.`,
     avoid.length
       ? `Do NOT repeat or paraphrase any of these existing questions:\n${avoid
           .slice(0, 20)
@@ -221,7 +244,8 @@ export async function generate(opts: {
           q.correct >= 0 &&
           q.correct < 4 &&
           q.question.trim().length > 10 &&
-          new Set(q.options.map((o) => o.trim().toLowerCase())).size === 4,
+          new Set(q.options.map((o) => o.trim().toLowerCase())).size === 4 &&
+          itemIsCompliant("mcq", q),
       )
       .slice(0, need);
   }
@@ -243,7 +267,8 @@ export async function generate(opts: {
           validTopic(q.topic) &&
           q.question.trim().length > 10 &&
           q.modelAnswer.trim().length > 5 &&
-          q.markingPoints.length >= 1,
+          q.markingPoints.length >= 1 &&
+          itemIsCompliant("short", q),
       )
       .map((q) => ({ ...q, marks: Math.max(1, Math.min(10, q.markingPoints.length || q.marks)) }))
       .slice(0, need);
@@ -264,7 +289,8 @@ export async function generate(opts: {
       (q) =>
         validTopic(q.topic) &&
         q.parts.length >= 2 &&
-        q.parts.every((p) => p.prompt.trim().length > 5 && p.answer.trim().length > 3),
+        q.parts.every((p) => p.prompt.trim().length > 5 && p.answer.trim().length > 3) &&
+        itemIsCompliant("structured", q),
     )
     .map((q) => ({
       ...q,

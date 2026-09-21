@@ -84,12 +84,37 @@ export const Route = createFileRoute("/")({
             },
             {
               "@type": "Question",
+              name: "How does SyllabusHQ O/L practice work?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Choose a subject and topic, set a timer and question count, answer original syllabus practice, then review every answer and explanation. Official past papers remain in a separate unchanged library.",
+              },
+            },
+            {
+              "@type": "Question",
               name: "How does the study streak work?",
               acceptedAnswer: {
                 "@type": "Answer",
                 text: "Complete any practice and today lights up. If 24 hours pass without practice, the streak resets to zero.",
               },
             },
+          ],
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "HowTo",
+          name: "How to practise for the Sri Lankan G.C.E. O/L with SyllabusHQ",
+          description:
+            "Choose an English-medium O/L subject, configure a timed practice set, answer it, and use the review to plan the next session.",
+          totalTime: "PT20M",
+          step: [
+            { "@type": "HowToStep", position: 1, name: "Choose a subject and topic" },
+            { "@type": "HowToStep", position: 2, name: "Set the question count and timer" },
+            { "@type": "HowToStep", position: 3, name: "Complete the practice or official paper" },
+            { "@type": "HowToStep", position: 4, name: "Review answers and target weak topics" },
           ],
         }),
       },
@@ -244,6 +269,25 @@ function Home() {
           </div>
         </section>
 
+        <section className="mt-24" aria-labelledby="how-it-works">
+          <SectionHeader kicker="How it works" title="From practice to progress." />
+          <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+            SyllabusHQ separates unchanged official papers from original practice. Practice questions
+            follow the Sri Lankan NIE Grade 10–11 syllabus and Department of Examinations conventions;
+            they are screened to exclude Cambridge, Edexcel, IGCSE and other foreign-board formats.
+          </p>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <HowStep n="01" title="Choose precisely" body="Pick Mathematics, Science, or Business & Accounting Studies, then select one topic or a balanced mix." />
+            <HowStep n="02" title="Set exam conditions" body="Choose 5–50 questions and a live timer, or open an unchanged official paper from the library." />
+            <HowStep n="03" title="Answer actively" body="Work through MCQs, short answers, or structured parts. Typed work and supported handwriting can be marked." />
+            <HowStep n="04" title="Review the marks" body="See the correct answer, a readable explanation, weak areas, and a clear recommendation for the next session." />
+          </div>
+          <div className="mt-5 flex flex-wrap gap-3 text-sm">
+            <Link to="/practice" className="font-semibold text-green hover:text-foreground">Build a practice set →</Link>
+            <Link to="/past-papers" className="font-semibold text-blue hover:text-foreground">Open official past papers →</Link>
+          </div>
+        </section>
+
         {/* CTA */}
         <section className="mt-24">
           <PremiumCard
@@ -390,6 +434,16 @@ function Feature({ n, title, body }: { n?: string; title: string; body: string }
       <h3 className="mt-4 font-display text-xl text-foreground">{title}</h3>
       <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{body}</p>
     </PremiumCard>
+  );
+}
+
+function HowStep({ n, title, body }: { n: string; title: string; body: string }) {
+  return (
+    <div className="border-t border-hairline-strong pt-5">
+      <p className="font-num text-[10px] text-amber">{n}</p>
+      <h3 className="mt-3 font-display text-lg text-foreground">{title}</h3>
+      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{body}</p>
+    </div>
   );
 }
 
