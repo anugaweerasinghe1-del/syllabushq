@@ -42,7 +42,7 @@ export const Route = createFileRoute("/exam/structured/$subject")({
   component: StructuredRunner,
   notFoundComponent: () => <NotFoundShell />,
   errorComponent: ({ error }) => (
-    <NotFoundShell title="This paper didn't load" message={error.message} />
+    <NotFoundShell title="This paper didn't load" message={error instanceof Error ? error.message : String(error)} />
   ),
 });
 

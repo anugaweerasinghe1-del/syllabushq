@@ -51,7 +51,7 @@ export const Route = createFileRoute("/exam/full/$subject")({
   component: FullExam,
   notFoundComponent: () => <NotFoundShell />,
   errorComponent: ({ error }) => (
-    <NotFoundShell title="This exam didn't load" message={error.message} />
+    <NotFoundShell title="This exam didn't load" message={error instanceof Error ? error.message : String(error)} />
   ),
 });
 

@@ -15,7 +15,7 @@ export const Route = createFileRoute("/practice/$mode")({
     <NotFoundShell title="Practice mode not found" message="Choose a mode from the practice hub." />
   ),
   errorComponent: ({ error }) => (
-    <NotFoundShell title="Something went wrong" message={error.message} />
+    <NotFoundShell title="Something went wrong" message={error instanceof Error ? error.message : String(error)} />
   ),
   component: () => <Outlet />,
 });

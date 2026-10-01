@@ -19,7 +19,7 @@ export const Route = createFileRoute("/$subject")({
     />
   ),
   errorComponent: ({ error }) => (
-    <NotFoundShell title="Couldn't load that subject" message={error.message} />
+    <NotFoundShell title="Couldn't load that subject" message={error instanceof Error ? error.message : String(error)} />
   ),
   component: () => <Outlet />,
 });

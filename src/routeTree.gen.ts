@@ -26,6 +26,7 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as PracticeIndexRouteImport } from './routes/practice.index'
 import { Route as PastPapersIndexRouteImport } from './routes/past-papers.index'
+import { Route as ForTeachersIndexRouteImport } from './routes/for-teachers.index'
 import { Route as SubjectIndexRouteImport } from './routes/$subject.index'
 import { Route as PracticeModeRouteImport } from './routes/practice.$mode'
 import { Route as PastPapersPaperRouteImport } from './routes/past-papers.$paper'
@@ -126,6 +127,11 @@ const PastPapersIndexRoute = PastPapersIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => PastPapersRoute,
+} as any)
+const ForTeachersIndexRoute = ForTeachersIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ForTeachersRoute,
 } as any)
 const SubjectIndexRoute = SubjectIndexRouteImport.update({
   id: '/',
@@ -230,6 +236,7 @@ export interface FileRoutesByFullPath {
   '/past-papers/$paper': typeof PastPapersPaperRoute
   '/practice/$mode': typeof PracticeModeRouteWithChildren
   '/$subject/': typeof SubjectIndexRoute
+  '/for-teachers/': typeof ForTeachersIndexRoute
   '/past-papers/': typeof PastPapersIndexRoute
   '/practice/': typeof PracticeIndexRoute
   '/$subject/$topic/practice': typeof SubjectTopicPracticeRoute
@@ -247,7 +254,6 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/auth': typeof AuthRoute
   '/exam': typeof ExamRouteWithChildren
-  '/for-teachers': typeof ForTeachersRouteWithChildren
   '/press': typeof PressRoute
   '/resources': typeof ResourcesRoute
   '/reviews': typeof ReviewsRoute
@@ -259,6 +265,7 @@ export interface FileRoutesByTo {
   '/for-teachers/pack': typeof ForTeachersPackRoute
   '/past-papers/$paper': typeof PastPapersPaperRoute
   '/$subject': typeof SubjectIndexRoute
+  '/for-teachers': typeof ForTeachersIndexRoute
   '/past-papers': typeof PastPapersIndexRoute
   '/practice': typeof PracticeIndexRoute
   '/$subject/$topic/practice': typeof SubjectTopicPracticeRoute
@@ -295,6 +302,7 @@ export interface FileRoutesById {
   '/past-papers/$paper': typeof PastPapersPaperRoute
   '/practice/$mode': typeof PracticeModeRouteWithChildren
   '/$subject/': typeof SubjectIndexRoute
+  '/for-teachers/': typeof ForTeachersIndexRoute
   '/past-papers/': typeof PastPapersIndexRoute
   '/practice/': typeof PracticeIndexRoute
   '/$subject/$topic/practice': typeof SubjectTopicPracticeRoute
@@ -331,6 +339,7 @@ export interface FileRouteTypes {
     | '/past-papers/$paper'
     | '/practice/$mode'
     | '/$subject/'
+    | '/for-teachers/'
     | '/past-papers/'
     | '/practice/'
     | '/$subject/$topic/practice'
@@ -348,7 +357,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/auth'
     | '/exam'
-    | '/for-teachers'
     | '/press'
     | '/resources'
     | '/reviews'
@@ -360,6 +368,7 @@ export interface FileRouteTypes {
     | '/for-teachers/pack'
     | '/past-papers/$paper'
     | '/$subject'
+    | '/for-teachers'
     | '/past-papers'
     | '/practice'
     | '/$subject/$topic/practice'
@@ -395,6 +404,7 @@ export interface FileRouteTypes {
     | '/past-papers/$paper'
     | '/practice/$mode'
     | '/$subject/'
+    | '/for-teachers/'
     | '/past-papers/'
     | '/practice/'
     | '/$subject/$topic/practice'
@@ -548,6 +558,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/past-papers/'
       preLoaderRoute: typeof PastPapersIndexRouteImport
       parentRoute: typeof PastPapersRoute
+    }
+    '/for-teachers/': {
+      id: '/for-teachers/'
+      path: '/'
+      fullPath: '/for-teachers/'
+      preLoaderRoute: typeof ForTeachersIndexRouteImport
+      parentRoute: typeof ForTeachersRoute
     }
     '/$subject/': {
       id: '/$subject/'
@@ -720,10 +737,12 @@ const ExamRouteWithChildren = ExamRoute._addFileChildren(ExamRouteChildren)
 
 interface ForTeachersRouteChildren {
   ForTeachersPackRoute: typeof ForTeachersPackRoute
+  ForTeachersIndexRoute: typeof ForTeachersIndexRoute
 }
 
 const ForTeachersRouteChildren: ForTeachersRouteChildren = {
   ForTeachersPackRoute: ForTeachersPackRoute,
+  ForTeachersIndexRoute: ForTeachersIndexRoute,
 }
 
 const ForTeachersRouteWithChildren = ForTeachersRoute._addFileChildren(

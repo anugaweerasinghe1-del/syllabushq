@@ -57,7 +57,7 @@ export const Route = createFileRoute("/practice/$mode/$subject")({
   },
   notFoundComponent: () => <NotFoundShell />,
   errorComponent: ({ error }) => (
-    <NotFoundShell title="This setup didn't load" message={error.message} />
+    <NotFoundShell title="This setup didn't load" message={error instanceof Error ? error.message : String(error)} />
   ),
 });
 
