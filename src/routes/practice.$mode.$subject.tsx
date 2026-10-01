@@ -207,7 +207,7 @@ function SetupPage() {
                 ))}
               </div>
               <p className="mt-2 text-[11px] text-muted-foreground">
-                Each difficulty pulls a separately calibrated question bank.
+                Difficulty applies to new questions when the selected topic needs more questions.
               </p>
             </Field>
           )}

@@ -1,6 +1,6 @@
 const FOREIGN_BOARD_PATTERNS = [
   /\b(?:cambridge|edexcel|pearson|aqa|ocr)\b/i,
-  /\b(?:i?gcse|key stage|common core|sat|act|cbse|icse)\b/i,
+  /\b(?:i?gcse|key stage|common core|sat|cbse|icse)\b/i,
   /\bgce\s+a[ -]?level\b/i,
   /\byear\s*(?:10|11)\b/i,
 ];
