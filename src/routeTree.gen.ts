@@ -9,43 +9,98 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as SuggestRouteImport } from './routes/suggest'
+import { Route as StructuredRouteImport } from './routes/structured'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as ReviewsRouteImport } from './routes/reviews'
+import { Route as ResourcesRouteImport } from './routes/resources'
+import { Route as PressRouteImport } from './routes/press'
+import { Route as PracticeRouteImport } from './routes/practice'
+import { Route as PastPapersRouteImport } from './routes/past-papers'
+import { Route as ForTeachersRouteImport } from './routes/for-teachers'
+import { Route as ExamRouteImport } from './routes/exam'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as SubjectRouteImport } from './routes/$subject'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
-import { Route as AboutRouteImport } from './routes/about'
-import { Route as AuthRouteImport } from './routes/auth'
-import { Route as ExamRouteImport } from './routes/exam'
-import { Route as ForTeachersRouteImport } from './routes/for-teachers'
-import { Route as PastPapersRouteImport } from './routes/past-papers'
-import { Route as PracticeRouteImport } from './routes/practice'
-import { Route as PressRouteImport } from './routes/press'
-import { Route as ResourcesRouteImport } from './routes/resources'
-import { Route as ReviewsRouteImport } from './routes/reviews'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as StructuredRouteImport } from './routes/structured'
-import { Route as SuggestRouteImport } from './routes/suggest'
-import { Route as SubjectIndexRouteImport } from './routes/$subject.index'
-import { Route as SubjectTopicRouteImport } from './routes/$subject.$topic'
-import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
-import { Route as EmbedDailyRouteImport } from './routes/embed.daily'
-import { Route as ForTeachersPackRouteImport } from './routes/for-teachers.pack'
-import { Route as PastPapersIndexRouteImport } from './routes/past-papers.index'
-import { Route as PastPapersPaperRouteImport } from './routes/past-papers.$paper'
+import { Route as IndexRouteImport } from './routes/index'
 import { Route as PracticeIndexRouteImport } from './routes/practice.index'
+import { Route as PastPapersIndexRouteImport } from './routes/past-papers.index'
+import { Route as SubjectIndexRouteImport } from './routes/$subject.index'
 import { Route as PracticeModeRouteImport } from './routes/practice.$mode'
-import { Route as SubjectTopicIndexRouteImport } from './routes/$subject.$topic.index'
-import { Route as SubjectTopicPracticeRouteImport } from './routes/$subject.$topic.practice'
-import { Route as SubjectTopicResultsRouteImport } from './routes/$subject.$topic.results'
-import { Route as ExamFullSubjectRouteImport } from './routes/exam.full.$subject'
-import { Route as ExamShortSubjectRouteImport } from './routes/exam.short.$subject'
-import { Route as ExamStructuredSubjectRouteImport } from './routes/exam.structured.$subject'
+import { Route as PastPapersPaperRouteImport } from './routes/past-papers.$paper'
+import { Route as ForTeachersPackRouteImport } from './routes/for-teachers.pack'
+import { Route as EmbedDailyRouteImport } from './routes/embed.daily'
+import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as SubjectTopicRouteImport } from './routes/$subject.$topic'
 import { Route as PracticeModeIndexRouteImport } from './routes/practice.$mode.index'
+import { Route as SubjectTopicIndexRouteImport } from './routes/$subject.$topic.index'
 import { Route as PracticeModeSubjectRouteImport } from './routes/practice.$mode.$subject'
+import { Route as ExamStructuredSubjectRouteImport } from './routes/exam.structured.$subject'
+import { Route as ExamShortSubjectRouteImport } from './routes/exam.short.$subject'
+import { Route as ExamFullSubjectRouteImport } from './routes/exam.full.$subject'
+import { Route as SubjectTopicResultsRouteImport } from './routes/$subject.$topic.results'
+import { Route as SubjectTopicPracticeRouteImport } from './routes/$subject.$topic.practice'
 import { Route as LearnSubjectTopicSlugRouteImport } from './routes/learn.$subject.$topic.$slug'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const SuggestRoute = SuggestRouteImport.update({
+  id: '/suggest',
+  path: '/suggest',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StructuredRoute = StructuredRouteImport.update({
+  id: '/structured',
+  path: '/structured',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReviewsRoute = ReviewsRouteImport.update({
+  id: '/reviews',
+  path: '/reviews',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResourcesRoute = ResourcesRouteImport.update({
+  id: '/resources',
+  path: '/resources',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PressRoute = PressRouteImport.update({
+  id: '/press',
+  path: '/press',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PracticeRoute = PracticeRouteImport.update({
+  id: '/practice',
+  path: '/practice',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PastPapersRoute = PastPapersRouteImport.update({
+  id: '/past-papers',
+  path: '/past-papers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForTeachersRoute = ForTeachersRouteImport.update({
+  id: '/for-teachers',
+  path: '/for-teachers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExamRoute = ExamRouteImport.update({
+  id: '/exam',
+  path: '/exam',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SubjectRoute = SubjectRouteImport.update({
@@ -57,129 +112,74 @@ const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AuthRoute = AuthRouteImport.update({
-  id: '/auth',
-  path: '/auth',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ExamRoute = ExamRouteImport.update({
-  id: '/exam',
-  path: '/exam',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ForTeachersRoute = ForTeachersRouteImport.update({
-  id: '/for-teachers',
-  path: '/for-teachers',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PastPapersRoute = PastPapersRouteImport.update({
-  id: '/past-papers',
-  path: '/past-papers',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PracticeRoute = PracticeRouteImport.update({
-  id: '/practice',
-  path: '/practice',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PressRoute = PressRouteImport.update({
-  id: '/press',
-  path: '/press',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ResourcesRoute = ResourcesRouteImport.update({
-  id: '/resources',
-  path: '/resources',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ReviewsRoute = ReviewsRouteImport.update({
-  id: '/reviews',
-  path: '/reviews',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const StructuredRoute = StructuredRouteImport.update({
-  id: '/structured',
-  path: '/structured',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SuggestRoute = SuggestRouteImport.update({
-  id: '/suggest',
-  path: '/suggest',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SubjectIndexRoute = SubjectIndexRouteImport.update({
+const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => SubjectRoute,
-} as any)
-const SubjectTopicRoute = SubjectTopicRouteImport.update({
-  id: '/$topic',
-  path: '/$topic',
-  getParentRoute: () => SubjectRoute,
-} as any)
-const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
-const EmbedDailyRoute = EmbedDailyRouteImport.update({
-  id: '/embed/daily',
-  path: '/embed/daily',
   getParentRoute: () => rootRouteImport,
-} as any)
-const ForTeachersPackRoute = ForTeachersPackRouteImport.update({
-  id: '/pack',
-  path: '/pack',
-  getParentRoute: () => ForTeachersRoute,
-} as any)
-const PastPapersIndexRoute = PastPapersIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => PastPapersRoute,
-} as any)
-const PastPapersPaperRoute = PastPapersPaperRouteImport.update({
-  id: '/$paper',
-  path: '/$paper',
-  getParentRoute: () => PastPapersRoute,
 } as any)
 const PracticeIndexRoute = PracticeIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => PracticeRoute,
 } as any)
+const PastPapersIndexRoute = PastPapersIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => PastPapersRoute,
+} as any)
+const SubjectIndexRoute = SubjectIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => SubjectRoute,
+} as any)
 const PracticeModeRoute = PracticeModeRouteImport.update({
   id: '/$mode',
   path: '/$mode',
   getParentRoute: () => PracticeRoute,
+} as any)
+const PastPapersPaperRoute = PastPapersPaperRouteImport.update({
+  id: '/$paper',
+  path: '/$paper',
+  getParentRoute: () => PastPapersRoute,
+} as any)
+const ForTeachersPackRoute = ForTeachersPackRouteImport.update({
+  id: '/pack',
+  path: '/pack',
+  getParentRoute: () => ForTeachersRoute,
+} as any)
+const EmbedDailyRoute = EmbedDailyRouteImport.update({
+  id: '/embed/daily',
+  path: '/embed/daily',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const SubjectTopicRoute = SubjectTopicRouteImport.update({
+  id: '/$topic',
+  path: '/$topic',
+  getParentRoute: () => SubjectRoute,
+} as any)
+const PracticeModeIndexRoute = PracticeModeIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => PracticeModeRoute,
 } as any)
 const SubjectTopicIndexRoute = SubjectTopicIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => SubjectTopicRoute,
 } as any)
-const SubjectTopicPracticeRoute = SubjectTopicPracticeRouteImport.update({
-  id: '/practice',
-  path: '/practice',
-  getParentRoute: () => SubjectTopicRoute,
+const PracticeModeSubjectRoute = PracticeModeSubjectRouteImport.update({
+  id: '/$subject',
+  path: '/$subject',
+  getParentRoute: () => PracticeModeRoute,
 } as any)
-const SubjectTopicResultsRoute = SubjectTopicResultsRouteImport.update({
-  id: '/results',
-  path: '/results',
-  getParentRoute: () => SubjectTopicRoute,
-} as any)
-const ExamFullSubjectRoute = ExamFullSubjectRouteImport.update({
-  id: '/full/$subject',
-  path: '/full/$subject',
+const ExamStructuredSubjectRoute = ExamStructuredSubjectRouteImport.update({
+  id: '/structured/$subject',
+  path: '/structured/$subject',
   getParentRoute: () => ExamRoute,
 } as any)
 const ExamShortSubjectRoute = ExamShortSubjectRouteImport.update({
@@ -187,20 +187,20 @@ const ExamShortSubjectRoute = ExamShortSubjectRouteImport.update({
   path: '/short/$subject',
   getParentRoute: () => ExamRoute,
 } as any)
-const ExamStructuredSubjectRoute = ExamStructuredSubjectRouteImport.update({
-  id: '/structured/$subject',
-  path: '/structured/$subject',
+const ExamFullSubjectRoute = ExamFullSubjectRouteImport.update({
+  id: '/full/$subject',
+  path: '/full/$subject',
   getParentRoute: () => ExamRoute,
 } as any)
-const PracticeModeIndexRoute = PracticeModeIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => PracticeModeRoute,
+const SubjectTopicResultsRoute = SubjectTopicResultsRouteImport.update({
+  id: '/results',
+  path: '/results',
+  getParentRoute: () => SubjectTopicRoute,
 } as any)
-const PracticeModeSubjectRoute = PracticeModeSubjectRouteImport.update({
-  id: '/$subject',
-  path: '/$subject',
-  getParentRoute: () => PracticeModeRoute,
+const SubjectTopicPracticeRoute = SubjectTopicPracticeRouteImport.update({
+  id: '/practice',
+  path: '/practice',
+  getParentRoute: () => SubjectTopicRoute,
 } as any)
 const LearnSubjectTopicSlugRoute = LearnSubjectTopicSlugRouteImport.update({
   id: '/learn/$subject/$topic/$slug',
@@ -430,11 +430,88 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/suggest': {
+      id: '/suggest'
+      path: '/suggest'
+      fullPath: '/suggest'
+      preLoaderRoute: typeof SuggestRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/structured': {
+      id: '/structured'
+      path: '/structured'
+      fullPath: '/structured'
+      preLoaderRoute: typeof StructuredRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reviews': {
+      id: '/reviews'
+      path: '/reviews'
+      fullPath: '/reviews'
+      preLoaderRoute: typeof ReviewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/resources': {
+      id: '/resources'
+      path: '/resources'
+      fullPath: '/resources'
+      preLoaderRoute: typeof ResourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/press': {
+      id: '/press'
+      path: '/press'
+      fullPath: '/press'
+      preLoaderRoute: typeof PressRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/practice': {
+      id: '/practice'
+      path: '/practice'
+      fullPath: '/practice'
+      preLoaderRoute: typeof PracticeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/past-papers': {
+      id: '/past-papers'
+      path: '/past-papers'
+      fullPath: '/past-papers'
+      preLoaderRoute: typeof PastPapersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/for-teachers': {
+      id: '/for-teachers'
+      path: '/for-teachers'
+      fullPath: '/for-teachers'
+      preLoaderRoute: typeof ForTeachersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/exam': {
+      id: '/exam'
+      path: '/exam'
+      fullPath: '/exam'
+      preLoaderRoute: typeof ExamRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/$subject': {
@@ -451,138 +528,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/auth': {
-      id: '/auth'
-      path: '/auth'
-      fullPath: '/auth'
-      preLoaderRoute: typeof AuthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/exam': {
-      id: '/exam'
-      path: '/exam'
-      fullPath: '/exam'
-      preLoaderRoute: typeof ExamRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/for-teachers': {
-      id: '/for-teachers'
-      path: '/for-teachers'
-      fullPath: '/for-teachers'
-      preLoaderRoute: typeof ForTeachersRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/past-papers': {
-      id: '/past-papers'
-      path: '/past-papers'
-      fullPath: '/past-papers'
-      preLoaderRoute: typeof PastPapersRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/practice': {
-      id: '/practice'
-      path: '/practice'
-      fullPath: '/practice'
-      preLoaderRoute: typeof PracticeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/press': {
-      id: '/press'
-      path: '/press'
-      fullPath: '/press'
-      preLoaderRoute: typeof PressRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/resources': {
-      id: '/resources'
-      path: '/resources'
-      fullPath: '/resources'
-      preLoaderRoute: typeof ResourcesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/reviews': {
-      id: '/reviews'
-      path: '/reviews'
-      fullPath: '/reviews'
-      preLoaderRoute: typeof ReviewsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/structured': {
-      id: '/structured'
-      path: '/structured'
-      fullPath: '/structured'
-      preLoaderRoute: typeof StructuredRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/suggest': {
-      id: '/suggest'
-      path: '/suggest'
-      fullPath: '/suggest'
-      preLoaderRoute: typeof SuggestRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/$subject/': {
-      id: '/$subject/'
+    '/': {
+      id: '/'
       path: '/'
-      fullPath: '/$subject/'
-      preLoaderRoute: typeof SubjectIndexRouteImport
-      parentRoute: typeof SubjectRoute
-    }
-    '/$subject/$topic': {
-      id: '/$subject/$topic'
-      path: '/$topic'
-      fullPath: '/$subject/$topic'
-      preLoaderRoute: typeof SubjectTopicRouteImport
-      parentRoute: typeof SubjectRoute
-    }
-    '/_authenticated/dashboard': {
-      id: '/_authenticated/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/embed/daily': {
-      id: '/embed/daily'
-      path: '/embed/daily'
-      fullPath: '/embed/daily'
-      preLoaderRoute: typeof EmbedDailyRouteImport
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
-    }
-    '/for-teachers/pack': {
-      id: '/for-teachers/pack'
-      path: '/pack'
-      fullPath: '/for-teachers/pack'
-      preLoaderRoute: typeof ForTeachersPackRouteImport
-      parentRoute: typeof ForTeachersRoute
-    }
-    '/past-papers/': {
-      id: '/past-papers/'
-      path: '/'
-      fullPath: '/past-papers/'
-      preLoaderRoute: typeof PastPapersIndexRouteImport
-      parentRoute: typeof PastPapersRoute
-    }
-    '/past-papers/$paper': {
-      id: '/past-papers/$paper'
-      path: '/$paper'
-      fullPath: '/past-papers/$paper'
-      preLoaderRoute: typeof PastPapersPaperRouteImport
-      parentRoute: typeof PastPapersRoute
     }
     '/practice/': {
       id: '/practice/'
@@ -591,12 +542,68 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PracticeIndexRouteImport
       parentRoute: typeof PracticeRoute
     }
+    '/past-papers/': {
+      id: '/past-papers/'
+      path: '/'
+      fullPath: '/past-papers/'
+      preLoaderRoute: typeof PastPapersIndexRouteImport
+      parentRoute: typeof PastPapersRoute
+    }
+    '/$subject/': {
+      id: '/$subject/'
+      path: '/'
+      fullPath: '/$subject/'
+      preLoaderRoute: typeof SubjectIndexRouteImport
+      parentRoute: typeof SubjectRoute
+    }
     '/practice/$mode': {
       id: '/practice/$mode'
       path: '/$mode'
       fullPath: '/practice/$mode'
       preLoaderRoute: typeof PracticeModeRouteImport
       parentRoute: typeof PracticeRoute
+    }
+    '/past-papers/$paper': {
+      id: '/past-papers/$paper'
+      path: '/$paper'
+      fullPath: '/past-papers/$paper'
+      preLoaderRoute: typeof PastPapersPaperRouteImport
+      parentRoute: typeof PastPapersRoute
+    }
+    '/for-teachers/pack': {
+      id: '/for-teachers/pack'
+      path: '/pack'
+      fullPath: '/for-teachers/pack'
+      preLoaderRoute: typeof ForTeachersPackRouteImport
+      parentRoute: typeof ForTeachersRoute
+    }
+    '/embed/daily': {
+      id: '/embed/daily'
+      path: '/embed/daily'
+      fullPath: '/embed/daily'
+      preLoaderRoute: typeof EmbedDailyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/$subject/$topic': {
+      id: '/$subject/$topic'
+      path: '/$topic'
+      fullPath: '/$subject/$topic'
+      preLoaderRoute: typeof SubjectTopicRouteImport
+      parentRoute: typeof SubjectRoute
+    }
+    '/practice/$mode/': {
+      id: '/practice/$mode/'
+      path: '/'
+      fullPath: '/practice/$mode/'
+      preLoaderRoute: typeof PracticeModeIndexRouteImport
+      parentRoute: typeof PracticeModeRoute
     }
     '/$subject/$topic/': {
       id: '/$subject/$topic/'
@@ -605,25 +612,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SubjectTopicIndexRouteImport
       parentRoute: typeof SubjectTopicRoute
     }
-    '/$subject/$topic/practice': {
-      id: '/$subject/$topic/practice'
-      path: '/practice'
-      fullPath: '/$subject/$topic/practice'
-      preLoaderRoute: typeof SubjectTopicPracticeRouteImport
-      parentRoute: typeof SubjectTopicRoute
+    '/practice/$mode/$subject': {
+      id: '/practice/$mode/$subject'
+      path: '/$subject'
+      fullPath: '/practice/$mode/$subject'
+      preLoaderRoute: typeof PracticeModeSubjectRouteImport
+      parentRoute: typeof PracticeModeRoute
     }
-    '/$subject/$topic/results': {
-      id: '/$subject/$topic/results'
-      path: '/results'
-      fullPath: '/$subject/$topic/results'
-      preLoaderRoute: typeof SubjectTopicResultsRouteImport
-      parentRoute: typeof SubjectTopicRoute
-    }
-    '/exam/full/$subject': {
-      id: '/exam/full/$subject'
-      path: '/full/$subject'
-      fullPath: '/exam/full/$subject'
-      preLoaderRoute: typeof ExamFullSubjectRouteImport
+    '/exam/structured/$subject': {
+      id: '/exam/structured/$subject'
+      path: '/structured/$subject'
+      fullPath: '/exam/structured/$subject'
+      preLoaderRoute: typeof ExamStructuredSubjectRouteImport
       parentRoute: typeof ExamRoute
     }
     '/exam/short/$subject': {
@@ -633,26 +633,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ExamShortSubjectRouteImport
       parentRoute: typeof ExamRoute
     }
-    '/exam/structured/$subject': {
-      id: '/exam/structured/$subject'
-      path: '/structured/$subject'
-      fullPath: '/exam/structured/$subject'
-      preLoaderRoute: typeof ExamStructuredSubjectRouteImport
+    '/exam/full/$subject': {
+      id: '/exam/full/$subject'
+      path: '/full/$subject'
+      fullPath: '/exam/full/$subject'
+      preLoaderRoute: typeof ExamFullSubjectRouteImport
       parentRoute: typeof ExamRoute
     }
-    '/practice/$mode/': {
-      id: '/practice/$mode/'
-      path: '/'
-      fullPath: '/practice/$mode/'
-      preLoaderRoute: typeof PracticeModeIndexRouteImport
-      parentRoute: typeof PracticeModeRoute
+    '/$subject/$topic/results': {
+      id: '/$subject/$topic/results'
+      path: '/results'
+      fullPath: '/$subject/$topic/results'
+      preLoaderRoute: typeof SubjectTopicResultsRouteImport
+      parentRoute: typeof SubjectTopicRoute
     }
-    '/practice/$mode/$subject': {
-      id: '/practice/$mode/$subject'
-      path: '/$subject'
-      fullPath: '/practice/$mode/$subject'
-      preLoaderRoute: typeof PracticeModeSubjectRouteImport
-      parentRoute: typeof PracticeModeRoute
+    '/$subject/$topic/practice': {
+      id: '/$subject/$topic/practice'
+      path: '/practice'
+      fullPath: '/$subject/$topic/practice'
+      preLoaderRoute: typeof SubjectTopicPracticeRouteImport
+      parentRoute: typeof SubjectTopicRoute
     }
     '/learn/$subject/$topic/$slug': {
       id: '/learn/$subject/$topic/$slug'
