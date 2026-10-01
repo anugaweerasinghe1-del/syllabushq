@@ -68,7 +68,7 @@ export const Route = createFileRoute("/$subject/$topic/results")({
     />
   ),
   errorComponent: ({ error }) => (
-    <NotFoundShell title="Couldn't load your results" message={error.message} />
+    <NotFoundShell title="Couldn't load your results" message={error instanceof Error ? error.message : String(error)} />
   ),
   component: ResultsPage,
 });

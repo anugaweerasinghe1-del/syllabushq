@@ -28,7 +28,7 @@ export const Route = createFileRoute("/learn/$subject/$topic/$slug")({
       <SiteHeader />
       <main className="mx-auto max-w-3xl px-6 py-24 text-center">
         <h1 className="font-display text-3xl">Something went wrong</h1>
-        <p className="mt-3 text-sm text-muted-foreground">{String(error?.message ?? error)}</p>
+        <p className="mt-3 text-sm text-muted-foreground">{String(error instanceof Error ? error.message : error)}</p>
       </main>
     </div>
   ),

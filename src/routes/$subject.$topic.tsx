@@ -33,7 +33,7 @@ export const Route = createFileRoute("/$subject/$topic")({
   },
   notFoundComponent: () => <NotFoundShell />,
   errorComponent: ({ error }) => (
-    <NotFoundShell title="Something went off-syllabus" message={error.message} />
+    <NotFoundShell title="Something went off-syllabus" message={error instanceof Error ? error.message : String(error)} />
   ),
   component: () => <Outlet />,
 });

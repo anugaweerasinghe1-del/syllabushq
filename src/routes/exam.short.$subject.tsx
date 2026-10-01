@@ -47,7 +47,7 @@ export const Route = createFileRoute("/exam/short/$subject")({
   component: ShortAnswerRunner,
   notFoundComponent: () => <NotFoundShell />,
   errorComponent: ({ error }) => (
-    <NotFoundShell title="This drill didn't load" message={error.message} />
+    <NotFoundShell title="This drill didn't load" message={error instanceof Error ? error.message : String(error)} />
   ),
 });
 
