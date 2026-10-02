@@ -50003,5 +50003,1013 @@
     "correct": 0,
     "explanation": "The double-entry bookkeeping system dictates that every transaction has an equal debit and credit effect. Therefore, the sum of all debit balances must equal the sum of all credit balances.",
     "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "How many sides does a pentagon have?",
+    "options": [
+      "5",
+      "4",
+      "6",
+      "7"
+    ],
+    "correct": 0,
+    "explanation": "A pentagon is a polygon with exactly five sides and five angles. The prefix 'penta-' means five.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "triangles",
+    "question": "A regular polygon has an exterior angle of 45 degrees. How many sides does this polygon have?",
+    "options": [
+      "8",
+      "6",
+      "9",
+      "12"
+    ],
+    "correct": 0,
+    "explanation": "For any regular polygon, the sum of its exterior angles is 360 degrees. If each exterior angle is 45 degrees, the number of sides (n) is found by dividing 360 by 45, which gives 8.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "quadratic-equations",
+    "question": "Which of the following is a quadratic equation?\n(1) 3x + 5 = 0\n(2) 2x^2 + 7x - 1 = 0\n(3) x^3 - 4x + 2 = 0\n(4) 1/x + x = 3",
+    "options": [
+      "2x^2 + 7x - 1 = 0",
+      "3x + 5 = 0",
+      "x^3 - 4x + 2 = 0",
+      "1/x + x = 3"
+    ],
+    "correct": 0,
+    "explanation": "A quadratic equation is an equation of the form ax^2 + bx + c = 0, where 'a' is not equal to 0. Option (2) fits this definition, as it has the highest power of the variable 'x' as 2.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "circle-theorems",
+    "question": "In a circle with centre O, if the angle subtended by an arc at the centre is 80 degrees, what is the angle subtended by the same arc at any point on the remaining part of the circumference?",
+    "options": [
+      "40 degrees",
+      "80 degrees",
+      "160 degrees",
+      "20 degrees"
+    ],
+    "correct": 0,
+    "explanation": "The angle subtended by an arc at the centre is double the angle subtended by the same arc at any point on the remaining part of the circumference. So, 80 / 2 = 40 degrees.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "circle-theorems",
+    "question": "If a chord of a circle is 10 cm long and the radius of the circle is 13 cm, what is the perpendicular distance from the centre to the chord?",
+    "options": [
+      "12 cm",
+      "8 cm",
+      "5 cm",
+      "6 cm"
+    ],
+    "correct": 1,
+    "explanation": "The perpendicular from the centre to a chord bisects the chord. So, half the chord is 5 cm. Using Pythagoras' theorem (5^2 + x^2 = 13^2), x = 12 cm.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "science",
+    "topic": "electronics",
+    "question": "Which of the following components is used to block the flow of AC current while allowing DC current to pass through?",
+    "options": [
+      "Capacitor",
+      "Inductor",
+      "Resistor",
+      "Diode"
+    ],
+    "correct": 0,
+    "explanation": "A capacitor stores electrical energy in an electric field and blocks the flow of direct current (DC) but allows alternating current (AC) to pass through, especially at higher frequencies.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "vectors",
+    "question": "If vector a = (3, -2) and vector b = (-1, 5), what is the resultant vector 2a + b?",
+    "options": [
+      "(5, 1)",
+      "(7, 3)",
+      "(2, 3)",
+      "(5, 3)"
+    ],
+    "correct": 0,
+    "explanation": "First, multiply vector a by 2: 2a = (2*3, 2*(-2)) = (6, -4). Then, add vector b to this: (6, -4) + (-1, 5) = (6-1, -4+5) = (5, 1).",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "science",
+    "topic": "electronics",
+    "question": "A student constructs a circuit using a 9V battery, a light-emitting diode (LED) that requires a forward voltage of 2.2V and a forward current of 20mA to operate safely, and a resistor (R) to limit the current. If the LED is connected in series with the resistor, what is the minimum resistance value required for R to ensure the LED operates at its rated current?",
+    "options": [
+      "340 Ω",
+      "220 Ω",
+      "450 Ω",
+      "900 Ω"
+    ],
+    "correct": 0,
+    "explanation": "The voltage across the resistor is the supply voltage minus the LED's forward voltage (9V - 2.2V = 6.8V). Using Ohm's Law (R = V/I), the resistance needed is 6.8V / 0.020A = 340 Ω. This ensures the LED operates at its rated current safely.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "science",
+    "topic": "electronics",
+    "question": "Which of the following electronic components is primarily used to convert alternating current (AC) into direct current (DC)?",
+    "options": [
+      "Diode",
+      "Resistor",
+      "Capacitor",
+      "Transistor"
+    ],
+    "correct": 0,
+    "explanation": "A diode allows current to flow predominantly in one direction, making it suitable for rectification, which is the process of converting AC to DC.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "science",
+    "topic": "plants",
+    "question": "Which of the following parts of a plant is primarily responsible for absorbing water and mineral salts from the soil?",
+    "options": [
+      "Root",
+      "Stem",
+      "Leaf",
+      "Flower"
+    ],
+    "correct": 0,
+    "explanation": "Roots are specialized structures that grow underground, providing anchorage and absorbing water and dissolved mineral salts from the soil for the plant's survival.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "science",
+    "topic": "plants",
+    "question": "Which of the following statements correctly describes the primary function of phloem tissue in a plant?",
+    "options": [
+      "Transports manufactured food (sugars) from leaves to other parts of the plant.",
+      "Transports water and dissolved minerals from roots to leaves.",
+      "Provides mechanical support to the plant stem and leaves.",
+      "Stores excess food and water for future use by the plant."
+    ],
+    "correct": 0,
+    "explanation": "Phloem is responsible for translocation, which is the movement of organic nutrients, primarily sugars produced during photosynthesis, from the leaves to other parts of the plant where they are needed for growth or storage. Xylem transports water and minerals, while other tissues provide support or storage.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "science",
+    "topic": "microorganisms",
+    "question": "Which of the following is a common disease caused by bacteria?",
+    "options": [
+      "Tuberculosis",
+      "Common cold",
+      "Influenza",
+      "Dengue fever"
+    ],
+    "correct": 0,
+    "explanation": "Tuberculosis is a bacterial infection primarily affecting the lungs. The common cold and influenza are caused by viruses, while dengue fever is caused by a virus transmitted by mosquitoes.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "money-banking",
+    "question": "Which of the following is NOT a primary function of money?",
+    "options": [
+      "A store of value",
+      "A medium of exchange",
+      "A measure of value",
+      "A factor of production"
+    ],
+    "correct": 3,
+    "explanation": "Factors of production (land, labour, capital, enterprise) are resources used to produce goods and services, not functions of money. Money primarily acts as a medium of exchange, a measure of value, and a store of value.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "circle-theorems",
+    "question": "In a circle with center O, AB is a chord. If the angle subtended by the chord AB at the circumference is 40 degrees, what is the angle AOB?",
+    "options": [
+      "80 degrees",
+      "40 degrees",
+      "20 degrees",
+      "160 degrees"
+    ],
+    "correct": 0,
+    "explanation": "The angle subtended by an arc at the center is twice the angle subtended by the same arc at any point on the remaining part of the circumference. Therefore, angle AOB = 2 * 40 = 80 degrees.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "mathematics",
+    "topic": "circle-theorems",
+    "question": "P, Q, R, S are points on a circle such that PQRS is a cyclic quadrilateral. If angle PQR = 110 degrees, what is the value of angle PSR?",
+    "options": [
+      "70 degrees",
+      "110 degrees",
+      "55 degrees",
+      "140 degrees"
+    ],
+    "correct": 0,
+    "explanation": "In a cyclic quadrilateral, the sum of opposite angles is 180 degrees. Therefore, angle PQR + angle PSR = 180 degrees, which means angle PSR = 180 - 110 = 70 degrees.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "transport-communication",
+    "question": "Which of the following transport methods is most suitable for quickly delivering small, high-value packages across long distances within a country?",
+    "options": [
+      "Air transport",
+      "Road transport",
+      "Rail transport",
+      "Sea transport"
+    ],
+    "correct": 0,
+    "explanation": "Air transport is known for its speed, making it ideal for urgent delivery of small, high-value goods over long distances.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "transport-communication",
+    "question": "A business sending an email to a customer to confirm an order is an example of which type of communication?",
+    "options": [
+      "Oral communication",
+      "Non-verbal communication",
+      "Written communication",
+      "Visual communication"
+    ],
+    "correct": 2,
+    "explanation": "An email involves text, which is a form of written communication used to convey messages.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "transport-communication",
+    "question": "What is the primary advantage of using pipelines for transporting goods like crude oil and natural gas?",
+    "options": [
+      "Flexibility in routes",
+      "Low initial construction cost",
+      "Ability to transport diverse goods",
+      "Continuous flow and low operating cost"
+    ],
+    "correct": 3,
+    "explanation": "Pipelines offer a continuous, uninterrupted flow of liquids and gases, leading to very low operating costs once constructed.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "transport-communication",
+    "question": "Which communication tool would be most effective for a business to instantly announce a general price reduction to all its customers simultaneously?",
+    "options": [
+      "Sending individual letters",
+      "Public notice board",
+      "Mass SMS (text message) or email blast",
+      "Holding a series of small meetings"
+    ],
+    "correct": 2,
+    "explanation": "Mass SMS or email allows a business to reach a large number of customers simultaneously and instantly with important announcements.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "transport-communication",
+    "question": "When a small local business uses a scooter to deliver groceries to customers within a 5 km radius, what is the main benefit of this transport choice?",
+    "options": [
+      "High carrying capacity",
+      "Access to remote international markets",
+      "Cost-effectiveness and flexibility for short distances",
+      "Reduced environmental impact compared to walking"
+    ],
+    "correct": 2,
+    "explanation": "For short-distance local deliveries, scooters offer a cost-effective and flexible solution due to their maneuverability and lower fuel consumption compared to larger vehicles.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "science",
+    "topic": "respiration-circulation",
+    "question": "Which of the following blood components is primarily responsible for transporting oxygen in the human body?",
+    "options": [
+      "Red blood cells",
+      "White blood cells",
+      "Plasma",
+      "Platelets"
+    ],
+    "correct": 0,
+    "explanation": "Red blood cells contain haemoglobin, which is a protein that binds to oxygen in the lungs and transports it to the body tissues. The other components have different primary functions.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "transport-communication",
+    "question": "A Sri Lankan apparel manufacturer receives an urgent order from a European buyer for 100,000 units, requiring delivery within 7 days to avoid a penalty clause. The manufacturer has already completed production. Which mode of transport would be MOST appropriate to fulfill this order while minimizing costs related to the penalty clause?",
+    "options": [
+      "Air cargo, despite its high cost per unit, due to speed.",
+      "Sea freight, as it is the most economical option for bulk goods.",
+      "Rail transport, if an international rail network was available to Europe.",
+      "Road transport, for its flexibility in door-to-door delivery."
+    ],
+    "correct": 0,
+    "explanation": "Given the strict 7-day deadline and potential penalty, air cargo is the most appropriate choice due to its speed, even though it has a higher unit cost. The cost of delay would likely far exceed the difference in transport expenses.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "transport-communication",
+    "question": "A small Sri Lankan enterprise specializing in handcrafted jewellery wants to expand its market reach globally with minimal initial investment in physical stores. Which communication strategy would be MOST effective and efficient for achieving this objective?",
+    "options": [
+      "Establishing direct mail campaigns to potential international customers.",
+      "Setting up a comprehensive e-commerce website with integrated social media marketing.",
+      "Participating in international trade fairs and exhibitions regularly.",
+      "Hiring a team of international sales representatives to visit potential buyers."
+    ],
+    "correct": 1,
+    "explanation": "An e-commerce website combined with social media marketing offers the most effective and efficient way to reach a global audience with minimal initial investment, allowing direct sales and brand building without physical presence.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "transport-communication",
+    "question": "A company in Colombo needs to transport a large consignment of perishable fruits from a remote agricultural region in Sri Lanka to its processing plant. The road infrastructure to the region is poor, but a railway line passes nearby. Which combination of transport modes would be the MOST efficient to ensure minimal spoilage and cost-effectiveness?",
+    "options": [
+      "Primary reliance on refrigerated road transport for the entire journey.",
+      "Short-distance road transport to the nearest railway station, then refrigerated rail transport.",
+      "Utilizing air freight from the nearest domestic airport to Colombo.",
+      "Sea transport from the nearest coastal port to Colombo."
+    ],
+    "correct": 1,
+    "explanation": "Using road transport for the short, challenging leg to the railway, followed by more efficient and cost-effective refrigerated rail transport for the longer distance, minimizes spoilage and leverages the strengths of both modes for perishable goods.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "transport-communication",
+    "question": "Identify the primary challenge faced by businesses in Sri Lanka relying heavily on traditional postal services for international correspondence and document exchange, compared to modern digital communication methods.",
+    "options": [
+      "Higher cost per item for traditional postal services.",
+      "Lack of authentication and legal validity for documents sent via post.",
+      "Significantly longer delivery times and limited real-time tracking capabilities.",
+      "Limited geographical reach of traditional postal networks globally."
+    ],
+    "correct": 2,
+    "explanation": "While cost can be a factor, the most significant challenge for businesses using traditional postal services for international correspondence is the considerably longer delivery times and the often-limited ability to track items in real-time, unlike digital methods.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "transport-communication",
+    "question": "A logistics manager for an import-export company in Sri Lanka is comparing the fixed and variable costs associated with different modes of transport. Which statement accurately describes a key cost characteristic of rail transport compared to road transport for bulk goods over long distances?",
+    "options": [
+      "Rail transport typically has higher variable costs per tonne-kilometre than road transport due to fuel consumption.",
+      "The initial capital investment for developing and maintaining railway infrastructure is significantly lower than for roads.",
+      "Rail transport generally incurs higher fixed costs (e.g., track maintenance, rolling stock) but lower variable costs per unit for large volumes.",
+      "Road transport is more efficient for bulk goods over long distances due to its ability to carry heavier loads per individual vehicle."
+    ],
+    "correct": 2,
+    "explanation": "Rail transport involves substantial fixed costs for infrastructure (tracks, stations) and rolling stock, but its variable costs per unit (e.g., fuel, labor per tonne-kilometre) are often lower than road transport when carrying large volumes over long distances, making it cost-effective for bulk goods.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "entrepreneurship",
+    "question": "Which of the following is an internal factor that typically hinders the success of a new small business venture in Sri Lanka?\n\nA. Lack of access to microfinance facilities\nB. Intense competition from established businesses\nC. Insufficient working capital management\nD. Changes in government tax policies",
+    "options": [
+      "A. Lack of access to microfinance facilities",
+      "B. Intense competition from established businesses",
+      "C. Insufficient working capital management",
+      "D. Changes in government tax policies"
+    ],
+    "correct": 2,
+    "explanation": "Insufficient working capital management is an internal factor as it relates directly to the business's operational financial control and planning. The other options (A, B, D) are external factors that are largely outside the immediate control of the business owner.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "consumer-protection",
+    "question": "Which of the following is a primary right of a consumer according to consumer protection principles?",
+    "options": [
+      "The right to safety.",
+      "The right to choose any product, regardless of quality.",
+      "The right to pay the lowest price for all goods.",
+      "The right to sell goods back to the seller at any time."
+    ],
+    "correct": 0,
+    "explanation": "The right to safety ensures that consumers are protected against products, production processes, and services that are hazardous to health or life. This is a fundamental consumer right recognized globally and in Sri Lanka.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "intro-accounting",
+    "question": "Which of the following BEST describes the primary purpose of accounting?",
+    "options": [
+      "To provide financial information for decision-making.",
+      "To calculate and pay taxes promptly.",
+      "To manage daily cash transactions of a business.",
+      "To record all social activities of an organisation."
+    ],
+    "correct": 0,
+    "explanation": "The fundamental purpose of accounting is to identify, measure, and communicate financial information to various users for economic decision-making. Options B, C, and D are either specific accounting functions or outside the scope of financial accounting's primary purpose.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "science",
+    "topic": "ecosystems",
+    "question": "Which of the following is an example of a biotic component in an ecosystem?",
+    "options": [
+      "Plants",
+      "Sunlight",
+      "Water",
+      "Soil"
+    ],
+    "correct": 0,
+    "explanation": "Biotic components are the living parts of an ecosystem. Plants are living organisms that perform photosynthesis, making them a key biotic factor.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "accounting-equation",
+    "question": "The accounting equation states that Assets = Liabilities + Owner's Equity. If a business has total assets of Rs. 500,000 and total liabilities of Rs. 200,000, what is the owner's equity?",
+    "options": [
+      "Rs. 300,000",
+      "Rs. 700,000",
+      "Rs. 200,000",
+      "Rs. 500,000"
+    ],
+    "correct": 0,
+    "explanation": "Using the accounting equation (Assets = Liabilities + Owner's Equity), Owner's Equity can be calculated as Assets - Liabilities. Therefore, Rs. 500,000 - Rs. 200,000 = Rs. 300,000.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "accounting-equation",
+    "question": "A business started the month with Assets of Rs. 250,000 and Liabilities of Rs. 80,000. During the month, the owner invested an additional Rs. 50,000 in cash, and the business purchased new equipment for Rs. 30,000 on credit. What is the owner's equity at the end of the month?",
+    "options": [
+      "Rs. 250,000",
+      "Rs. 200,000",
+      "Rs. 220,000",
+      "Rs. 170,000"
+    ],
+    "correct": 1,
+    "explanation": "Initial Owner's Equity = Assets - Liabilities = Rs. 250,000 - Rs. 80,000 = Rs. 170,000. The owner's investment increases equity by Rs. 50,000. The purchase of equipment on credit increases both assets and liabilities by Rs. 30,000, thus having no direct impact on owner's equity. So, Final Owner's Equity = Rs. 170,000 + Rs. 50,000 = Rs. 220,000.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "accounting-equation",
+    "question": "A business commenced with a capital of Rs. 250,000. During the first month, it purchased goods on credit for Rs. 75,000, sold goods for cash Rs. 60,000 (costing Rs. 40,000), and paid rent Rs. 15,000. At the end of the month, the owner withdrew cash Rs. 10,000 for personal use. What is the total liabilities of the business at the end of the first month?",
+    "options": [
+      "Rs. 75,000",
+      "Rs. 85,000",
+      "Rs. 30,000",
+      "Rs. 105,000"
+    ],
+    "correct": 0,
+    "explanation": "The only liability mentioned in the transactions is the purchase of goods on credit for Rs. 75,000. Sales, expenses, and drawings affect assets and capital but not liabilities in this scenario.",
+    "difficulty": "hard"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "entrepreneurship",
+    "question": "Which of the following characteristics is MOST essential for a successful entrepreneur?",
+    "options": [
+      "Risk-taking ability",
+      "Ability to manage large teams",
+      "Formal university degree",
+      "Access to large capital"
+    ],
+    "correct": 0,
+    "explanation": "Entrepreneurs often face uncertainties and potential losses, making the willingness to take calculated risks a fundamental characteristic for venturing into new business opportunities. While other factors can be helpful, risk-taking is a core entrepreneurial trait.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "source-documents",
+    "question": "Which of the following source documents is issued by a seller to a buyer as proof of a credit sale?",
+    "options": [
+      "Invoice",
+      "Receipt",
+      "Payment Voucher",
+      "Debit Note"
+    ],
+    "correct": 0,
+    "explanation": "An invoice is a source document issued by a seller to a buyer to request payment for goods or services supplied on credit. A receipt confirms cash received, and a payment voucher authorizes payment.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "double-entry",
+    "question": "Which accounting concept is strictly followed when recording transactions using the double-entry system?",
+    "options": [
+      "Duality concept",
+      "Going concern concept",
+      "Materiality concept",
+      "Accrual concept"
+    ],
+    "correct": 0,
+    "explanation": "The duality concept states that every transaction has two aspects, a debit and a credit, which is fundamental to the double-entry system.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "double-entry",
+    "question": "When cash is received from a debtor, which accounts are affected and how?",
+    "options": [
+      "Cash Account - Debited, Debtors Account - Credited",
+      "Cash Account - Credited, Debtors Account - Debited",
+      "Sales Account - Debited, Cash Account - Credited",
+      "Debtors Account - Debited, Sales Account - Credited"
+    ],
+    "correct": 0,
+    "explanation": "Receiving cash increases the Cash account (an asset, hence debited) and decreases the Debtors account (an asset, hence credited).",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "double-entry",
+    "question": "Which of the following describes the 'credit' side of an asset account?",
+    "options": [
+      "Decreases the asset balance",
+      "Increases the asset balance",
+      "Increases liabilities",
+      "Increases owner's equity"
+    ],
+    "correct": 0,
+    "explanation": "For asset accounts, a debit increases the balance, while a credit decreases the balance.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "double-entry",
+    "question": "A business bought goods on credit from Supplier A for Rs. 5,000. How should this transaction be recorded?",
+    "options": [
+      "Debit Purchases Account Rs. 5,000, Credit Supplier A Account Rs. 5,000",
+      "Debit Supplier A Account Rs. 5,000, Credit Purchases Account Rs. 5,000",
+      "Debit Cash Account Rs. 5,000, Credit Supplier A Account Rs. 5,000",
+      "Debit Sales Account Rs. 5,000, Credit Supplier A Account Rs. 5,000"
+    ],
+    "correct": 0,
+    "explanation": "Buying goods increases the 'Purchases' expense (debited) and creates a liability to 'Supplier A' (credited).",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "double-entry",
+    "question": "The total of all debit balances in the ledger must always equal the total of all credit balances. This principle is checked by preparing a:",
+    "options": [
+      "Trial Balance",
+      "Income Statement",
+      "Balance Sheet",
+      "Cash Book"
+    ],
+    "correct": 0,
+    "explanation": "A Trial Balance is prepared to verify the arithmetical accuracy of ledger accounts by ensuring that total debits equal total credits.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "double-entry",
+    "question": "Which of the following transactions will increase both an asset and a liability?",
+    "options": [
+      "Purchasing goods on credit.",
+      "Paying a creditor by cash.",
+      "Receiving cash from a debtor.",
+      "Owner investing personal cash into the business."
+    ],
+    "correct": 0,
+    "explanation": "When goods are purchased on credit, inventory (an asset) increases, and accounts payable (a liability) also increases. This transaction affects both assets and liabilities positively.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "double-entry",
+    "question": "A business purchased furniture for Rs. 25,000 paying Rs. 10,000 in cash and the balance on credit. Which of the following ledger accounts will be debited?",
+    "options": [
+      "Cash Account",
+      "Creditors Account",
+      "Furniture Account",
+      "Bank Account"
+    ],
+    "correct": 2,
+    "explanation": "According to double-entry principles, when an asset (Furniture) is acquired, the asset account is debited. Cash and Creditors are credited as they are the source of the asset.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "double-entry",
+    "question": "What is the correct double entry for receiving a loan from a bank?",
+    "options": [
+      "Debit Bank Account, Credit Loan Account",
+      "Debit Loan Account, Credit Bank Account",
+      "Debit Cash Account, Credit Loan Account",
+      "Debit Bank Account, Credit Capital Account"
+    ],
+    "correct": 0,
+    "explanation": "Receiving a loan increases the cash or bank balance (an asset), which is debited. It also increases a liability (Loan Account), which is credited.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "double-entry",
+    "question": "If the debit side total of a Cash Account is Rs. 150,000 and the credit side total is Rs. 120,000, what is the balance of the Cash Account?",
+    "options": [
+      "Debit balance of Rs. 30,000",
+      "Credit balance of Rs. 30,000",
+      "Debit balance of Rs. 270,000",
+      "Credit balance of Rs. 270,000"
+    ],
+    "correct": 0,
+    "explanation": "The balance of an account is the difference between its debit and credit totals. Since the debit total (receipts) is higher than the credit total (payments) for Cash, it results in a debit balance.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "double-entry",
+    "question": "A business sold goods on credit to Mr. Silva for Rs. 18,000. Which accounts are affected and how?",
+    "options": [
+      "Debit Sales Account, Credit Debtors Account",
+      "Debit Debtors Account, Credit Sales Account",
+      "Debit Cash Account, Credit Sales Account",
+      "Debit Sales Account, Credit Creditors Account"
+    ],
+    "correct": 1,
+    "explanation": "Selling goods on credit increases Debtors (an asset), hence Debtors Account is debited. It also increases Sales (an income), hence Sales Account is credited.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "transport-communication",
+    "question": "Which of the following is considered a direct economic benefit of an efficient transport system to a business?",
+    "options": [
+      "Reduced spoilage of perishable goods.",
+      "Increased accessibility for customers to reach the business.",
+      "Ability to source raw materials from distant locations.",
+      "Enhanced national prestige and infrastructure development."
+    ],
+    "correct": 0,
+    "explanation": "Reduced spoilage directly impacts the cost of goods and profit margins for a business, making it a direct economic benefit. Other options are indirect or broader societal benefits.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "transport-communication",
+    "question": "A small textile manufacturer in Kandy wishes to export high-value, low-volume garments to Europe. Considering the factors of speed, security, and cost-effectiveness for this specific type of consignment, which mode of transport is most suitable?",
+    "options": [
+      "Sea transport.",
+      "Road transport.",
+      "Air transport.",
+      "Rail transport."
+    ],
+    "correct": 2,
+    "explanation": "Air transport offers the highest speed and security, which is crucial for high-value, low-volume goods like garments destined for international markets, despite its higher cost per unit.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "transport-communication",
+    "question": "Which characteristic of effective communication is best exemplified by a sales manager sending an email detailing a new sales promotion to all sales representatives, ensuring they all receive the exact same information simultaneously?",
+    "options": [
+      "Feedback.",
+      "Clarity.",
+      "Speed.",
+      "Reach."
+    ],
+    "correct": 3,
+    "explanation": "Reach refers to the ability to disseminate information to a large number of recipients simultaneously and consistently. Email effectively demonstrates this characteristic.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "transport-communication",
+    "question": "A business regularly sends large quantities of durable goods from Colombo to Hambantota. Given the nature of the goods and the destination, which mode of transport would generally offer the most cost-effective solution for bulk movement?",
+    "options": [
+      "Air freight.",
+      "Railway.",
+      "Courieг service.",
+      "Pipeline."
+    ],
+    "correct": 1,
+    "explanation": "Railway transport is highly cost-effective for moving large volumes of durable goods over long distances within the country due to its capacity and lower per-unit cost compared to road or air.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "transport-communication",
+    "question": "A business is implementing a new ERP (Enterprise Resource Planning) system that requires real-time data exchange between its head office and multiple remote branches across the island. Which communication service would be most vital for ensuring this continuous, high-speed data flow?",
+    "options": [
+      "Postal service.",
+      "Facsimile (fax) service.",
+      "Broadband internet connection.",
+      "Telephone (voice) calls."
+    ],
+    "correct": 2,
+    "explanation": "Broadband internet connection provides the necessary high-speed, continuous data transfer capabilities essential for real-time data exchange required by modern ERP systems.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "trial-balance",
+    "question": "Which of the following accounts normally has a debit balance?",
+    "options": [
+      "Cash at bank",
+      "Creditors",
+      "Sales revenue",
+      "Loan received"
+    ],
+    "correct": 0,
+    "explanation": "Assets like Cash at bank, expenses, and drawings normally have debit balances. Liabilities, revenues, and capital normally have credit balances.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "trial-balance",
+    "question": "If a trial balance does not balance, which of the following errors would be indicated?",
+    "options": [
+      "An amount posted only to one side of an account.",
+      "A transaction completely omitted from the books.",
+      "An incorrect amount posted to both debit and credit sides.",
+      "A debit entry correctly posted to a debit account but to the wrong account."
+    ],
+    "correct": 0,
+    "explanation": "Posting an amount only to one side of an account (either debit or credit) will cause the trial balance totals to differ. Other errors listed are errors of principle or omission that would not prevent balancing.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "trial-balance",
+    "question": "Which of the following accounts would typically appear on the credit side of a trial balance?",
+    "options": [
+      "Purchases",
+      "Salaries expense",
+      "Rent income",
+      "Machinery"
+    ],
+    "correct": 2,
+    "explanation": "Rent income is a revenue account, and revenue accounts normally have credit balances. Purchases, salaries expense, and machinery (an asset) typically have debit balances.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "trial-balance",
+    "question": "A trial balance is prepared at the end of a specific period from the balances of the:",
+    "options": [
+      "Journal entries.",
+      "Source documents.",
+      "Ledger accounts.",
+      "Bank statements."
+    ],
+    "correct": 2,
+    "explanation": "The trial balance is a list of all ledger account balances, extracted after all transactions have been posted from the journals to their respective ledger accounts.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "trial-balance",
+    "question": "The balance of the Capital account for a sole proprietorship is usually a:",
+    "options": [
+      "Debit balance.",
+      "Credit balance.",
+      "Zero balance.",
+      "Balance dependent on profit or loss."
+    ],
+    "correct": 1,
+    "explanation": "Capital is an owner's equity account, and these accounts normally have a credit balance as they represent funds owed by the business to the owner.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "trial-balance",
+    "question": "If the Purchases account has a balance of Rs. 50,000 and the Sales account has a balance of Rs. 80,000, how would these appear in a trial balance?",
+    "options": [
+      "Purchases: Debit Rs. 50,000; Sales: Credit Rs. 80,000",
+      "Purchases: Credit Rs. 50,000; Sales: Debit Rs. 80,000",
+      "Purchases: Debit Rs. 50,000; Sales: Debit Rs. 80,000",
+      "Purchases: Credit Rs. 50,000; Sales: Credit Rs. 80,000"
+    ],
+    "correct": 0,
+    "explanation": "Purchases is an expense account (cost of goods sold related) and has a debit balance. Sales is a revenue account and has a credit balance.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "trial-balance",
+    "question": "Which of the following is NOT a purpose of preparing a trial balance?",
+    "options": [
+      "To help locate errors in ledger accounts.",
+      "To provide a summary of all ledger balances.",
+      "To prepare financial statements directly.",
+      "To confirm the equality of total debits and total credits."
+    ],
+    "correct": 2,
+    "explanation": "While the trial balance is a starting point, it's not the final financial statement itself; adjustments are often needed before preparing the Income Statement and Statement of Financial Position.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "trial-balance",
+    "question": "An amount paid for rent (an expense) would normally result in a:",
+    "options": [
+      "Debit balance in the Rent Expense account.",
+      "Credit balance in the Rent Expense account.",
+      "Debit balance in the Rent Income account.",
+      "Credit balance in the Cash account only."
+    ],
+    "correct": 0,
+    "explanation": "Expenses increase with debits, so a payment for rent increases the Rent Expense account, resulting in a debit balance. Cash would be credited for the payment.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "trial-balance",
+    "question": "Which type of account listed below is always expected to have a debit balance?",
+    "options": [
+      "Liabilities",
+      "Revenues",
+      "Assets",
+      "Owner's Equity"
+    ],
+    "correct": 2,
+    "explanation": "Assets, expenses, and drawings normally have debit balances. Liabilities, revenues, and owner's equity normally have credit balances.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "trial-balance",
+    "question": "If the total of the debit column in a trial balance is Rs. 150,000, what should be the total of the credit column if there are no errors affecting its balancing?",
+    "options": [
+      "Rs. 150,000",
+      "Rs. 0",
+      "Rs. 300,000",
+      "Cannot be determined"
+    ],
+    "correct": 0,
+    "explanation": "According to the double-entry system, the total of all debit balances must equal the total of all credit balances in a correctly prepared trial balance.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "trial-balance",
+    "question": "Which of the following items represents an asset that would appear on the debit side of a trial balance?",
+    "options": [
+      "Bank overdraft",
+      "Accounts payable",
+      "Sales returns",
+      "Office equipment"
+    ],
+    "correct": 3,
+    "explanation": "Office equipment is an asset account and assets normally have debit balances. Bank overdraft and Accounts payable are liabilities, and Sales returns (a contra-revenue) has a debit balance but is not an asset.",
+    "difficulty": "easy"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "trial-balance",
+    "question": "The Sales Account has a credit balance of Rs. 150,000. How would this be presented in the Trial Balance?",
+    "options": [
+      "Under the Credit column with Rs. 150,000.",
+      "Under the Debit column with Rs. 150,000.",
+      "Under both Debit and Credit columns with Rs. 75,000 each.",
+      "It would not appear in the Trial Balance as it's a revenue account."
+    ],
+    "correct": 0,
+    "explanation": "Revenue accounts like Sales typically have a credit balance. Therefore, they are always listed on the credit side of the Trial Balance.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "trial-balance",
+    "question": "If the Debit total of a Trial Balance is Rs. 250,000 and the Credit total is Rs. 240,000, what is the most likely error causing this difference?",
+    "options": [
+      "An item of Rs. 10,000 recorded only on the debit side.",
+      "An item of Rs. 10,000 recorded only on the credit side.",
+      "An item of Rs. 5,000 recorded only on the debit side.",
+      "An item of Rs. 5,000 recorded only on the credit side."
+    ],
+    "correct": 1,
+    "explanation": "The debit side is Rs. 10,000 higher than the credit side. This imbalance suggests that an amount of Rs. 10,000 that should have been debited was instead credited, or an amount of Rs. 10,000 was entirely omitted from the credit side.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "trial-balance",
+    "question": "A business purchased goods on credit from Supplier A for Rs. 50,000. This transaction was recorded as a debit to Purchases for Rs. 50,000 but a credit to Supplier B for Rs. 50,000. What type of error is this?",
+    "options": [
+      "Error of principle.",
+      "Error of omission.",
+      "Compensating error.",
+      "Error of commission."
+    ],
+    "correct": 3,
+    "explanation": "An error of commission occurs when a correct amount is posted to the correct side of an incorrect account of the same class (e.g., posting to the wrong creditor's account).",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "trial-balance",
+    "question": "Which of the following accounts normally has a debit balance and appears on the debit side of the Trial Balance?",
+    "options": [
+      "Rent Received Account.",
+      "Loan Payable Account.",
+      "Cash Account.",
+      "Sales Account."
+    ],
+    "correct": 2,
+    "explanation": "Cash is an asset account and assets normally have debit balances. Rent Received and Sales are revenues (credit), and Loan Payable is a liability (credit).",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "trial-balance",
+    "question": "If the Purchases account was understated by Rs. 8,000 and the Sales account was overstated by Rs. 8,000, what would be the effect on the Trial Balance totals?",
+    "options": [
+      "Debit total would be Rs. 8,000 higher than the Credit total.",
+      "Credit total would be Rs. 8,000 higher than the Debit total.",
+      "Debit total would be Rs. 16,000 higher than the Credit total.",
+      "The Trial Balance would still balance."
+    ],
+    "correct": 3,
+    "explanation": "Purchases (debit balance) understated by Rs. 8,000 means the total debits are Rs. 8,000 lower. Sales (credit balance) overstated by Rs. 8,000 means the total credits are Rs. 8,000 higher. These two errors would cancel each other out in the Trial Balance, making it appear to balance.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "trial-balance",
+    "question": "A Trial Balance is prepared primarily to:",
+    "options": [
+      "Determine the profit or loss of the business.",
+      "Check the arithmetic accuracy of double-entry postings.",
+      "Show the financial position of the business.",
+      "List all assets and liabilities of the business."
+    ],
+    "correct": 1,
+    "explanation": "The main objective of preparing a Trial Balance is to verify that the total debits equal the total credits, which implies the arithmetic accuracy of ledger postings.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "trial-balance",
+    "question": "An expense of Rs. 1,000 was debited to the Suspense Account and credited to the Cash Account. How would this error affect the initial Trial Balance (before correction)?",
+    "options": [
+      "Debit total would be Rs. 1,000 less than the Credit total.",
+      "Debit total would be Rs. 1,000 more than the Credit total.",
+      "The Trial Balance would still balance.",
+      "The Suspense Account would have a credit balance of Rs. 1,000."
+    ],
+    "correct": 2,
+    "explanation": "If a Suspense Account is used, it means an error has already been identified and the difference has been temporarily parked. In this scenario, debiting Suspense and crediting Cash means an equivalent debit and credit has been made, so the Trial Balance would still balance.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "trial-balance",
+    "question": "Which of the following is an example of an 'Error of Principle'?",
+    "options": [
+      "Recording a purchase of machinery as a debit to Purchases Account.",
+      "Omitting a sales transaction from the books entirely.",
+      "Crediting a supplier twice for the same payment.",
+      "Posting an amount of Rs. 500 as Rs. 50 in a ledger account."
+    ],
+    "correct": 0,
+    "explanation": "An error of principle occurs when an accounting concept or principle is violated, such as treating a capital expenditure (machinery purchase) as a revenue expenditure (purchases).",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "trial-balance",
+    "question": "The total of the Returns Inwards account (Rs. 12,000) was incorrectly transferred to the credit column of the Trial Balance. What is the effect on the Trial Balance totals?",
+    "options": [
+      "Debit total would be Rs. 12,000 higher than the Credit total.",
+      "Credit total would be Rs. 12,000 higher than the Debit total.",
+      "Debit total would be Rs. 24,000 higher than the Credit total.",
+      "Credit total would be Rs. 24,000 higher than the Debit total."
+    ],
+    "correct": 2,
+    "explanation": "Returns Inwards (Sales Returns) is a contra-revenue account with a normal debit balance. Placing it in the credit column means the debit side is missing Rs. 12,000 and the credit side is overstated by Rs. 12,000, creating a total difference of Rs. 24,000, with debits being lower.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "trial-balance",
+    "question": "A Trial Balance contains the following balances: Capital Rs. 200,000 (Cr), Drawings Rs. 20,000 (Dr), Inventory Rs. 40,000 (Dr), Creditors Rs. 30,000 (Cr), Bank Rs. 10,000 (Dr). What is the total of the Debit column if these are the only accounts?",
+    "options": [
+      "Rs. 70,000",
+      "Rs. 230,000",
+      "Rs. 270,000",
+      "Rs. 240,000"
+    ],
+    "correct": 0,
+    "explanation": "The total of the Debit column will be the sum of accounts with debit balances: Drawings (Rs. 20,000) + Inventory (Rs. 40,000) + Bank (Rs. 10,000) = Rs. 70,000.",
+    "difficulty": "medium"
+  },
+  {
+    "subject": "business-accounting",
+    "topic": "trial-balance",
+    "question": "A suspense account showed a credit balance of Rs. 5,000. This could be due to:",
+    "options": [
+      "A debit entry of Rs. 2,500 omitted from a ledger account.",
+      "A credit entry of Rs. 2,500 omitted from a ledger account.",
+      "A debit entry of Rs. 5,000 posted twice.",
+      "A credit entry of Rs. 5,000 posted twice."
+    ],
+    "correct": 0,
+    "explanation": "If a debit entry of Rs. 2,500 (or any debit) was omitted from a ledger, the debit side of the Trial Balance would be Rs. 2,500 less than the credit side. To balance this, a suspense account would be credited with Rs. 2,500. This question indicates a credit balance of Rs. 5,000 in the suspense account, suggesting the debit side of the Trial Balance was short by Rs. 5,000. This happens if a debit entry of Rs. 5,000 was omitted from a ledger account or understated by Rs. 5,000.",
+    "difficulty": "medium"
   }
 ]
