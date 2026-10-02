@@ -41,6 +41,20 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
   console.error(error);
   const router = useRouter();
 
+  // Offline support: only on the real site (never inside the editor preview).
+  useEffect(() => {
+    if (!("serviceWorker" in navigator)) return;
+    const inIframe = window.self !== window.top;
+    const host = window.location.hostname;
+    const isPreview =
+      inIframe || host.includes("id-preview--") || host.includes("lovableproject.com") || host === "localhost";
+    if (isPreview) {
+      navigator.serviceWorker.getRegistrations().then((rs) => rs.forEach((r) => r.unregister()));
+      return;
+    }
+    navigator.serviceWorker.register("/sw.js").catch(() => {});
+  }, []);
+
   useEffect(() => {
     reportLovableError(error, {
       boundary: "tanstack_root_error_component",
@@ -103,6 +117,7 @@ export const Route = createRootRouteWithContext<{
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
+      { rel: "manifest", href: "/manifest.webmanifest" },
       {
         rel: "stylesheet",
         href: appCss,

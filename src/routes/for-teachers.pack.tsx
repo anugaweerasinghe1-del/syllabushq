@@ -6,7 +6,13 @@ import { MathText } from "@/components/MathText";
 import { pickQuestions } from "@/lib/pickQuestions";
 import { downloadPackDocx, downloadPackPdf } from "@/lib/exportPack";
 
-type PackSearch = { subject: string; topic: string; count: number; difficulty: string };
+type PackSearch = {
+  subject: string;
+  topic: string;
+  count: number;
+  difficulty: string;
+  online?: boolean;
+};
 
 export const Route = createFileRoute("/for-teachers/pack")({
   validateSearch: (raw: Record<string, unknown>): PackSearch => ({
@@ -14,6 +20,7 @@ export const Route = createFileRoute("/for-teachers/pack")({
     topic: typeof raw.topic === "string" ? raw.topic : "mix",
     count: Number(raw.count) > 0 ? Math.floor(Number(raw.count)) : 20,
     difficulty: typeof raw.difficulty === "string" ? raw.difficulty : "all",
+    online: raw.online === true || raw.online === "1" || raw.online === 1 ? true : undefined,
   }),
   loader: async ({ context }) => {
     await context.queryClient.ensureQueryData(subjectsQuery);
@@ -29,7 +36,8 @@ export const Route = createFileRoute("/for-teachers/pack")({
 });
 
 function PackPage() {
-  const { subject: subjectSlug, topic: topicSlug, count } = Route.useSearch();
+  const search = Route.useSearch();
+  const { subject: subjectSlug, topic: topicSlug, count, online } = search;
   const { data: subjects } = useSuspenseQuery(subjectsQuery);
   const { data: questions } = useSuspenseQuery(questionsQuery);
 
@@ -62,6 +70,25 @@ function PackPage() {
   }, []);
 
   const [includeScheme, setIncludeScheme] = useState(true);
+  const [answers, setAnswers] = useState<Record<number, number>>({});
+  const [submitted, setSubmitted] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const score = items.reduce((n, q, i) => n + (answers[i] === q.correct ? 1 : 0), 0);
+
+  async function copyClassLink() {
+    const url = `${window.location.origin}/for-teachers/pack?subject=${encodeURIComponent(
+      subject.slug,
+    )}&topic=${encodeURIComponent(topicSlug)}&count=${count}&difficulty=${encodeURIComponent(
+      search.difficulty,
+    )}&online=1`;
+    try {
+      await navigator.clipboard.writeText(url);
+    } catch {
+      window.prompt("Copy this link for your class:", url);
+    }
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2500);
+  }
   const [busy, setBusy] = useState<"pdf" | "docx" | null>(null);
 
   const meta = {
@@ -99,10 +126,48 @@ function PackPage() {
 
       <div className="no-print sticky top-0 z-10 border-b border-neutral-200 bg-white/95 backdrop-blur">
         <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-3 px-4 py-3 text-sm">
-          <Link to="/for-teachers" className="text-neutral-500 hover:text-neutral-900">
-            ← Back to teacher tools
-          </Link>
+          {online ? (
+            <Link to="/" className="text-neutral-500 hover:text-neutral-900">
+              SyllabusHQ · Class pack
+            </Link>
+          ) : (
+            <Link to="/for-teachers" className="text-neutral-500 hover:text-neutral-900">
+              ← Back to teacher tools
+            </Link>
+          )}
+          {online ? (
+            <div className="flex items-center gap-3 text-sm text-neutral-700">
+              {submitted ? (
+                <span className="font-semibold">
+                  Score: {score}/{items.length}
+                </span>
+              ) : (
+                <span>
+                  {Object.keys(answers).length}/{items.length} answered
+                </span>
+              )}
+              {!submitted && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSubmitted(true);
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                  className="rounded-lg bg-neutral-900 px-4 py-2 text-sm font-semibold text-white hover:bg-neutral-700"
+                >
+                  Submit answers
+                </button>
+              )}
+            </div>
+          ) : (
           <div className="flex flex-wrap items-center gap-2">
+            <button
+              type="button"
+              onClick={copyClassLink}
+              className="rounded-lg border border-neutral-300 px-4 py-2 text-sm font-semibold text-neutral-900 transition hover:bg-neutral-100"
+            >
+              {copied ? "Link copied ✓" : "Copy class link"}
+            </button>
             <label className="flex items-center gap-2 text-[13px] text-neutral-600">
               <input
                 type="checkbox"
@@ -133,6 +198,7 @@ function PackPage() {
               Print
             </button>
           </div>
+          )}
         </div>
       </div>
 
@@ -176,7 +242,25 @@ function PackPage() {
                 </p>
                 <ol className="mt-3 grid gap-1.5 sm:grid-cols-2" type="A">
                   {q.options.map((opt, j) => (
-                    <li key={j} className="text-[13px] text-neutral-800">
+                    <li
+                      key={j}
+                      onClick={() => {
+                        if (online && !submitted) setAnswers((a) => ({ ...a, [i]: j }));
+                      }}
+                      className={`text-[13px] text-neutral-800 ${
+                        online
+                          ? `cursor-pointer rounded-md border px-2 py-1.5 ${
+                              submitted && j === q.correct
+                                ? "border-green-600 bg-green-50"
+                                : submitted && answers[i] === j
+                                  ? "border-red-500 bg-red-50"
+                                  : answers[i] === j
+                                    ? "border-neutral-900 bg-neutral-100"
+                                    : "border-neutral-200 hover:bg-neutral-50"
+                            }`
+                          : ""
+                      }`}
+                    >
                       <span className="mr-2 font-mono text-neutral-500">
                         {String.fromCharCode(65 + j)}.
                       </span>
@@ -190,7 +274,17 @@ function PackPage() {
         </section>
 
         {/* Marking scheme starts on a new page when printed */}
-        <section className={`page-break mt-14 ${includeScheme ? "" : "hidden"}`}>
+        {online && submitted && (
+          <p className="mt-8 rounded-md border border-neutral-300 p-4 text-center text-sm">
+            You scored <strong>{score}/{items.length}</strong>. Correct answers are shown in green;
+            explanations are below.
+          </p>
+        )}
+        <section
+          className={`page-break mt-14 ${
+            online ? (submitted ? "" : "hidden") : includeScheme ? "" : "hidden"
+          }`}
+        >
           <header className="border-b border-neutral-300 pb-4 text-center">
             <p className="text-[10px] uppercase tracking-[0.28em] text-neutral-500">
               Marking Scheme

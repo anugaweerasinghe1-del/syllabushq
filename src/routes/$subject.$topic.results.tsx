@@ -16,6 +16,7 @@ type ResultItem = {
   options: string[];
   correct: number;
   explanation: string;
+  topic?: string;
   chosen: number;
 };
 
@@ -127,17 +128,21 @@ function ResultsPage() {
   const correctCount = results.total - wrong.length;
   const unanswered = results.items.filter((it) => it.chosen < 0).length;
 
-  // Topic weakness: bucket wrong questions by the first few keywords in the prompt
-  const buckets = new Map<string, number>();
-  for (const it of wrong) {
-    const key = it.question
-      .split(/[?.,:]/)[0]
-      .split(/\s+/)
-      .slice(0, 4)
-      .join(" ");
-    buckets.set(key, (buckets.get(key) ?? 0) + 1);
+  // Per-topic accuracy, weakest first.
+  const topicName = (slug: string) =>
+    subject.topics.find((t) => t.slug === slug)?.name ?? (slug === "mix" ? "Mixed" : slug);
+  const tally = new Map<string, { right: number; total: number }>();
+  for (const it of results.items) {
+    const k = it.topic ?? topic.slug;
+    const row = tally.get(k) ?? { right: 0, total: 0 };
+    row.total++;
+    if (it.chosen === it.correct) row.right++;
+    tally.set(k, row);
   }
-  const weaknesses = [...buckets.entries()].sort((a, b) => b[1] - a[1]).slice(0, 3);
+  const topicRows = [...tally.entries()]
+    .map(([slug, r]) => ({ slug, name: topicName(slug), ...r, pct: Math.round((r.right / r.total) * 100) }))
+    .sort((a, b) => a.pct - b.pct);
+  const weakest = topicRows.filter((r) => r.pct < 70 && r.slug !== "mix").slice(0, 3);
 
   const recs: string[] = [];
   if (unanswered > 0)
@@ -201,21 +206,48 @@ function ResultsPage() {
           </div>
         </section>
 
-        {weaknesses.length > 0 && (
+        {topicRows.length > 0 && (
           <section className="mt-6 glass-panel rounded-2xl p-6 rise-2">
-            <h2 className="text-xl">Topic weaknesses</h2>
-            <p className="mt-1 text-sm text-muted-foreground">Where you lost the most marks.</p>
-            <ul className="mt-3 space-y-2 text-sm">
-              {weaknesses.map(([k, n]) => (
-                <li
-                  key={k}
-                  className="flex items-center justify-between gap-3 rounded-lg border border-hairline px-3 py-2"
-                >
-                  <span className="text-charcoal truncate">{k}…</span>
-                  <span className="font-num text-coral">×{n}</span>
+            <h2 className="text-xl">Your weak topics</h2>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Accuracy per topic in this paper — weakest first.
+            </p>
+            <ul className="mt-4 space-y-3">
+              {topicRows.map((r) => (
+                <li key={r.slug}>
+                  <div className="flex items-center justify-between gap-3 text-sm">
+                    <span className="truncate text-foreground">{r.name}</span>
+                    <span className="font-num text-muted-foreground">
+                      {r.right}/{r.total} · {r.pct}%
+                    </span>
+                  </div>
+                  <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-surface-2">
+                    <div
+                      className="h-full rounded-full transition-all duration-700"
+                      style={{
+                        width: `${Math.max(4, r.pct)}%`,
+                        background:
+                          r.pct >= 70 ? "var(--sage)" : r.pct >= 40 ? "var(--orange)" : "var(--clay)",
+                      }}
+                    />
+                  </div>
                 </li>
               ))}
             </ul>
+            {weakest.length > 0 && (
+              <div className="mt-5 flex flex-wrap gap-2">
+                {weakest.map((r) => (
+                  <Link
+                    key={r.slug}
+                    to="/$subject/$topic"
+                    params={{ subject: subject.slug, topic: r.slug }}
+                    className="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:opacity-90"
+                  >
+                    Drill {r.name} →
+                  </Link>
+                ))}
+              </div>
+            )}
           </section>
         )}
 

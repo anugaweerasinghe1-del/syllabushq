@@ -221,6 +221,7 @@ function PracticePage() {
           options: it.options,
           correct: it.correct,
           explanation: it.explanation,
+          topic: (it as { topic?: string }).topic ?? topic.slug,
           chosen: session.answers[idx] ?? -1,
         })),
       }),
