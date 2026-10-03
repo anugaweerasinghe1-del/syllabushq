@@ -22,7 +22,9 @@ export default defineConfig({
         injectRegister: null,
         manifest: false,
         devOptions: { enabled: false },
+        outDir: "dist/client",
         workbox: {
+          globDirectory: "dist/client",
           globPatterns: ["**/*.{js,css,woff2,ttf}"],
           navigateFallback: null,
           cleanupOutdatedCaches: true,
