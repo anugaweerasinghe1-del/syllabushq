@@ -263,6 +263,36 @@ export type Database = {
         }
         Relationships: []
       }
+      pack_scores: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+          pack_key: string
+          score: number
+          total: number
+          visitor_token: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+          pack_key: string
+          score: number
+          total: number
+          visitor_token: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+          pack_key?: string
+          score?: number
+          total?: number
+          visitor_token?: string
+        }
+        Relationships: []
+      }
       practice_sessions: {
         Row: {
           created_at: string
