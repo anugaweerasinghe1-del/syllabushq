@@ -14,6 +14,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { AmbientBackground } from "../components/AmbientBackground";
 import { supabase } from "@/integrations/supabase/client";
+import { registerServiceWorker } from "@/lib/registerSW";
 
 function NotFoundComponent() {
   return (
@@ -41,18 +42,9 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
   console.error(error);
   const router = useRouter();
 
-  // Offline support: only on the real site (never inside the editor preview).
+  // Offline support: only on the published site (guarded inside).
   useEffect(() => {
-    if (!("serviceWorker" in navigator)) return;
-    const inIframe = window.self !== window.top;
-    const host = window.location.hostname;
-    const isPreview =
-      inIframe || host.includes("id-preview--") || host.includes("lovableproject.com") || host === "localhost";
-    if (isPreview) {
-      navigator.serviceWorker.getRegistrations().then((rs) => rs.forEach((r) => r.unregister()));
-      return;
-    }
-    navigator.serviceWorker.register("/sw.js").catch(() => {});
+    registerServiceWorker();
   }, []);
 
   useEffect(() => {
