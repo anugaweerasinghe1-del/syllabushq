@@ -5,6 +5,8 @@ import { subjectsQuery, questionsQuery } from "@/lib/content";
 import { MathText } from "@/components/MathText";
 import { pickQuestions } from "@/lib/pickQuestions";
 import { downloadPackDocx, downloadPackPdf } from "@/lib/exportPack";
+import { supabase } from "@/integrations/supabase/client";
+import { getVisitorToken } from "@/lib/visitor";
 
 type PackSearch = {
   subject: string;
@@ -280,6 +282,13 @@ function PackPage() {
             explanations are below.
           </p>
         )}
+        {online && submitted && (
+          <Leaderboard
+            packKey={`${subject.slug}|${topicSlug}|${count}|${search.difficulty}`}
+            score={score}
+            total={items.length}
+          />
+        )}
         <section
           className={`page-break mt-14 ${
             online ? (submitted ? "" : "hidden") : includeScheme ? "" : "hidden"
@@ -322,5 +331,93 @@ function PackPage() {
         </footer>
       </main>
     </div>
+  );
+}
+
+type Row = { name: string; score: number; total: number };
+
+function Leaderboard({ packKey, score, total }: { packKey: string; score: number; total: number }) {
+  const [rows, setRows] = useState<Row[]>([]);
+  const [name, setName] = useState("");
+  const [posted, setPosted] = useState(false);
+  const [err, setErr] = useState("");
+
+  async function load() {
+    const { data } = await supabase
+      .from("pack_scores")
+      .select("name, score, total")
+      .eq("pack_key", packKey)
+      .order("score", { ascending: false })
+      .order("created_at", { ascending: true })
+      .limit(20);
+    setRows(data ?? []);
+  }
+  useEffect(() => {
+    void load();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [packKey]);
+
+  async function post() {
+    const n = name.trim().slice(0, 40);
+    if (!n) return;
+    setErr("");
+    const { error } = await supabase
+      .from("pack_scores")
+      .insert({ pack_key: packKey, name: n, score, total, visitor_token: getVisitorToken() });
+    if (error) {
+      setErr(
+        error.code === "23505"
+          ? "Your score for this pack is already on the board."
+          : "Couldn't post your score — try again.",
+      );
+      if (error.code === "23505") setPosted(true);
+      return;
+    }
+    setPosted(true);
+    void load();
+  }
+
+  return (
+    <section className="no-print mt-8 rounded-md border border-neutral-300 p-5">
+      <h2 className="text-lg font-semibold">Class leaderboard</h2>
+      {!posted ? (
+        <div className="mt-3 flex flex-wrap gap-2">
+          <input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            maxLength={40}
+            placeholder="Your name"
+            aria-label="Your name"
+            className="flex-1 rounded-lg border border-neutral-300 px-3 py-2 text-sm"
+          />
+          <button
+            type="button"
+            onClick={post}
+            disabled={!name.trim()}
+            className="rounded-lg bg-neutral-900 px-4 py-2 text-sm font-semibold text-white disabled:opacity-50"
+          >
+            Add my score
+          </button>
+        </div>
+      ) : null}
+      {err && <p className="mt-2 text-sm text-red-600">{err}</p>}
+      {rows.length === 0 ? (
+        <p className="mt-3 text-sm text-neutral-500">No scores yet — be the first.</p>
+      ) : (
+        <ol className="mt-3 divide-y divide-neutral-200 text-sm">
+          {rows.map((r, i) => (
+            <li key={i} className="flex justify-between py-1.5">
+              <span>
+                <span className="mr-2 font-mono text-neutral-500">{i + 1}.</span>
+                {r.name}
+              </span>
+              <span className="font-semibold">
+                {r.score}/{r.total}
+              </span>
+            </li>
+          ))}
+        </ol>
+      )}
+    </section>
   );
 }
