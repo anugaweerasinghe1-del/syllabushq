@@ -29,6 +29,7 @@ function MistakesPage() {
   const { data: subjects } = useSuspenseQuery(subjectsQuery);
   const [list, setList] = useState<Mistake[] | null>(null);
   const [filter, setFilter] = useState("all");
+  const [solved, setSolved] = useState(0);
   useEffect(() => setList(loadMistakes()), []);
 
   const shown = useMemo(
@@ -73,7 +74,9 @@ function MistakesPage() {
         {list === null ? null : shown.length === 0 ? (
           <div className="mt-10 rounded-2xl border border-hairline p-8 text-center">
             <p className="text-lg text-foreground">
-              {list.length === 0 ? "No mistakes saved yet." : "Nothing left here — well done!"}
+              {list.length === 0 && solved === 0
+                ? "No mistakes saved yet."
+                : "Nothing left here — well done!"}
             </p>
             <p className="mt-2 text-sm text-muted-foreground">
               Questions you get wrong in practice will appear here automatically.
@@ -94,6 +97,7 @@ function MistakesPage() {
                 label={`${subjectName(m.subject)} · ${topicName(m.subject, m.topic)}`}
                 onSolved={() => {
                   removeMistake(m);
+                  setSolved((n) => n + 1);
                   setList(loadMistakes());
                 }}
               />

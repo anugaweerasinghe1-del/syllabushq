@@ -1,4 +1,5 @@
 import { createFileRoute, Link, notFound, redirect, useNavigate } from "@tanstack/react-router";
+import { addMistakes } from "@/lib/mistakes";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { useEffect, useMemo, useState } from "react";
 import {
@@ -199,6 +200,18 @@ function PracticePage() {
       0,
     );
     markStudiedToday();
+    addMistakes(
+      set
+        .filter((it, idx) => session.answers[idx] !== it.correct)
+        .map((it) => ({
+          subject: subject.slug,
+          topic: (it as { topic?: string }).topic ?? topic.slug,
+          question: it.question,
+          options: it.options,
+          correct: it.correct,
+          explanation: it.explanation,
+        })),
+    );
     recordScore(subject.slug, topic.slug, final, set.length);
     void logSession({
       subject: subject.slug,
