@@ -34,6 +34,8 @@ import { Route as AuthenticatedDashboardRouteImport } from './routes/_authentica
 import { Route as EmbedDailyRouteImport } from './routes/embed.daily'
 import { Route as ForTeachersIndexRouteImport } from './routes/for-teachers.index'
 import { Route as ForTeachersPackRouteImport } from './routes/for-teachers.pack'
+import { Route as GuidesIndexRouteImport } from './routes/guides.index'
+import { Route as GuidesSlugRouteImport } from './routes/guides.$slug'
 import { Route as PastPapersIndexRouteImport } from './routes/past-papers.index'
 import { Route as PastPapersPaperRouteImport } from './routes/past-papers.$paper'
 import { Route as PracticeIndexRouteImport } from './routes/practice.index'
@@ -172,6 +174,16 @@ const ForTeachersPackRoute = ForTeachersPackRouteImport.update({
   path: '/pack',
   getParentRoute: () => ForTeachersRoute,
 } as any)
+const GuidesIndexRoute = GuidesIndexRouteImport.update({
+  id: '/guides/',
+  path: '/guides/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuidesSlugRoute = GuidesSlugRouteImport.update({
+  id: '/guides/$slug',
+  path: '/guides/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PastPapersIndexRoute = PastPapersIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -261,10 +273,12 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/embed/daily': typeof EmbedDailyRoute
   '/for-teachers/pack': typeof ForTeachersPackRoute
+  '/guides/$slug': typeof GuidesSlugRoute
   '/past-papers/$paper': typeof PastPapersPaperRoute
   '/practice/$mode': typeof PracticeModeRouteWithChildren
   '/$subject/': typeof SubjectIndexRoute
   '/for-teachers/': typeof ForTeachersIndexRoute
+  '/guides/': typeof GuidesIndexRoute
   '/past-papers/': typeof PastPapersIndexRoute
   '/practice/': typeof PracticeIndexRoute
   '/$subject/$topic/practice': typeof SubjectTopicPracticeRoute
@@ -295,9 +309,11 @@ export interface FileRoutesByTo {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/embed/daily': typeof EmbedDailyRoute
   '/for-teachers/pack': typeof ForTeachersPackRoute
+  '/guides/$slug': typeof GuidesSlugRoute
   '/past-papers/$paper': typeof PastPapersPaperRoute
   '/$subject': typeof SubjectIndexRoute
   '/for-teachers': typeof ForTeachersIndexRoute
+  '/guides': typeof GuidesIndexRoute
   '/past-papers': typeof PastPapersIndexRoute
   '/practice': typeof PracticeIndexRoute
   '/$subject/$topic/practice': typeof SubjectTopicPracticeRoute
@@ -335,10 +351,12 @@ export interface FileRoutesById {
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/embed/daily': typeof EmbedDailyRoute
   '/for-teachers/pack': typeof ForTeachersPackRoute
+  '/guides/$slug': typeof GuidesSlugRoute
   '/past-papers/$paper': typeof PastPapersPaperRoute
   '/practice/$mode': typeof PracticeModeRouteWithChildren
   '/$subject/': typeof SubjectIndexRoute
   '/for-teachers/': typeof ForTeachersIndexRoute
+  '/guides/': typeof GuidesIndexRoute
   '/past-papers/': typeof PastPapersIndexRoute
   '/practice/': typeof PracticeIndexRoute
   '/$subject/$topic/practice': typeof SubjectTopicPracticeRoute
@@ -376,10 +394,12 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/embed/daily'
     | '/for-teachers/pack'
+    | '/guides/$slug'
     | '/past-papers/$paper'
     | '/practice/$mode'
     | '/$subject/'
     | '/for-teachers/'
+    | '/guides/'
     | '/past-papers/'
     | '/practice/'
     | '/$subject/$topic/practice'
@@ -410,9 +430,11 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/embed/daily'
     | '/for-teachers/pack'
+    | '/guides/$slug'
     | '/past-papers/$paper'
     | '/$subject'
     | '/for-teachers'
+    | '/guides'
     | '/past-papers'
     | '/practice'
     | '/$subject/$topic/practice'
@@ -449,10 +471,12 @@ export interface FileRouteTypes {
     | '/_authenticated/dashboard'
     | '/embed/daily'
     | '/for-teachers/pack'
+    | '/guides/$slug'
     | '/past-papers/$paper'
     | '/practice/$mode'
     | '/$subject/'
     | '/for-teachers/'
+    | '/guides/'
     | '/past-papers/'
     | '/practice/'
     | '/$subject/$topic/practice'
@@ -487,6 +511,8 @@ export interface RootRouteChildren {
   StudyRoute: typeof StudyRoute
   SuggestRoute: typeof SuggestRoute
   EmbedDailyRoute: typeof EmbedDailyRoute
+  GuidesSlugRoute: typeof GuidesSlugRoute
+  GuidesIndexRoute: typeof GuidesIndexRoute
   LearnSubjectTopicSlugRoute: typeof LearnSubjectTopicSlugRoute
 }
 
@@ -666,6 +692,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/for-teachers/pack'
       preLoaderRoute: typeof ForTeachersPackRouteImport
       parentRoute: typeof ForTeachersRoute
+    }
+    '/guides/': {
+      id: '/guides/'
+      path: '/guides'
+      fullPath: '/guides/'
+      preLoaderRoute: typeof GuidesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guides/$slug': {
+      id: '/guides/$slug'
+      path: '/guides/$slug'
+      fullPath: '/guides/$slug'
+      preLoaderRoute: typeof GuidesSlugRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/past-papers/': {
       id: '/past-papers/'
@@ -892,6 +932,8 @@ const rootRouteChildren: RootRouteChildren = {
   StudyRoute: StudyRoute,
   SuggestRoute: SuggestRoute,
   EmbedDailyRoute: EmbedDailyRoute,
+  GuidesSlugRoute: GuidesSlugRoute,
+  GuidesIndexRoute: GuidesIndexRoute,
   LearnSubjectTopicSlugRoute: LearnSubjectTopicSlugRoute,
 }
 export const routeTree = rootRouteImport

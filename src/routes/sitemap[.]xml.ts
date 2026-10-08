@@ -4,6 +4,7 @@ import subjectsData from "@/data/subjects.json";
 import { SEO_PAGES } from "@/data/seo-matrix";
 import { MODES } from "@/lib/modes";
 import { PAST_PAPERS } from "@/lib/past-papers";
+import { GUIDES } from "@/data/guides";
 
 const BASE_URL = "https://app.syllabushq.workers.dev";
 
@@ -29,6 +30,11 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/reviews", changefreq: "weekly", priority: "0.4" },
           { path: "/suggest", changefreq: "monthly", priority: "0.3" },
         ];
+
+        entries.push({ path: "/guides", changefreq: "weekly", priority: "0.9" });
+        for (const g of GUIDES) {
+          entries.push({ path: `/guides/${g.slug}`, changefreq: "monthly", priority: "0.8" });
+        }
 
         for (const paper of PAST_PAPERS) {
           entries.push({ path: `/past-papers/${paper.slug}`, changefreq: "monthly", priority: "0.8" });
